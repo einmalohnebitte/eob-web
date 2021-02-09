@@ -12,7 +12,8 @@
     "storybook": "start-storybook --no-dll -p 6006",
     "build-storybook": "build-storybook --no-dll",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
-    "prettify": "prettier --write --ignore-path ./.eslintignore \"src/**/*.{js,jsx,ts,tsx}\""
+    "prettify": "prettier --write --ignore-path ./.eslintignore \"src/**/*.{js,jsx,ts,tsx}\"",
+    "chromatic": "npx chromatic --project-token fe993e497ba1"
   },
   "keywords": [],
   "author": "Fabio Benedetti",
