@@ -1,0 +1,14 @@
+{
+  "short_name": "EOB",
+  "name": "Einmal ohne, bitte",
+  "display": "standalone",
+  "theme_color":"#290012",
+  "icons": [
+    {
+      "src": "/favicon-144.jpg",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "./"
+}

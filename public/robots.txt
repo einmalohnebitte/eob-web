@@ -1,0 +1,3 @@
+Sitemap: https://www.einmalohnebitte.de/sitemap.xml
+User-agent:*
+Disallow:

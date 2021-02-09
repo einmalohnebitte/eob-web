@@ -1,0 +1,10 @@
+query HomePage {
+  pageSections(where: { pageType: home }) {
+    title
+    content
+    picture {
+      url
+    }
+    locale
+  }
+}
