@@ -14,7 +14,16 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const Home: React.FC<HomePageQuery> = (props) => {
-  return <>Test{props.pageSections.map((page) => page.title)}</>;
+  return (
+    <>
+      {props.pageSections.map((section, k) => (
+        <div key={k}>
+          <h1>{section.title}</h1>
+          <p>{section.content}</p>
+        </div>
+      ))}
+    </>
+  );
 };
 
 export default Home;
