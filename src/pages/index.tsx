@@ -16,6 +16,7 @@ export const getStaticProps: GetStaticProps = async () => {
 const Home: React.FC<HomePageQuery> = (props) => {
   return (
     <>
+      Test
       {props.pageSections.map((section, k) => (
         <div key={k}>
           <h1>{section.title}</h1>
