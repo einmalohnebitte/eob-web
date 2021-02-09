@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        raleway: ["Raleway", "sans-serif"],
-        dancing: ["Dancing Script", "cursive"],
+        lemonism: ["Lemonism-Regular", "sans-serif"],
+        gt: ["GT", "sans-serif"],
       },
     },
   },

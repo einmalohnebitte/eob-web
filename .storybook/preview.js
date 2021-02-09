@@ -1,7 +1,5 @@
-import { useGlobal, GlobalStyle } from "../src/components/Layout";
-import { ThemeProvider } from "styled-components";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
-import { theme } from "../src/components/Layout/useGlobal";
+import { ThemeProvider } from "styled-components";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -22,13 +20,13 @@ const router = {
 
 export const decorators = [
   (Story) => {
-    const global = useGlobal();
+    // const global = useGlobal();
     return (
       <RouterContext.Provider value={router}>
-        <GlobalStyle />
-        <ThemeProvider theme={theme(global)}>
-          <Story />
-        </ThemeProvider>
+        {/* <GlobalStyle /> */}
+        {/* <ThemeProvider theme={theme(global)}> */}
+        <Story />
+        {/* </ThemeProvider> */}
       </RouterContext.Provider>
     );
   },
