@@ -1,5 +1,5 @@
 query HomePage {
-  pageSections(where: { pageType: home }) {
+  pageSections(where: { page: { title: "Home" } }) {
     title
     content
     picture {

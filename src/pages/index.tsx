@@ -2,6 +2,7 @@ import {
   HomePageDocument,
   HomePageQuery,
 } from "@/components/Home/Home.generated";
+import { withLayout } from "@/components/Layout";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { GetStaticProps } from "next";
 import React from "react";
@@ -27,4 +28,4 @@ const Home: React.FC<HomePageQuery> = (props) => {
   );
 };
 
-export default Home;
+export default withLayout(true)(Home);
