@@ -1,4 +1,7 @@
 import { Goals } from "@/components/Home/2Goals";
+import { Map } from "@/components/Home/3Map";
+import { Social } from "@/components/Home/4Social";
+import { Sponsors } from "@/components/Home/5Sponsors";
 import {
   HomePageDocument,
   HomePageQuery,
@@ -24,6 +27,9 @@ const Home: React.FC<HomePageQuery> = (props) => {
         <HomeSections {...section} key={k} />
       ))}
       <Goals {...props} />
+      <Map />
+      <Social />
+      <Sponsors />
     </>
   );
 };

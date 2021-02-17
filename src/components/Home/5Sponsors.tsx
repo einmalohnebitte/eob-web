@@ -20,7 +20,7 @@ const SponsorCard: React.FC<{
         }
       `}
     >
-      <Image src={src} layout="responsive" width={300} height={300} />
+      <Image src={src} objectFit="contain" width={300} height={300} />
     </div>
   ) : null;
 
@@ -34,7 +34,7 @@ export const Sponsors: React.FC = () => {
           <SponsorCard src={"/images/sponsors/lush.png"} />
           <SponsorCard src={"/images/sponsors/patagonia.jpg"} />
           <SponsorCard src={"/images/sponsors/rgu.png"} />
-          <SponsorCard src={"/images/sponsors/soul.png"} />
+          <SponsorCard src={"/images/sponsors/soul.jpg"} />
           <SponsorCard src={"/images/sponsors/stiftung-veolia.png"} />
           <SponsorCard src={"/images/sponsors/zukunftsstiftungehrenamt.jpg"} />
         </div>
