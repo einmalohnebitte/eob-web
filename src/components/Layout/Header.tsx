@@ -1,6 +1,6 @@
 import { ButtonPink } from "@/components/@UI/Buttons";
 import { DropDown, DropDownItem } from "@/components/@UI/DropDown";
-import { useTranslations } from "@/translations/index";
+import { useTranslations } from "@/translate";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";

@@ -1,5 +1,5 @@
 import { HomePageQuery } from "@/components/Home/Home.generated";
-import { useTranslations } from "@/translations/index";
+import { useTranslations } from "@/translate";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
