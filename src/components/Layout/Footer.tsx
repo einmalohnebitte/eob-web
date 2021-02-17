@@ -1,4 +1,4 @@
-import { useTranslations } from "@/translations";
+import { useTranslations } from "@/translations/index";
 import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";

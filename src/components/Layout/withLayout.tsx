@@ -1,4 +1,4 @@
-import { useTranslations } from "@/translations";
+import { useTranslations } from "@/translations/index";
 import Link from "next/link";
 import React from "react";
 import CookieConsent from "react-cookie-consent";

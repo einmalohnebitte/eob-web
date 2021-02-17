@@ -37,8 +37,8 @@
       "@/fonts/*": [
         "src/fonts/*"
       ],
-      "@/translations": [
-        "src/translations/index.ts"
+      "@/translations/*": [
+        "src/translations/*"
       ]
     }
   },
