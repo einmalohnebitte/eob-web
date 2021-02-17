@@ -13,7 +13,6 @@ import tw from "twin.macro";
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await graphCmsRequest(HomePageDocument, { page: "Einkaufen" });
-  console.log(data.pageSections[2].content);
   return {
     props: data,
   };
