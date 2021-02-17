@@ -22,11 +22,7 @@ async function run() {
             extension: ".generated.ts",
             baseTypesPath: "/generated/graphql.tsx",
           },
-          plugins: [
-            "typescript",
-            "typescript-operations",
-            "typed-document-node",
-          ],
+          plugins: ["typescript-operations", "typed-document-node"],
         },
         [process.cwd() + "/src/graphql.schema.json"]: {
           plugins: ["introspection"],

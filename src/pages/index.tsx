@@ -1,7 +1,9 @@
+import { Goals } from "@/components/Home/2Goals";
 import {
   HomePageDocument,
   HomePageQuery,
 } from "@/components/Home/Home.generated";
+import { HomeSections } from "@/components/Home/HomeSections";
 import { withLayout } from "@/components/Layout";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { GetStaticProps } from "next";
@@ -9,6 +11,7 @@ import React from "react";
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await graphCmsRequest(HomePageDocument);
+
   return {
     props: data,
   };
@@ -17,15 +20,12 @@ export const getStaticProps: GetStaticProps = async () => {
 const Home: React.FC<HomePageQuery> = (props) => {
   return (
     <>
-      Test
       {props.pageSections.map((section, k) => (
-        <div key={k}>
-          <h1>{section.title}</h1>
-          <p>{section.content}</p>
-        </div>
+        <HomeSections {...section} key={k} />
       ))}
+      <Goals {...props} />
     </>
   );
 };
 
-export default withLayout(true)(Home);
+export default withLayout()(Home);

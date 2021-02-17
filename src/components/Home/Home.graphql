@@ -1,10 +1,13 @@
 query HomePage {
   pageSections(where: { page: { title: "Home" } }) {
     title
-    content
+    content {
+      html
+    }
     picture {
       url
     }
     locale
+    code
   }
 }

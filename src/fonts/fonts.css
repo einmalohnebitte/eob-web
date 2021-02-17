@@ -1,0 +1,10 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Lemonism-Regular';
+    src:  url('font.woff') format('woff');
+}
+@font-face {
+    font-display: swap;
+    font-family: "GT";
+    src: url("GT-Cinetype-Light.woff");
+}
