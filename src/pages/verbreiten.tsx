@@ -13,7 +13,7 @@ import { GetStaticProps } from "next";
 import React from "react";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await graphCmsRequest(HomePageDocument, { page: "Home" });
+  const data = await graphCmsRequest(HomePageDocument);
 
   return {
     props: data,

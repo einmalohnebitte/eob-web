@@ -5,22 +5,22 @@ export const items = [
   },
   {
     href: "/geschaefte",
-    label: "SHOPS",
+    label: "KARTE",
   },
   {
-    href: "/blog",
-    label: "BLOG",
+    href: "/einkaufen",
+    label: "EINKAUFEN",
   },
   {
-    href: "/team",
-    label: "TEAM",
+    href: "/verkaufen",
+    label: "VERKAUFEN",
   },
   {
-    href: "/faq",
-    label: "FAQ",
+    href: "/verbreiten",
+    label: "VERBREITEN",
   },
   {
-    href: "/kontakt",
-    label: "KONTAKT",
+    href: "/uber-uns",
+    label: "UBER UNS",
   },
-] as const;
+];
