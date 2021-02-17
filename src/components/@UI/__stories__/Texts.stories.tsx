@@ -3,7 +3,6 @@ import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
 import tw from "twin.macro";
 
-import { useTranslate } from "../../@hooks/useTranslate";
 import { H1, H2, P } from "../Texts";
 
 export default {
@@ -11,10 +10,9 @@ export default {
 } as Meta;
 
 const Template: Story<React.ButtonHTMLAttributes<any>> = (args) => {
-  const intl = useTranslate();
   return (
     <div>
-      <H1>{intl.formatMessage({ id: "FORM_PRIVACY" })}</H1>
+      <H1>FORM_PRIVACY</H1>
       <H2>Test Title H2</H2>
       <P>
         {`Lorem Ipsum is simply dummy text of the printing and typesetting

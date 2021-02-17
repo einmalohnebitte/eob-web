@@ -13,7 +13,7 @@ import {
 } from "../@UI/BackgroundWrapper";
 import { ButtonBlue, ButtonPink, ButtonYellow } from "../@UI/Buttons";
 import { SplitSection } from "../@UI/Section";
-import { H2, P } from "../@UI/Texts";
+import { H2 } from "../@UI/Texts";
 
 const BackgroundWrapper: React.FC<{ activeIndex: number }> = ({
   activeIndex,
