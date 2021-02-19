@@ -1,35 +1,65 @@
-import { Goals } from "@/components/Home/2Goals";
-import { Map } from "@/components/Home/3Map";
-import { Social } from "@/components/Home/4Social";
-import { Sponsors } from "@/components/Home/5Sponsors";
+import { BackgroundYellowWrapper } from "@/components/@UI/BackgroundWrapper";
+import { Section, SplitSection } from "@/components/@UI/Section";
+import { H1 } from "@/components/@UI/Texts";
+import { VerkaufenForm } from "@/components/Forms/VerkaufenForm";
 import {
   HomePageDocument,
   HomePageQuery,
 } from "@/components/Home/Home.generated";
-import { HomeSections } from "@/components/Home/HomeSections";
 import { withLayout } from "@/components/Layout";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { GetStaticProps } from "next";
 import React from "react";
+import tw from "twin.macro";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await graphCmsRequest(HomePageDocument);
-
+  const data = await graphCmsRequest(HomePageDocument, { page: "Verkaufen" });
   return {
     props: data,
   };
 };
 
-const Home: React.FC<HomePageQuery> = (props) => {
+const Home: React.FC<HomePageQuery> = ({ pageSections }) => {
   return (
     <>
-      {props.pageSections.map((section, k) => (
-        <HomeSections {...section} key={k} />
-      ))}
-      <Goals {...props} />
-      <Map />
-      <Social />
-      <Sponsors />
+      <SplitSection.Section>
+        <SplitSection.Side>
+          <picture>
+            <img src="/images/Verkaufen_Small.svg" alt="side" />
+          </picture>
+        </SplitSection.Side>
+        <SplitSection.Main>
+          <H1>{pageSections[0].title}</H1>
+          <div
+            css={tw`py-4`}
+            dangerouslySetInnerHTML={{
+              __html: pageSections[0].content.html ?? "",
+            }}
+          />
+        </SplitSection.Main>
+      </SplitSection.Section>
+
+      <BackgroundYellowWrapper>
+        <Section>
+          <H1>{pageSections[1].title}</H1>
+          <div
+            css={`
+              ol {
+                display: flex;
+                flex-direction: row;
+              }
+
+              ${tw`py-4 pr-4`}
+            `}
+            dangerouslySetInnerHTML={{
+              __html: pageSections[1].content.html ?? "",
+            }}
+          />
+        </Section>
+        <Section>
+          <VerkaufenForm />
+        </Section>
+      </BackgroundYellowWrapper>
     </>
   );
 };

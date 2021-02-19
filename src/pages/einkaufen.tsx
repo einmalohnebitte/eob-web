@@ -1,6 +1,6 @@
 import { BackgroundBlueWrapper } from "@/components/@UI/BackgroundWrapper";
 import { SplitSection } from "@/components/@UI/Section";
-import { H1, H2, P } from "@/components/@UI/Texts";
+import { H1, H2 } from "@/components/@UI/Texts";
 import {
   HomePageDocument,
   HomePageQuery,
@@ -24,7 +24,7 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
       <SplitSection.Section>
         <SplitSection.Main>
           <H1>{pageSections[0].title}</H1>
-          <P
+          <div
             css={tw`py-4`}
             dangerouslySetInnerHTML={{
               __html: pageSections[0].content.html ?? "",
