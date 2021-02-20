@@ -57,7 +57,6 @@ export const ShopsMap: React.FC<{
       <GeoJSON data={{ type: "FeatureCollection", features: [] } as any} />
       <MarkerClusterGroup>
         {(shops ?? []).map((item, k) => {
-          console.log(item.geom?.coordinates);
           return (
             item.geom?.coordinates && (
               <Marker key={k} position={item.geom?.coordinates}>
