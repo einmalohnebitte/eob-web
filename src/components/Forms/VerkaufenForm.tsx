@@ -11,7 +11,7 @@ import { H2 } from "../@UI/Texts";
 import { FormArea } from "./FormArea";
 import { FormCheckbox } from "./FormCheckbox";
 import { FormInput } from "./FormInput";
-import { useSendMail } from "./useApi";
+import { useSendMail } from "./useSendEmail";
 
 export const VerkaufenForm = () => {
   const sendMail = useSendMail();
