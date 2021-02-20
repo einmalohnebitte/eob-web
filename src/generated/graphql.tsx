@@ -485,6 +485,8 @@ export type Asset = Node & {
   mimeType?: Maybe<Scalars['String']>;
   picturePageSection: Array<PageSection>;
   pictureMember: Array<Member>;
+  dataProtectionFormShop: Array<Shop>;
+  category?: Maybe<AssetCategory>;
   /** List of Asset versions */
   history: Array<Version>;
   /** Get the url for the asset with provided transformations applied. */
@@ -552,6 +554,19 @@ export type AssetPictureMemberArgs = {
 
 
 /** Asset system model */
+export type AssetDataProtectionFormShopArgs = {
+  where?: Maybe<ShopWhereInput>;
+  orderBy?: Maybe<ShopOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Asset system model */
 export type AssetHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
@@ -563,6 +578,12 @@ export type AssetHistoryArgs = {
 export type AssetUrlArgs = {
   transformation?: Maybe<AssetTransformationInput>;
 };
+
+export enum AssetCategory {
+  Docs = 'docs',
+  Home = 'home',
+  Members = 'members'
+}
 
 export type AssetConnectInput = {
   /** Document to connect */
@@ -592,6 +613,8 @@ export type AssetCreateInput = {
   mimeType?: Maybe<Scalars['String']>;
   picturePageSection?: Maybe<PageSectionCreateManyInlineInput>;
   pictureMember?: Maybe<MemberCreateManyInlineInput>;
+  dataProtectionFormShop?: Maybe<ShopCreateManyInlineInput>;
+  category?: Maybe<AssetCategory>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<AssetCreateLocalizationsInput>;
 };
@@ -721,6 +744,16 @@ export type AssetManyWhereInput = {
   pictureMember_every?: Maybe<MemberWhereInput>;
   pictureMember_some?: Maybe<MemberWhereInput>;
   pictureMember_none?: Maybe<MemberWhereInput>;
+  dataProtectionFormShop_every?: Maybe<ShopWhereInput>;
+  dataProtectionFormShop_some?: Maybe<ShopWhereInput>;
+  dataProtectionFormShop_none?: Maybe<ShopWhereInput>;
+  category?: Maybe<AssetCategory>;
+  /** All values that are not equal to given value. */
+  category_not?: Maybe<AssetCategory>;
+  /** All values that are contained in given list. */
+  category_in?: Maybe<Array<AssetCategory>>;
+  /** All values that are not contained in given list. */
+  category_not_in?: Maybe<Array<AssetCategory>>;
 };
 
 export enum AssetOrderByInput {
@@ -743,7 +776,9 @@ export enum AssetOrderByInput {
   SizeAsc = 'size_ASC',
   SizeDesc = 'size_DESC',
   MimeTypeAsc = 'mimeType_ASC',
-  MimeTypeDesc = 'mimeType_DESC'
+  MimeTypeDesc = 'mimeType_DESC',
+  CategoryAsc = 'category_ASC',
+  CategoryDesc = 'category_DESC'
 }
 
 /** Transformations for Assets */
@@ -763,6 +798,8 @@ export type AssetUpdateInput = {
   mimeType?: Maybe<Scalars['String']>;
   picturePageSection?: Maybe<PageSectionUpdateManyInlineInput>;
   pictureMember?: Maybe<MemberUpdateManyInlineInput>;
+  dataProtectionFormShop?: Maybe<ShopUpdateManyInlineInput>;
+  category?: Maybe<AssetCategory>;
   /** Manage document localizations */
   localizations?: Maybe<AssetUpdateLocalizationsInput>;
 };
@@ -814,6 +851,7 @@ export type AssetUpdateManyInput = {
   width?: Maybe<Scalars['Float']>;
   size?: Maybe<Scalars['Float']>;
   mimeType?: Maybe<Scalars['String']>;
+  category?: Maybe<AssetCategory>;
   /** Optional updates to localizations */
   localizations?: Maybe<AssetUpdateManyLocalizationsInput>;
 };
@@ -1067,6 +1105,16 @@ export type AssetWhereInput = {
   pictureMember_every?: Maybe<MemberWhereInput>;
   pictureMember_some?: Maybe<MemberWhereInput>;
   pictureMember_none?: Maybe<MemberWhereInput>;
+  dataProtectionFormShop_every?: Maybe<ShopWhereInput>;
+  dataProtectionFormShop_some?: Maybe<ShopWhereInput>;
+  dataProtectionFormShop_none?: Maybe<ShopWhereInput>;
+  category?: Maybe<AssetCategory>;
+  /** All values that are not equal to given value. */
+  category_not?: Maybe<AssetCategory>;
+  /** All values that are contained in given list. */
+  category_in?: Maybe<Array<AssetCategory>>;
+  /** All values that are not contained in given list. */
+  category_not_in?: Maybe<Array<AssetCategory>>;
 };
 
 /** References Asset record uniquely */
@@ -2015,8 +2063,10 @@ export type Member = Node & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   name?: Maybe<Scalars['String']>;
-  bio?: Maybe<Scalars['String']>;
+  abstract?: Maybe<Scalars['String']>;
   picture?: Maybe<Asset>;
+  bio?: Maybe<RichText>;
+  slug?: Maybe<Scalars['String']>;
   /** List of Member versions */
   history: Array<Version>;
 };
@@ -2082,9 +2132,11 @@ export type MemberCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   name?: Maybe<Scalars['String']>;
-  /** bio input for default locale (de) */
-  bio?: Maybe<Scalars['String']>;
+  /** abstract input for default locale (de) */
+  abstract?: Maybe<Scalars['String']>;
   picture?: Maybe<AssetCreateOneInlineInput>;
+  bio?: Maybe<Scalars['RichTextAST']>;
+  slug?: Maybe<Scalars['String']>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<MemberCreateLocalizationsInput>;
 };
@@ -2092,7 +2144,7 @@ export type MemberCreateInput = {
 export type MemberCreateLocalizationDataInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  bio?: Maybe<Scalars['String']>;
+  abstract?: Maybe<Scalars['String']>;
 };
 
 export type MemberCreateLocalizationInput = {
@@ -2223,6 +2275,25 @@ export type MemberManyWhereInput = {
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
   picture?: Maybe<AssetWhereInput>;
+  slug?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  slug_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  slug_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: Maybe<Scalars['String']>;
 };
 
 export enum MemberOrderByInput {
@@ -2236,21 +2307,25 @@ export enum MemberOrderByInput {
   PublishedAtDesc = 'publishedAt_DESC',
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
-  BioAsc = 'bio_ASC',
-  BioDesc = 'bio_DESC'
+  AbstractAsc = 'abstract_ASC',
+  AbstractDesc = 'abstract_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC'
 }
 
 export type MemberUpdateInput = {
   name?: Maybe<Scalars['String']>;
-  /** bio input for default locale (de) */
-  bio?: Maybe<Scalars['String']>;
+  /** abstract input for default locale (de) */
+  abstract?: Maybe<Scalars['String']>;
   picture?: Maybe<AssetUpdateOneInlineInput>;
+  bio?: Maybe<Scalars['RichTextAST']>;
+  slug?: Maybe<Scalars['String']>;
   /** Manage document localizations */
   localizations?: Maybe<MemberUpdateLocalizationsInput>;
 };
 
 export type MemberUpdateLocalizationDataInput = {
-  bio?: Maybe<Scalars['String']>;
+  abstract?: Maybe<Scalars['String']>;
 };
 
 export type MemberUpdateLocalizationInput = {
@@ -2287,14 +2362,16 @@ export type MemberUpdateManyInlineInput = {
 
 export type MemberUpdateManyInput = {
   name?: Maybe<Scalars['String']>;
-  /** bio input for default locale (de) */
-  bio?: Maybe<Scalars['String']>;
+  /** abstract input for default locale (de) */
+  abstract?: Maybe<Scalars['String']>;
+  bio?: Maybe<Scalars['RichTextAST']>;
+  slug?: Maybe<Scalars['String']>;
   /** Optional updates to localizations */
   localizations?: Maybe<MemberUpdateManyLocalizationsInput>;
 };
 
 export type MemberUpdateManyLocalizationDataInput = {
-  bio?: Maybe<Scalars['String']>;
+  abstract?: Maybe<Scalars['String']>;
 };
 
 export type MemberUpdateManyLocalizationInput = {
@@ -2449,26 +2526,45 @@ export type MemberWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
-  bio?: Maybe<Scalars['String']>;
+  abstract?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
-  bio_not?: Maybe<Scalars['String']>;
+  abstract_not?: Maybe<Scalars['String']>;
   /** All values that are contained in given list. */
-  bio_in?: Maybe<Array<Scalars['String']>>;
+  abstract_in?: Maybe<Array<Scalars['String']>>;
   /** All values that are not contained in given list. */
-  bio_not_in?: Maybe<Array<Scalars['String']>>;
+  abstract_not_in?: Maybe<Array<Scalars['String']>>;
   /** All values containing the given string. */
-  bio_contains?: Maybe<Scalars['String']>;
+  abstract_contains?: Maybe<Scalars['String']>;
   /** All values not containing the given string. */
-  bio_not_contains?: Maybe<Scalars['String']>;
+  abstract_not_contains?: Maybe<Scalars['String']>;
   /** All values starting with the given string. */
-  bio_starts_with?: Maybe<Scalars['String']>;
+  abstract_starts_with?: Maybe<Scalars['String']>;
   /** All values not starting with the given string. */
-  bio_not_starts_with?: Maybe<Scalars['String']>;
+  abstract_not_starts_with?: Maybe<Scalars['String']>;
   /** All values ending with the given string. */
-  bio_ends_with?: Maybe<Scalars['String']>;
+  abstract_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
-  bio_not_ends_with?: Maybe<Scalars['String']>;
+  abstract_not_ends_with?: Maybe<Scalars['String']>;
   picture?: Maybe<AssetWhereInput>;
+  slug?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  slug_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  slug_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: Maybe<Scalars['String']>;
 };
 
 /** References Member record uniquely */
@@ -4461,7 +4557,7 @@ export type PageSection = Node & {
   title: Scalars['String'];
   picture: Array<Asset>;
   page?: Maybe<Page>;
-  code: Scalars['String'];
+  code?: Maybe<Scalars['String']>;
   content: RichText;
   /** List of PageSection versions */
   history: Array<Version>;
@@ -4543,7 +4639,7 @@ export type PageSectionCreateInput = {
   title: Scalars['String'];
   picture?: Maybe<AssetCreateManyInlineInput>;
   page?: Maybe<PageCreateOneInlineInput>;
-  code: Scalars['String'];
+  code?: Maybe<Scalars['String']>;
   /** content input for default locale (de) */
   content: Scalars['RichTextAST'];
   /** Inline mutations for managing document localizations excluding the default locale */
@@ -5819,6 +5915,7 @@ export type Shop = Node & {
   location?: Maybe<Location>;
   maincategories: Array<Maincategory>;
   sidecategories: Array<Sidecategory>;
+  dataProtectionForm?: Maybe<Asset>;
   /** List of Shop versions */
   history: Array<Version>;
 };
@@ -5855,6 +5952,11 @@ export type ShopSidecategoriesArgs = {
 };
 
 
+export type ShopDataProtectionFormArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type ShopHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
@@ -5886,6 +5988,7 @@ export type ShopCreateInput = {
   location?: Maybe<LocationInput>;
   maincategories?: Maybe<MaincategoryCreateManyInlineInput>;
   sidecategories?: Maybe<SidecategoryCreateManyInlineInput>;
+  dataProtectionForm?: Maybe<AssetCreateOneInlineInput>;
 };
 
 export type ShopCreateManyInlineInput = {
@@ -6029,6 +6132,7 @@ export type ShopManyWhereInput = {
   sidecategories_every?: Maybe<SidecategoryWhereInput>;
   sidecategories_some?: Maybe<SidecategoryWhereInput>;
   sidecategories_none?: Maybe<SidecategoryWhereInput>;
+  dataProtectionForm?: Maybe<AssetWhereInput>;
 };
 
 export enum ShopOrderByInput {
@@ -6052,6 +6156,7 @@ export type ShopUpdateInput = {
   location?: Maybe<LocationInput>;
   maincategories?: Maybe<MaincategoryUpdateManyInlineInput>;
   sidecategories?: Maybe<SidecategoryUpdateManyInlineInput>;
+  dataProtectionForm?: Maybe<AssetUpdateOneInlineInput>;
 };
 
 export type ShopUpdateManyInlineInput = {
@@ -6238,6 +6343,7 @@ export type ShopWhereInput = {
   sidecategories_every?: Maybe<SidecategoryWhereInput>;
   sidecategories_some?: Maybe<SidecategoryWhereInput>;
   sidecategories_none?: Maybe<SidecategoryWhereInput>;
+  dataProtectionForm?: Maybe<AssetWhereInput>;
 };
 
 /** References Shop record uniquely */

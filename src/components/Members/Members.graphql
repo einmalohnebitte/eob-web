@@ -1,0 +1,25 @@
+query Members {
+  members {
+    name
+    bio {
+      html
+    }
+    abstract
+    slug
+    picture {
+      url
+    }
+  }
+}
+
+query Member($slug: String!) {
+  members(where: { slug: $slug }) {
+    name
+    bio {
+      html
+    }
+    picture {
+      url
+    }
+  }
+}
