@@ -30,6 +30,8 @@ export default class MyDocument extends Document<{
           <link rel="icon" href="/icon_144.png" type="image/png" />
           <link rel="manifest" href="manifest.json" />
           <link rel="apple-touch-icon" href="/icon_144.png"></link>
+
+          <link rel="icon" href="/favicon.ico" type="image/ico" />
           {this.props.styleTags}
         </Head>
         <body>
