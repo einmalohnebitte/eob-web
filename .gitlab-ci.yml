@@ -1,0 +1,53 @@
+stages:
+    - test
+
+
+install:
+    image: node:12-stretch
+    stage: .pre
+    script:
+        - NODE_ENV=development npm ci
+    environment:
+        name: dev
+    artifacts:
+        paths:
+            - node_modules/
+        expire_in: 1 day
+    cache:
+        key: install-npm
+        paths:
+            - .npm/
+    only:
+        - merge_requests
+        - master
+
+
+lint:
+    stage: test
+    image: node:12-stretch
+    variables:
+        NODE_ENV: development
+    script:
+        - npm run lint
+    needs:
+        - job: install
+          artifacts: true
+    only:
+        - merge_requests
+        - master
+
+# test:unit:
+#     stage: build
+#     image: node:12-stretch
+#     variables:
+#         NODE_ENV: development
+#     script:
+#         - npm run test:coverage
+#     coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+#     needs:
+#         - job: install
+#           artifacts: true
+#     only:
+#         - merge_requests
+#         - master
+
