@@ -32,7 +32,7 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
           />
         </SplitSection.Main>
         <SplitSection.Side>
-          <img src="/images/Verkaufen_Small.svg" alt="side" />
+          <img src={pageSections[0].picture[0].url} alt="side" />
         </SplitSection.Side>
       </SplitSection.Section>
     </div>
@@ -57,13 +57,13 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
           }}
         />
         <SplitSection.Side>
-          <img src="/images/bag.png" alt="side" />
+          <img src={pageSections[1].picture[0].url} alt="side" />
         </SplitSection.Side>
       </SplitSection.Section>
 
       <SplitSection.Section>
         <SplitSection.Side>
-          <img src="/images/bread.png" alt="side" />
+          <img src={pageSections[2].picture[0].url} alt="side" />
         </SplitSection.Side>
         <SplitSection.Main>
           <H2>{pageSections[2].title}</H2>
@@ -77,7 +77,11 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
       </SplitSection.Section>
 
       <SplitSection.Section>
-        <SplitSection.Main>
+        <SplitSection.Main
+          css={`
+            flex: 1;
+          `}
+        >
           <H2>{pageSections[3].title}</H2>
           <div
             css={`
@@ -91,15 +95,30 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
             }}
           />
         </SplitSection.Main>
-        <SplitSection.Side>
-          <picture
+        <SplitSection.Side
+          css={`
+            flex: 1;
+          `}
+        >
+          <div
             css={`
               bottom: -100px;
               position: relative;
+              display: flex;
             `}
           >
-            <img src="/images/mix.png" alt="side" />
-          </picture>
+            <div>
+              <img
+                src={pageSections[3].picture[0].url}
+                alt="side"
+                css={tw`pb-4`}
+              />
+              <img src={pageSections[3].picture[2].url} alt="side" />
+            </div>
+            <div css={tw`self-center`}>
+              <img src={pageSections[3].picture[1].url} alt="side" />
+            </div>
+          </div>
         </SplitSection.Side>
       </SplitSection.Section>
     </BackgroundBlueWrapper>

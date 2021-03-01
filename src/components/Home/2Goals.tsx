@@ -15,6 +15,12 @@ import { ButtonBlue, ButtonPink, ButtonYellow } from "../@UI/Buttons";
 import { SplitSection } from "../@UI/Section";
 import { H2 } from "../@UI/Texts";
 
+enum PageStates {
+  BUY,
+  SELL,
+  SPREAD,
+}
+
 const BackgroundWrapper: React.FC<{ activeIndex: number }> = ({
   activeIndex,
   children,
@@ -30,7 +36,10 @@ const BackgroundWrapper: React.FC<{ activeIndex: number }> = ({
 export const Goals: React.FC<HomePageQuery> = ({ pageSections }) => {
   const intl = useTranslations();
   const { push } = useRouter();
-  const [current, setCurrent] = useState(1);
+  const [current, setCurrent] = useState(PageStates.BUY);
+  const buy = pageSections.find((s) => s.code === "einkaufen");
+  const sell = pageSections.find((s) => s.code === "verkaufen");
+  const spread = pageSections.find((s) => s.code === "verbreiten");
 
   return (
     <BackgroundWrapper activeIndex={current}>
@@ -38,18 +47,16 @@ export const Goals: React.FC<HomePageQuery> = ({ pageSections }) => {
         <SplitSection.Main>
           <div css={tw`p-4`}>
             <H2
-              onClick={() => setCurrent(1)}
-              css={[current === 1 && tw`text-blue-500`]}
+              onClick={() => setCurrent(PageStates.BUY)}
+              css={[current === PageStates.BUY && tw`text-blue-500`]}
             >
               {intl("BUY")}
             </H2>
-            {current === 1 && (
+            {current === PageStates.BUY && (
               <>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html:
-                      pageSections.find((s) => s.code === "einkaufen")?.content
-                        .html ?? "",
+                    __html: buy?.content.html ?? "",
                   }}
                 />
                 <ButtonBlue
@@ -65,18 +72,16 @@ export const Goals: React.FC<HomePageQuery> = ({ pageSections }) => {
           </div>
           <div css={tw`p-4`}>
             <H2
-              onClick={() => setCurrent(2)}
-              css={[current === 2 && tw`text-yellow-600`]}
+              onClick={() => setCurrent(PageStates.SELL)}
+              css={[current === PageStates.SELL && tw`text-yellow-600`]}
             >
               {intl("SELL")}
             </H2>
-            {current === 2 && (
+            {current === PageStates.SELL && (
               <>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html:
-                      pageSections.find((s) => s.code === "verkaufen")?.content
-                        .html ?? "",
+                    __html: sell?.content.html ?? "",
                   }}
                 />
                 <ButtonYellow
@@ -92,12 +97,12 @@ export const Goals: React.FC<HomePageQuery> = ({ pageSections }) => {
           </div>
           <div css={tw`p-4`}>
             <H2
-              onClick={() => setCurrent(3)}
-              css={[current === 3 && tw`text-pink-600`]}
+              onClick={() => setCurrent(PageStates.SPREAD)}
+              css={[current === PageStates.SPREAD && tw`text-pink-600`]}
             >
               {intl("SPREAD")}
             </H2>
-            {current === 3 && (
+            {current === PageStates.SPREAD && (
               <>
                 <div
                   dangerouslySetInnerHTML={{
@@ -114,10 +119,12 @@ export const Goals: React.FC<HomePageQuery> = ({ pageSections }) => {
           </div>
         </SplitSection.Main>
         <SplitSection.Side>
-          {current === 2 ? (
-            <img src="/images/Verbreiten_Small.svg" alt="Verbreiten_Small" />
+          {current === PageStates.SPREAD ? (
+            <img src={spread?.picture[0].url} alt="Verbreiten" />
+          ) : current === PageStates.BUY ? (
+            <img src={buy?.picture[0].url} alt="Einkaufen" />
           ) : (
-            <img src="/images/Verkaufen_Small.svg" alt="Verbreiten_Small" />
+            <img src={sell?.picture[0].url} alt="Verkaufen" />
           )}
         </SplitSection.Side>
       </SplitSection.Section>
