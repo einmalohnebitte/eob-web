@@ -124,9 +124,12 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
     </BackgroundBlueWrapper>
     <BackgroundBlueWrapper css={tw`flex justify-center`}>
       <div css={tw`w-3/5 py-20`}>
-        <picture>
-          <img src="/images/video.png" alt="Unser Map" />
-        </picture>
+        <iframe
+          width="80%"
+          height="315"
+          title="video"
+          src="https://www.youtube.com/watch?v=s6bm1Z76jQY&feature=emb_title"
+        ></iframe>
       </div>
     </BackgroundBlueWrapper>
   </>
