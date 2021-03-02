@@ -79,7 +79,7 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
       <SplitSection.Section>
         <SplitSection.Main
           css={`
-            flex: 1;
+            flex: 1 !important;
           `}
         >
           <H2>{pageSections[3].title}</H2>
@@ -97,7 +97,7 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
         </SplitSection.Main>
         <SplitSection.Side
           css={`
-            flex: 1;
+            flex: 1 !important;
           `}
         >
           <div
