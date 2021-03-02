@@ -1,4 +1,4 @@
-query PageSections($page: String! = "Home") {
+query PageSections($page: String! = "Home", $locale: [Locale!]!) {
   pageSections(where: { page: { title: $page } }) {
     title
     content {
@@ -9,5 +9,8 @@ query PageSections($page: String! = "Home") {
     }
     locale
     code
+  }
+  translations(locales: $locale) {
+    ...Translations
   }
 }

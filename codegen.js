@@ -11,7 +11,7 @@ async function run() {
           },
         },
       },
-      documents: "src/components/**/*.graphql",
+      documents: ["src/components/**/*.graphql", "src/translate/**/*.graphql"],
       generates: {
         [process.cwd() + "/src/generated/graphql.tsx"]: {
           plugins: ["typescript"],

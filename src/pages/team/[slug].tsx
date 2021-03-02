@@ -6,13 +6,15 @@ import {
   MembersDocument,
 } from "@/components/Members/Members.generated";
 import { TeamPhoto } from "@/components/Members/TeamPhoto";
+import { Locale } from "@/generated/graphql";
 import { graphCmsRequest } from "@/graphql/graphcms";
+import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
 import tw from "twin.macro";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await graphCmsRequest(MembersDocument);
+  const data = await graphCmsRequest(MembersDocument, { locale: [Locale.De] });
 
   return {
     paths: data.members.map((item) => ({ params: { slug: item?.slug ?? "" } })),
@@ -22,7 +24,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const data = await graphCmsRequest(MemberDocument, {
-    slug: context?.params?.slug ?? "",
+    slug: (context?.params?.slug as string) ?? "",
+    locale: contextToLocale(context),
   });
   return {
     props: data,

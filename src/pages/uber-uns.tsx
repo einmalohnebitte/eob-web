@@ -6,6 +6,7 @@ import {
 import { TeamPhoto } from "@/components/Members/TeamPhoto";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
+import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
@@ -33,8 +34,10 @@ const GridStyle = styled.div`
   }
 `;
 
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await graphCmsRequest(MembersDocument);
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const data = await graphCmsRequest(MembersDocument, {
+    locale: contextToLocale(ctx),
+  });
 
   return {
     props: data,

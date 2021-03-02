@@ -1,7 +1,11 @@
 import { withLayout } from "@/components/Layout";
 import { Shop, Town, useTownShops } from "@/components/ShopsMap/useShops";
+import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
+import { contextToLocale } from "@/translate/contextToLocale";
+import { TranslationsDocument } from "@/translate/Translations.generated";
 import { Box, Button, Tab, Tabs, TextInput } from "grommet";
+import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import React, { useRef, useState } from "react";
 import { GrFormClose, GrNext } from "react-icons/gr";
@@ -14,6 +18,16 @@ import {
   MQ_MOBILE,
   MQ_NOT_MOBILE,
 } from "../constants/MediaQueries";
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const data = await graphCmsRequest(TranslationsDocument, {
+    locale: contextToLocale(ctx),
+  });
+
+  return {
+    props: data,
+  };
+};
 
 const ShopsMap = dynamic(
   async () => (await import("../components/ShopsMap")).ShopsMap,
