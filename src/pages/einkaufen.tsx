@@ -107,7 +107,7 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
               display: flex;
             `}
           >
-            <div>
+            <div css={tw`self-center m-2`}>
               <img
                 src={pageSections[3].picture[0].url}
                 alt="side"
@@ -115,20 +115,24 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
               />
               <img src={pageSections[3].picture[2].url} alt="side" />
             </div>
-            <div css={tw`self-center`}>
+            <div css={tw`self-center m-2`}>
               <img src={pageSections[3].picture[1].url} alt="side" />
             </div>
           </div>
         </SplitSection.Side>
       </SplitSection.Section>
     </BackgroundBlueWrapper>
-    <BackgroundBlueWrapper css={tw`flex justify-center`}>
-      <div css={tw`w-3/5 py-20`}>
+    <BackgroundBlueWrapper css={tw`flex justify-center p-10 md:p-0`}>
+      <div css={tw`md:w-3/5 py-20 flex justify-center`}>
         <iframe
-          width="80%"
+          width="560"
           height="315"
+          src="https://www.youtube.com/embed/s6bm1Z76jQY"
+          frameBorder="0"
           title="video"
-          src="https://www.youtube.com/watch?v=s6bm1Z76jQY&feature=emb_title"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen={true}
+          css={tw`max-w-full`}
         ></iframe>
       </div>
     </BackgroundBlueWrapper>
