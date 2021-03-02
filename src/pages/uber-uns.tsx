@@ -93,6 +93,48 @@ const ArticlePage: React.FC<MembersQuery> = ({
           ))}
         </GridStyle>
       </Section>
+      <div
+        css={`
+          background-image: linear-gradient(
+            ${pages?.[0]?.vibrantColor?.hex},
+            white
+          );
+        `}
+      >
+        <SplitSection.Section>
+          <SplitSection.Main>
+            <H1>{pageSections[1].title}</H1>
+            <div
+              css={tw`py-4`}
+              dangerouslySetInnerHTML={{
+                __html: pageSections[1].content.html ?? "",
+              }}
+            />
+          </SplitSection.Main>
+          <SplitSection.Side>
+            <picture>
+              <img src={pageSections[1].picture[0].url} alt="uber-uns" />
+            </picture>
+          </SplitSection.Side>
+        </SplitSection.Section>
+
+        <SplitSection.Section>
+          <SplitSection.Side>
+            <picture>
+              <img src={pageSections[2].picture[0].url} alt="uber-uns" />
+            </picture>
+          </SplitSection.Side>
+          <SplitSection.Main>
+            <H1>{pageSections[2].title}</H1>
+            <div
+              css={tw`py-4`}
+              dangerouslySetInnerHTML={{
+                __html: pageSections[2].content.html ?? "",
+              }}
+            />
+          </SplitSection.Main>
+        </SplitSection.Section>
+      </div>
     </>
   );
 };
