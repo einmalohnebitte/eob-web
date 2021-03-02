@@ -6,8 +6,9 @@ import EN from "./en.json";
 export const useTranslations = () => {
   const context = useRouter();
 
-  return (key: keyof typeof DE, params?: any) => {
-    const translationSet = context.locale === "en" ? EN : DE;
+  return (key: string, params?: any) => {
+    const translationSet: { [key: string]: string } =
+      context.locale === "en" ? EN : DE;
     const translatedRawString = translationSet[key];
 
     if (params && translatedRawString) {

@@ -12,8 +12,8 @@ import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 
-import { Section } from "../components/@UI/Section";
-import { H2 } from "../components/@UI/Texts";
+import { Section, SplitSection } from "../components/@UI/Section";
+import { H1, H2 } from "../components/@UI/Texts";
 import { MQ_DESKTOP, MQ_MOBILE } from "../constants/MediaQueries";
 
 const GridStyle = styled.div`
@@ -41,32 +41,101 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const ArticlePage: React.FC<MembersQuery> = ({ members }) => {
+const ArticlePage: React.FC<MembersQuery> = ({
+  members,
+  pageSections,
+  pages,
+}) => {
   const intl = useTranslations();
   return (
-    <Section>
-      <picture>
-        <img src="/images/uberuns.png" alt="uber-uns" />
-      </picture>
-      <H2 css={tw`m-4`}>{intl("TEAM")}</H2>
-      <GridStyle>
-        {members.map((item, k) => (
-          <Link key={k} href={`/team/${item.slug}`}>
-            <div css={tw`m-4 border-solid border-2 border-gray-600 `}>
-              <TeamPhoto src={item?.picture?.url} />
-              <div css={tw`p-4`}>
-                <b>{item.name}</b>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: item.abstract ?? "",
-                  }}
-                />
+    <>
+      <Section>
+        <picture>
+          <img src={pageSections[0].picture[0].url} alt="uber-uns" />
+        </picture>
+      </Section>
+      <div
+        css={`
+          background-color: ${pages?.[0]?.vibrantColor?.hex};
+        `}
+      >
+        <SplitSection.Section>
+          <SplitSection.Side>
+            <H1>{pageSections[0].title}</H1>
+          </SplitSection.Side>
+          <SplitSection.Main>
+            <div
+              css={tw`py-4`}
+              dangerouslySetInnerHTML={{
+                __html: pageSections[0].content.html ?? "",
+              }}
+            />
+          </SplitSection.Main>
+        </SplitSection.Section>
+      </div>
+      <Section>
+        <H2 css={tw`m-4`}>{intl("TEAM")}</H2>
+        <GridStyle>
+          {members.map((item, k) => (
+            <Link key={k} href={`/team/${item.slug}`}>
+              <div css={tw`m-4 border-solid border-2 border-gray-600 `}>
+                <TeamPhoto src={item?.picture?.url} />
+                <div css={tw`p-4`}>
+                  <b>{item.name}</b>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: item.abstract ?? "",
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
-      </GridStyle>
-    </Section>
+            </Link>
+          ))}
+        </GridStyle>
+      </Section>
+      <div
+        css={`
+          background-image: linear-gradient(
+            ${pages?.[0]?.vibrantColor?.hex},
+            white
+          );
+        `}
+      >
+        <SplitSection.Section>
+          <SplitSection.Main>
+            <H1>{pageSections[1].title}</H1>
+            <div
+              css={tw`py-4`}
+              dangerouslySetInnerHTML={{
+                __html: pageSections[1].content.html ?? "",
+              }}
+            />
+          </SplitSection.Main>
+          <SplitSection.Side>
+            <picture>
+              <img src={pageSections[1].picture[0].url} alt="uber-uns" />
+            </picture>
+          </SplitSection.Side>
+        </SplitSection.Section>
+
+        <SplitSection.Section>
+          <SplitSection.Side>
+            <picture>
+              <img src={pageSections[2].picture[0].url} alt="uber-uns" />
+            </picture>
+          </SplitSection.Side>
+          <SplitSection.Main>
+            <H1>{pageSections[2].title}</H1>
+            <div
+              css={tw`py-4`}
+              dangerouslySetInnerHTML={{
+                __html: pageSections[2].content.html ?? "",
+              }}
+            />
+          </SplitSection.Main>
+        </SplitSection.Section>
+      </div>
+    </>
   );
 };
 

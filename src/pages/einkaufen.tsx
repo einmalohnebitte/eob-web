@@ -1,24 +1,26 @@
 import { BackgroundBlueWrapper } from "@/components/@UI/BackgroundWrapper";
 import { SplitSection } from "@/components/@UI/Section";
 import { H1, H2 } from "@/components/@UI/Texts";
-import {
-  HomePageDocument,
-  HomePageQuery,
-} from "@/components/Home/Home.generated";
 import { withLayout } from "@/components/Layout";
+import {
+  PageSectionsDocument,
+  PageSectionsQuery,
+} from "@/components/PageSections/PageSections.generated";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { GetStaticProps } from "next";
 import React from "react";
 import tw from "twin.macro";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await graphCmsRequest(HomePageDocument, { page: "Einkaufen" });
+  const data = await graphCmsRequest(PageSectionsDocument, {
+    page: "Einkaufen",
+  });
   return {
     props: data,
   };
 };
 
-const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
+const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => (
   <>
     <div>
       <SplitSection.Section>
@@ -32,7 +34,7 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
           />
         </SplitSection.Main>
         <SplitSection.Side>
-          <img src="/images/Verkaufen_Small.svg" alt="side" />
+          <img src={pageSections[0].picture[0].url} alt="side" />
         </SplitSection.Side>
       </SplitSection.Section>
     </div>
@@ -57,13 +59,13 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
           }}
         />
         <SplitSection.Side>
-          <img src="/images/bag.png" alt="side" />
+          <img src={pageSections[1].picture[0].url} alt="side" />
         </SplitSection.Side>
       </SplitSection.Section>
 
       <SplitSection.Section>
         <SplitSection.Side>
-          <img src="/images/bread.png" alt="side" />
+          <img src={pageSections[2].picture[0].url} alt="side" />
         </SplitSection.Side>
         <SplitSection.Main>
           <H2>{pageSections[2].title}</H2>
@@ -77,7 +79,11 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
       </SplitSection.Section>
 
       <SplitSection.Section>
-        <SplitSection.Main>
+        <SplitSection.Main
+          css={`
+            flex: 1 !important;
+          `}
+        >
           <H2>{pageSections[3].title}</H2>
           <div
             css={`
@@ -91,23 +97,45 @@ const Einkaufen: React.FC<HomePageQuery> = ({ pageSections }) => (
             }}
           />
         </SplitSection.Main>
-        <SplitSection.Side>
-          <picture
+        <SplitSection.Side
+          css={`
+            flex: 1 !important;
+          `}
+        >
+          <div
             css={`
               bottom: -100px;
               position: relative;
+              display: flex;
             `}
           >
-            <img src="/images/mix.png" alt="side" />
-          </picture>
+            <div css={tw`self-center m-2`}>
+              <img
+                src={pageSections[3].picture[0].url}
+                alt="side"
+                css={tw`pb-4`}
+              />
+              <img src={pageSections[3].picture[2].url} alt="side" />
+            </div>
+            <div css={tw`self-center m-2`}>
+              <img src={pageSections[3].picture[1].url} alt="side" />
+            </div>
+          </div>
         </SplitSection.Side>
       </SplitSection.Section>
     </BackgroundBlueWrapper>
-    <BackgroundBlueWrapper css={tw`flex justify-center`}>
-      <div css={tw`w-3/5 py-20`}>
-        <picture>
-          <img src="/images/video.png" alt="Unser Map" />
-        </picture>
+    <BackgroundBlueWrapper css={tw`flex justify-center p-10 md:p-0`}>
+      <div css={tw`md:w-3/5 py-20 flex justify-center`}>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/s6bm1Z76jQY"
+          frameBorder="0"
+          title="video"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen={true}
+          css={tw`max-w-full`}
+        ></iframe>
       </div>
     </BackgroundBlueWrapper>
   </>

@@ -1,4 +1,22 @@
 query Members {
+  pageSections(where: { page: { title: "Über uns" } }) {
+    title
+    content {
+      html
+    }
+    picture {
+      url
+    }
+    locale
+    code
+  }
+
+  pages(where: { title: "Über uns" }) {
+    vibrantColor {
+      hex
+    }
+  }
+
   members {
     name
     bio {
