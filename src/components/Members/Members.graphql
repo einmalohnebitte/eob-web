@@ -1,4 +1,4 @@
-query Members {
+query Members($locale: [Locale!]!) {
   pageSections(where: { page: { title: "Über uns" } }) {
     title
     content {
@@ -28,9 +28,13 @@ query Members {
       url
     }
   }
+
+  translations(locales: $locale) {
+    ...Translations
+  }
 }
 
-query Member($slug: String!) {
+query Member($slug: String!, $locale: [Locale!]!) {
   members(where: { slug: $slug }) {
     name
     bio {
@@ -39,5 +43,8 @@ query Member($slug: String!) {
     picture {
       url
     }
+  }
+  translations(locales: $locale) {
+    ...Translations
   }
 }

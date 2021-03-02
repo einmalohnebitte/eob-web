@@ -25,7 +25,7 @@ const queryClient = new QueryClient();
 
 // eslint-disable-next-line react/display-name
 export const withLayout = () => (Comp: any) => (props: any) => {
-  const intl = useTranslations();
+  const intl = useTranslations(props.translations);
   return (
     <>
       <QueryClientProvider client={queryClient}>

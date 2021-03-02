@@ -9,12 +9,15 @@ import {
   PageSectionsQuery,
 } from "@/components/PageSections/PageSections.generated";
 import { graphCmsRequest } from "@/graphql/graphcms";
+import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
 import React from "react";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const data = await graphCmsRequest(PageSectionsDocument, { page: "Home" });
-
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const data = await graphCmsRequest(PageSectionsDocument, {
+    page: "Home",
+    locale: contextToLocale(ctx),
+  });
   return {
     props: data,
   };

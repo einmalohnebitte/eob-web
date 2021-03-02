@@ -486,7 +486,7 @@ export type Asset = Node & {
   picturePageSection: Array<PageSection>;
   pictureMember: Array<Member>;
   dataProtectionFormShop: Array<Shop>;
-  category?: Maybe<AssetCategory>;
+  category?: Maybe<Category>;
   /** List of Asset versions */
   history: Array<Version>;
   /** Get the url for the asset with provided transformations applied. */
@@ -579,12 +579,6 @@ export type AssetUrlArgs = {
   transformation?: Maybe<AssetTransformationInput>;
 };
 
-export enum AssetCategory {
-  Docs = 'docs',
-  Home = 'home',
-  Members = 'members'
-}
-
 export type AssetConnectInput = {
   /** Document to connect */
   where: AssetWhereUniqueInput;
@@ -614,7 +608,7 @@ export type AssetCreateInput = {
   picturePageSection?: Maybe<PageSectionCreateManyInlineInput>;
   pictureMember?: Maybe<MemberCreateManyInlineInput>;
   dataProtectionFormShop?: Maybe<ShopCreateManyInlineInput>;
-  category?: Maybe<AssetCategory>;
+  category?: Maybe<Category>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<AssetCreateLocalizationsInput>;
 };
@@ -747,13 +741,13 @@ export type AssetManyWhereInput = {
   dataProtectionFormShop_every?: Maybe<ShopWhereInput>;
   dataProtectionFormShop_some?: Maybe<ShopWhereInput>;
   dataProtectionFormShop_none?: Maybe<ShopWhereInput>;
-  category?: Maybe<AssetCategory>;
+  category?: Maybe<Category>;
   /** All values that are not equal to given value. */
-  category_not?: Maybe<AssetCategory>;
+  category_not?: Maybe<Category>;
   /** All values that are contained in given list. */
-  category_in?: Maybe<Array<AssetCategory>>;
+  category_in?: Maybe<Array<Category>>;
   /** All values that are not contained in given list. */
-  category_not_in?: Maybe<Array<AssetCategory>>;
+  category_not_in?: Maybe<Array<Category>>;
 };
 
 export enum AssetOrderByInput {
@@ -799,7 +793,7 @@ export type AssetUpdateInput = {
   picturePageSection?: Maybe<PageSectionUpdateManyInlineInput>;
   pictureMember?: Maybe<MemberUpdateManyInlineInput>;
   dataProtectionFormShop?: Maybe<ShopUpdateManyInlineInput>;
-  category?: Maybe<AssetCategory>;
+  category?: Maybe<Category>;
   /** Manage document localizations */
   localizations?: Maybe<AssetUpdateLocalizationsInput>;
 };
@@ -851,7 +845,7 @@ export type AssetUpdateManyInput = {
   width?: Maybe<Scalars['Float']>;
   size?: Maybe<Scalars['Float']>;
   mimeType?: Maybe<Scalars['String']>;
-  category?: Maybe<AssetCategory>;
+  category?: Maybe<Category>;
   /** Optional updates to localizations */
   localizations?: Maybe<AssetUpdateManyLocalizationsInput>;
 };
@@ -1108,13 +1102,13 @@ export type AssetWhereInput = {
   dataProtectionFormShop_every?: Maybe<ShopWhereInput>;
   dataProtectionFormShop_some?: Maybe<ShopWhereInput>;
   dataProtectionFormShop_none?: Maybe<ShopWhereInput>;
-  category?: Maybe<AssetCategory>;
+  category?: Maybe<Category>;
   /** All values that are not equal to given value. */
-  category_not?: Maybe<AssetCategory>;
+  category_not?: Maybe<Category>;
   /** All values that are contained in given list. */
-  category_in?: Maybe<Array<AssetCategory>>;
+  category_in?: Maybe<Array<Category>>;
   /** All values that are not contained in given list. */
-  category_not_in?: Maybe<Array<AssetCategory>>;
+  category_not_in?: Maybe<Array<Category>>;
 };
 
 /** References Asset record uniquely */
@@ -1127,6 +1121,14 @@ export type BatchPayload = {
   /** The number of nodes that have been affected by the Batch operation. */
   count: Scalars['Long'];
 };
+
+export enum Category {
+  Docs = 'docs',
+  Header = 'header',
+  Home = 'home',
+  Members = 'members',
+  Uberuns = 'uberuns'
+}
 
 /** Representing a color value comprising of HEX, RGBA and css color values */
 export type Color = {
@@ -7052,6 +7054,7 @@ export type Translation = Node & {
   publishedAt?: Maybe<Scalars['DateTime']>;
   key: Scalars['String'];
   value?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
   /** List of Translation versions */
   history: Array<Version>;
 };
@@ -7107,6 +7110,7 @@ export type TranslationCreateInput = {
   key: Scalars['String'];
   /** value input for default locale (de) */
   value?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<TranslationCreateLocalizationsInput>;
 };
@@ -7230,6 +7234,13 @@ export type TranslationManyWhereInput = {
   key_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   key_not_ends_with?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
+  /** All values that are not equal to given value. */
+  category_not?: Maybe<Category>;
+  /** All values that are contained in given list. */
+  category_in?: Maybe<Array<Category>>;
+  /** All values that are not contained in given list. */
+  category_not_in?: Maybe<Array<Category>>;
 };
 
 export enum TranslationOrderByInput {
@@ -7244,13 +7255,16 @@ export enum TranslationOrderByInput {
   KeyAsc = 'key_ASC',
   KeyDesc = 'key_DESC',
   ValueAsc = 'value_ASC',
-  ValueDesc = 'value_DESC'
+  ValueDesc = 'value_DESC',
+  CategoryAsc = 'category_ASC',
+  CategoryDesc = 'category_DESC'
 }
 
 export type TranslationUpdateInput = {
   key?: Maybe<Scalars['String']>;
   /** value input for default locale (de) */
   value?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
   /** Manage document localizations */
   localizations?: Maybe<TranslationUpdateLocalizationsInput>;
 };
@@ -7277,6 +7291,7 @@ export type TranslationUpdateLocalizationsInput = {
 export type TranslationUpdateManyInput = {
   /** value input for default locale (de) */
   value?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
   /** Optional updates to localizations */
   localizations?: Maybe<TranslationUpdateManyLocalizationsInput>;
 };
@@ -7441,6 +7456,13 @@ export type TranslationWhereInput = {
   value_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   value_not_ends_with?: Maybe<Scalars['String']>;
+  category?: Maybe<Category>;
+  /** All values that are not equal to given value. */
+  category_not?: Maybe<Category>;
+  /** All values that are contained in given list. */
+  category_in?: Maybe<Array<Category>>;
+  /** All values that are not contained in given list. */
+  category_not_in?: Maybe<Array<Category>>;
 };
 
 /** References Translation record uniquely */

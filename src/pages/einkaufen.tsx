@@ -7,13 +7,15 @@ import {
   PageSectionsQuery,
 } from "@/components/PageSections/PageSections.generated";
 import { graphCmsRequest } from "@/graphql/graphcms";
+import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
 import React from "react";
 import tw from "twin.macro";
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageSectionsDocument, {
     page: "Einkaufen",
+    locale: contextToLocale(ctx),
   });
   return {
     props: data,
