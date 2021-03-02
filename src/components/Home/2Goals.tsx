@@ -1,4 +1,4 @@
-import { HomePageQuery } from "@/components/Home/Home.generated";
+import { PageSectionsQuery } from "@/components/PageSections/PageSections.generated";
 import { useTranslations } from "@/translate";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -33,7 +33,7 @@ const BackgroundWrapper: React.FC<{ activeIndex: number }> = ({
   ) : (
     <BackgroundBlueWrapper>{children}</BackgroundBlueWrapper>
   );
-export const Goals: React.FC<HomePageQuery> = ({ pageSections }) => {
+export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   const intl = useTranslations();
   const { push } = useRouter();
   const [current, setCurrent] = useState(PageStates.BUY);

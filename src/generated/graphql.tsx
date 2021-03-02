@@ -2365,7 +2365,6 @@ export type MemberUpdateManyInput = {
   /** abstract input for default locale (de) */
   abstract?: Maybe<Scalars['String']>;
   bio?: Maybe<Scalars['RichTextAST']>;
-  slug?: Maybe<Scalars['String']>;
   /** Optional updates to localizations */
   localizations?: Maybe<MemberUpdateManyLocalizationsInput>;
 };
@@ -2570,6 +2569,7 @@ export type MemberWhereInput = {
 /** References Member record uniquely */
 export type MemberWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>;
+  slug?: Maybe<Scalars['String']>;
 };
 
 export type Mutation = {

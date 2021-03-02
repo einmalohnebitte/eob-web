@@ -1,4 +1,4 @@
-import { HomePageQuery } from "@/components/Home/Home.generated";
+import { PageSectionsQuery } from "@/components/PageSections/PageSections.generated";
 import Image from "next/image";
 import React from "react";
 import tw from "twin.macro";
@@ -33,7 +33,7 @@ const HeroImg: React.FC<{
   </div>
 );
 
-export const Hero: React.FC<HomePageQuery["pageSections"][0]> = ({
+export const Hero: React.FC<PageSectionsQuery["pageSections"][0]> = ({
   content,
   title,
 }) => {

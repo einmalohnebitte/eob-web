@@ -1,9 +1,9 @@
 import { Section } from "@/components/@UI/Section";
 import { Hero } from "@/components/Home/1Hero";
-import { HomePageQuery } from "@/components/Home/Home.generated";
+import { PageSectionsQuery } from "@/components/PageSections/PageSections.generated";
 import React from "react";
 
-export const HomeSections: React.FC<HomePageQuery["pageSections"][0]> = (
+export const HomeSections: React.FC<PageSectionsQuery["pageSections"][0]> = (
   props
 ) => {
   switch (props.code) {

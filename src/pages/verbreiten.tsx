@@ -2,24 +2,26 @@ import { BackgroundPinkWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { H1 } from "@/components/@UI/Texts";
 import { VerbreitenForm } from "@/components/Forms/VerbreitenForm";
-import {
-  HomePageDocument,
-  HomePageQuery,
-} from "@/components/Home/Home.generated";
 import { withLayout } from "@/components/Layout";
+import {
+  PageSectionsDocument,
+  PageSectionsQuery,
+} from "@/components/PageSections/PageSections.generated";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { GetStaticProps } from "next";
 import React from "react";
 import tw from "twin.macro";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await graphCmsRequest(HomePageDocument, { page: "Verkaufen" });
+  const data = await graphCmsRequest(PageSectionsDocument, {
+    page: "Verkaufen",
+  });
   return {
     props: data,
   };
 };
 
-const Home: React.FC<HomePageQuery> = ({ pageSections }) => {
+const Home: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   return (
     <>
       <SplitSection.Section>

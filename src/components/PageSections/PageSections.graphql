@@ -1,4 +1,4 @@
-query HomePage($page: String! = "Home") {
+query PageSections($page: String! = "Home") {
   pageSections(where: { page: { title: $page } }) {
     title
     content {
