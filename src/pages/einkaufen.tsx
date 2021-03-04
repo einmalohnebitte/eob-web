@@ -5,7 +5,7 @@ import { withLayout } from "@/components/Layout";
 import {
   PageSectionsDocument,
   PageSectionsQuery,
-} from "@/components/PageSections/PageSections.generated";
+} from "@/components/PageSections/PageSections.cms.generated";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";

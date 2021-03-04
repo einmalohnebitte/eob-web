@@ -4,7 +4,7 @@ import {
   MemberDocument,
   MemberQuery,
   MembersDocument,
-} from "@/components/Members/Members.generated";
+} from "@/components/Members/Members.cms.generated";
 import { TeamPhoto } from "@/components/Members/TeamPhoto";
 import { Locale } from "@/generated/graphql";
 import { graphCmsRequest } from "@/graphql/graphcms";
