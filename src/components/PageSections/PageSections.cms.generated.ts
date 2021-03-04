@@ -1,8 +1,8 @@
 import * as Types from '../../generated/graphql';
 
-import { TranslationsFragment } from '../../translate/Translations.generated';
+import { TranslationsFragment } from '../../translate/Translations.cms.generated';
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
-import { TranslationsFragmentDoc } from '../../translate/Translations.generated';
+import { TranslationsFragmentDoc } from '../../translate/Translations.cms.generated';
 export type PageSectionsQueryVariables = Types.Exact<{
   page?: Types.Scalars['String'];
   locale: Array<Types.Locale> | Types.Locale;

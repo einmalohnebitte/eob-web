@@ -1,4 +1,4 @@
-import { PageSectionsQuery } from "@/components/PageSections/PageSections.generated";
+import { PageSectionsQuery } from "@/components/PageSections/PageSections.cms.generated";
 import { useTranslations } from "@/translate";
 import { useRouter } from "next/router";
 import React, { useState } from "react";

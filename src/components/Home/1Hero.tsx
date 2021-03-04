@@ -1,4 +1,4 @@
-import { PageSectionsQuery } from "@/components/PageSections/PageSections.generated";
+import { PageSectionsQuery } from "@/components/PageSections/PageSections.cms.generated";
 import Image from "next/image";
 import React from "react";
 import tw from "twin.macro";

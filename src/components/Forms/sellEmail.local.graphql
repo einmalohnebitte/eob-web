@@ -1,0 +1,3 @@
+mutation sendSellMail($email: SellEmailReq!) {
+  sellEmail(email: $email)
+}

@@ -1,4 +1,4 @@
-import { TranslationsQuery } from "@/translate/Translations.generated";
+import { TranslationsQuery } from "@/translate/Translations.cms.generated";
 import { useRouter } from "next/router";
 import { useState } from "react";
 

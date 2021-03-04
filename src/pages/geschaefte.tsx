@@ -3,7 +3,7 @@ import { Shop, Town, useTownShops } from "@/components/ShopsMap/useShops";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
 import { contextToLocale } from "@/translate/contextToLocale";
-import { TranslationsDocument } from "@/translate/Translations.generated";
+import { TranslationsDocument } from "@/translate/Translations.cms.generated";
 import { Box, Button, Tab, Tabs, TextInput } from "grommet";
 import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";

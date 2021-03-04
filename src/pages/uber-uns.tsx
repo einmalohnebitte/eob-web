@@ -2,7 +2,7 @@ import { withLayout } from "@/components/Layout";
 import {
   MembersDocument,
   MembersQuery,
-} from "@/components/Members/Members.generated";
+} from "@/components/Members/Members.cms.generated";
 import { TeamPhoto } from "@/components/Members/TeamPhoto";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";

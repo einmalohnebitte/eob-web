@@ -1,6 +1,9 @@
+import { SendSellMailDocument } from "@/components/Forms/sellEmail.local.generated";
+import { useReactMutation } from "@/components/useReactQuery";
 import { useTranslations } from "@/translate";
 import { useFormik } from "formik";
 // Render Prop
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import tw from "twin.macro";
@@ -11,11 +14,10 @@ import { H2 } from "../@UI/Texts";
 import { FormArea } from "./FormArea";
 import { FormCheckbox } from "./FormCheckbox";
 import { FormInput } from "./FormInput";
-import { useSendMail } from "./useSendEmail";
 
 export const VerkaufenForm = () => {
-  const sendMail = useSendMail();
-  const [captcha, setCaptcha] = useState(false);
+  const sendMail = useReactMutation(SendSellMailDocument);
+  // const [captcha, setCaptcha] = useState(false);
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -52,9 +54,11 @@ export const VerkaufenForm = () => {
       consent: false,
     },
     onSubmit: (values) => {
-      if (captcha) {
-        sendMail.mutate(values);
-      }
+      // if (captcha) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { consent, ...rest } = values;
+      sendMail.mutate({ email: rest });
+      // }
     },
     validationSchema,
   });
@@ -116,7 +120,7 @@ export const VerkaufenForm = () => {
         <div css={tw`flex m-2`}>
           <ReCAPTCHA
             sitekey="6Ld2iaMUAAAAAKuO6s305VLDpf-iTimNcKH1FS-8"
-            onChange={() => setCaptcha(true)}
+            // onChange={() => setCaptcha(true)}
           />
         </div>
 
