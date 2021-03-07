@@ -2,10 +2,8 @@ import { SendSellMailDocument } from "@/components/Forms/sellEmail.local.generat
 import { useReactMutation } from "@/components/useReactQuery";
 import { useTranslations } from "@/translate";
 import { useFormik } from "formik";
-// Render Prop
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState } from "react";
-// import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 import tw from "twin.macro";
 import * as Yup from "yup";
 
@@ -15,11 +13,9 @@ import { FormArea } from "./FormArea";
 import { FormCheckbox } from "./FormCheckbox";
 import { FormInput } from "./FormInput";
 
-// import { useSendMail } from "./useSendEmail";
-
 export const VerbreitenForm = () => {
   const sendMail = useReactMutation(SendSellMailDocument);
-  // const [captcha, setCaptcha] = useState(false);
+  const [captcha, setCaptcha] = useState(false);
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -56,11 +52,11 @@ export const VerbreitenForm = () => {
       consent: false,
     },
     onSubmit: (values) => {
-      // if (captcha) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { consent, ...rest } = values;
-      sendMail.mutate({ email: rest });
-      // }
+      if (captcha) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { consent, ...rest } = values;
+        sendMail.mutate({ email: rest });
+      }
     },
     validationSchema,
   });
@@ -111,8 +107,6 @@ export const VerbreitenForm = () => {
           />
         </div>
 
-        {/* <FormInput label="FORM_EMAIL" field="email" formik={formik as any} /> */}
-
         <FormArea
           field="message"
           label={intl("FORM_MESSAGE")}
@@ -120,10 +114,10 @@ export const VerbreitenForm = () => {
         />
 
         <div css={tw`flex m-2`}>
-          {/* <ReCAPTCHA
+          <ReCAPTCHA
             sitekey="6Ld2iaMUAAAAAKuO6s305VLDpf-iTimNcKH1FS-8"
             onChange={() => setCaptcha(true)}
-          /> */}
+          />
         </div>
 
         <FormCheckbox
