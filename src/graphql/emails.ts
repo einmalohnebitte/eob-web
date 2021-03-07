@@ -2,7 +2,7 @@ import mailgun, { messages } from "mailgun-js";
 
 const mg = mailgun({
   apiKey: process.env.MAILGUN_API ?? "",
-  domain: `einmalohnebitte.de`,
+  domain: `mailg.einmalohnebitte.de`,
   host: `api.eu.mailgun.net`
 });
 
