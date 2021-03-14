@@ -68,6 +68,8 @@ export type Asset = Node & {
   pictureMember: Array<Member>;
   dataProtectionFormShop: Array<Shop>;
   category?: Maybe<Category>;
+  pictureSupporter: Array<Supporter>;
+  logoCityPartner: Array<CityPartner>;
   /** List of Asset versions */
   history: Array<Version>;
   /** Get the url for the asset with provided transformations applied. */
@@ -148,6 +150,32 @@ export type AssetDataProtectionFormShopArgs = {
 
 
 /** Asset system model */
+export type AssetPictureSupporterArgs = {
+  where?: Maybe<SupporterWhereInput>;
+  orderBy?: Maybe<SupporterOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Asset system model */
+export type AssetLogoCityPartnerArgs = {
+  where?: Maybe<CityPartnerWhereInput>;
+  orderBy?: Maybe<CityPartnerOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Asset system model */
 export type AssetHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
@@ -190,6 +218,8 @@ export type AssetCreateInput = {
   pictureMember?: Maybe<MemberCreateManyInlineInput>;
   dataProtectionFormShop?: Maybe<ShopCreateManyInlineInput>;
   category?: Maybe<Category>;
+  pictureSupporter?: Maybe<SupporterCreateManyInlineInput>;
+  logoCityPartner?: Maybe<CityPartnerCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<AssetCreateLocalizationsInput>;
 };
@@ -329,6 +359,12 @@ export type AssetManyWhereInput = {
   category_in?: Maybe<Array<Category>>;
   /** All values that are not contained in given list. */
   category_not_in?: Maybe<Array<Category>>;
+  pictureSupporter_every?: Maybe<SupporterWhereInput>;
+  pictureSupporter_some?: Maybe<SupporterWhereInput>;
+  pictureSupporter_none?: Maybe<SupporterWhereInput>;
+  logoCityPartner_every?: Maybe<CityPartnerWhereInput>;
+  logoCityPartner_some?: Maybe<CityPartnerWhereInput>;
+  logoCityPartner_none?: Maybe<CityPartnerWhereInput>;
 };
 
 export enum AssetOrderByInput {
@@ -375,6 +411,8 @@ export type AssetUpdateInput = {
   pictureMember?: Maybe<MemberUpdateManyInlineInput>;
   dataProtectionFormShop?: Maybe<ShopUpdateManyInlineInput>;
   category?: Maybe<Category>;
+  pictureSupporter?: Maybe<SupporterUpdateManyInlineInput>;
+  logoCityPartner?: Maybe<CityPartnerUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: Maybe<AssetUpdateLocalizationsInput>;
 };
@@ -690,6 +728,12 @@ export type AssetWhereInput = {
   category_in?: Maybe<Array<Category>>;
   /** All values that are not contained in given list. */
   category_not_in?: Maybe<Array<Category>>;
+  pictureSupporter_every?: Maybe<SupporterWhereInput>;
+  pictureSupporter_some?: Maybe<SupporterWhereInput>;
+  pictureSupporter_none?: Maybe<SupporterWhereInput>;
+  logoCityPartner_every?: Maybe<CityPartnerWhereInput>;
+  logoCityPartner_some?: Maybe<CityPartnerWhereInput>;
+  logoCityPartner_none?: Maybe<CityPartnerWhereInput>;
 };
 
 /** References Asset record uniquely */
@@ -1132,6 +1176,486 @@ export enum Category {
   Members = 'members',
   Uberuns = 'uberuns'
 }
+
+export type CityPartner = Node & {
+  __typename?: 'CityPartner';
+  /** System stage field */
+  stage: Stage;
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<CityPartner>;
+  /** Get the document in other stages */
+  documentInStages: Array<CityPartner>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  logo?: Maybe<Asset>;
+  link?: Maybe<Scalars['String']>;
+  /** List of CityPartner versions */
+  history: Array<Version>;
+};
+
+
+export type CityPartnerLocalizationsArgs = {
+  locales?: Array<Locale>;
+  includeCurrent?: Scalars['Boolean'];
+};
+
+
+export type CityPartnerDocumentInStagesArgs = {
+  stages?: Array<Stage>;
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+};
+
+
+export type CityPartnerCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type CityPartnerUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type CityPartnerPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type CityPartnerLogoArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type CityPartnerHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+export type CityPartnerConnectInput = {
+  /** Document to connect */
+  where: CityPartnerWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+};
+
+/** A connection to a list of items. */
+export type CityPartnerConnection = {
+  __typename?: 'CityPartnerConnection';
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** A list of edges. */
+  edges: Array<CityPartnerEdge>;
+  aggregate: Aggregate;
+};
+
+export type CityPartnerCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** name input for default locale (de) */
+  name?: Maybe<Scalars['String']>;
+  logo?: Maybe<AssetCreateOneInlineInput>;
+  link?: Maybe<Scalars['String']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<CityPartnerCreateLocalizationsInput>;
+};
+
+export type CityPartnerCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+export type CityPartnerCreateLocalizationInput = {
+  /** Localization input */
+  data: CityPartnerCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type CityPartnerCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<CityPartnerCreateLocalizationInput>>;
+};
+
+export type CityPartnerCreateManyInlineInput = {
+  /** Create and connect multiple existing CityPartner documents */
+  create?: Maybe<Array<CityPartnerCreateInput>>;
+  /** Connect multiple existing CityPartner documents */
+  connect?: Maybe<Array<CityPartnerWhereUniqueInput>>;
+};
+
+export type CityPartnerCreateOneInlineInput = {
+  /** Create and connect one CityPartner document */
+  create?: Maybe<CityPartnerCreateInput>;
+  /** Connect one existing CityPartner document */
+  connect?: Maybe<CityPartnerWhereUniqueInput>;
+};
+
+/** An edge in a connection. */
+export type CityPartnerEdge = {
+  __typename?: 'CityPartnerEdge';
+  /** The item at the end of the edge. */
+  node: CityPartner;
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+};
+
+/** Identifies documents */
+export type CityPartnerManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<CityPartnerWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<CityPartnerWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<CityPartnerWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  logo?: Maybe<AssetWhereInput>;
+  link?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  link_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  link_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  link_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  link_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  link_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  link_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  link_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  link_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  link_not_ends_with?: Maybe<Scalars['String']>;
+};
+
+export enum CityPartnerOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  LinkAsc = 'link_ASC',
+  LinkDesc = 'link_DESC'
+}
+
+export type CityPartnerUpdateInput = {
+  /** name input for default locale (de) */
+  name?: Maybe<Scalars['String']>;
+  logo?: Maybe<AssetUpdateOneInlineInput>;
+  link?: Maybe<Scalars['String']>;
+  /** Manage document localizations */
+  localizations?: Maybe<CityPartnerUpdateLocalizationsInput>;
+};
+
+export type CityPartnerUpdateLocalizationDataInput = {
+  name?: Maybe<Scalars['String']>;
+};
+
+export type CityPartnerUpdateLocalizationInput = {
+  data: CityPartnerUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type CityPartnerUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<CityPartnerCreateLocalizationInput>>;
+  /** Localizations to update */
+  update?: Maybe<Array<CityPartnerUpdateLocalizationInput>>;
+  upsert?: Maybe<Array<CityPartnerUpsertLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>;
+};
+
+export type CityPartnerUpdateManyInlineInput = {
+  /** Create and connect multiple CityPartner documents */
+  create?: Maybe<Array<CityPartnerCreateInput>>;
+  /** Connect multiple existing CityPartner documents */
+  connect?: Maybe<Array<CityPartnerConnectInput>>;
+  /** Override currently-connected documents with multiple existing CityPartner documents */
+  set?: Maybe<Array<CityPartnerWhereUniqueInput>>;
+  /** Update multiple CityPartner documents */
+  update?: Maybe<Array<CityPartnerUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple CityPartner documents */
+  upsert?: Maybe<Array<CityPartnerUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple CityPartner documents */
+  disconnect?: Maybe<Array<CityPartnerWhereUniqueInput>>;
+  /** Delete multiple CityPartner documents */
+  delete?: Maybe<Array<CityPartnerWhereUniqueInput>>;
+};
+
+export type CityPartnerUpdateManyInput = {
+  /** name input for default locale (de) */
+  name?: Maybe<Scalars['String']>;
+  link?: Maybe<Scalars['String']>;
+  /** Optional updates to localizations */
+  localizations?: Maybe<CityPartnerUpdateManyLocalizationsInput>;
+};
+
+export type CityPartnerUpdateManyLocalizationDataInput = {
+  name?: Maybe<Scalars['String']>;
+};
+
+export type CityPartnerUpdateManyLocalizationInput = {
+  data: CityPartnerUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type CityPartnerUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: Maybe<Array<CityPartnerUpdateManyLocalizationInput>>;
+};
+
+export type CityPartnerUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: CityPartnerWhereInput;
+  /** Update many input */
+  data: CityPartnerUpdateManyInput;
+};
+
+export type CityPartnerUpdateOneInlineInput = {
+  /** Create and connect one CityPartner document */
+  create?: Maybe<CityPartnerCreateInput>;
+  /** Update single CityPartner document */
+  update?: Maybe<CityPartnerUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single CityPartner document */
+  upsert?: Maybe<CityPartnerUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing CityPartner document */
+  connect?: Maybe<CityPartnerWhereUniqueInput>;
+  /** Disconnect currently connected CityPartner document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected CityPartner document */
+  delete?: Maybe<Scalars['Boolean']>;
+};
+
+export type CityPartnerUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: CityPartnerWhereUniqueInput;
+  /** Document to update */
+  data: CityPartnerUpdateInput;
+};
+
+export type CityPartnerUpsertInput = {
+  /** Create document if it didn't exist */
+  create: CityPartnerCreateInput;
+  /** Update document if it exists */
+  update: CityPartnerUpdateInput;
+};
+
+export type CityPartnerUpsertLocalizationInput = {
+  update: CityPartnerUpdateLocalizationDataInput;
+  create: CityPartnerCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type CityPartnerUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: CityPartnerWhereUniqueInput;
+  /** Upsert data */
+  data: CityPartnerUpsertInput;
+};
+
+/** Identifies documents */
+export type CityPartnerWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<CityPartnerWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<CityPartnerWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<CityPartnerWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  logo?: Maybe<AssetWhereInput>;
+  link?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  link_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  link_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  link_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  link_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  link_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  link_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  link_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  link_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  link_not_ends_with?: Maybe<Scalars['String']>;
+};
+
+/** References CityPartner record uniquely */
+export type CityPartnerWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
+};
 
 /** Representing a color value comprising of HEX, RGBA and css color values */
 export type Color = {
@@ -2662,6 +3186,46 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyBlogsConnection)
    */
   unpublishManyBlogs: BatchPayload;
+  /** Create one cityPartner */
+  createCityPartner?: Maybe<CityPartner>;
+  /** Update one cityPartner */
+  updateCityPartner?: Maybe<CityPartner>;
+  /** Delete one cityPartner from _all_ existing stages. Returns deleted document. */
+  deleteCityPartner?: Maybe<CityPartner>;
+  /** Upsert one cityPartner */
+  upsertCityPartner?: Maybe<CityPartner>;
+  /** Publish one cityPartner */
+  publishCityPartner?: Maybe<CityPartner>;
+  /** Unpublish one cityPartner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishCityPartner?: Maybe<CityPartner>;
+  /** Update many CityPartner documents */
+  updateManyCityPartnersConnection: CityPartnerConnection;
+  /** Delete many CityPartner documents, return deleted documents */
+  deleteManyCityPartnersConnection: CityPartnerConnection;
+  /** Publish many CityPartner documents */
+  publishManyCityPartnersConnection: CityPartnerConnection;
+  /** Find many CityPartner documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyCityPartnersConnection: CityPartnerConnection;
+  /**
+   * Update many cityPartners
+   * @deprecated Please use the new paginated many mutation (updateManyCityPartnersConnection)
+   */
+  updateManyCityPartners: BatchPayload;
+  /**
+   * Delete many CityPartner documents
+   * @deprecated Please use the new paginated many mutation (deleteManyCityPartnersConnection)
+   */
+  deleteManyCityPartners: BatchPayload;
+  /**
+   * Publish many CityPartner documents
+   * @deprecated Please use the new paginated many mutation (publishManyCityPartnersConnection)
+   */
+  publishManyCityPartners: BatchPayload;
+  /**
+   * Unpublish many CityPartner documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyCityPartnersConnection)
+   */
+  unpublishManyCityPartners: BatchPayload;
   /** Create one faq */
   createFaq?: Maybe<Faq>;
   /** Update one faq */
@@ -2982,6 +3546,46 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManySidecategoriesConnection)
    */
   unpublishManySidecategories: BatchPayload;
+  /** Create one supporter */
+  createSupporter?: Maybe<Supporter>;
+  /** Update one supporter */
+  updateSupporter?: Maybe<Supporter>;
+  /** Delete one supporter from _all_ existing stages. Returns deleted document. */
+  deleteSupporter?: Maybe<Supporter>;
+  /** Upsert one supporter */
+  upsertSupporter?: Maybe<Supporter>;
+  /** Publish one supporter */
+  publishSupporter?: Maybe<Supporter>;
+  /** Unpublish one supporter from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishSupporter?: Maybe<Supporter>;
+  /** Update many Supporter documents */
+  updateManySupportersConnection: SupporterConnection;
+  /** Delete many Supporter documents, return deleted documents */
+  deleteManySupportersConnection: SupporterConnection;
+  /** Publish many Supporter documents */
+  publishManySupportersConnection: SupporterConnection;
+  /** Find many Supporter documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManySupportersConnection: SupporterConnection;
+  /**
+   * Update many supporters
+   * @deprecated Please use the new paginated many mutation (updateManySupportersConnection)
+   */
+  updateManySupporters: BatchPayload;
+  /**
+   * Delete many Supporter documents
+   * @deprecated Please use the new paginated many mutation (deleteManySupportersConnection)
+   */
+  deleteManySupporters: BatchPayload;
+  /**
+   * Publish many Supporter documents
+   * @deprecated Please use the new paginated many mutation (publishManySupportersConnection)
+   */
+  publishManySupporters: BatchPayload;
+  /**
+   * Unpublish many Supporter documents
+   * @deprecated Please use the new paginated many mutation (unpublishManySupportersConnection)
+   */
+  unpublishManySupporters: BatchPayload;
   /** Create one translation */
   createTranslation?: Maybe<Translation>;
   /** Update one translation */
@@ -3253,6 +3857,123 @@ export type MutationPublishManyBlogsArgs = {
 
 export type MutationUnpublishManyBlogsArgs = {
   where?: Maybe<BlogManyWhereInput>;
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateCityPartnerArgs = {
+  data: CityPartnerCreateInput;
+};
+
+
+export type MutationUpdateCityPartnerArgs = {
+  where: CityPartnerWhereUniqueInput;
+  data: CityPartnerUpdateInput;
+};
+
+
+export type MutationDeleteCityPartnerArgs = {
+  where: CityPartnerWhereUniqueInput;
+};
+
+
+export type MutationUpsertCityPartnerArgs = {
+  where: CityPartnerWhereUniqueInput;
+  upsert: CityPartnerUpsertInput;
+};
+
+
+export type MutationPublishCityPartnerArgs = {
+  where: CityPartnerWhereUniqueInput;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishCityPartnerArgs = {
+  where: CityPartnerWhereUniqueInput;
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateManyCityPartnersConnectionArgs = {
+  where?: Maybe<CityPartnerManyWhereInput>;
+  data: CityPartnerUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyCityPartnersConnectionArgs = {
+  where?: Maybe<CityPartnerManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyCityPartnersConnectionArgs = {
+  where?: Maybe<CityPartnerManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUnpublishManyCityPartnersConnectionArgs = {
+  where?: Maybe<CityPartnerManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateManyCityPartnersArgs = {
+  where?: Maybe<CityPartnerManyWhereInput>;
+  data: CityPartnerUpdateManyInput;
+};
+
+
+export type MutationDeleteManyCityPartnersArgs = {
+  where?: Maybe<CityPartnerManyWhereInput>;
+};
+
+
+export type MutationPublishManyCityPartnersArgs = {
+  where?: Maybe<CityPartnerManyWhereInput>;
+  to?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUnpublishManyCityPartnersArgs = {
+  where?: Maybe<CityPartnerManyWhereInput>;
   from?: Array<Stage>;
   locales?: Maybe<Array<Locale>>;
   unpublishBase?: Maybe<Scalars['Boolean']>;
@@ -4132,6 +4853,123 @@ export type MutationPublishManySidecategoriesArgs = {
 export type MutationUnpublishManySidecategoriesArgs = {
   where?: Maybe<SidecategoryManyWhereInput>;
   from?: Array<Stage>;
+};
+
+
+export type MutationCreateSupporterArgs = {
+  data: SupporterCreateInput;
+};
+
+
+export type MutationUpdateSupporterArgs = {
+  where: SupporterWhereUniqueInput;
+  data: SupporterUpdateInput;
+};
+
+
+export type MutationDeleteSupporterArgs = {
+  where: SupporterWhereUniqueInput;
+};
+
+
+export type MutationUpsertSupporterArgs = {
+  where: SupporterWhereUniqueInput;
+  upsert: SupporterUpsertInput;
+};
+
+
+export type MutationPublishSupporterArgs = {
+  where: SupporterWhereUniqueInput;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishSupporterArgs = {
+  where: SupporterWhereUniqueInput;
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateManySupportersConnectionArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  data: SupporterUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManySupportersConnectionArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManySupportersConnectionArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUnpublishManySupportersConnectionArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateManySupportersArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  data: SupporterUpdateManyInput;
+};
+
+
+export type MutationDeleteManySupportersArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+};
+
+
+export type MutationPublishManySupportersArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  to?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUnpublishManySupportersArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -5373,6 +6211,14 @@ export type Query = {
   blogsConnection: BlogConnection;
   /** Retrieve document version */
   blogVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple cityPartners */
+  cityPartners: Array<CityPartner>;
+  /** Retrieve a single cityPartner */
+  cityPartner?: Maybe<CityPartner>;
+  /** Retrieve multiple cityPartners using the Relay connection interface */
+  cityPartnersConnection: CityPartnerConnection;
+  /** Retrieve document version */
+  cityPartnerVersion?: Maybe<DocumentVersion>;
   /** Retrieve multiple faqs */
   faqs: Array<Faq>;
   /** Retrieve a single faq */
@@ -5437,6 +6283,14 @@ export type Query = {
   sidecategoriesConnection: SidecategoryConnection;
   /** Retrieve document version */
   sidecategoryVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple supporters */
+  supporters: Array<Supporter>;
+  /** Retrieve a single supporter */
+  supporter?: Maybe<Supporter>;
+  /** Retrieve multiple supporters using the Relay connection interface */
+  supportersConnection: SupporterConnection;
+  /** Retrieve document version */
+  supporterVersion?: Maybe<DocumentVersion>;
   /** Retrieve multiple translations */
   translations: Array<Translation>;
   /** Retrieve a single translation */
@@ -5527,6 +6381,44 @@ export type QueryBlogsConnectionArgs = {
 
 
 export type QueryBlogVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryCityPartnersArgs = {
+  where?: Maybe<CityPartnerWhereInput>;
+  orderBy?: Maybe<CityPartnerOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryCityPartnerArgs = {
+  where: CityPartnerWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryCityPartnersConnectionArgs = {
+  where?: Maybe<CityPartnerWhereInput>;
+  orderBy?: Maybe<CityPartnerOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryCityPartnerVersionArgs = {
   where: VersionWhereInput;
 };
 
@@ -5831,6 +6723,44 @@ export type QuerySidecategoriesConnectionArgs = {
 
 
 export type QuerySidecategoryVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QuerySupportersArgs = {
+  where?: Maybe<SupporterWhereInput>;
+  orderBy?: Maybe<SupporterOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QuerySupporterArgs = {
+  where: SupporterWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QuerySupportersConnectionArgs = {
+  where?: Maybe<SupporterWhereInput>;
+  orderBy?: Maybe<SupporterOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QuerySupporterVersionArgs = {
   where: VersionWhereInput;
 };
 
@@ -7034,6 +7964,473 @@ export enum Stage {
   /** The Draft is the default stage for all your content. */
   Draft = 'DRAFT'
 }
+
+export type Supporter = Node & {
+  __typename?: 'Supporter';
+  /** System stage field */
+  stage: Stage;
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Supporter>;
+  /** Get the document in other stages */
+  documentInStages: Array<Supporter>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  picture?: Maybe<Asset>;
+  website?: Maybe<Scalars['String']>;
+  /** List of Supporter versions */
+  history: Array<Version>;
+};
+
+
+export type SupporterLocalizationsArgs = {
+  locales?: Array<Locale>;
+  includeCurrent?: Scalars['Boolean'];
+};
+
+
+export type SupporterDocumentInStagesArgs = {
+  stages?: Array<Stage>;
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+};
+
+
+export type SupporterCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type SupporterUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type SupporterPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type SupporterPictureArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type SupporterHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+export type SupporterConnectInput = {
+  /** Document to connect */
+  where: SupporterWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+};
+
+/** A connection to a list of items. */
+export type SupporterConnection = {
+  __typename?: 'SupporterConnection';
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** A list of edges. */
+  edges: Array<SupporterEdge>;
+  aggregate: Aggregate;
+};
+
+export type SupporterCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** name input for default locale (de) */
+  name?: Maybe<Scalars['String']>;
+  picture?: Maybe<AssetCreateOneInlineInput>;
+  /** website input for default locale (de) */
+  website?: Maybe<Scalars['String']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<SupporterCreateLocalizationsInput>;
+};
+
+export type SupporterCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+export type SupporterCreateLocalizationInput = {
+  /** Localization input */
+  data: SupporterCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type SupporterCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<SupporterCreateLocalizationInput>>;
+};
+
+export type SupporterCreateManyInlineInput = {
+  /** Create and connect multiple existing Supporter documents */
+  create?: Maybe<Array<SupporterCreateInput>>;
+  /** Connect multiple existing Supporter documents */
+  connect?: Maybe<Array<SupporterWhereUniqueInput>>;
+};
+
+export type SupporterCreateOneInlineInput = {
+  /** Create and connect one Supporter document */
+  create?: Maybe<SupporterCreateInput>;
+  /** Connect one existing Supporter document */
+  connect?: Maybe<SupporterWhereUniqueInput>;
+};
+
+/** An edge in a connection. */
+export type SupporterEdge = {
+  __typename?: 'SupporterEdge';
+  /** The item at the end of the edge. */
+  node: Supporter;
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+};
+
+/** Identifies documents */
+export type SupporterManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<SupporterWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<SupporterWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<SupporterWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  picture?: Maybe<AssetWhereInput>;
+};
+
+export enum SupporterOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  WebsiteAsc = 'website_ASC',
+  WebsiteDesc = 'website_DESC'
+}
+
+export type SupporterUpdateInput = {
+  /** name input for default locale (de) */
+  name?: Maybe<Scalars['String']>;
+  picture?: Maybe<AssetUpdateOneInlineInput>;
+  /** website input for default locale (de) */
+  website?: Maybe<Scalars['String']>;
+  /** Manage document localizations */
+  localizations?: Maybe<SupporterUpdateLocalizationsInput>;
+};
+
+export type SupporterUpdateLocalizationDataInput = {
+  name?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+export type SupporterUpdateLocalizationInput = {
+  data: SupporterUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type SupporterUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<SupporterCreateLocalizationInput>>;
+  /** Localizations to update */
+  update?: Maybe<Array<SupporterUpdateLocalizationInput>>;
+  upsert?: Maybe<Array<SupporterUpsertLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>;
+};
+
+export type SupporterUpdateManyInlineInput = {
+  /** Create and connect multiple Supporter documents */
+  create?: Maybe<Array<SupporterCreateInput>>;
+  /** Connect multiple existing Supporter documents */
+  connect?: Maybe<Array<SupporterConnectInput>>;
+  /** Override currently-connected documents with multiple existing Supporter documents */
+  set?: Maybe<Array<SupporterWhereUniqueInput>>;
+  /** Update multiple Supporter documents */
+  update?: Maybe<Array<SupporterUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Supporter documents */
+  upsert?: Maybe<Array<SupporterUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple Supporter documents */
+  disconnect?: Maybe<Array<SupporterWhereUniqueInput>>;
+  /** Delete multiple Supporter documents */
+  delete?: Maybe<Array<SupporterWhereUniqueInput>>;
+};
+
+export type SupporterUpdateManyInput = {
+  /** name input for default locale (de) */
+  name?: Maybe<Scalars['String']>;
+  /** website input for default locale (de) */
+  website?: Maybe<Scalars['String']>;
+  /** Optional updates to localizations */
+  localizations?: Maybe<SupporterUpdateManyLocalizationsInput>;
+};
+
+export type SupporterUpdateManyLocalizationDataInput = {
+  name?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+};
+
+export type SupporterUpdateManyLocalizationInput = {
+  data: SupporterUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type SupporterUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: Maybe<Array<SupporterUpdateManyLocalizationInput>>;
+};
+
+export type SupporterUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: SupporterWhereInput;
+  /** Update many input */
+  data: SupporterUpdateManyInput;
+};
+
+export type SupporterUpdateOneInlineInput = {
+  /** Create and connect one Supporter document */
+  create?: Maybe<SupporterCreateInput>;
+  /** Update single Supporter document */
+  update?: Maybe<SupporterUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Supporter document */
+  upsert?: Maybe<SupporterUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing Supporter document */
+  connect?: Maybe<SupporterWhereUniqueInput>;
+  /** Disconnect currently connected Supporter document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected Supporter document */
+  delete?: Maybe<Scalars['Boolean']>;
+};
+
+export type SupporterUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: SupporterWhereUniqueInput;
+  /** Document to update */
+  data: SupporterUpdateInput;
+};
+
+export type SupporterUpsertInput = {
+  /** Create document if it didn't exist */
+  create: SupporterCreateInput;
+  /** Update document if it exists */
+  update: SupporterUpdateInput;
+};
+
+export type SupporterUpsertLocalizationInput = {
+  update: SupporterUpdateLocalizationDataInput;
+  create: SupporterCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type SupporterUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: SupporterWhereUniqueInput;
+  /** Upsert data */
+  data: SupporterUpsertInput;
+};
+
+/** Identifies documents */
+export type SupporterWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<SupporterWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<SupporterWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<SupporterWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  picture?: Maybe<AssetWhereInput>;
+  website?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  website_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  website_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  website_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  website_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  website_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  website_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  website_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  website_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  website_not_ends_with?: Maybe<Scalars['String']>;
+};
+
+/** References Supporter record uniquely */
+export type SupporterWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
+};
 
 export enum SystemDateTimeFieldVariation {
   Base = 'BASE',
