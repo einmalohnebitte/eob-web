@@ -28,6 +28,7 @@ lint:
         NODE_ENV: development
     script:
         - npm run lint
+        - npx tsc
     needs:
         - job: install
           artifacts: true
