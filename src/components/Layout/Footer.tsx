@@ -26,8 +26,8 @@ export const AppFooter = () => {
 
       <p>
         <a href="/impressum/">{intl("FOOTER_IMPRESSUM")}</a>{" "}
-        <a href="/datenschutz/">{intl("FOOTER_DATA")}</a>{" "}
-        <a href="/presse/">{intl("FOOTER_PRESS")}</a>
+        <a href="/datenschutzerklarung/">{intl("FOOTER_DATA")}</a>{" "}
+        <a href="/press/">{intl("FOOTER_PRESS")}</a>
       </p>
       <p className="center-block">
         Made with <HearthStyle>♥</HearthStyle> in Munich by{" "}
