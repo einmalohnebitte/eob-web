@@ -1,4 +1,5 @@
 import { RouterContext } from "next/dist/next-server/lib/router-context";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { ThemeProvider } from "styled-components";
 
 export const parameters = {
@@ -18,16 +19,20 @@ const router = {
   replace: actionWithPromise,
 };
 
+const queryClient = new QueryClient();
+
 export const decorators = [
   (Story) => {
     // const global = useGlobal();
     return (
-      <RouterContext.Provider value={router}>
-        {/* <GlobalStyle /> */}
-        {/* <ThemeProvider theme={theme(global)}> */}
-        <Story />
-        {/* </ThemeProvider> */}
-      </RouterContext.Provider>
+      <QueryClientProvider client={queryClient}>
+        <RouterContext.Provider value={router}>
+          {/* <GlobalStyle /> */}
+          {/* <ThemeProvider theme={theme(global)}> */}
+          <Story />
+          {/* </ThemeProvider> */}
+        </RouterContext.Provider>
+      </QueryClientProvider>
     );
   },
 ];
