@@ -1,9 +1,9 @@
 stages:
     - test
 
+image: node:latest
 
 install:
-    image: node:14-stretch
     stage: .pre
     script:
         - NODE_ENV=development npm ci
@@ -24,7 +24,6 @@ install:
 
 lint:
     stage: test
-    image: node:14-stretch
     variables:
         NODE_ENV: development
     script:
