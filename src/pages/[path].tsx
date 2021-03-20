@@ -11,7 +11,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = ["impressum", "presse", "datenschutz"].map((path) => ({
+  const paths = ["impressum", "press", "datenschutzerklarung"].map((path) => ({
     params: { path },
   }));
   return {
@@ -33,7 +33,6 @@ export const getStaticProps: GetStaticProps<any, { path: string }> = async (
 };
 
 const Page: React.FC<PageContentQuery> = (props) => {
-  console.log(props);
   return (
     <Section>
       <H1>{props.pages[0].title}</H1>
