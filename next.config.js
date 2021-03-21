@@ -16,6 +16,9 @@ module.exports = withImages(
         defaultLocale: "de",
         localeDetection: false,
       },
+      images: {
+        domains: ["media.graphcms.com"],
+      },
     })
   )
 );

@@ -9,6 +9,7 @@ import {
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
+import Image from "next/image";
 import React from "react";
 import tw from "twin.macro";
 
@@ -36,7 +37,12 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => (
           />
         </SplitSection.Main>
         <SplitSection.Side>
-          <img src={pageSections[0].picture[0].url} alt="side" />
+          <Image
+            src={pageSections[0].picture[0].url}
+            alt="side"
+            width={350}
+            height={250}
+          />
         </SplitSection.Side>
       </SplitSection.Section>
     </div>
@@ -61,13 +67,23 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => (
           }}
         />
         <SplitSection.Side>
-          <img src={pageSections[1].picture[0].url} alt="side" />
+          <Image
+            src={pageSections[1].picture[0].url}
+            alt="side"
+            width={350}
+            height={300}
+          />
         </SplitSection.Side>
       </SplitSection.Section>
 
       <SplitSection.Section>
         <SplitSection.Side>
-          <img src={pageSections[2].picture[0].url} alt="side" />
+          <Image
+            src={pageSections[2].picture[0].url}
+            alt="side"
+            width={350}
+            height={350}
+          />
         </SplitSection.Side>
         <SplitSection.Main>
           <H2>{pageSections[2].title}</H2>
@@ -111,16 +127,27 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => (
               display: flex;
             `}
           >
-            <div css={tw`self-center m-2`}>
-              <img
+            <div css={tw`self-center m-2 flex-1`}>
+              <Image
                 src={pageSections[3].picture[0].url}
                 alt="side"
-                css={tw`pb-4`}
+                width={250}
+                height={160}
               />
-              <img src={pageSections[3].picture[2].url} alt="side" />
+              <Image
+                src={pageSections[3].picture[2].url}
+                alt="side"
+                width={250}
+                height={160}
+              />
             </div>
-            <div css={tw`self-center m-2`}>
-              <img src={pageSections[3].picture[1].url} alt="side" />
+            <div css={tw`self-center m-2 flex-1`}>
+              <Image
+                src={pageSections[3].picture[1].url}
+                alt="side"
+                width={250}
+                height={160}
+              />
             </div>
           </div>
         </SplitSection.Side>
