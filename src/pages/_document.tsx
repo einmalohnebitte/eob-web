@@ -33,6 +33,7 @@ export default class MyDocument extends Document<{
 
           <link rel="icon" href="/favicon.ico" type="image/ico" />
           {this.props.styleTags}
+          <title>Einmal Ohne, Bitte</title>
         </Head>
         <body>
           <Main />

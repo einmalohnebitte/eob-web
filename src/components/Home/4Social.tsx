@@ -18,10 +18,10 @@ export const Social: React.FC = () => (
         <img src="/images/social.png" alt="social" />
       </picture>
       <div>
-        <a href="https://www.facebook.com/einmalohnebitte/">
+        <a rel="noopener" href="https://www.facebook.com/einmalohnebitte/">
           <GrFacebook style={{ display: "inline-block" }} /> Facebook
         </a>{" "}
-        <a href="https://www.facebook.com/einmalohnebitte/">
+        <a rel="noopener" href="https://www.facebook.com/einmalohnebitte/">
           <GrInstagram style={{ display: "inline-block" }} /> Instagram
         </a>
       </div>

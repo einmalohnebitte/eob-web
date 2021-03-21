@@ -31,7 +31,9 @@ export const AppFooter = () => {
       </p>
       <p className="center-block">
         Made with <HearthStyle>♥</HearthStyle> in Munich by{" "}
-        <a href="https://rehab-republic.de/">Rehab Repulic</a>
+        <a rel="noopener" href="https://rehab-republic.de/">
+          Rehab Repulic
+        </a>
       </p>
     </footer>
   );
