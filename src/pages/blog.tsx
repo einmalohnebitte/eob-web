@@ -9,29 +9,10 @@ import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
-import styled from "styled-components";
 import tw from "twin.macro";
 
 import { Section } from "../components/@UI/Section";
 import { H1 } from "../components/@UI/Texts";
-import { MQ_DESKTOP, MQ_MOBILE } from "../constants/MediaQueries";
-
-const GridStyle = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  @media ${MQ_MOBILE} {
-    grid-template-columns: 1fr;
-  }
-  @media ${MQ_DESKTOP} {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  a {
-    font-weight: normal;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-`;
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(BlogsDocument, {
