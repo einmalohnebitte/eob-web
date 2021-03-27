@@ -4,6 +4,7 @@ import {
 } from "@/components/Blog/Blog.cms.generated";
 import { withLayout } from "@/components/Layout";
 import { graphCmsRequest } from "@/graphql/graphcms";
+import { useTranslations } from "@/translate";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
 import Link from "next/link";
@@ -43,11 +44,11 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 };
 
 const BlogPage: React.FC<BlogsQuery> = ({ blogs }) => {
-  // const intl = useTranslations();
+  const intl = useTranslations();
   return (
     <>
       <Section>
-        <H1>Blog</H1>
+        <H1>{intl("Blog")}</H1>
         <GridStyle>
           {blogs.map((item, k) => (
             <Link key={k} href={`/blog/${item.date}`}>

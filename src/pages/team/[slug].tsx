@@ -1,3 +1,4 @@
+import { Section } from "@/components/@UI/Section";
 import { H2 } from "@/components/@UI/Texts";
 import { withLayout } from "@/components/Layout";
 import {
@@ -33,15 +34,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 const TeamPage: React.FC<MemberQuery> = ({ members }) => (
-  <div css={tw`p-4`}>
+  <Section>
     <TeamPhoto src={members[0]?.picture?.url} />
-    <H2>{members[0]?.name}</H2>
+    <H2 css={tw`my-4`}>{members[0]?.name}</H2>
     <div
       dangerouslySetInnerHTML={{
         __html: members[0]?.bio?.html ?? "",
       }}
     />
-  </div>
+  </Section>
 );
 
 export default withLayout()(TeamPage);
