@@ -39,4 +39,4 @@ const Template: Story = (args) => (
   </>
 );
 
-export const HeaderStory = Template.bind({});
+export const FooterStory = Template.bind({});

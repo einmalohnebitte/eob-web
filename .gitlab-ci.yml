@@ -1,9 +1,9 @@
 stages:
     - test
 
+image: node:latest
 
 install:
-    image: node:12-stretch
     stage: .pre
     script:
         - NODE_ENV=development npm ci
@@ -24,11 +24,12 @@ install:
 
 lint:
     stage: test
-    image: node:12-stretch
     variables:
         NODE_ENV: development
     script:
+        - npx tsc
         - npm run lint
+        - npm run prettify
     needs:
         - job: install
           artifacts: true

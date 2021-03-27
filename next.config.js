@@ -12,8 +12,12 @@ module.exports = withImages(
         dest: "public",
       },
       i18n: {
-        locales: ["en", "de"],
+        locales: ["de", "en"],
         defaultLocale: "de",
+        localeDetection: false,
+      },
+      images: {
+        domains: ["media.graphcms.com"],
       },
     })
   )
