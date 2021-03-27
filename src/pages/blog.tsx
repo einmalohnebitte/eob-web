@@ -46,23 +46,20 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 const BlogPage: React.FC<BlogsQuery> = ({ blogs }) => {
   const intl = useTranslations();
   return (
-    <>
-      <Section>
-        <H1>{intl("Blog")}</H1>
-        <GridStyle>
-          {blogs.map((item, k) => (
-            <Link key={k} href={`/blog/${item.date}`}>
-              <a css={tw`m-4 border-solid border-2 border-gray-600 `}>
-                <div css={tw`p-4`}>
-                  <b>{item.title}</b>
-                  <b>{item.date}</b>
-                </div>
-              </a>
-            </Link>
-          ))}
-        </GridStyle>
-      </Section>
-    </>
+    <Section>
+      <H1>{intl("Blog")}</H1>
+
+      {blogs.map((item, k) => (
+        <div css={tw`m-4  `} key={k}>
+          <Link href={`/blog/${item.date}`}>
+            <a>
+              <i css={tw`mx-2`}>{item.date}</i>
+              <b>{item.title}</b>
+            </a>
+          </Link>
+        </div>
+      ))}
+    </Section>
   );
 };
 
