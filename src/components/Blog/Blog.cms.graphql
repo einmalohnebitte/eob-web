@@ -1,0 +1,23 @@
+query Blogs($locale: [Locale!]!) {
+  blogs {
+    title
+    date
+  }
+
+  translations(locales: $locale) {
+    ...Translations
+  }
+}
+
+query Blog($date: Date!, $locale: [Locale!]!) {
+  blogs(where: { date: $date }) {
+    title
+    content {
+      html
+    }
+    date
+  }
+  translations(locales: $locale) {
+    ...Translations
+  }
+}
