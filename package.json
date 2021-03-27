@@ -13,7 +13,7 @@
     "build-storybook": "build-storybook --no-dll",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "prettify": "prettier --write --ignore-path ./.eslintignore \"src/**/*.{js,jsx,ts,tsx}\"",
-    "chromatic": "npx chromatic --project-token fe993e497ba1"
+    "chromatic": "npx chromatic --project-token=81bccbae97d9"
   },
   "keywords": [],
   "author": "Fabio Benedetti",
