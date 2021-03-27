@@ -8,11 +8,12 @@ export const sellEmail: MutationResolvers<ResolverContext>["sellEmail"] = async 
 ) => {
   await sendMessage({
     to: process.env.EMAIL ?? "",
-    from: email, // sender address
+    from: `website@einmalohnebitte.de`, // sender address
     subject: `[Verkaufen] ${subject}`, // Subject line
     html: `
         <h1>${firstName} ${lastName}</h1>
         <p> ${message} </p>
+        <p> ${email} </p>
     `,
   });
 
