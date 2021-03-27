@@ -1,3 +1,3 @@
 # Einmal ohne, bitte
 
-Nextjs graphcms project
+Nextjs graphcms project.
