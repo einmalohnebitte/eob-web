@@ -62,7 +62,17 @@ export const Header: React.FC = () => {
           >
             <MdMenu size={"1.6em"} />
           </div>
-          <ButtonPink css={tw`mx-2`}>{"Spenden"}</ButtonPink>
+          <ButtonPink
+            css={tw`mx-2`}
+            onClick={() => {
+              window.open(
+                "https://rehab-republic.de/spenden",
+                "_blank" // <- This is what makes it open in a new window.
+              );
+            }}
+          >
+            {intl("Donate")}
+          </ButtonPink>
           <DropDown>
             <DropDownItem
               text="Deutsch"

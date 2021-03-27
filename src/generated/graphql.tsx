@@ -768,6 +768,7 @@ export type Blog = Node & {
   title: Scalars['String'];
   date?: Maybe<Scalars['Date']>;
   content?: Maybe<RichText>;
+  slug?: Maybe<Scalars['String']>;
   /** List of Blog versions */
   history: Array<Version>;
 };
@@ -825,6 +826,7 @@ export type BlogCreateInput = {
   date?: Maybe<Scalars['Date']>;
   /** content input for default locale (de) */
   content?: Maybe<Scalars['RichTextAST']>;
+  slug?: Maybe<Scalars['String']>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<BlogCreateLocalizationsInput>;
 };
@@ -945,6 +947,25 @@ export type BlogManyWhereInput = {
   date_gt?: Maybe<Scalars['Date']>;
   /** All values greater than or equal the given value. */
   date_gte?: Maybe<Scalars['Date']>;
+  slug?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  slug_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  slug_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: Maybe<Scalars['String']>;
 };
 
 export enum BlogOrderByInput {
@@ -959,7 +980,9 @@ export enum BlogOrderByInput {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
   DateAsc = 'date_ASC',
-  DateDesc = 'date_DESC'
+  DateDesc = 'date_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC'
 }
 
 export type BlogUpdateInput = {
@@ -968,6 +991,7 @@ export type BlogUpdateInput = {
   date?: Maybe<Scalars['Date']>;
   /** content input for default locale (de) */
   content?: Maybe<Scalars['RichTextAST']>;
+  slug?: Maybe<Scalars['String']>;
   /** Manage document localizations */
   localizations?: Maybe<BlogUpdateLocalizationsInput>;
 };
@@ -1159,11 +1183,31 @@ export type BlogWhereInput = {
   date_gt?: Maybe<Scalars['Date']>;
   /** All values greater than or equal the given value. */
   date_gte?: Maybe<Scalars['Date']>;
+  slug?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  slug_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  slug_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: Maybe<Scalars['String']>;
 };
 
 /** References Blog record uniquely */
 export type BlogWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>;
+  slug?: Maybe<Scalars['String']>;
 };
 
 export enum Category {
@@ -1767,7 +1811,7 @@ export type Faq = Node & {
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   question: Scalars['String'];
-  answer?: Maybe<Scalars['String']>;
+  answer?: Maybe<RichText>;
   /** List of Faq versions */
   history: Array<Version>;
 };
@@ -1823,7 +1867,7 @@ export type FaqCreateInput = {
   /** question input for default locale (de) */
   question: Scalars['String'];
   /** answer input for default locale (de) */
-  answer?: Maybe<Scalars['String']>;
+  answer?: Maybe<Scalars['RichTextAST']>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<FaqCreateLocalizationsInput>;
 };
@@ -1832,7 +1876,7 @@ export type FaqCreateLocalizationDataInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   question: Scalars['String'];
-  answer?: Maybe<Scalars['String']>;
+  answer?: Maybe<Scalars['RichTextAST']>;
 };
 
 export type FaqCreateLocalizationInput = {
@@ -1941,23 +1985,21 @@ export enum FaqOrderByInput {
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   QuestionAsc = 'question_ASC',
-  QuestionDesc = 'question_DESC',
-  AnswerAsc = 'answer_ASC',
-  AnswerDesc = 'answer_DESC'
+  QuestionDesc = 'question_DESC'
 }
 
 export type FaqUpdateInput = {
   /** question input for default locale (de) */
   question?: Maybe<Scalars['String']>;
   /** answer input for default locale (de) */
-  answer?: Maybe<Scalars['String']>;
+  answer?: Maybe<Scalars['RichTextAST']>;
   /** Manage document localizations */
   localizations?: Maybe<FaqUpdateLocalizationsInput>;
 };
 
 export type FaqUpdateLocalizationDataInput = {
   question?: Maybe<Scalars['String']>;
-  answer?: Maybe<Scalars['String']>;
+  answer?: Maybe<Scalars['RichTextAST']>;
 };
 
 export type FaqUpdateLocalizationInput = {
@@ -1979,14 +2021,14 @@ export type FaqUpdateManyInput = {
   /** question input for default locale (de) */
   question?: Maybe<Scalars['String']>;
   /** answer input for default locale (de) */
-  answer?: Maybe<Scalars['String']>;
+  answer?: Maybe<Scalars['RichTextAST']>;
   /** Optional updates to localizations */
   localizations?: Maybe<FaqUpdateManyLocalizationsInput>;
 };
 
 export type FaqUpdateManyLocalizationDataInput = {
   question?: Maybe<Scalars['String']>;
-  answer?: Maybe<Scalars['String']>;
+  answer?: Maybe<Scalars['RichTextAST']>;
 };
 
 export type FaqUpdateManyLocalizationInput = {
@@ -2126,25 +2168,6 @@ export type FaqWhereInput = {
   question_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   question_not_ends_with?: Maybe<Scalars['String']>;
-  answer?: Maybe<Scalars['String']>;
-  /** All values that are not equal to given value. */
-  answer_not?: Maybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  answer_in?: Maybe<Array<Scalars['String']>>;
-  /** All values that are not contained in given list. */
-  answer_not_in?: Maybe<Array<Scalars['String']>>;
-  /** All values containing the given string. */
-  answer_contains?: Maybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  answer_not_contains?: Maybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  answer_starts_with?: Maybe<Scalars['String']>;
-  /** All values not starting with the given string. */
-  answer_not_starts_with?: Maybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  answer_ends_with?: Maybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  answer_not_ends_with?: Maybe<Scalars['String']>;
 };
 
 /** References Faq record uniquely */
@@ -2207,371 +2230,6 @@ export type LocationInput = {
   longitude: Scalars['Float'];
 };
 
-
-export type Maincategory = Node & {
-  __typename?: 'Maincategory';
-  /** System stage field */
-  stage: Stage;
-  /** Get the document in other stages */
-  documentInStages: Array<Maincategory>;
-  /** The unique identifier */
-  id: Scalars['ID'];
-  /** The time the document was created */
-  createdAt: Scalars['DateTime'];
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime'];
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  name?: Maybe<Scalars['String']>;
-  shop?: Maybe<Shop>;
-  /** List of Maincategory versions */
-  history: Array<Version>;
-};
-
-
-export type MaincategoryDocumentInStagesArgs = {
-  stages?: Array<Stage>;
-  includeCurrent?: Scalars['Boolean'];
-  inheritLocale?: Scalars['Boolean'];
-};
-
-
-export type MaincategoryShopArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
-export type MaincategoryHistoryArgs = {
-  limit?: Scalars['Int'];
-  skip?: Scalars['Int'];
-  stageOverride?: Maybe<Stage>;
-};
-
-export type MaincategoryConnectInput = {
-  /** Document to connect */
-  where: MaincategoryWhereUniqueInput;
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: Maybe<ConnectPositionInput>;
-};
-
-/** A connection to a list of items. */
-export type MaincategoryConnection = {
-  __typename?: 'MaincategoryConnection';
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** A list of edges. */
-  edges: Array<MaincategoryEdge>;
-  aggregate: Aggregate;
-};
-
-export type MaincategoryCreateInput = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  name?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopCreateOneInlineInput>;
-};
-
-export type MaincategoryCreateManyInlineInput = {
-  /** Create and connect multiple existing Maincategory documents */
-  create?: Maybe<Array<MaincategoryCreateInput>>;
-  /** Connect multiple existing Maincategory documents */
-  connect?: Maybe<Array<MaincategoryWhereUniqueInput>>;
-};
-
-export type MaincategoryCreateOneInlineInput = {
-  /** Create and connect one Maincategory document */
-  create?: Maybe<MaincategoryCreateInput>;
-  /** Connect one existing Maincategory document */
-  connect?: Maybe<MaincategoryWhereUniqueInput>;
-};
-
-/** An edge in a connection. */
-export type MaincategoryEdge = {
-  __typename?: 'MaincategoryEdge';
-  /** The item at the end of the edge. */
-  node: Maincategory;
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
-};
-
-/** Identifies documents */
-export type MaincategoryManyWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>;
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<MaincategoryWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<MaincategoryWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<MaincategoryWhereInput>>;
-  id?: Maybe<Scalars['ID']>;
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  name?: Maybe<Scalars['String']>;
-  /** All values that are not equal to given value. */
-  name_not?: Maybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  name_in?: Maybe<Array<Scalars['String']>>;
-  /** All values that are not contained in given list. */
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  /** All values containing the given string. */
-  name_contains?: Maybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  name_not_contains?: Maybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  name_starts_with?: Maybe<Scalars['String']>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  name_ends_with?: Maybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  name_not_ends_with?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopWhereInput>;
-};
-
-export enum MaincategoryOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC'
-}
-
-export type MaincategoryUpdateInput = {
-  name?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopUpdateOneInlineInput>;
-};
-
-export type MaincategoryUpdateManyInlineInput = {
-  /** Create and connect multiple Maincategory documents */
-  create?: Maybe<Array<MaincategoryCreateInput>>;
-  /** Connect multiple existing Maincategory documents */
-  connect?: Maybe<Array<MaincategoryConnectInput>>;
-  /** Override currently-connected documents with multiple existing Maincategory documents */
-  set?: Maybe<Array<MaincategoryWhereUniqueInput>>;
-  /** Update multiple Maincategory documents */
-  update?: Maybe<Array<MaincategoryUpdateWithNestedWhereUniqueInput>>;
-  /** Upsert multiple Maincategory documents */
-  upsert?: Maybe<Array<MaincategoryUpsertWithNestedWhereUniqueInput>>;
-  /** Disconnect multiple Maincategory documents */
-  disconnect?: Maybe<Array<MaincategoryWhereUniqueInput>>;
-  /** Delete multiple Maincategory documents */
-  delete?: Maybe<Array<MaincategoryWhereUniqueInput>>;
-};
-
-export type MaincategoryUpdateManyInput = {
-  name?: Maybe<Scalars['String']>;
-};
-
-export type MaincategoryUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  where: MaincategoryWhereInput;
-  /** Update many input */
-  data: MaincategoryUpdateManyInput;
-};
-
-export type MaincategoryUpdateOneInlineInput = {
-  /** Create and connect one Maincategory document */
-  create?: Maybe<MaincategoryCreateInput>;
-  /** Update single Maincategory document */
-  update?: Maybe<MaincategoryUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Maincategory document */
-  upsert?: Maybe<MaincategoryUpsertWithNestedWhereUniqueInput>;
-  /** Connect existing Maincategory document */
-  connect?: Maybe<MaincategoryWhereUniqueInput>;
-  /** Disconnect currently connected Maincategory document */
-  disconnect?: Maybe<Scalars['Boolean']>;
-  /** Delete currently connected Maincategory document */
-  delete?: Maybe<Scalars['Boolean']>;
-};
-
-export type MaincategoryUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: MaincategoryWhereUniqueInput;
-  /** Document to update */
-  data: MaincategoryUpdateInput;
-};
-
-export type MaincategoryUpsertInput = {
-  /** Create document if it didn't exist */
-  create: MaincategoryCreateInput;
-  /** Update document if it exists */
-  update: MaincategoryUpdateInput;
-};
-
-export type MaincategoryUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: MaincategoryWhereUniqueInput;
-  /** Upsert data */
-  data: MaincategoryUpsertInput;
-};
-
-/** Identifies documents */
-export type MaincategoryWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>;
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<MaincategoryWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<MaincategoryWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<MaincategoryWhereInput>>;
-  id?: Maybe<Scalars['ID']>;
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  name?: Maybe<Scalars['String']>;
-  /** All values that are not equal to given value. */
-  name_not?: Maybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  name_in?: Maybe<Array<Scalars['String']>>;
-  /** All values that are not contained in given list. */
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  /** All values containing the given string. */
-  name_contains?: Maybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  name_not_contains?: Maybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  name_starts_with?: Maybe<Scalars['String']>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  name_ends_with?: Maybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  name_not_ends_with?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopWhereInput>;
-};
-
-/** References Maincategory record uniquely */
-export type MaincategoryWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>;
-};
 
 export type Member = Node & {
   __typename?: 'Member';
@@ -3266,46 +2924,6 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyFaqsConnection)
    */
   unpublishManyFaqs: BatchPayload;
-  /** Create one maincategory */
-  createMaincategory?: Maybe<Maincategory>;
-  /** Update one maincategory */
-  updateMaincategory?: Maybe<Maincategory>;
-  /** Delete one maincategory from _all_ existing stages. Returns deleted document. */
-  deleteMaincategory?: Maybe<Maincategory>;
-  /** Upsert one maincategory */
-  upsertMaincategory?: Maybe<Maincategory>;
-  /** Publish one maincategory */
-  publishMaincategory?: Maybe<Maincategory>;
-  /** Unpublish one maincategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishMaincategory?: Maybe<Maincategory>;
-  /** Update many Maincategory documents */
-  updateManyMaincategoriesConnection: MaincategoryConnection;
-  /** Delete many Maincategory documents, return deleted documents */
-  deleteManyMaincategoriesConnection: MaincategoryConnection;
-  /** Publish many Maincategory documents */
-  publishManyMaincategoriesConnection: MaincategoryConnection;
-  /** Find many Maincategory documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyMaincategoriesConnection: MaincategoryConnection;
-  /**
-   * Update many maincategories
-   * @deprecated Please use the new paginated many mutation (updateManyMaincategoriesConnection)
-   */
-  updateManyMaincategories: BatchPayload;
-  /**
-   * Delete many Maincategory documents
-   * @deprecated Please use the new paginated many mutation (deleteManyMaincategoriesConnection)
-   */
-  deleteManyMaincategories: BatchPayload;
-  /**
-   * Publish many Maincategory documents
-   * @deprecated Please use the new paginated many mutation (publishManyMaincategoriesConnection)
-   */
-  publishManyMaincategories: BatchPayload;
-  /**
-   * Unpublish many Maincategory documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyMaincategoriesConnection)
-   */
-  unpublishManyMaincategories: BatchPayload;
   /** Create one member */
   createMember?: Maybe<Member>;
   /** Update one member */
@@ -3466,6 +3084,46 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyShopsConnection)
    */
   unpublishManyShops: BatchPayload;
+  /** Create one shopCategory */
+  createShopCategory?: Maybe<ShopCategory>;
+  /** Update one shopCategory */
+  updateShopCategory?: Maybe<ShopCategory>;
+  /** Delete one shopCategory from _all_ existing stages. Returns deleted document. */
+  deleteShopCategory?: Maybe<ShopCategory>;
+  /** Upsert one shopCategory */
+  upsertShopCategory?: Maybe<ShopCategory>;
+  /** Publish one shopCategory */
+  publishShopCategory?: Maybe<ShopCategory>;
+  /** Unpublish one shopCategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishShopCategory?: Maybe<ShopCategory>;
+  /** Update many ShopCategory documents */
+  updateManyShopCategoriesConnection: ShopCategoryConnection;
+  /** Delete many ShopCategory documents, return deleted documents */
+  deleteManyShopCategoriesConnection: ShopCategoryConnection;
+  /** Publish many ShopCategory documents */
+  publishManyShopCategoriesConnection: ShopCategoryConnection;
+  /** Find many ShopCategory documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyShopCategoriesConnection: ShopCategoryConnection;
+  /**
+   * Update many shopCategories
+   * @deprecated Please use the new paginated many mutation (updateManyShopCategoriesConnection)
+   */
+  updateManyShopCategories: BatchPayload;
+  /**
+   * Delete many ShopCategory documents
+   * @deprecated Please use the new paginated many mutation (deleteManyShopCategoriesConnection)
+   */
+  deleteManyShopCategories: BatchPayload;
+  /**
+   * Publish many ShopCategory documents
+   * @deprecated Please use the new paginated many mutation (publishManyShopCategoriesConnection)
+   */
+  publishManyShopCategories: BatchPayload;
+  /**
+   * Unpublish many ShopCategory documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyShopCategoriesConnection)
+   */
+  unpublishManyShopCategories: BatchPayload;
   /** Create one shopetype */
   createShopetype?: Maybe<Shopetype>;
   /** Update one shopetype */
@@ -3506,46 +3164,6 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyShopetypesConnection)
    */
   unpublishManyShopetypes: BatchPayload;
-  /** Create one sidecategory */
-  createSidecategory?: Maybe<Sidecategory>;
-  /** Update one sidecategory */
-  updateSidecategory?: Maybe<Sidecategory>;
-  /** Delete one sidecategory from _all_ existing stages. Returns deleted document. */
-  deleteSidecategory?: Maybe<Sidecategory>;
-  /** Upsert one sidecategory */
-  upsertSidecategory?: Maybe<Sidecategory>;
-  /** Publish one sidecategory */
-  publishSidecategory?: Maybe<Sidecategory>;
-  /** Unpublish one sidecategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishSidecategory?: Maybe<Sidecategory>;
-  /** Update many Sidecategory documents */
-  updateManySidecategoriesConnection: SidecategoryConnection;
-  /** Delete many Sidecategory documents, return deleted documents */
-  deleteManySidecategoriesConnection: SidecategoryConnection;
-  /** Publish many Sidecategory documents */
-  publishManySidecategoriesConnection: SidecategoryConnection;
-  /** Find many Sidecategory documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManySidecategoriesConnection: SidecategoryConnection;
-  /**
-   * Update many sidecategories
-   * @deprecated Please use the new paginated many mutation (updateManySidecategoriesConnection)
-   */
-  updateManySidecategories: BatchPayload;
-  /**
-   * Delete many Sidecategory documents
-   * @deprecated Please use the new paginated many mutation (deleteManySidecategoriesConnection)
-   */
-  deleteManySidecategories: BatchPayload;
-  /**
-   * Publish many Sidecategory documents
-   * @deprecated Please use the new paginated many mutation (publishManySidecategoriesConnection)
-   */
-  publishManySidecategories: BatchPayload;
-  /**
-   * Unpublish many Sidecategory documents
-   * @deprecated Please use the new paginated many mutation (unpublishManySidecategoriesConnection)
-   */
-  unpublishManySidecategories: BatchPayload;
   /** Create one supporter */
   createSupporter?: Maybe<Supporter>;
   /** Update one supporter */
@@ -4097,108 +3715,6 @@ export type MutationUnpublishManyFaqsArgs = {
 };
 
 
-export type MutationCreateMaincategoryArgs = {
-  data: MaincategoryCreateInput;
-};
-
-
-export type MutationUpdateMaincategoryArgs = {
-  where: MaincategoryWhereUniqueInput;
-  data: MaincategoryUpdateInput;
-};
-
-
-export type MutationDeleteMaincategoryArgs = {
-  where: MaincategoryWhereUniqueInput;
-};
-
-
-export type MutationUpsertMaincategoryArgs = {
-  where: MaincategoryWhereUniqueInput;
-  upsert: MaincategoryUpsertInput;
-};
-
-
-export type MutationPublishMaincategoryArgs = {
-  where: MaincategoryWhereUniqueInput;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishMaincategoryArgs = {
-  where: MaincategoryWhereUniqueInput;
-  from?: Array<Stage>;
-};
-
-
-export type MutationUpdateManyMaincategoriesConnectionArgs = {
-  where?: Maybe<MaincategoryManyWhereInput>;
-  data: MaincategoryUpdateManyInput;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationDeleteManyMaincategoriesConnectionArgs = {
-  where?: Maybe<MaincategoryManyWhereInput>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationPublishManyMaincategoriesConnectionArgs = {
-  where?: Maybe<MaincategoryManyWhereInput>;
-  from?: Maybe<Stage>;
-  to?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUnpublishManyMaincategoriesConnectionArgs = {
-  where?: Maybe<MaincategoryManyWhereInput>;
-  stage?: Maybe<Stage>;
-  from?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUpdateManyMaincategoriesArgs = {
-  where?: Maybe<MaincategoryManyWhereInput>;
-  data: MaincategoryUpdateManyInput;
-};
-
-
-export type MutationDeleteManyMaincategoriesArgs = {
-  where?: Maybe<MaincategoryManyWhereInput>;
-};
-
-
-export type MutationPublishManyMaincategoriesArgs = {
-  where?: Maybe<MaincategoryManyWhereInput>;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishManyMaincategoriesArgs = {
-  where?: Maybe<MaincategoryManyWhereInput>;
-  from?: Array<Stage>;
-};
-
-
 export type MutationCreateMemberArgs = {
   data: MemberCreateInput;
 };
@@ -4652,6 +4168,108 @@ export type MutationUnpublishManyShopsArgs = {
 };
 
 
+export type MutationCreateShopCategoryArgs = {
+  data: ShopCategoryCreateInput;
+};
+
+
+export type MutationUpdateShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+  data: ShopCategoryUpdateInput;
+};
+
+
+export type MutationDeleteShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+};
+
+
+export type MutationUpsertShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+  upsert: ShopCategoryUpsertInput;
+};
+
+
+export type MutationPublishShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+  from?: Array<Stage>;
+};
+
+
+export type MutationUpdateManyShopCategoriesConnectionArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  data: ShopCategoryUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyShopCategoriesConnectionArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyShopCategoriesConnectionArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUnpublishManyShopCategoriesConnectionArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUpdateManyShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  data: ShopCategoryUpdateManyInput;
+};
+
+
+export type MutationDeleteManyShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+};
+
+
+export type MutationPublishManyShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishManyShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  from?: Array<Stage>;
+};
+
+
 export type MutationCreateShopetypeArgs = {
   data: ShopetypeCreateInput;
 };
@@ -4750,108 +4368,6 @@ export type MutationPublishManyShopetypesArgs = {
 
 export type MutationUnpublishManyShopetypesArgs = {
   where?: Maybe<ShopetypeManyWhereInput>;
-  from?: Array<Stage>;
-};
-
-
-export type MutationCreateSidecategoryArgs = {
-  data: SidecategoryCreateInput;
-};
-
-
-export type MutationUpdateSidecategoryArgs = {
-  where: SidecategoryWhereUniqueInput;
-  data: SidecategoryUpdateInput;
-};
-
-
-export type MutationDeleteSidecategoryArgs = {
-  where: SidecategoryWhereUniqueInput;
-};
-
-
-export type MutationUpsertSidecategoryArgs = {
-  where: SidecategoryWhereUniqueInput;
-  upsert: SidecategoryUpsertInput;
-};
-
-
-export type MutationPublishSidecategoryArgs = {
-  where: SidecategoryWhereUniqueInput;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishSidecategoryArgs = {
-  where: SidecategoryWhereUniqueInput;
-  from?: Array<Stage>;
-};
-
-
-export type MutationUpdateManySidecategoriesConnectionArgs = {
-  where?: Maybe<SidecategoryManyWhereInput>;
-  data: SidecategoryUpdateManyInput;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationDeleteManySidecategoriesConnectionArgs = {
-  where?: Maybe<SidecategoryManyWhereInput>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationPublishManySidecategoriesConnectionArgs = {
-  where?: Maybe<SidecategoryManyWhereInput>;
-  from?: Maybe<Stage>;
-  to?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUnpublishManySidecategoriesConnectionArgs = {
-  where?: Maybe<SidecategoryManyWhereInput>;
-  stage?: Maybe<Stage>;
-  from?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUpdateManySidecategoriesArgs = {
-  where?: Maybe<SidecategoryManyWhereInput>;
-  data: SidecategoryUpdateManyInput;
-};
-
-
-export type MutationDeleteManySidecategoriesArgs = {
-  where?: Maybe<SidecategoryManyWhereInput>;
-};
-
-
-export type MutationPublishManySidecategoriesArgs = {
-  where?: Maybe<SidecategoryManyWhereInput>;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishManySidecategoriesArgs = {
-  where?: Maybe<SidecategoryManyWhereInput>;
   from?: Array<Stage>;
 };
 
@@ -6227,14 +5743,6 @@ export type Query = {
   faqsConnection: FaqConnection;
   /** Retrieve document version */
   faqVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple maincategories */
-  maincategories: Array<Maincategory>;
-  /** Retrieve a single maincategory */
-  maincategory?: Maybe<Maincategory>;
-  /** Retrieve multiple maincategories using the Relay connection interface */
-  maincategoriesConnection: MaincategoryConnection;
-  /** Retrieve document version */
-  maincategoryVersion?: Maybe<DocumentVersion>;
   /** Retrieve multiple members */
   members: Array<Member>;
   /** Retrieve a single member */
@@ -6267,6 +5775,14 @@ export type Query = {
   shopsConnection: ShopConnection;
   /** Retrieve document version */
   shopVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple shopCategories */
+  shopCategories: Array<ShopCategory>;
+  /** Retrieve a single shopCategory */
+  shopCategory?: Maybe<ShopCategory>;
+  /** Retrieve multiple shopCategories using the Relay connection interface */
+  shopCategoriesConnection: ShopCategoryConnection;
+  /** Retrieve document version */
+  shopCategoryVersion?: Maybe<DocumentVersion>;
   /** Retrieve multiple shopetypes */
   shopetypes: Array<Shopetype>;
   /** Retrieve a single shopetype */
@@ -6275,14 +5791,6 @@ export type Query = {
   shopetypesConnection: ShopetypeConnection;
   /** Retrieve document version */
   shopetypeVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple sidecategories */
-  sidecategories: Array<Sidecategory>;
-  /** Retrieve a single sidecategory */
-  sidecategory?: Maybe<Sidecategory>;
-  /** Retrieve multiple sidecategories using the Relay connection interface */
-  sidecategoriesConnection: SidecategoryConnection;
-  /** Retrieve document version */
-  sidecategoryVersion?: Maybe<DocumentVersion>;
   /** Retrieve multiple supporters */
   supporters: Array<Supporter>;
   /** Retrieve a single supporter */
@@ -6461,44 +5969,6 @@ export type QueryFaqVersionArgs = {
 };
 
 
-export type QueryMaincategoriesArgs = {
-  where?: Maybe<MaincategoryWhereInput>;
-  orderBy?: Maybe<MaincategoryOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryMaincategoryArgs = {
-  where: MaincategoryWhereUniqueInput;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryMaincategoriesConnectionArgs = {
-  where?: Maybe<MaincategoryWhereInput>;
-  orderBy?: Maybe<MaincategoryOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryMaincategoryVersionArgs = {
-  where: VersionWhereInput;
-};
-
-
 export type QueryMembersArgs = {
   where?: Maybe<MemberWhereInput>;
   orderBy?: Maybe<MemberOrderByInput>;
@@ -6651,6 +6121,44 @@ export type QueryShopVersionArgs = {
 };
 
 
+export type QueryShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryWhereInput>;
+  orderBy?: Maybe<ShopCategoryOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopCategoriesConnectionArgs = {
+  where?: Maybe<ShopCategoryWhereInput>;
+  orderBy?: Maybe<ShopCategoryOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopCategoryVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
 export type QueryShopetypesArgs = {
   where?: Maybe<ShopetypeWhereInput>;
   orderBy?: Maybe<ShopetypeOrderByInput>;
@@ -6685,44 +6193,6 @@ export type QueryShopetypesConnectionArgs = {
 
 
 export type QueryShopetypeVersionArgs = {
-  where: VersionWhereInput;
-};
-
-
-export type QuerySidecategoriesArgs = {
-  where?: Maybe<SidecategoryWhereInput>;
-  orderBy?: Maybe<SidecategoryOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QuerySidecategoryArgs = {
-  where: SidecategoryWhereUniqueInput;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QuerySidecategoriesConnectionArgs = {
-  where?: Maybe<SidecategoryWhereInput>;
-  orderBy?: Maybe<SidecategoryOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QuerySidecategoryVersionArgs = {
   where: VersionWhereInput;
 };
 
@@ -6852,9 +6322,18 @@ export type Shop = Node & {
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
   location?: Maybe<Location>;
-  maincategories: Array<Maincategory>;
-  sidecategories: Array<Sidecategory>;
+  categories: Array<ShopCategory>;
   dataProtectionForm?: Maybe<Asset>;
+  email?: Maybe<Scalars['String']>;
+  stickerFront?: Maybe<Scalars['Int']>;
+  stickerBack?: Maybe<Scalars['Int']>;
+  stickerDelivery?: Maybe<Scalars['Boolean']>;
+  newsletter?: Maybe<Scalars['Boolean']>;
+  furtherInformation?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  trayinformation?: Maybe<Scalars['Int']>;
+  infoflyer?: Maybe<Scalars['Int']>;
+  shopStatus?: Maybe<ShopStatus>;
   /** List of Shop versions */
   history: Array<Version>;
 };
@@ -6867,21 +6346,9 @@ export type ShopDocumentInStagesArgs = {
 };
 
 
-export type ShopMaincategoriesArgs = {
-  where?: Maybe<MaincategoryWhereInput>;
-  orderBy?: Maybe<MaincategoryOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  locales?: Maybe<Array<Locale>>;
-};
-
-
-export type ShopSidecategoriesArgs = {
-  where?: Maybe<SidecategoryWhereInput>;
-  orderBy?: Maybe<SidecategoryOrderByInput>;
+export type ShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryWhereInput>;
+  orderBy?: Maybe<ShopCategoryOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -6900,6 +6367,383 @@ export type ShopHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: Maybe<Stage>;
+};
+
+export type ShopCategory = Node & {
+  __typename?: 'ShopCategory';
+  /** System stage field */
+  stage: Stage;
+  /** Get the document in other stages */
+  documentInStages: Array<ShopCategory>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  shop?: Maybe<Shop>;
+  isMain?: Maybe<Scalars['Boolean']>;
+  /** List of ShopCategory versions */
+  history: Array<Version>;
+};
+
+
+export type ShopCategoryDocumentInStagesArgs = {
+  stages?: Array<Stage>;
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+};
+
+
+export type ShopCategoryShopArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type ShopCategoryHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+export type ShopCategoryConnectInput = {
+  /** Document to connect */
+  where: ShopCategoryWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+};
+
+/** A connection to a list of items. */
+export type ShopCategoryConnection = {
+  __typename?: 'ShopCategoryConnection';
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** A list of edges. */
+  edges: Array<ShopCategoryEdge>;
+  aggregate: Aggregate;
+};
+
+export type ShopCategoryCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  shop?: Maybe<ShopCreateOneInlineInput>;
+  isMain?: Maybe<Scalars['Boolean']>;
+};
+
+export type ShopCategoryCreateManyInlineInput = {
+  /** Create and connect multiple existing ShopCategory documents */
+  create?: Maybe<Array<ShopCategoryCreateInput>>;
+  /** Connect multiple existing ShopCategory documents */
+  connect?: Maybe<Array<ShopCategoryWhereUniqueInput>>;
+};
+
+export type ShopCategoryCreateOneInlineInput = {
+  /** Create and connect one ShopCategory document */
+  create?: Maybe<ShopCategoryCreateInput>;
+  /** Connect one existing ShopCategory document */
+  connect?: Maybe<ShopCategoryWhereUniqueInput>;
+};
+
+/** An edge in a connection. */
+export type ShopCategoryEdge = {
+  __typename?: 'ShopCategoryEdge';
+  /** The item at the end of the edge. */
+  node: ShopCategory;
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+};
+
+/** Identifies documents */
+export type ShopCategoryManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<ShopCategoryWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<ShopCategoryWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<ShopCategoryWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  shop?: Maybe<ShopWhereInput>;
+  isMain?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  isMain_not?: Maybe<Scalars['Boolean']>;
+};
+
+export enum ShopCategoryOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  IsMainAsc = 'isMain_ASC',
+  IsMainDesc = 'isMain_DESC'
+}
+
+export type ShopCategoryUpdateInput = {
+  name?: Maybe<Scalars['String']>;
+  shop?: Maybe<ShopUpdateOneInlineInput>;
+  isMain?: Maybe<Scalars['Boolean']>;
+};
+
+export type ShopCategoryUpdateManyInlineInput = {
+  /** Create and connect multiple ShopCategory documents */
+  create?: Maybe<Array<ShopCategoryCreateInput>>;
+  /** Connect multiple existing ShopCategory documents */
+  connect?: Maybe<Array<ShopCategoryConnectInput>>;
+  /** Override currently-connected documents with multiple existing ShopCategory documents */
+  set?: Maybe<Array<ShopCategoryWhereUniqueInput>>;
+  /** Update multiple ShopCategory documents */
+  update?: Maybe<Array<ShopCategoryUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple ShopCategory documents */
+  upsert?: Maybe<Array<ShopCategoryUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple ShopCategory documents */
+  disconnect?: Maybe<Array<ShopCategoryWhereUniqueInput>>;
+  /** Delete multiple ShopCategory documents */
+  delete?: Maybe<Array<ShopCategoryWhereUniqueInput>>;
+};
+
+export type ShopCategoryUpdateManyInput = {
+  name?: Maybe<Scalars['String']>;
+  isMain?: Maybe<Scalars['Boolean']>;
+};
+
+export type ShopCategoryUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: ShopCategoryWhereInput;
+  /** Update many input */
+  data: ShopCategoryUpdateManyInput;
+};
+
+export type ShopCategoryUpdateOneInlineInput = {
+  /** Create and connect one ShopCategory document */
+  create?: Maybe<ShopCategoryCreateInput>;
+  /** Update single ShopCategory document */
+  update?: Maybe<ShopCategoryUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ShopCategory document */
+  upsert?: Maybe<ShopCategoryUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing ShopCategory document */
+  connect?: Maybe<ShopCategoryWhereUniqueInput>;
+  /** Disconnect currently connected ShopCategory document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected ShopCategory document */
+  delete?: Maybe<Scalars['Boolean']>;
+};
+
+export type ShopCategoryUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: ShopCategoryWhereUniqueInput;
+  /** Document to update */
+  data: ShopCategoryUpdateInput;
+};
+
+export type ShopCategoryUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ShopCategoryCreateInput;
+  /** Update document if it exists */
+  update: ShopCategoryUpdateInput;
+};
+
+export type ShopCategoryUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: ShopCategoryWhereUniqueInput;
+  /** Upsert data */
+  data: ShopCategoryUpsertInput;
+};
+
+/** Identifies documents */
+export type ShopCategoryWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<ShopCategoryWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<ShopCategoryWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<ShopCategoryWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  shop?: Maybe<ShopWhereInput>;
+  isMain?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  isMain_not?: Maybe<Scalars['Boolean']>;
+};
+
+/** References ShopCategory record uniquely */
+export type ShopCategoryWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
 };
 
 export type ShopConnectInput = {
@@ -6925,9 +6769,18 @@ export type ShopCreateInput = {
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
-  maincategories?: Maybe<MaincategoryCreateManyInlineInput>;
-  sidecategories?: Maybe<SidecategoryCreateManyInlineInput>;
+  categories?: Maybe<ShopCategoryCreateManyInlineInput>;
   dataProtectionForm?: Maybe<AssetCreateOneInlineInput>;
+  email?: Maybe<Scalars['String']>;
+  stickerFront?: Maybe<Scalars['Int']>;
+  stickerBack?: Maybe<Scalars['Int']>;
+  stickerDelivery?: Maybe<Scalars['Boolean']>;
+  newsletter?: Maybe<Scalars['Boolean']>;
+  furtherInformation?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  trayinformation?: Maybe<Scalars['Int']>;
+  infoflyer?: Maybe<Scalars['Int']>;
+  shopStatus?: Maybe<ShopStatus>;
 };
 
 export type ShopCreateManyInlineInput = {
@@ -7065,13 +6918,140 @@ export type ShopManyWhereInput = {
   openinghours_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   openinghours_not_ends_with?: Maybe<Scalars['String']>;
-  maincategories_every?: Maybe<MaincategoryWhereInput>;
-  maincategories_some?: Maybe<MaincategoryWhereInput>;
-  maincategories_none?: Maybe<MaincategoryWhereInput>;
-  sidecategories_every?: Maybe<SidecategoryWhereInput>;
-  sidecategories_some?: Maybe<SidecategoryWhereInput>;
-  sidecategories_none?: Maybe<SidecategoryWhereInput>;
+  categories_every?: Maybe<ShopCategoryWhereInput>;
+  categories_some?: Maybe<ShopCategoryWhereInput>;
+  categories_none?: Maybe<ShopCategoryWhereInput>;
   dataProtectionForm?: Maybe<AssetWhereInput>;
+  email?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  email_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  email_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  email_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  email_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  email_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  email_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  email_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  email_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  email_not_ends_with?: Maybe<Scalars['String']>;
+  stickerFront?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  stickerFront_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  stickerFront_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  stickerFront_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  stickerFront_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  stickerFront_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  stickerFront_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  stickerFront_gte?: Maybe<Scalars['Int']>;
+  stickerBack?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  stickerBack_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  stickerBack_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  stickerBack_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  stickerBack_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  stickerBack_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  stickerBack_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  stickerBack_gte?: Maybe<Scalars['Int']>;
+  stickerDelivery?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  stickerDelivery_not?: Maybe<Scalars['Boolean']>;
+  newsletter?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  newsletter_not?: Maybe<Scalars['Boolean']>;
+  furtherInformation?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  furtherInformation_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  furtherInformation_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  furtherInformation_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  furtherInformation_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  furtherInformation_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  furtherInformation_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  furtherInformation_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  furtherInformation_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  furtherInformation_not_ends_with?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  website_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  website_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  website_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  website_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  website_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  website_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  website_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  website_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  website_not_ends_with?: Maybe<Scalars['String']>;
+  trayinformation?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  trayinformation_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  trayinformation_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  trayinformation_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  trayinformation_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  trayinformation_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  trayinformation_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  trayinformation_gte?: Maybe<Scalars['Int']>;
+  infoflyer?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  infoflyer_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  infoflyer_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  infoflyer_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  infoflyer_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  infoflyer_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  infoflyer_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  infoflyer_gte?: Maybe<Scalars['Int']>;
+  shopStatus?: Maybe<ShopStatus>;
+  /** All values that are not equal to given value. */
+  shopStatus_not?: Maybe<ShopStatus>;
+  /** All values that are contained in given list. */
+  shopStatus_in?: Maybe<Array<ShopStatus>>;
+  /** All values that are not contained in given list. */
+  shopStatus_not_in?: Maybe<Array<ShopStatus>>;
 };
 
 export enum ShopOrderByInput {
@@ -7086,16 +7066,50 @@ export enum ShopOrderByInput {
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   OpeninghoursAsc = 'openinghours_ASC',
-  OpeninghoursDesc = 'openinghours_DESC'
+  OpeninghoursDesc = 'openinghours_DESC',
+  EmailAsc = 'email_ASC',
+  EmailDesc = 'email_DESC',
+  StickerFrontAsc = 'stickerFront_ASC',
+  StickerFrontDesc = 'stickerFront_DESC',
+  StickerBackAsc = 'stickerBack_ASC',
+  StickerBackDesc = 'stickerBack_DESC',
+  StickerDeliveryAsc = 'stickerDelivery_ASC',
+  StickerDeliveryDesc = 'stickerDelivery_DESC',
+  NewsletterAsc = 'newsletter_ASC',
+  NewsletterDesc = 'newsletter_DESC',
+  FurtherInformationAsc = 'furtherInformation_ASC',
+  FurtherInformationDesc = 'furtherInformation_DESC',
+  WebsiteAsc = 'website_ASC',
+  WebsiteDesc = 'website_DESC',
+  TrayinformationAsc = 'trayinformation_ASC',
+  TrayinformationDesc = 'trayinformation_DESC',
+  InfoflyerAsc = 'infoflyer_ASC',
+  InfoflyerDesc = 'infoflyer_DESC',
+  ShopStatusAsc = 'shopStatus_ASC',
+  ShopStatusDesc = 'shopStatus_DESC'
+}
+
+export enum ShopStatus {
+  NichtVollstaending = 'NichtVollstaending',
+  Vollstaending = 'Vollstaending'
 }
 
 export type ShopUpdateInput = {
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
-  maincategories?: Maybe<MaincategoryUpdateManyInlineInput>;
-  sidecategories?: Maybe<SidecategoryUpdateManyInlineInput>;
+  categories?: Maybe<ShopCategoryUpdateManyInlineInput>;
   dataProtectionForm?: Maybe<AssetUpdateOneInlineInput>;
+  email?: Maybe<Scalars['String']>;
+  stickerFront?: Maybe<Scalars['Int']>;
+  stickerBack?: Maybe<Scalars['Int']>;
+  stickerDelivery?: Maybe<Scalars['Boolean']>;
+  newsletter?: Maybe<Scalars['Boolean']>;
+  furtherInformation?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  trayinformation?: Maybe<Scalars['Int']>;
+  infoflyer?: Maybe<Scalars['Int']>;
+  shopStatus?: Maybe<ShopStatus>;
 };
 
 export type ShopUpdateManyInlineInput = {
@@ -7119,6 +7133,16 @@ export type ShopUpdateManyInput = {
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
+  email?: Maybe<Scalars['String']>;
+  stickerFront?: Maybe<Scalars['Int']>;
+  stickerBack?: Maybe<Scalars['Int']>;
+  stickerDelivery?: Maybe<Scalars['Boolean']>;
+  newsletter?: Maybe<Scalars['Boolean']>;
+  furtherInformation?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  trayinformation?: Maybe<Scalars['Int']>;
+  infoflyer?: Maybe<Scalars['Int']>;
+  shopStatus?: Maybe<ShopStatus>;
 };
 
 export type ShopUpdateManyWithNestedWhereInput = {
@@ -7276,13 +7300,140 @@ export type ShopWhereInput = {
   openinghours_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   openinghours_not_ends_with?: Maybe<Scalars['String']>;
-  maincategories_every?: Maybe<MaincategoryWhereInput>;
-  maincategories_some?: Maybe<MaincategoryWhereInput>;
-  maincategories_none?: Maybe<MaincategoryWhereInput>;
-  sidecategories_every?: Maybe<SidecategoryWhereInput>;
-  sidecategories_some?: Maybe<SidecategoryWhereInput>;
-  sidecategories_none?: Maybe<SidecategoryWhereInput>;
+  categories_every?: Maybe<ShopCategoryWhereInput>;
+  categories_some?: Maybe<ShopCategoryWhereInput>;
+  categories_none?: Maybe<ShopCategoryWhereInput>;
   dataProtectionForm?: Maybe<AssetWhereInput>;
+  email?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  email_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  email_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  email_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  email_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  email_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  email_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  email_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  email_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  email_not_ends_with?: Maybe<Scalars['String']>;
+  stickerFront?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  stickerFront_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  stickerFront_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  stickerFront_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  stickerFront_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  stickerFront_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  stickerFront_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  stickerFront_gte?: Maybe<Scalars['Int']>;
+  stickerBack?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  stickerBack_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  stickerBack_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  stickerBack_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  stickerBack_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  stickerBack_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  stickerBack_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  stickerBack_gte?: Maybe<Scalars['Int']>;
+  stickerDelivery?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  stickerDelivery_not?: Maybe<Scalars['Boolean']>;
+  newsletter?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  newsletter_not?: Maybe<Scalars['Boolean']>;
+  furtherInformation?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  furtherInformation_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  furtherInformation_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  furtherInformation_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  furtherInformation_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  furtherInformation_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  furtherInformation_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  furtherInformation_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  furtherInformation_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  furtherInformation_not_ends_with?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  website_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  website_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  website_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  website_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  website_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  website_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  website_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  website_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  website_not_ends_with?: Maybe<Scalars['String']>;
+  trayinformation?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  trayinformation_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  trayinformation_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  trayinformation_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  trayinformation_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  trayinformation_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  trayinformation_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  trayinformation_gte?: Maybe<Scalars['Int']>;
+  infoflyer?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  infoflyer_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  infoflyer_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  infoflyer_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  infoflyer_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  infoflyer_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  infoflyer_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  infoflyer_gte?: Maybe<Scalars['Int']>;
+  shopStatus?: Maybe<ShopStatus>;
+  /** All values that are not equal to given value. */
+  shopStatus_not?: Maybe<ShopStatus>;
+  /** All values that are contained in given list. */
+  shopStatus_in?: Maybe<Array<ShopStatus>>;
+  /** All values that are not contained in given list. */
+  shopStatus_not_in?: Maybe<Array<ShopStatus>>;
 };
 
 /** References Shop record uniquely */
@@ -7589,371 +7740,6 @@ export type ShopetypeWhereInput = {
 
 /** References Shopetype record uniquely */
 export type ShopetypeWhereUniqueInput = {
-  id?: Maybe<Scalars['ID']>;
-};
-
-export type Sidecategory = Node & {
-  __typename?: 'Sidecategory';
-  /** System stage field */
-  stage: Stage;
-  /** Get the document in other stages */
-  documentInStages: Array<Sidecategory>;
-  /** The unique identifier */
-  id: Scalars['ID'];
-  /** The time the document was created */
-  createdAt: Scalars['DateTime'];
-  /** The time the document was updated */
-  updatedAt: Scalars['DateTime'];
-  /** The time the document was published. Null on documents in draft stage. */
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  name?: Maybe<Scalars['String']>;
-  shop?: Maybe<Shop>;
-  /** List of Sidecategory versions */
-  history: Array<Version>;
-};
-
-
-export type SidecategoryDocumentInStagesArgs = {
-  stages?: Array<Stage>;
-  includeCurrent?: Scalars['Boolean'];
-  inheritLocale?: Scalars['Boolean'];
-};
-
-
-export type SidecategoryShopArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
-export type SidecategoryHistoryArgs = {
-  limit?: Scalars['Int'];
-  skip?: Scalars['Int'];
-  stageOverride?: Maybe<Stage>;
-};
-
-export type SidecategoryConnectInput = {
-  /** Document to connect */
-  where: SidecategoryWhereUniqueInput;
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: Maybe<ConnectPositionInput>;
-};
-
-/** A connection to a list of items. */
-export type SidecategoryConnection = {
-  __typename?: 'SidecategoryConnection';
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-  /** A list of edges. */
-  edges: Array<SidecategoryEdge>;
-  aggregate: Aggregate;
-};
-
-export type SidecategoryCreateInput = {
-  createdAt?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  name?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopCreateOneInlineInput>;
-};
-
-export type SidecategoryCreateManyInlineInput = {
-  /** Create and connect multiple existing Sidecategory documents */
-  create?: Maybe<Array<SidecategoryCreateInput>>;
-  /** Connect multiple existing Sidecategory documents */
-  connect?: Maybe<Array<SidecategoryWhereUniqueInput>>;
-};
-
-export type SidecategoryCreateOneInlineInput = {
-  /** Create and connect one Sidecategory document */
-  create?: Maybe<SidecategoryCreateInput>;
-  /** Connect one existing Sidecategory document */
-  connect?: Maybe<SidecategoryWhereUniqueInput>;
-};
-
-/** An edge in a connection. */
-export type SidecategoryEdge = {
-  __typename?: 'SidecategoryEdge';
-  /** The item at the end of the edge. */
-  node: Sidecategory;
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
-};
-
-/** Identifies documents */
-export type SidecategoryManyWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>;
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<SidecategoryWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<SidecategoryWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<SidecategoryWhereInput>>;
-  id?: Maybe<Scalars['ID']>;
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  name?: Maybe<Scalars['String']>;
-  /** All values that are not equal to given value. */
-  name_not?: Maybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  name_in?: Maybe<Array<Scalars['String']>>;
-  /** All values that are not contained in given list. */
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  /** All values containing the given string. */
-  name_contains?: Maybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  name_not_contains?: Maybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  name_starts_with?: Maybe<Scalars['String']>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  name_ends_with?: Maybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  name_not_ends_with?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopWhereInput>;
-};
-
-export enum SidecategoryOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  CreatedAtAsc = 'createdAt_ASC',
-  CreatedAtDesc = 'createdAt_DESC',
-  UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  PublishedAtAsc = 'publishedAt_ASC',
-  PublishedAtDesc = 'publishedAt_DESC',
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC'
-}
-
-export type SidecategoryUpdateInput = {
-  name?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopUpdateOneInlineInput>;
-};
-
-export type SidecategoryUpdateManyInlineInput = {
-  /** Create and connect multiple Sidecategory documents */
-  create?: Maybe<Array<SidecategoryCreateInput>>;
-  /** Connect multiple existing Sidecategory documents */
-  connect?: Maybe<Array<SidecategoryConnectInput>>;
-  /** Override currently-connected documents with multiple existing Sidecategory documents */
-  set?: Maybe<Array<SidecategoryWhereUniqueInput>>;
-  /** Update multiple Sidecategory documents */
-  update?: Maybe<Array<SidecategoryUpdateWithNestedWhereUniqueInput>>;
-  /** Upsert multiple Sidecategory documents */
-  upsert?: Maybe<Array<SidecategoryUpsertWithNestedWhereUniqueInput>>;
-  /** Disconnect multiple Sidecategory documents */
-  disconnect?: Maybe<Array<SidecategoryWhereUniqueInput>>;
-  /** Delete multiple Sidecategory documents */
-  delete?: Maybe<Array<SidecategoryWhereUniqueInput>>;
-};
-
-export type SidecategoryUpdateManyInput = {
-  name?: Maybe<Scalars['String']>;
-};
-
-export type SidecategoryUpdateManyWithNestedWhereInput = {
-  /** Document search */
-  where: SidecategoryWhereInput;
-  /** Update many input */
-  data: SidecategoryUpdateManyInput;
-};
-
-export type SidecategoryUpdateOneInlineInput = {
-  /** Create and connect one Sidecategory document */
-  create?: Maybe<SidecategoryCreateInput>;
-  /** Update single Sidecategory document */
-  update?: Maybe<SidecategoryUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Sidecategory document */
-  upsert?: Maybe<SidecategoryUpsertWithNestedWhereUniqueInput>;
-  /** Connect existing Sidecategory document */
-  connect?: Maybe<SidecategoryWhereUniqueInput>;
-  /** Disconnect currently connected Sidecategory document */
-  disconnect?: Maybe<Scalars['Boolean']>;
-  /** Delete currently connected Sidecategory document */
-  delete?: Maybe<Scalars['Boolean']>;
-};
-
-export type SidecategoryUpdateWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: SidecategoryWhereUniqueInput;
-  /** Document to update */
-  data: SidecategoryUpdateInput;
-};
-
-export type SidecategoryUpsertInput = {
-  /** Create document if it didn't exist */
-  create: SidecategoryCreateInput;
-  /** Update document if it exists */
-  update: SidecategoryUpdateInput;
-};
-
-export type SidecategoryUpsertWithNestedWhereUniqueInput = {
-  /** Unique document search */
-  where: SidecategoryWhereUniqueInput;
-  /** Upsert data */
-  data: SidecategoryUpsertInput;
-};
-
-/** Identifies documents */
-export type SidecategoryWhereInput = {
-  /** Contains search across all appropriate fields. */
-  _search?: Maybe<Scalars['String']>;
-  /** Logical AND on all given filters. */
-  AND?: Maybe<Array<SidecategoryWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: Maybe<Array<SidecategoryWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: Maybe<Array<SidecategoryWhereInput>>;
-  id?: Maybe<Scalars['ID']>;
-  /** All values that are not equal to given value. */
-  id_not?: Maybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values that are not contained in given list. */
-  id_not_in?: Maybe<Array<Scalars['ID']>>;
-  /** All values containing the given string. */
-  id_contains?: Maybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: Maybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: Maybe<Scalars['ID']>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: Maybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: Maybe<Scalars['ID']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: Maybe<Scalars['ID']>;
-  createdAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  createdAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  createdAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  createdAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  updatedAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  /** All values that are not equal to given value. */
-  publishedAt_not?: Maybe<Scalars['DateTime']>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: Maybe<Scalars['DateTime']>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: Maybe<Scalars['DateTime']>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: Maybe<Scalars['DateTime']>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  name?: Maybe<Scalars['String']>;
-  /** All values that are not equal to given value. */
-  name_not?: Maybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  name_in?: Maybe<Array<Scalars['String']>>;
-  /** All values that are not contained in given list. */
-  name_not_in?: Maybe<Array<Scalars['String']>>;
-  /** All values containing the given string. */
-  name_contains?: Maybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  name_not_contains?: Maybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  name_starts_with?: Maybe<Scalars['String']>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: Maybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  name_ends_with?: Maybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  name_not_ends_with?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopWhereInput>;
-};
-
-/** References Sidecategory record uniquely */
-export type SidecategoryWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>;
 };
 
