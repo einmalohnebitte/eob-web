@@ -3,6 +3,7 @@ import { Section, SplitSection } from "@/components/@UI/Section";
 import { H1 } from "@/components/@UI/Texts";
 import { VerkaufenForm } from "@/components/Forms/VerkaufenForm";
 import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
   PageSectionsDocument,
   PageSectionsQuery,
@@ -10,6 +11,7 @@ import {
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
+import Image from "next/image";
 import React from "react";
 import tw from "twin.macro";
 
@@ -23,14 +25,21 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   };
 };
 
-const Home: React.FC<PageSectionsQuery> = ({ pageSections }) => {
+const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
   return (
     <>
+      <HeadMeta
+        metaDescription={pages[0]?.metaDescription}
+        metaKeywords={pages[0]?.metaKeywords}
+      />
       <SplitSection.Section>
         <SplitSection.Side>
-          <picture>
-            <img src="/images/Verkaufen_Small.svg" alt="side" />
-          </picture>
+          <Image
+            src={pageSections[0].picture[0].url}
+            alt="side"
+            width={350}
+            height={250}
+          />
         </SplitSection.Side>
         <SplitSection.Main>
           <H1>{pageSections[0].title}</H1>

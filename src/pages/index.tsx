@@ -4,6 +4,7 @@ import { Social } from "@/components/Home/4Social";
 import { Sponsors } from "@/components/Home/5Sponsors";
 import { HomeSections } from "@/components/Home/HomeSections";
 import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
   PageSectionsDocument,
   PageSectionsQuery,
@@ -26,6 +27,10 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 const Home: React.FC<PageSectionsQuery> = (props) => {
   return (
     <>
+      <HeadMeta
+        metaDescription={props.pages[0]?.metaDescription}
+        metaKeywords={props.pages[0]?.metaKeywords}
+      />
       {props.pageSections.map((section, k) => (
         <HomeSections {...section} key={k} />
       ))}

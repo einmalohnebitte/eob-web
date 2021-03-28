@@ -1,9 +1,11 @@
 query PageContent($page: String! = "Home", $locale: [Locale!]!) {
-  pages(where: { slug: $page } ){
+  pages(where: { slug: $page }) {
     title
     content {
       html
     }
+    metaDescription
+    metaKeywords
   }
   translations(locales: $locale) {
     ...Translations

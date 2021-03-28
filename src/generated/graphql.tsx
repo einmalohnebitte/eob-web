@@ -4713,9 +4713,7 @@ export type PageCreateInput = {
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   vibrantColor?: Maybe<ColorInput>;
-  /** metaDescription input for default locale (de) */
   metaDescription?: Maybe<Scalars['String']>;
-  /** metaKeywords input for default locale (de) */
   metaKeywords?: Maybe<Scalars['String']>;
   pageSections?: Maybe<PageSectionCreateManyInlineInput>;
   content?: Maybe<Scalars['RichTextAST']>;
@@ -4727,8 +4725,6 @@ export type PageCreateLocalizationDataInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   title?: Maybe<Scalars['String']>;
-  metaDescription?: Maybe<Scalars['String']>;
-  metaKeywords?: Maybe<Scalars['String']>;
 };
 
 export type PageCreateLocalizationInput = {
@@ -4873,6 +4869,44 @@ export type PageManyWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
+  metaDescription?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  metaDescription_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  metaDescription_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  metaDescription_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  metaDescription_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  metaDescription_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  metaDescription_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  metaDescription_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  metaDescription_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  metaDescription_not_ends_with?: Maybe<Scalars['String']>;
+  metaKeywords?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  metaKeywords_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  metaKeywords_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  metaKeywords_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  metaKeywords_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  metaKeywords_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  metaKeywords_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  metaKeywords_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  metaKeywords_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  metaKeywords_not_ends_with?: Maybe<Scalars['String']>;
   pageSections_every?: Maybe<PageSectionWhereInput>;
   pageSections_some?: Maybe<PageSectionWhereInput>;
   pageSections_none?: Maybe<PageSectionWhereInput>;
@@ -5413,9 +5447,7 @@ export type PageUpdateInput = {
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   vibrantColor?: Maybe<ColorInput>;
-  /** metaDescription input for default locale (de) */
   metaDescription?: Maybe<Scalars['String']>;
-  /** metaKeywords input for default locale (de) */
   metaKeywords?: Maybe<Scalars['String']>;
   pageSections?: Maybe<PageSectionUpdateManyInlineInput>;
   content?: Maybe<Scalars['RichTextAST']>;
@@ -5425,8 +5457,6 @@ export type PageUpdateInput = {
 
 export type PageUpdateLocalizationDataInput = {
   title?: Maybe<Scalars['String']>;
-  metaDescription?: Maybe<Scalars['String']>;
-  metaKeywords?: Maybe<Scalars['String']>;
 };
 
 export type PageUpdateLocalizationInput = {
@@ -5465,9 +5495,7 @@ export type PageUpdateManyInput = {
   /** title input for default locale (de) */
   title?: Maybe<Scalars['String']>;
   vibrantColor?: Maybe<ColorInput>;
-  /** metaDescription input for default locale (de) */
   metaDescription?: Maybe<Scalars['String']>;
-  /** metaKeywords input for default locale (de) */
   metaKeywords?: Maybe<Scalars['String']>;
   content?: Maybe<Scalars['RichTextAST']>;
   /** Optional updates to localizations */
@@ -5476,8 +5504,6 @@ export type PageUpdateManyInput = {
 
 export type PageUpdateManyLocalizationDataInput = {
   title?: Maybe<Scalars['String']>;
-  metaDescription?: Maybe<Scalars['String']>;
-  metaKeywords?: Maybe<Scalars['String']>;
 };
 
 export type PageUpdateManyLocalizationInput = {
