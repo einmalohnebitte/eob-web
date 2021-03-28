@@ -1,1 +1,5 @@
-export { useReactQuery, useReactMutation } from "./useReactQuery";
+export {
+  useReactQuery,
+  useReactMutation,
+  useReactQueryCms,
+} from "./useReactQuery";

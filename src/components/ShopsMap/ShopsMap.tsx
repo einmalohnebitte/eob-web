@@ -1,6 +1,6 @@
 import "leaflet/dist/leaflet.css";
 
-import { Shop } from "@/components/ShopsMap/useShops";
+import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
 import L from "leaflet";
 import React from "react";
 import { GeoJSON, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
@@ -35,7 +35,7 @@ const StyledMap = styled.div`
 const CENTER: [number, number] = [48.13743, 11.57549];
 export const ShopsMap: React.FC<{
   center?: [number, number] | null;
-  shops: Shop[];
+  shops: ShopsQuery["shops"];
   width?: string;
   height?: string;
 }> = ({ center, shops = null, width = "100%", height = "100%" }) => (
@@ -58,15 +58,19 @@ export const ShopsMap: React.FC<{
       <MarkerClusterGroup>
         {(shops ?? []).map((item, k) => {
           return (
-            item.geom?.coordinates && (
-              <Marker key={k} position={item.geom?.coordinates}>
+            item.location && (
+              <Marker
+                key={k}
+                position={{
+                  lat: item.location.latitude,
+                  lng: item.location.longitude,
+                }}
+              >
                 <Popup>
                   <b>{item.name}</b>
-                  <p>{item.oeffnungszeiten}</p>
-                  <p>
-                    {item.strasse} - {item?.stadt?.name}
-                  </p>
-                  <p>{(item.kategorien ?? []).join(" - ")}</p>
+                  <p>{item.openinghours}</p>
+                  <p>{/* {item.strasse} - {item?.stadt?.name} */}</p>
+                  <p>{(item.categories ?? []).join(" - ")}</p>
                 </Popup>
               </Marker>
             )

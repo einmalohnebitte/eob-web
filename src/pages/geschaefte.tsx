@@ -1,6 +1,10 @@
+import { Loading } from "@/components/@UI/Loading";
+import { Section } from "@/components/@UI/Section";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/PageSections/HeadMeta";
+import { ShopsDocument } from "@/components/ShopsMap/Shops.cms.generated";
 import { Shop, Town, useTownShops } from "@/components/ShopsMap/useShops";
+import { useReactQueryCms } from "@/components/useReactQuery";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
 import { contextToLocale } from "@/translate/contextToLocale";
@@ -11,6 +15,7 @@ import dynamic from "next/dynamic";
 import React, { useRef, useState } from "react";
 import { GrFormClose, GrNext } from "react-icons/gr";
 import styled from "styled-components";
+import tw from "twin.macro";
 
 import { COLORS } from "../constants/colors";
 import {
@@ -88,6 +93,7 @@ const MobileOpen = styled(Box)`
 const Shops: React.FC = () => {
   const intl = useTranslations();
   const { data, isLoading } = useTownShops();
+  const { data: shopsData } = useReactQueryCms(ShopsDocument);
 
   const [search, setSearch] = useState<string | null>(null);
   const [showSidebar, setShowSidebar] = useState(true);
@@ -130,8 +136,18 @@ const Shops: React.FC = () => {
   }
 
   if (isLoading || !data || !shopsRef.current) {
-    return null;
+    return (
+      <Section
+        css={`
+          height: 70vh;
+          ${tw`flex justify-center items-center`}
+        `}
+      >
+        <Loading />
+      </Section>
+    );
   }
+  console.log(shopsData);
   return (
     <>
       <HeadMeta />
@@ -154,7 +170,7 @@ const Shops: React.FC = () => {
             value={search ?? ""}
           />
         </MobileOpen>
-        <ShopsMap center={center} shops={shopsRef.current} height="100vh" />
+        <ShopsMap center={center} shops={shopsData?.shops} height="100vh" />
       </Box>
 
       <Sidebar isOpen={showSidebar} isOpenMobile={isOpenMobile}>
