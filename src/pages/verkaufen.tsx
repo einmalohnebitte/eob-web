@@ -11,6 +11,7 @@ import {
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
+import Image from "next/image";
 import React from "react";
 import tw from "twin.macro";
 
@@ -33,9 +34,12 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
       />
       <SplitSection.Section>
         <SplitSection.Side>
-          <picture>
-            <img src="/images/Verkaufen_Small.svg" alt="side" />
-          </picture>
+          <Image
+            src={pageSections[0].picture[0].url}
+            alt="side"
+            width={350}
+            height={250}
+          />
         </SplitSection.Side>
         <SplitSection.Main>
           <H1>{pageSections[0].title}</H1>
