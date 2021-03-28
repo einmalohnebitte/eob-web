@@ -1,4 +1,3 @@
-import "react-calendar/dist/Calendar.css";
 import "tailwindcss/dist/base.min.css";
 
 import Head from "next/head";
