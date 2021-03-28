@@ -135,7 +135,7 @@ const Shops: React.FC = () => {
     shopsRef.current = data?.Shops;
   }
 
-  if (isLoading || !data || !shopsRef.current) {
+  if (isLoading || !data || !shopsRef.current || !shopsData?.shops) {
     return (
       <Section
         css={`
