@@ -81,17 +81,17 @@ const ArticlePage: React.FC<MembersQuery> = ({
         <GridStyle>
           {members.map((item, k) => (
             <Link key={k} href={`/team/${item.slug}`}>
-              <div css={tw`m-4 border-solid border-2 border-gray-600 `}>
+              <a css={tw`m-4 border-solid border-2 border-gray-600 `}>
                 <TeamPhoto src={item?.picture?.url} />
                 <div css={tw`p-4`}>
                   <b>{item.name}</b>
-                  <p
+                  <div
                     dangerouslySetInnerHTML={{
                       __html: item.abstract ?? "",
                     }}
                   />
                 </div>
-              </div>
+              </a>
             </Link>
           ))}
         </GridStyle>

@@ -1,12 +1,11 @@
 import { Section } from "@/components/@UI/Section";
 import { H2 } from "@/components/@UI/Texts";
-import { withLayout } from "@/components/Layout";
 import {
-  MemberDocument,
-  MemberQuery,
-  MembersDocument,
-} from "@/components/Members/Members.cms.generated";
-import { TeamPhoto } from "@/components/Members/TeamPhoto";
+  BlogDocument,
+  BlogQuery,
+  BlogsDocument,
+} from "@/components/Blog/Blog.cms.generated";
+import { withLayout } from "@/components/Layout";
 import { Locale } from "@/generated/graphql";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
@@ -15,17 +14,17 @@ import React from "react";
 import tw from "twin.macro";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await graphCmsRequest(MembersDocument, { locale: [Locale.De] });
+  const data = await graphCmsRequest(BlogsDocument, { locale: [Locale.De] });
 
   return {
-    paths: data.members.map((item) => ({ params: { slug: item?.slug ?? "" } })),
+    paths: data.blogs.map((item) => ({ params: { date: item?.date ?? "" } })),
     fallback: "blocking",
   };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const data = await graphCmsRequest(MemberDocument, {
-    slug: (context?.params?.slug as string) ?? "",
+  const data = await graphCmsRequest(BlogDocument, {
+    date: new Date((context?.params?.date as string) ?? ""),
     locale: contextToLocale(context),
   });
   return {
@@ -33,16 +32,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-const TeamPage: React.FC<MemberQuery> = ({ members }) => (
+const BlogPage: React.FC<BlogQuery> = ({ blogs }) => (
   <Section>
-    <TeamPhoto src={members[0]?.picture?.url} />
-    <H2 css={tw`my-4`}>{members[0]?.name}</H2>
+    <H2 css={tw`my-4`}>{blogs[0]?.title}</H2>
     <div
       dangerouslySetInnerHTML={{
-        __html: members[0]?.bio?.html ?? "",
+        __html: blogs[0]?.content?.html ?? "",
       }}
     />
   </Section>
 );
 
-export default withLayout()(TeamPage);
+export default withLayout()(BlogPage);

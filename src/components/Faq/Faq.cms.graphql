@@ -1,0 +1,12 @@
+query Faqs($locale: [Locale!]!) {
+  faqs {
+    question
+    answer {
+      html
+    }
+  }
+
+  translations(locales: $locale) {
+    ...Translations
+  }
+}
