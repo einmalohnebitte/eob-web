@@ -147,7 +147,7 @@ const Shops: React.FC = () => {
       </Section>
     );
   }
-  console.log(shopsData);
+
   return (
     <>
       <HeadMeta />
@@ -215,7 +215,7 @@ const Shops: React.FC = () => {
             }
           >
             <ButtonContainer>
-              {data?.Categories.map((c, k) => (
+              {shopsData?.shopCategories.map((c, k) => (
                 <Button
                   primary={c.name === category}
                   margin="xsmall"
