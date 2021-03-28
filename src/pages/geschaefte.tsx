@@ -254,7 +254,7 @@ const Shops: React.FC = () => {
                 <Button
                   onClick={() => {
                     townRef.current = c;
-                    console.log(JSON.parse(townRef.current?.lon ?? ""));
+
                     setCenter([
                       JSON.parse(townRef.current?.lat ?? ""),
                       JSON.parse(townRef.current?.lon ?? ""),
