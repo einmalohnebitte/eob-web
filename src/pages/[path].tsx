@@ -1,6 +1,7 @@
 import { Section } from "@/components/@UI/Section";
 import { H1 } from "@/components/@UI/Texts";
 import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
   PageContentDocument,
   PageContentQuery,
@@ -34,14 +35,20 @@ export const getStaticProps: GetStaticProps<any, { path: string }> = async (
 
 const Page: React.FC<PageContentQuery> = (props) => {
   return (
-    <Section>
-      <H1>{props.pages[0].title}</H1>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: props.pages[0]?.content?.html ?? "",
-        }}
+    <>
+      <HeadMeta
+        metaDescription={props.pages[0]?.metaDescription}
+        metaKeywords={props.pages[0]?.metaKeywords}
       />
-    </Section>
+      <Section>
+        <H1>{props.pages[0].title}</H1>
+        <div
+          dangerouslySetInnerHTML={{
+            __html: props.pages[0]?.content?.html ?? "",
+          }}
+        />
+      </Section>
+    </>
   );
 };
 

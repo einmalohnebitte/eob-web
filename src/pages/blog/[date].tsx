@@ -6,6 +6,7 @@ import {
   BlogsDocument,
 } from "@/components/Blog/Blog.cms.generated";
 import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import { Locale } from "@/generated/graphql";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
@@ -33,14 +34,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 const BlogPage: React.FC<BlogQuery> = ({ blogs }) => (
-  <Section>
-    <H2 css={tw`my-4`}>{blogs[0]?.title}</H2>
-    <div
-      dangerouslySetInnerHTML={{
-        __html: blogs[0]?.content?.html ?? "",
-      }}
-    />
-  </Section>
+  <>
+    <HeadMeta />
+    <Section>
+      <H2 css={tw`my-4`}>{blogs[0]?.title}</H2>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: blogs[0]?.content?.html ?? "",
+        }}
+      />
+    </Section>
+  </>
 );
 
 export default withLayout()(BlogPage);

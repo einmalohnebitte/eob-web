@@ -3,6 +3,7 @@ import { Section, SplitSection } from "@/components/@UI/Section";
 import { H1 } from "@/components/@UI/Texts";
 import { VerbreitenForm } from "@/components/Forms/VerbreitenForm";
 import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
   PageSectionsDocument,
   PageSectionsQuery,
@@ -15,7 +16,7 @@ import tw from "twin.macro";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageSectionsDocument, {
-    page: "Verkaufen",
+    page: "Verbreiten",
     locale: contextToLocale(ctx),
   });
   return {
@@ -23,9 +24,13 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   };
 };
 
-const Home: React.FC<PageSectionsQuery> = ({ pageSections }) => {
+const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
   return (
     <>
+      <HeadMeta
+        metaDescription={pages[0]?.metaDescription}
+        metaKeywords={pages[0]?.metaKeywords}
+      />
       <SplitSection.Section>
         <SplitSection.Side>
           <picture>

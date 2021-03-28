@@ -1,4 +1,5 @@
 import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import { Shop, Town, useTownShops } from "@/components/ShopsMap/useShops";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
@@ -133,6 +134,7 @@ const Shops: React.FC = () => {
   }
   return (
     <>
+      <HeadMeta />
       <Box>
         <OpenButton
           isVisible={!showSidebar}
