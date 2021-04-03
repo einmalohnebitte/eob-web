@@ -1,0 +1,15 @@
+input SellEmailReq {
+  firstName: String!
+  lastName: String!
+  message: String!
+  subject: String!
+  email: String!
+}
+
+type Mutation {
+  sellEmail(email: SellEmailReq!): Boolean!
+}
+
+type Query {
+  hello: String
+}

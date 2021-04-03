@@ -48,10 +48,16 @@ export type Asset = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   /** The file handle */
   handle: Scalars['String'];
   /** The file name */
@@ -99,14 +105,32 @@ export type AssetCreatedAtArgs = {
 
 
 /** Asset system model */
+export type AssetCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Asset system model */
 export type AssetUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
 /** Asset system model */
+export type AssetUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+/** Asset system model */
 export type AssetPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
+};
+
+
+/** Asset system model */
+export type AssetPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -313,6 +337,7 @@ export type AssetManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -328,6 +353,7 @@ export type AssetManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -343,6 +369,7 @@ export type AssetManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   picturePageSection_every?: Maybe<PageSectionWhereInput>;
   picturePageSection_some?: Maybe<PageSectionWhereInput>;
   picturePageSection_none?: Maybe<PageSectionWhereInput>;
@@ -580,6 +607,7 @@ export type AssetWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -595,6 +623,7 @@ export type AssetWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -610,6 +639,7 @@ export type AssetWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   handle?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   handle_not?: Maybe<Scalars['String']>;
@@ -761,10 +791,16 @@ export type Blog = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   title: Scalars['String'];
   date?: Maybe<Scalars['Date']>;
   content?: Maybe<RichText>;
@@ -792,8 +828,18 @@ export type BlogCreatedAtArgs = {
 };
 
 
+export type BlogCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type BlogUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type BlogUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -802,10 +848,22 @@ export type BlogPublishedAtArgs = {
 };
 
 
+export type BlogPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type BlogHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: Maybe<Stage>;
+};
+
+export type BlogConnectInput = {
+  /** Document to connect */
+  where: BlogWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
 };
 
 /** A connection to a list of items. */
@@ -847,6 +905,20 @@ export type BlogCreateLocalizationInput = {
 export type BlogCreateLocalizationsInput = {
   /** Create localizations for the newly-created document */
   create?: Maybe<Array<BlogCreateLocalizationInput>>;
+};
+
+export type BlogCreateManyInlineInput = {
+  /** Create and connect multiple existing Blog documents */
+  create?: Maybe<Array<BlogCreateInput>>;
+  /** Connect multiple existing Blog documents */
+  connect?: Maybe<Array<BlogWhereUniqueInput>>;
+};
+
+export type BlogCreateOneInlineInput = {
+  /** Create and connect one Blog document */
+  create?: Maybe<BlogCreateInput>;
+  /** Connect one existing Blog document */
+  connect?: Maybe<BlogWhereUniqueInput>;
 };
 
 /** An edge in a connection. */
@@ -902,6 +974,7 @@ export type BlogManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -917,6 +990,7 @@ export type BlogManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -932,6 +1006,7 @@ export type BlogManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   date?: Maybe<Scalars['Date']>;
   /** All values that are not equal to given value. */
   date_not?: Maybe<Scalars['Date']>;
@@ -1016,6 +1091,23 @@ export type BlogUpdateLocalizationsInput = {
   delete?: Maybe<Array<Locale>>;
 };
 
+export type BlogUpdateManyInlineInput = {
+  /** Create and connect multiple Blog documents */
+  create?: Maybe<Array<BlogCreateInput>>;
+  /** Connect multiple existing Blog documents */
+  connect?: Maybe<Array<BlogConnectInput>>;
+  /** Override currently-connected documents with multiple existing Blog documents */
+  set?: Maybe<Array<BlogWhereUniqueInput>>;
+  /** Update multiple Blog documents */
+  update?: Maybe<Array<BlogUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Blog documents */
+  upsert?: Maybe<Array<BlogUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple Blog documents */
+  disconnect?: Maybe<Array<BlogWhereUniqueInput>>;
+  /** Delete multiple Blog documents */
+  delete?: Maybe<Array<BlogWhereUniqueInput>>;
+};
+
 export type BlogUpdateManyInput = {
   /** title input for default locale (de) */
   title?: Maybe<Scalars['String']>;
@@ -1046,6 +1138,21 @@ export type BlogUpdateManyWithNestedWhereInput = {
   where: BlogWhereInput;
   /** Update many input */
   data: BlogUpdateManyInput;
+};
+
+export type BlogUpdateOneInlineInput = {
+  /** Create and connect one Blog document */
+  create?: Maybe<BlogCreateInput>;
+  /** Update single Blog document */
+  update?: Maybe<BlogUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Blog document */
+  upsert?: Maybe<BlogUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing Blog document */
+  connect?: Maybe<BlogWhereUniqueInput>;
+  /** Disconnect currently connected Blog document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected Blog document */
+  delete?: Maybe<Scalars['Boolean']>;
 };
 
 export type BlogUpdateWithNestedWhereUniqueInput = {
@@ -1119,6 +1226,7 @@ export type BlogWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1134,6 +1242,7 @@ export type BlogWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1149,6 +1258,7 @@ export type BlogWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   title?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   title_not?: Maybe<Scalars['String']>;
@@ -1235,10 +1345,16 @@ export type CityPartner = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   name?: Maybe<Scalars['String']>;
   logo?: Maybe<Asset>;
   link?: Maybe<Scalars['String']>;
@@ -1265,13 +1381,28 @@ export type CityPartnerCreatedAtArgs = {
 };
 
 
+export type CityPartnerCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type CityPartnerUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
+export type CityPartnerUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type CityPartnerPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type CityPartnerPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -1398,6 +1529,7 @@ export type CityPartnerManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1413,6 +1545,7 @@ export type CityPartnerManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1428,6 +1561,7 @@ export type CityPartnerManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   logo?: Maybe<AssetWhereInput>;
   link?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
@@ -1625,6 +1759,7 @@ export type CityPartnerWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1640,6 +1775,7 @@ export type CityPartnerWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1655,6 +1791,7 @@ export type CityPartnerWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -1806,10 +1943,16 @@ export type Faq = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   question: Scalars['String'];
   answer?: Maybe<RichText>;
   /** List of Faq versions */
@@ -1835,8 +1978,18 @@ export type FaqCreatedAtArgs = {
 };
 
 
+export type FaqCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type FaqUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type FaqUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -1845,10 +1998,22 @@ export type FaqPublishedAtArgs = {
 };
 
 
+export type FaqPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type FaqHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: Maybe<Stage>;
+};
+
+export type FaqConnectInput = {
+  /** Document to connect */
+  where: FaqWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
 };
 
 /** A connection to a list of items. */
@@ -1888,6 +2053,20 @@ export type FaqCreateLocalizationInput = {
 export type FaqCreateLocalizationsInput = {
   /** Create localizations for the newly-created document */
   create?: Maybe<Array<FaqCreateLocalizationInput>>;
+};
+
+export type FaqCreateManyInlineInput = {
+  /** Create and connect multiple existing Faq documents */
+  create?: Maybe<Array<FaqCreateInput>>;
+  /** Connect multiple existing Faq documents */
+  connect?: Maybe<Array<FaqWhereUniqueInput>>;
+};
+
+export type FaqCreateOneInlineInput = {
+  /** Create and connect one Faq document */
+  create?: Maybe<FaqCreateInput>;
+  /** Connect one existing Faq document */
+  connect?: Maybe<FaqWhereUniqueInput>;
 };
 
 /** An edge in a connection. */
@@ -1943,6 +2122,7 @@ export type FaqManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1958,6 +2138,7 @@ export type FaqManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1973,6 +2154,7 @@ export type FaqManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
 };
 
 export enum FaqOrderByInput {
@@ -2017,6 +2199,23 @@ export type FaqUpdateLocalizationsInput = {
   delete?: Maybe<Array<Locale>>;
 };
 
+export type FaqUpdateManyInlineInput = {
+  /** Create and connect multiple Faq documents */
+  create?: Maybe<Array<FaqCreateInput>>;
+  /** Connect multiple existing Faq documents */
+  connect?: Maybe<Array<FaqConnectInput>>;
+  /** Override currently-connected documents with multiple existing Faq documents */
+  set?: Maybe<Array<FaqWhereUniqueInput>>;
+  /** Update multiple Faq documents */
+  update?: Maybe<Array<FaqUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Faq documents */
+  upsert?: Maybe<Array<FaqUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple Faq documents */
+  disconnect?: Maybe<Array<FaqWhereUniqueInput>>;
+  /** Delete multiple Faq documents */
+  delete?: Maybe<Array<FaqWhereUniqueInput>>;
+};
+
 export type FaqUpdateManyInput = {
   /** question input for default locale (de) */
   question?: Maybe<Scalars['String']>;
@@ -2046,6 +2245,21 @@ export type FaqUpdateManyWithNestedWhereInput = {
   where: FaqWhereInput;
   /** Update many input */
   data: FaqUpdateManyInput;
+};
+
+export type FaqUpdateOneInlineInput = {
+  /** Create and connect one Faq document */
+  create?: Maybe<FaqCreateInput>;
+  /** Update single Faq document */
+  update?: Maybe<FaqUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Faq document */
+  upsert?: Maybe<FaqUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing Faq document */
+  connect?: Maybe<FaqWhereUniqueInput>;
+  /** Disconnect currently connected Faq document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected Faq document */
+  delete?: Maybe<Scalars['Boolean']>;
 };
 
 export type FaqUpdateWithNestedWhereUniqueInput = {
@@ -2119,6 +2333,7 @@ export type FaqWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2134,6 +2349,7 @@ export type FaqWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2149,6 +2365,7 @@ export type FaqWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   question?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   question_not?: Maybe<Scalars['String']>;
@@ -2245,10 +2462,16 @@ export type Member = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   name?: Maybe<Scalars['String']>;
   abstract?: Maybe<Scalars['String']>;
   picture?: Maybe<Asset>;
@@ -2277,13 +2500,28 @@ export type MemberCreatedAtArgs = {
 };
 
 
+export type MemberCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type MemberUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
+export type MemberUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type MemberPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type MemberPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -2412,6 +2650,7 @@ export type MemberManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2427,6 +2666,7 @@ export type MemberManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2442,6 +2682,7 @@ export type MemberManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -2663,6 +2904,7 @@ export type MemberWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2678,6 +2920,7 @@ export type MemberWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2693,6 +2936,7 @@ export type MemberWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -4627,10 +4871,16 @@ export type Page = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   vibrantColor?: Maybe<Color>;
@@ -4661,13 +4911,28 @@ export type PageCreatedAtArgs = {
 };
 
 
+export type PageCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type PageUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
+export type PageUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type PagePublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type PagePublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -4820,6 +5085,7 @@ export type PageManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -4835,6 +5101,7 @@ export type PageManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -4850,6 +5117,7 @@ export type PageManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   slug?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   slug_not?: Maybe<Scalars['String']>;
@@ -4945,10 +5213,16 @@ export type PageSection = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   title: Scalars['String'];
   picture: Array<Asset>;
   page?: Maybe<Page>;
@@ -4977,13 +5251,28 @@ export type PageSectionCreatedAtArgs = {
 };
 
 
+export type PageSectionCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type PageSectionUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
+export type PageSectionUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type PageSectionPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type PageSectionPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -5126,6 +5415,7 @@ export type PageSectionManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -5141,6 +5431,7 @@ export type PageSectionManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -5156,6 +5447,7 @@ export type PageSectionManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   picture_every?: Maybe<AssetWhereInput>;
   picture_some?: Maybe<AssetWhereInput>;
   picture_none?: Maybe<AssetWhereInput>;
@@ -5363,6 +5655,7 @@ export type PageSectionWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -5378,6 +5671,7 @@ export type PageSectionWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -5393,6 +5687,7 @@ export type PageSectionWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   title?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   title_not?: Maybe<Scalars['String']>;
@@ -5609,6 +5904,7 @@ export type PageWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -5624,6 +5920,7 @@ export type PageWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -5639,6 +5936,7 @@ export type PageWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   title?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   title_not?: Maybe<Scalars['String']>;
@@ -5833,6 +6131,12 @@ export type Query = {
   translationsConnection: TranslationConnection;
   /** Retrieve document version */
   translationVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple users */
+  users: Array<User>;
+  /** Retrieve a single user */
+  user?: Maybe<User>;
+  /** Retrieve multiple users using the Relay connection interface */
+  usersConnection: UserConnection;
 };
 
 
@@ -6298,6 +6602,39 @@ export type QueryTranslationVersionArgs = {
   where: VersionWhereInput;
 };
 
+
+export type QueryUsersArgs = {
+  where?: Maybe<UserWhereInput>;
+  orderBy?: Maybe<UserOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryUserArgs = {
+  where: UserWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryUsersConnectionArgs = {
+  where?: Maybe<UserWhereInput>;
+  orderBy?: Maybe<UserOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
 /** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
 export type Rgba = {
   __typename?: 'RGBA';
@@ -6341,10 +6678,16 @@ export type Shop = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
   location?: Maybe<Location>;
@@ -6369,6 +6712,21 @@ export type ShopDocumentInStagesArgs = {
   stages?: Array<Stage>;
   includeCurrent?: Scalars['Boolean'];
   inheritLocale?: Scalars['Boolean'];
+};
+
+
+export type ShopCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type ShopUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type ShopPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -6405,10 +6763,16 @@ export type ShopCategory = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   name?: Maybe<Scalars['String']>;
   shop?: Maybe<Shop>;
   isMain?: Maybe<Scalars['Boolean']>;
@@ -6421,6 +6785,21 @@ export type ShopCategoryDocumentInStagesArgs = {
   stages?: Array<Stage>;
   includeCurrent?: Scalars['Boolean'];
   inheritLocale?: Scalars['Boolean'];
+};
+
+
+export type ShopCategoryCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type ShopCategoryUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type ShopCategoryPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -6527,6 +6906,7 @@ export type ShopCategoryManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -6542,6 +6922,7 @@ export type ShopCategoryManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -6557,6 +6938,7 @@ export type ShopCategoryManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -6712,6 +7094,7 @@ export type ShopCategoryWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -6727,6 +7110,7 @@ export type ShopCategoryWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -6742,6 +7126,7 @@ export type ShopCategoryWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -6876,6 +7261,7 @@ export type ShopManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -6891,6 +7277,7 @@ export type ShopManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -6906,6 +7293,7 @@ export type ShopManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -7258,6 +7646,7 @@ export type ShopWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7273,6 +7662,7 @@ export type ShopWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7288,6 +7678,7 @@ export type ShopWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -7477,10 +7868,16 @@ export type Shopetype = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   name?: Maybe<Scalars['String']>;
   /** List of Shopetype versions */
   history: Array<Version>;
@@ -7494,10 +7891,32 @@ export type ShopetypeDocumentInStagesArgs = {
 };
 
 
+export type ShopetypeCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type ShopetypeUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type ShopetypePublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type ShopetypeHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: Maybe<Stage>;
+};
+
+export type ShopetypeConnectInput = {
+  /** Document to connect */
+  where: ShopetypeWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
 };
 
 /** A connection to a list of items. */
@@ -7514,6 +7933,20 @@ export type ShopetypeCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   name?: Maybe<Scalars['String']>;
+};
+
+export type ShopetypeCreateManyInlineInput = {
+  /** Create and connect multiple existing Shopetype documents */
+  create?: Maybe<Array<ShopetypeCreateInput>>;
+  /** Connect multiple existing Shopetype documents */
+  connect?: Maybe<Array<ShopetypeWhereUniqueInput>>;
+};
+
+export type ShopetypeCreateOneInlineInput = {
+  /** Create and connect one Shopetype document */
+  create?: Maybe<ShopetypeCreateInput>;
+  /** Connect one existing Shopetype document */
+  connect?: Maybe<ShopetypeWhereUniqueInput>;
 };
 
 /** An edge in a connection. */
@@ -7569,6 +8002,7 @@ export type ShopetypeManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7584,6 +8018,7 @@ export type ShopetypeManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7599,6 +8034,7 @@ export type ShopetypeManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -7637,6 +8073,23 @@ export type ShopetypeUpdateInput = {
   name?: Maybe<Scalars['String']>;
 };
 
+export type ShopetypeUpdateManyInlineInput = {
+  /** Create and connect multiple Shopetype documents */
+  create?: Maybe<Array<ShopetypeCreateInput>>;
+  /** Connect multiple existing Shopetype documents */
+  connect?: Maybe<Array<ShopetypeConnectInput>>;
+  /** Override currently-connected documents with multiple existing Shopetype documents */
+  set?: Maybe<Array<ShopetypeWhereUniqueInput>>;
+  /** Update multiple Shopetype documents */
+  update?: Maybe<Array<ShopetypeUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Shopetype documents */
+  upsert?: Maybe<Array<ShopetypeUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple Shopetype documents */
+  disconnect?: Maybe<Array<ShopetypeWhereUniqueInput>>;
+  /** Delete multiple Shopetype documents */
+  delete?: Maybe<Array<ShopetypeWhereUniqueInput>>;
+};
+
 export type ShopetypeUpdateManyInput = {
   name?: Maybe<Scalars['String']>;
 };
@@ -7646,6 +8099,21 @@ export type ShopetypeUpdateManyWithNestedWhereInput = {
   where: ShopetypeWhereInput;
   /** Update many input */
   data: ShopetypeUpdateManyInput;
+};
+
+export type ShopetypeUpdateOneInlineInput = {
+  /** Create and connect one Shopetype document */
+  create?: Maybe<ShopetypeCreateInput>;
+  /** Update single Shopetype document */
+  update?: Maybe<ShopetypeUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Shopetype document */
+  upsert?: Maybe<ShopetypeUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing Shopetype document */
+  connect?: Maybe<ShopetypeWhereUniqueInput>;
+  /** Disconnect currently connected Shopetype document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected Shopetype document */
+  delete?: Maybe<Scalars['Boolean']>;
 };
 
 export type ShopetypeUpdateWithNestedWhereUniqueInput = {
@@ -7713,6 +8181,7 @@ export type ShopetypeWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7728,6 +8197,7 @@ export type ShopetypeWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7743,6 +8213,7 @@ export type ShopetypeWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -7791,10 +8262,16 @@ export type Supporter = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   name?: Maybe<Scalars['String']>;
   picture?: Maybe<Asset>;
   website?: Maybe<Scalars['String']>;
@@ -7821,13 +8298,28 @@ export type SupporterCreatedAtArgs = {
 };
 
 
+export type SupporterCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type SupporterUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
+export type SupporterUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type SupporterPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type SupporterPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -7956,6 +8448,7 @@ export type SupporterManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7971,6 +8464,7 @@ export type SupporterManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7986,6 +8480,7 @@ export type SupporterManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   picture?: Maybe<AssetWhereInput>;
 };
 
@@ -8168,6 +8663,7 @@ export type SupporterWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8183,6 +8679,7 @@ export type SupporterWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8198,6 +8695,7 @@ export type SupporterWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -8264,10 +8762,16 @@ export type Translation = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   key: Scalars['String'];
   value?: Maybe<Scalars['String']>;
   category?: Maybe<Category>;
@@ -8294,8 +8798,18 @@ export type TranslationCreatedAtArgs = {
 };
 
 
+export type TranslationCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type TranslationUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type TranslationUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -8304,10 +8818,22 @@ export type TranslationPublishedAtArgs = {
 };
 
 
+export type TranslationPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type TranslationHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: Maybe<Stage>;
+};
+
+export type TranslationConnectInput = {
+  /** Document to connect */
+  where: TranslationWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
 };
 
 /** A connection to a list of items. */
@@ -8346,6 +8872,20 @@ export type TranslationCreateLocalizationInput = {
 export type TranslationCreateLocalizationsInput = {
   /** Create localizations for the newly-created document */
   create?: Maybe<Array<TranslationCreateLocalizationInput>>;
+};
+
+export type TranslationCreateManyInlineInput = {
+  /** Create and connect multiple existing Translation documents */
+  create?: Maybe<Array<TranslationCreateInput>>;
+  /** Connect multiple existing Translation documents */
+  connect?: Maybe<Array<TranslationWhereUniqueInput>>;
+};
+
+export type TranslationCreateOneInlineInput = {
+  /** Create and connect one Translation document */
+  create?: Maybe<TranslationCreateInput>;
+  /** Connect one existing Translation document */
+  connect?: Maybe<TranslationWhereUniqueInput>;
 };
 
 /** An edge in a connection. */
@@ -8401,6 +8941,7 @@ export type TranslationManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8416,6 +8957,7 @@ export type TranslationManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8431,6 +8973,7 @@ export type TranslationManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   key?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   key_not?: Maybe<Scalars['String']>;
@@ -8504,6 +9047,23 @@ export type TranslationUpdateLocalizationsInput = {
   delete?: Maybe<Array<Locale>>;
 };
 
+export type TranslationUpdateManyInlineInput = {
+  /** Create and connect multiple Translation documents */
+  create?: Maybe<Array<TranslationCreateInput>>;
+  /** Connect multiple existing Translation documents */
+  connect?: Maybe<Array<TranslationConnectInput>>;
+  /** Override currently-connected documents with multiple existing Translation documents */
+  set?: Maybe<Array<TranslationWhereUniqueInput>>;
+  /** Update multiple Translation documents */
+  update?: Maybe<Array<TranslationUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Translation documents */
+  upsert?: Maybe<Array<TranslationUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple Translation documents */
+  disconnect?: Maybe<Array<TranslationWhereUniqueInput>>;
+  /** Delete multiple Translation documents */
+  delete?: Maybe<Array<TranslationWhereUniqueInput>>;
+};
+
 export type TranslationUpdateManyInput = {
   /** value input for default locale (de) */
   value?: Maybe<Scalars['String']>;
@@ -8531,6 +9091,21 @@ export type TranslationUpdateManyWithNestedWhereInput = {
   where: TranslationWhereInput;
   /** Update many input */
   data: TranslationUpdateManyInput;
+};
+
+export type TranslationUpdateOneInlineInput = {
+  /** Create and connect one Translation document */
+  create?: Maybe<TranslationCreateInput>;
+  /** Update single Translation document */
+  update?: Maybe<TranslationUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Translation document */
+  upsert?: Maybe<TranslationUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing Translation document */
+  connect?: Maybe<TranslationWhereUniqueInput>;
+  /** Disconnect currently connected Translation document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected Translation document */
+  delete?: Maybe<Scalars['Boolean']>;
 };
 
 export type TranslationUpdateWithNestedWhereUniqueInput = {
@@ -8604,6 +9179,7 @@ export type TranslationWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8619,6 +9195,7 @@ export type TranslationWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8634,6 +9211,7 @@ export type TranslationWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedBy?: Maybe<UserWhereInput>;
   key?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   key_not?: Maybe<Scalars['String']>;
@@ -8694,6 +9272,56 @@ export type UnpublishLocaleInput = {
   stages: Array<Stage>;
 };
 
+/** User system model */
+export type User = Node & {
+  __typename?: 'User';
+  /** System stage field */
+  stage: Stage;
+  /** Get the document in other stages */
+  documentInStages: Array<User>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** The username */
+  name: Scalars['String'];
+  /** Profile Picture url */
+  picture?: Maybe<Scalars['String']>;
+  /** User Kind. Can be either MEMBER, PAT or PUBLIC */
+  kind: UserKind;
+};
+
+
+/** User system model */
+export type UserDocumentInStagesArgs = {
+  stages?: Array<Stage>;
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+};
+
+/** A connection to a list of items. */
+export type UserConnection = {
+  __typename?: 'UserConnection';
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** A list of edges. */
+  edges: Array<UserEdge>;
+  aggregate: Aggregate;
+};
+
+/** An edge in a connection. */
+export type UserEdge = {
+  __typename?: 'UserEdge';
+  /** The item at the end of the edge. */
+  node: User;
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+};
+
 /** System User Kind */
 export enum UserKind {
   Member = 'MEMBER',
@@ -8701,6 +9329,270 @@ export enum UserKind {
   Public = 'PUBLIC',
   Webhook = 'WEBHOOK'
 }
+
+/** Identifies documents */
+export type UserManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<UserWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<UserWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<UserWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  picture_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  picture_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  picture_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  picture_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  picture_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  picture_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  picture_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  picture_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  picture_not_ends_with?: Maybe<Scalars['String']>;
+  kind?: Maybe<UserKind>;
+  /** All values that are not equal to given value. */
+  kind_not?: Maybe<UserKind>;
+  /** All values that are contained in given list. */
+  kind_in?: Maybe<Array<UserKind>>;
+  /** All values that are not contained in given list. */
+  kind_not_in?: Maybe<Array<UserKind>>;
+};
+
+export enum UserOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PictureAsc = 'picture_ASC',
+  PictureDesc = 'picture_DESC',
+  KindAsc = 'kind_ASC',
+  KindDesc = 'kind_DESC'
+}
+
+/** Identifies documents */
+export type UserWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<UserWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<UserWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<UserWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  name_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  name_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  name_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: Maybe<Scalars['String']>;
+  picture?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  picture_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  picture_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  picture_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  picture_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  picture_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  picture_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  picture_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  picture_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  picture_not_ends_with?: Maybe<Scalars['String']>;
+  kind?: Maybe<UserKind>;
+  /** All values that are not equal to given value. */
+  kind_not?: Maybe<UserKind>;
+  /** All values that are contained in given list. */
+  kind_in?: Maybe<Array<UserKind>>;
+  /** All values that are not contained in given list. */
+  kind_not_in?: Maybe<Array<UserKind>>;
+};
+
+/** References User record uniquely */
+export type UserWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
+};
 
 export type Version = {
   __typename?: 'Version';

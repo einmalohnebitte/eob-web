@@ -9,10 +9,7 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  /** The `Upload` scalar type represents a file upload. */
-  Upload: any;
 };
-
 
 export type SellEmailReq = {
   firstName: Scalars['String'];
@@ -36,9 +33,3 @@ export type Query = {
   __typename?: 'Query';
   hello?: Maybe<Scalars['String']>;
 };
-
-export enum CacheControlScope {
-  Public = 'PUBLIC',
-  Private = 'PRIVATE'
-}
-
