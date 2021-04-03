@@ -4,7 +4,7 @@ const { generate } = require("@graphql-codegen/cli");
 async function run() {
   await generate(
     {
-      schema: "http://localhost:3000/api/graphql",
+      schema: "./src/graphql/typeDefs.graphql",
       documents: "src/components/**/*.local.graphql",
       generates: {
         [process.cwd() + "/src/generated/local.tsx"]: {
@@ -61,7 +61,7 @@ async function run() {
   );
   await generate(
     {
-      schema: ["http://localhost:3000/api/graphql"],
+      schema: "./src/graphql/typeDefs.graphql",
       // documents: "src/components/**/*.graphql",
       generates: {
         [process.cwd() + "/src/generated/resolvers-types.ts"]: {
