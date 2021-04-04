@@ -20,4 +20,7 @@ module.exports = compose(plugins)({
   images: {
     domains: ["media.graphcms.com"],
   },
+  future: {
+    webpack5: true,
+  },
 });
