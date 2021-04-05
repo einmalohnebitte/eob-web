@@ -1,0 +1,35 @@
+query Shops {
+  shops(first: 1000) {
+    id
+    name
+    openinghours
+    location {
+      latitude
+      longitude
+    }
+    website
+    categories {
+      id
+      name
+      isMain
+    }
+    shopTown {
+      name
+    }
+  }
+
+  shopCategories {
+    id
+    name
+    isMain
+  }
+
+  shopTowns {
+    id
+    name
+    location {
+      latitude
+      longitude
+    }
+  }
+}

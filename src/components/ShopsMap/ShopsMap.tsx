@@ -1,9 +1,16 @@
 import "leaflet/dist/leaflet.css";
 
-import { Shop } from "@/components/ShopsMap/useShops";
+import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
 import L from "leaflet";
-import React from "react";
-import { GeoJSON, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import React, { useRef } from "react";
+import {
+  GeoJSON,
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+} from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import styled from "styled-components";
 
@@ -33,23 +40,19 @@ const StyledMap = styled.div`
 `;
 
 const CENTER: [number, number] = [48.13743, 11.57549];
-export const ShopsMap: React.FC<{
+
+const MapItem: React.FC<{
   center?: [number, number] | null;
-  shops: Shop[];
-  width?: string;
-  height?: string;
-}> = ({ center, shops = null, width = "100%", height = "100%" }) => (
-  <StyledMap>
-    <MapContainer
-      className={"map"}
-      center={center ?? CENTER}
-      zoom={12}
-      maxZoom={15}
-      style={{
-        height,
-        width,
-      }}
-    >
+  shops: ShopsQuery["shops"];
+}> = ({ center, shops }) => {
+  const map = useMap();
+  const centerRef = useRef(center ?? CENTER);
+  if (center !== centerRef.current) {
+    centerRef.current = center ?? CENTER;
+    map.setView(centerRef.current);
+  }
+  return (
+    <>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
@@ -58,21 +61,49 @@ export const ShopsMap: React.FC<{
       <MarkerClusterGroup>
         {(shops ?? []).map((item, k) => {
           return (
-            item.geom?.coordinates && (
-              <Marker key={k} position={item.geom?.coordinates}>
+            item.location && (
+              <Marker
+                key={k}
+                position={{
+                  lat: item.location.latitude,
+                  lng: item.location.longitude,
+                }}
+              >
                 <Popup>
                   <b>{item.name}</b>
-                  <p>{item.oeffnungszeiten}</p>
-                  <p>
-                    {item.strasse} - {item?.stadt?.name}
-                  </p>
-                  <p>{(item.kategorien ?? []).join(" - ")}</p>
+                  <p>{item.openinghours}</p>
+                  <p>{/* {item.strasse} - {item?.stadt?.name} */}</p>
+                  <p>{(item.categories ?? []).join(" - ")}</p>
                 </Popup>
               </Marker>
             )
           );
         })}
       </MarkerClusterGroup>
-    </MapContainer>
-  </StyledMap>
-);
+    </>
+  );
+};
+
+export const ShopsMap: React.FC<{
+  center?: [number, number] | null;
+  shops: ShopsQuery["shops"];
+  width?: string;
+  height?: string;
+}> = ({ center, shops, width = "100%", height = "100%" }) => {
+  return (
+    <StyledMap>
+      <MapContainer
+        className={"map"}
+        center={center ?? CENTER}
+        zoom={12}
+        maxZoom={15}
+        style={{
+          height,
+          width,
+        }}
+      >
+        <MapItem shops={shops} center={center} />
+      </MapContainer>
+    </StyledMap>
+  );
+};

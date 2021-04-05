@@ -1,24 +1,26 @@
+import { Loading } from "@/components/@UI/Loading";
+import { Section } from "@/components/@UI/Section";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/PageSections/HeadMeta";
-import { Shop, Town, useTownShops } from "@/components/ShopsMap/useShops";
+import {
+  ShopsDocument,
+  ShopsQuery,
+} from "@/components/ShopsMap/Shops.cms.generated";
+import { ShopsSideMenu } from "@/components/ShopsMap/ShopsSideMenu";
+import { useReactQueryCms } from "@/components/useReactQuery";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { TranslationsDocument } from "@/translate/Translations.cms.generated";
-import { Box, Button, Tab, Tabs, TextInput } from "grommet";
+import { Box, Button, TextInput } from "grommet";
 import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
-import React, { useRef, useState } from "react";
-import { GrFormClose, GrNext } from "react-icons/gr";
+import React, { useState } from "react";
+import { GrNext } from "react-icons/gr";
 import styled from "styled-components";
+import tw from "twin.macro";
 
-import { COLORS } from "../constants/colors";
-import {
-  HEADER_HEIGHT,
-  HEADER_HEIGHT_MOBILE,
-  MQ_MOBILE,
-  MQ_NOT_MOBILE,
-} from "../constants/MediaQueries";
+import { MQ_MOBILE, MQ_NOT_MOBILE } from "../constants/MediaQueries";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(TranslationsDocument, {
@@ -34,36 +36,6 @@ const ShopsMap = dynamic(
   async () => (await import("../components/ShopsMap")).ShopsMap,
   { ssr: false }
 );
-
-const ButtonContainer = styled.div`
-  display: inline-block;
-  padding: 20px;
-`;
-
-const Sidebar = styled.div<{ isOpen: boolean; isOpenMobile: boolean }>`
-  height: 100%;
-  width: ${({ isOpen }) => (isOpen ? "25%" : "0")};
-  min-width: ${({ isOpen }) => (isOpen ? "400px" : "0")};
-  position: fixed;
-  z-index: 99999;
-  top: ${HEADER_HEIGHT}px;
-  left: 0;
-  background-color: white;
-  overflow-x: hidden;
-  transition: 0.5s;
-
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-  border-radius: 4px;
-
-  display: flex;
-  flex-direction: column;
-
-  @media ${MQ_MOBILE} {
-    top: ${HEADER_HEIGHT_MOBILE}px;
-    width: ${({ isOpenMobile }) => (isOpenMobile ? "100%" : "0")};
-    min-width: ${({ isOpenMobile }) => (isOpenMobile ? "100%" : "0")};
-  }
-`;
 
 const OpenButton = styled(Button)<{ isVisible: boolean }>`
   position: absolute;
@@ -87,51 +59,44 @@ const MobileOpen = styled(Box)`
 
 const Shops: React.FC = () => {
   const intl = useTranslations();
-  const { data, isLoading } = useTownShops();
+  const { data, isLoading } = useReactQueryCms(ShopsDocument);
 
   const [search, setSearch] = useState<string | null>(null);
   const [showSidebar, setShowSidebar] = useState(true);
   const [isOpenMobile, setIsOpenMobile] = useState(false);
-  const townRef = useRef<Town | undefined>(
-    data?.Towns.find((t) => t.name?.toLowerCase() === "München".toLowerCase())
-  );
-  const shopsRef = useRef<Shop[] | undefined>(data?.Shops);
-  const [center, setCenter] = useState<[number, number] | null>(null);
-  const [category, setCategory] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<number>(0);
 
-  const suggestionsRef = useRef<
-    { label?: string; value?: string }[] | undefined
-  >([]);
+  const [center, setCenter] = useState<[number, number]>([48.13743, 11.57549]);
 
-  const handleSearch = (searchValue: string) => {
-    shopsRef.current = data?.Shops;
-    if (category) {
-      shopsRef.current = shopsRef.current?.filter(
-        (s) =>
-          (s.kategorien ?? []).filter((ct) => category === ct.name).length > 0
-      );
-    }
-    if (searchValue) {
-      const regexp = new RegExp(`${searchValue}`, "i");
-      shopsRef.current = shopsRef.current?.filter((s) =>
-        regexp.test(s.name ?? "")
-      );
-      suggestionsRef.current = shopsRef.current
-        ?.slice(0, 6)
-        .map((s) => ({ label: s.name, value: s.name }));
-    }
+  const [category, setCategory] = useState<
+    ShopsQuery["shopCategories"][0] | null
+  >(null);
 
-    setSearch(searchValue);
-  };
-
-  if (data && !shopsRef.current) {
-    shopsRef.current = data?.Shops;
+  if (isLoading || !data?.shops) {
+    return (
+      <Section
+        css={`
+          height: 70vh;
+          ${tw`flex justify-center items-center`}
+        `}
+      >
+        <Loading />
+      </Section>
+    );
   }
 
-  if (isLoading || !data || !shopsRef.current) {
-    return null;
+  let { shops } = data;
+  if (category?.name) {
+    shops = shops?.filter(
+      (s) =>
+        (s.categories ?? []).filter((ct) => category.name === ct.name).length >
+        0
+    );
   }
+  if (search) {
+    const regexp = new RegExp(`${search}`, "i");
+    shops = shops?.filter((s) => regexp.test(s.name ?? ""));
+  }
+
   return (
     <>
       <HeadMeta />
@@ -154,106 +119,27 @@ const Shops: React.FC = () => {
             value={search ?? ""}
           />
         </MobileOpen>
-        <ShopsMap center={center} shops={shopsRef.current} height="100vh" />
+        <ShopsMap center={center} shops={shops} height="100vh" />
       </Box>
 
-      <Sidebar isOpen={showSidebar} isOpenMobile={isOpenMobile}>
-        <Box
-          onClick={() => {
-            setShowSidebar(false);
-            setIsOpenMobile(false);
-          }}
-          pad="xsmall"
-          align="end"
-        >
-          <GrFormClose />
-        </Box>
-
-        <Box width="medium" pad="small">
-          <TextInput
-            name="search"
-            placeholder={intl("SEARCH")}
-            onChange={(e) => {
-              handleSearch(e.target?.value);
-            }}
-            value={search ?? ""}
-            suggestions={suggestionsRef.current}
-          />
-        </Box>
-        <Tabs
-          style={{ height: "80%" }}
-          onActive={(e) => {
-            setActiveTab(e);
-          }}
-        >
-          <Tab
-            title={
-              <Box
-                style={{
-                  color: activeTab === 0 ? COLORS.BRAND : COLORS.LIGHT_BLACK,
-                }}
-                pad="xsmall"
-              >
-                {intl("CATEGORIES")}
-              </Box>
-            }
-          >
-            <ButtonContainer>
-              {data?.Categories.map((c, k) => (
-                <Button
-                  primary={c.name === category}
-                  margin="xsmall"
-                  key={k}
-                  label={c.name}
-                  onClick={() => {
-                    const currentCategory = c.name === category ? null : c.name;
-
-                    shopsRef.current = data.Shops.filter(
-                      (s) =>
-                        (s.kategorien ?? []).filter(
-                          (ct) =>
-                            !currentCategory || currentCategory === ct.name
-                        ).length > 0
-                    );
-                    setCategory(currentCategory ?? "");
-                  }}
-                ></Button>
-              ))}
-            </ButtonContainer>
-          </Tab>
-          <Tab
-            title={
-              <Box
-                style={{
-                  color: activeTab === 1 ? COLORS.BRAND : COLORS.LIGHT_BLACK,
-                }}
-                pad="xsmall"
-              >
-                {intl("TOWNS")}
-              </Box>
-            }
-          >
-            <ButtonContainer>
-              {data.Towns.map((c, k) => (
-                <Button
-                  onClick={() => {
-                    townRef.current = c;
-                    console.log(JSON.parse(townRef.current?.lon ?? ""));
-                    setCenter([
-                      JSON.parse(townRef.current?.lat ?? ""),
-                      JSON.parse(townRef.current?.lon ?? ""),
-                    ]);
-                  }}
-                  primary={townRef.current?.name === c.name}
-                  margin="xsmall"
-                  key={k}
-                  label={c.name}
-                ></Button>
-              ))}
-            </ButtonContainer>
-          </Tab>
-        </Tabs>
-      </Sidebar>
+      <ShopsSideMenu
+        onClose={() => {
+          setShowSidebar(false);
+          setIsOpenMobile(false);
+        }}
+        onSearch={setSearch}
+        isOpen={showSidebar}
+        isOpenMobile={isOpenMobile}
+        search={search}
+        onSelectCategory={(c) => {
+          setCategory(category === c ? null : c);
+        }}
+        selectedCategory={category}
+        data={data}
+        onSelectTown={(c) =>
+          setCenter([c?.location?.latitude ?? 0, c?.location?.longitude ?? 0])
+        }
+      />
     </>
   );
 };
