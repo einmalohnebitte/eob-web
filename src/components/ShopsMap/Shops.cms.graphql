@@ -13,11 +13,23 @@ query Shops {
       name
       isMain
     }
+    shopTown {
+      name
+    }
   }
 
   shopCategories {
     id
     name
     isMain
+  }
+
+  shopTowns {
+    id
+    name
+    location {
+      latitude
+      longitude
+    }
   }
 }
