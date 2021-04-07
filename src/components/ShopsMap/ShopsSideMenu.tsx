@@ -1,44 +1,32 @@
-import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
-import { COLORS } from "@/constants/colors";
 import {
-  HEADER_HEIGHT,
-  HEADER_HEIGHT_MOBILE,
-  MQ_MOBILE,
-} from "@/constants/MediaQueries";
+  Blue,
+  BlueInverted,
+  Button,
+  Pink,
+  PinkInverted,
+} from "@/components/@UI/Buttons";
+import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
+import { MQ_MOBILE } from "@/constants/MediaQueries";
 import { useTranslations } from "@/translate";
-import { Box, Button, Tab, Tabs, TextInput } from "grommet";
 import React, { useState } from "react";
-import { GrFormClose } from "react-icons/gr";
+import { MdClose } from "react-icons/md";
 import styled from "styled-components";
+import tw from "twin.macro";
+
+import { Search } from "./Search";
 
 const Sidebar = styled.div<{ isOpen: boolean; isOpenMobile: boolean }>`
-  height: 100%;
+  ${tw`pb-28 h-full fixed bg-white flex left-0 overflow-x-hidden flex-col rounded-md shadow-lg duration-500`}
   width: ${({ isOpen }) => (isOpen ? "25%" : "0")};
   min-width: ${({ isOpen }) => (isOpen ? "400px" : "0")};
-  position: fixed;
   z-index: 99999;
-  top: ${HEADER_HEIGHT}px;
-  left: 0;
-  background-color: white;
-  overflow-x: hidden;
-  transition: 0.5s;
-
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-  border-radius: 4px;
-
-  display: flex;
-  flex-direction: column;
+  top: ${90}px;
 
   @media ${MQ_MOBILE} {
-    top: ${HEADER_HEIGHT_MOBILE}px;
+    top: ${70}px;
     width: ${({ isOpenMobile }) => (isOpenMobile ? "100%" : "0")};
     min-width: ${({ isOpenMobile }) => (isOpenMobile ? "100%" : "0")};
   }
-`;
-
-const ButtonContainer = styled.div`
-  display: inline-block;
-  padding: 20px;
 `;
 
 export const ShopsSideMenu: React.FC<{
@@ -73,82 +61,75 @@ export const ShopsSideMenu: React.FC<{
   const suggestions = shops
     .slice(0, 6)
     .filter((s) => s.name)
-    .map((s) => ({ label: s.name, value: s.name }));
+    .map((s) => s.name);
+
   return (
     <Sidebar isOpen={isOpen} isOpenMobile={isOpenMobile}>
-      <Box onClick={onClose} pad="xsmall" align="end">
-        <GrFormClose />
-      </Box>
+      <div role="presentation" onClick={onClose} css={tw`p-2 flex justify-end`}>
+        <MdClose size={25} />
+      </div>
 
-      <Box width="medium" pad="small">
-        <TextInput
-          name="search"
-          placeholder={intl("SEARCH")}
-          onChange={(e) => onSearch(e.target?.value)}
-          value={search ?? ""}
+      <div css={tw`p-4`}>
+        <Search
           suggestions={suggestions}
+          onSearch={onSearch}
+          search={search ?? ""}
         />
-      </Box>
-      <Tabs
-        style={{ height: "80%" }}
-        onActive={(e) => {
-          setActiveTab(e);
-        }}
-      >
-        <Tab
-          title={
-            <Box
-              style={{
-                color: activeTab === 0 ? COLORS.BRAND : COLORS.LIGHT_BLACK,
-              }}
-              pad="xsmall"
-            >
-              {intl("CATEGORIES")}
-            </Box>
-          }
-        >
-          <ButtonContainer>
+      </div>
+      <div>
+        <div css={tw`flex justify-center`}>
+          <Button
+            onClick={() => setActiveTab(0)}
+            css={[
+              tw`text-2xl  border-solid  border-2 m-2`,
+              activeTab === 0 ? tw`text-gray-900` : tw`text-gray-400`,
+            ]}
+          >
+            {intl("CATEGORIES")}
+          </Button>
+
+          <Button
+            onClick={() => setActiveTab(1)}
+            css={[
+              tw`text-2xl  border-solid  border-2 m-2`,
+              activeTab === 1 ? tw`text-gray-900` : tw`text-gray-400`,
+            ]}
+          >
+            {intl("TOWNS")}
+          </Button>
+        </div>
+
+        {activeTab === 0 ? (
+          <div>
             {shopCategories.map((c) => (
               <Button
-                primary={c === selectedCategory}
-                margin="xsmall"
                 key={c.id}
-                label={c.name}
                 onClick={() => {
                   onSelectCategory(c);
                 }}
-              ></Button>
+                css={[tw`m-2`, c === selectedCategory ? Pink : PinkInverted]}
+              >
+                {c.name}
+              </Button>
             ))}
-          </ButtonContainer>
-        </Tab>
-        <Tab
-          title={
-            <Box
-              style={{
-                color: activeTab === 1 ? COLORS.BRAND : COLORS.LIGHT_BLACK,
-              }}
-              pad="xsmall"
-            >
-              {intl("TOWNS")}
-            </Box>
-          }
-        >
-          <ButtonContainer>
+          </div>
+        ) : (
+          <div>
             {shopTowns.map((c) => (
               <Button
                 onClick={() => {
                   setTown(c);
                   onSelectTown(c);
                 }}
-                primary={town === c}
-                margin="xsmall"
+                css={[tw`m-2`, c === town ? Blue : BlueInverted]}
                 key={c.id}
-                label={c.name}
-              ></Button>
+              >
+                {c.name}
+              </Button>
             ))}
-          </ButtonContainer>
-        </Tab>
-      </Tabs>
+          </div>
+        )}
+      </div>
     </Sidebar>
   );
 };

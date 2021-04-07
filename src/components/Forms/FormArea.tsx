@@ -1,4 +1,4 @@
-import { useTranslations } from "@/translate";
+import { TwInput } from "@/components/Forms/FormInput";
 import { useFormik } from "formik";
 import React from "react";
 import tw from "twin.macro";
@@ -10,7 +10,6 @@ type PropType = {
 };
 
 export const FormArea: React.FC<PropType> = ({ field, formik, label }) => {
-  const intl = useTranslations();
   return (
     <div css={tw`m-2`}>
       {formik.errors[field] && formik.touched[field] && (
@@ -23,11 +22,14 @@ export const FormArea: React.FC<PropType> = ({ field, formik, label }) => {
         {field}
       </label>
       <textarea
-        css={tw`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow`}
+        css={`
+          border-width: 1px;
+          ${TwInput}
+        `}
         name={field}
         id={field}
         onChange={formik.handleChange}
-        placeholder={intl(label as any)}
+        // placeholder={intl(label as any)}
         value={formik.values[field]}
       />
     </div>

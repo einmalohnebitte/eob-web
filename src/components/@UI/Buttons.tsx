@@ -2,15 +2,23 @@ import styled from "styled-components";
 import tw from "twin.macro";
 
 export const Button = styled.button`
-  ${tw`text-white font-lemonism tracking-wider py-2 px-6 rounded`}
+  ${tw`text-xl text-white font-lemonism tracking-wider py-2 px-6 rounded focus:outline-none`}
 `;
+
+export const Black = `text-gray-800`;
+
+export const Pink = tw`bg-pink-600 hover:bg-pink-700`;
+export const PinkInverted = tw`bg-white text-pink-600 border-solid  border-2 border-pink-600 hover:text-pink-700`;
 
 export const ButtonPink = styled(Button)`
-  ${tw`bg-pink-600 hover:bg-pink-700`}
+  ${Pink}
 `;
 
+export const Blue = tw`bg-blue-500 hover:bg-blue-700`;
+export const BlueInverted = tw`bg-white text-blue-600 border-solid  border-2 border-blue-600 hover:text-blue-700`;
+
 export const ButtonBlue = styled(Button)`
-  ${tw`bg-blue-500 hover:bg-blue-700`}
+  ${Blue}
 `;
 
 export const ButtonYellow = styled(Button)`
