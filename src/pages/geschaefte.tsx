@@ -1,7 +1,9 @@
+import { Button } from "@/components/@UI/Buttons";
 import { Loading } from "@/components/@UI/Loading";
 import { Section } from "@/components/@UI/Section";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/PageSections/HeadMeta";
+import { Search } from "@/components/ShopsMap/Search";
 import {
   ShopsDocument,
   ShopsQuery,
@@ -9,10 +11,8 @@ import {
 import { ShopsSideMenu } from "@/components/ShopsMap/ShopsSideMenu";
 import { useReactQueryCms } from "@/components/useReactQuery";
 import { graphCmsRequest } from "@/graphql/graphcms";
-import { useTranslations } from "@/translate";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { TranslationsDocument } from "@/translate/Translations.cms.generated";
-import { Box, Button, TextInput } from "grommet";
 import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
@@ -20,7 +20,7 @@ import { GrNext } from "react-icons/gr";
 import styled from "styled-components";
 import tw from "twin.macro";
 
-import { MQ_MOBILE, MQ_NOT_MOBILE } from "../constants/MediaQueries";
+import { MQ_MOBILE } from "../constants/MediaQueries";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(TranslationsDocument, {
@@ -51,14 +51,7 @@ const OpenButton = styled(Button)<{ isVisible: boolean }>`
   }
 `;
 
-const MobileOpen = styled(Box)`
-  @media ${MQ_NOT_MOBILE} {
-    display: none;
-  }
-`;
-
 const Shops: React.FC = () => {
-  const intl = useTranslations();
   const { data, isLoading } = useReactQueryCms(ShopsDocument);
 
   const [search, setSearch] = useState<string | null>(null);
@@ -100,27 +93,22 @@ const Shops: React.FC = () => {
   return (
     <>
       <HeadMeta />
-      <Box>
+      <div>
         <OpenButton
           isVisible={!showSidebar}
-          icon={<GrNext />}
           onClick={() => setShowSidebar(!showSidebar)}
         >
-          Open
+          <GrNext />
         </OpenButton>
-        <MobileOpen
-          pad="small"
-          width="100%"
+        <div
+          css={tw`p-2 w-full md:hidden`}
+          role="presentation"
           onClick={() => setIsOpenMobile(true)}
         >
-          <TextInput
-            name="search"
-            placeholder={intl("SEARCH")}
-            value={search ?? ""}
-          />
-        </MobileOpen>
+          <Search search={search ?? ""} disabled={true} />
+        </div>
         <ShopsMap center={center} shops={shops} height="100vh" />
-      </Box>
+      </div>
 
       <ShopsSideMenu
         onClose={() => {
