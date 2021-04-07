@@ -1,4 +1,3 @@
-import { useTranslations } from "@/translate";
 import { useFormik } from "formik";
 import React from "react";
 import tw from "twin.macro";
@@ -18,7 +17,6 @@ export const FormInput: React.FC<PropType> = ({
   label,
   type = "text",
 }) => {
-  const intl = useTranslations();
   return (
     <div css={tw`m-2`}>
       {formik.errors[field] && formik.touched[field] && (
@@ -27,11 +25,14 @@ export const FormInput: React.FC<PropType> = ({
       <label css={tw`block`} htmlFor={field}>
         <span css={tw`text-gray-700`}> {field}</span>
         <input
-          css={TwInput}
+          css={`
+            border-width: 1px;
+            ${TwInput}
+          `}
           name={field}
           id={field}
           onChange={formik.handleChange}
-          placeholder={intl(label as any)}
+          // placeholder={intl(label as any)}
           type={type}
           value={formik.values[field]}
         />

@@ -12,6 +12,11 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      backgroundColor: ["checked"],
+      borderColor: ["checked"],
+    },
+  },
   plugins: [require("@tailwindcss/custom-forms")],
 };
