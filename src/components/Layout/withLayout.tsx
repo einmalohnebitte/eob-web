@@ -1,7 +1,9 @@
 import { useTranslations } from "@/translate";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import CookieConsent from "react-cookie-consent";
+import { FaQuestion } from "react-icons/fa";
 import { QueryClient, QueryClientProvider } from "react-query";
 import styled from "styled-components";
 import tw from "twin.macro";
@@ -26,6 +28,7 @@ const queryClient = new QueryClient();
 // eslint-disable-next-line react/display-name
 export const withLayout = () => (Comp: any) => (props: any) => {
   const intl = useTranslations(props.translations);
+  const router = useRouter();
   return (
     <>
       <QueryClientProvider client={queryClient}>
@@ -46,6 +49,10 @@ export const withLayout = () => (Comp: any) => (props: any) => {
             <a>{intl("COOKIE_LINK")}</a>
           </LinkCookie>
         </CookieConsent>
+        <FaQuestion
+          onClick={() => router.push("/faq")}
+          css={tw`w-8 h-8 fixed text-black bottom-2.5 right-2.5 cursor-pointer`}
+        />
       </QueryClientProvider>
     </>
   );
