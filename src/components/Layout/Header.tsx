@@ -23,15 +23,17 @@ export const Header: React.FC = () => {
         css={tw`bg-white items-start md:items-center max-w-screen-lg mx-auto flex justify-between`}
       >
         {!isOpen && (
-          <picture>
-            <img
-              css={tw`mx-2 h-12 w-12 md:h-16 md:w-16 rounded-full border-2 border-solid border-gray-300`}
-              src="/images/logo_header.webp"
-              width="64"
-              height="64"
-              alt="logo"
-            />
-          </picture>
+          <Link href={"/"}>
+            <picture>
+              <img
+                css={tw`cursor-pointer mx-2 h-12 w-12 md:h-16 md:w-16 rounded-full border-2 border-solid border-gray-300`}
+                src="/images/logo_header.webp"
+                width="64"
+                height="64"
+                alt="logo"
+              />
+            </picture>
+          </Link>
         )}
 
         <nav
