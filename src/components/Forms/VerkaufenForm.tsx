@@ -9,7 +9,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import tw from "twin.macro";
 import * as Yup from "yup";
 
-import { ButtonBlue } from "../@UI/Buttons";
+import { ButtonYellow } from "../@UI/Buttons";
 import { H2 } from "../@UI/Texts";
 import { FormArea } from "./FormArea";
 import { FormCheckbox } from "./FormCheckbox";
@@ -74,9 +74,9 @@ export const VerkaufenForm = () => {
     return (
       <div css={tw`flex items-center justify-center`}>
         {intl("FORM_CONTACT_ERROR")}
-        <ButtonBlue onClick={() => sendMail.reset()}>
+        <ButtonYellow onClick={() => sendMail.reset()}>
           {intl("FORM_OK")}
-        </ButtonBlue>
+        </ButtonYellow>
       </div>
     );
   }
@@ -127,13 +127,14 @@ export const VerkaufenForm = () => {
         <FormCheckbox
           formik={formik as any}
           field={"consent"}
+          checkedColor="yellow"
           value={formik.values.consent ? 1 : 0}
           label={intl("FORM_PRIVACY")}
         />
 
-        <ButtonBlue css={tw`m-6`} type="submit">
+        <ButtonYellow css={tw`m-6`} type="submit">
           {intl("FORM_SUBMIT")}
-        </ButtonBlue>
+        </ButtonYellow>
       </form>
     </div>
   );
