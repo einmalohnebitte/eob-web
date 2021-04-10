@@ -805,6 +805,7 @@ export type Blog = Node & {
   date?: Maybe<Scalars['Date']>;
   content?: Maybe<RichText>;
   slug?: Maybe<Scalars['String']>;
+  abstract?: Maybe<Scalars['String']>;
   /** List of Blog versions */
   history: Array<Version>;
 };
@@ -885,6 +886,8 @@ export type BlogCreateInput = {
   /** content input for default locale (de) */
   content?: Maybe<Scalars['RichTextAST']>;
   slug?: Maybe<Scalars['String']>;
+  /** abstract input for default locale (de) */
+  abstract?: Maybe<Scalars['String']>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<BlogCreateLocalizationsInput>;
 };
@@ -894,6 +897,7 @@ export type BlogCreateLocalizationDataInput = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   title: Scalars['String'];
   content?: Maybe<Scalars['RichTextAST']>;
+  abstract?: Maybe<Scalars['String']>;
 };
 
 export type BlogCreateLocalizationInput = {
@@ -1057,7 +1061,9 @@ export enum BlogOrderByInput {
   DateAsc = 'date_ASC',
   DateDesc = 'date_DESC',
   SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC'
+  SlugDesc = 'slug_DESC',
+  AbstractAsc = 'abstract_ASC',
+  AbstractDesc = 'abstract_DESC'
 }
 
 export type BlogUpdateInput = {
@@ -1067,6 +1073,8 @@ export type BlogUpdateInput = {
   /** content input for default locale (de) */
   content?: Maybe<Scalars['RichTextAST']>;
   slug?: Maybe<Scalars['String']>;
+  /** abstract input for default locale (de) */
+  abstract?: Maybe<Scalars['String']>;
   /** Manage document localizations */
   localizations?: Maybe<BlogUpdateLocalizationsInput>;
 };
@@ -1074,6 +1082,7 @@ export type BlogUpdateInput = {
 export type BlogUpdateLocalizationDataInput = {
   title?: Maybe<Scalars['String']>;
   content?: Maybe<Scalars['RichTextAST']>;
+  abstract?: Maybe<Scalars['String']>;
 };
 
 export type BlogUpdateLocalizationInput = {
@@ -1114,6 +1123,8 @@ export type BlogUpdateManyInput = {
   date?: Maybe<Scalars['Date']>;
   /** content input for default locale (de) */
   content?: Maybe<Scalars['RichTextAST']>;
+  /** abstract input for default locale (de) */
+  abstract?: Maybe<Scalars['String']>;
   /** Optional updates to localizations */
   localizations?: Maybe<BlogUpdateManyLocalizationsInput>;
 };
@@ -1121,6 +1132,7 @@ export type BlogUpdateManyInput = {
 export type BlogUpdateManyLocalizationDataInput = {
   title?: Maybe<Scalars['String']>;
   content?: Maybe<Scalars['RichTextAST']>;
+  abstract?: Maybe<Scalars['String']>;
 };
 
 export type BlogUpdateManyLocalizationInput = {
@@ -1312,6 +1324,25 @@ export type BlogWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
+  abstract?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  abstract_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  abstract_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  abstract_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  abstract_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  abstract_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  abstract_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  abstract_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  abstract_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  abstract_not_ends_with?: Maybe<Scalars['String']>;
 };
 
 /** References Blog record uniquely */
