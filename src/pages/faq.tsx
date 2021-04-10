@@ -41,7 +41,7 @@ const FaqPage: React.FC<FaqsQuery> = ({ faqs }) => {
             ]}
             key={k}
           >
-            <div css={tw`flex justify-between`}>
+            <div css={tw`flex justify-between transition-all`}>
               <H2 css={tw`my-2`}>{item.question}</H2>
               {openFaq[k] ? (
                 <MdKeyboardArrowUp
@@ -53,13 +53,13 @@ const FaqPage: React.FC<FaqsQuery> = ({ faqs }) => {
                 <MdKeyboardArrowDown size={40} onClick={() => toggleFaq(k)} />
               )}
             </div>
-            {openFaq[k] && (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: item.answer?.html ?? "",
-                }}
-              />
-            )}
+
+            <div
+              css={[!openFaq[k] && tw`hidden transition-all duration-1000`]}
+              dangerouslySetInnerHTML={{
+                __html: item.answer?.html ?? "",
+              }}
+            />
           </div>
         ))}
       </Section>
