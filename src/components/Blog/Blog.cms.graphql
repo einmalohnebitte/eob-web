@@ -2,6 +2,7 @@ query Blogs($locale: [Locale!]!) {
   blogs {
     title
     date
+    abstract
   }
 
   translations(locales: $locale) {

@@ -1,12 +1,11 @@
+import { Card } from "@/components/@UI/Card";
 import { Section } from "@/components/@UI/Section";
-import { H2 } from "@/components/@UI/Texts";
 import { withLayout } from "@/components/Layout";
 import {
   MemberDocument,
   MemberQuery,
   MembersDocument,
 } from "@/components/Members/Members.cms.generated";
-import { TeamPhoto } from "@/components/Members/TeamPhoto";
 import { Locale } from "@/generated/graphql";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
@@ -35,8 +34,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 const TeamPage: React.FC<MemberQuery> = ({ members }) => (
   <Section>
-    <TeamPhoto src={members[0]?.picture?.url} />
-    <H2 css={tw`my-4`}>{members[0]?.name}</H2>
+    <div css={tw`max-w-sm float-left m-4`}>
+      <Card
+        img={members[0]?.picture?.url}
+        title={members[0]?.name ?? ""}
+      ></Card>
+    </div>
+
     <div
       dangerouslySetInnerHTML={{
         __html: members[0]?.bio?.html ?? "",

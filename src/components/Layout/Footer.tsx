@@ -1,4 +1,5 @@
 import { useTranslations } from "@/translate";
+import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
@@ -25,9 +26,18 @@ export const AppFooter = () => {
       />
 
       <p>
-        <a href="/impressum/">{intl("FOOTER_IMPRESSUM")}</a>{" "}
-        <a href="/datenschutzerklarung/">{intl("FOOTER_DATA")}</a>{" "}
-        <a href="/press/">{intl("FOOTER_PRESS")}</a>
+        <Link href="/impressum">
+          <a>{intl("FOOTER_IMPRESSUM")}</a>
+        </Link>{" "}
+        <Link href="/datenschutzerklarung">
+          <a>{intl("FOOTER_DATA")}</a>
+        </Link>{" "}
+        <Link href="/press">
+          <a>{intl("FOOTER_PRESS")}</a>
+        </Link>{" "}
+        <Link href="/blog">
+          <a>{intl("Blog")}</a>
+        </Link>
       </p>
       <p className="center-block">
         Made with <HearthStyle>♥</HearthStyle> in Munich by{" "}

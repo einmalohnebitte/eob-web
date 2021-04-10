@@ -1,9 +1,10 @@
+import { Card } from "@/components/@UI/Card";
+import { Grid } from "@/components/@UI/Grid";
 import { withLayout } from "@/components/Layout";
 import {
   MembersDocument,
   MembersQuery,
 } from "@/components/Members/Members.cms.generated";
-import { TeamPhoto } from "@/components/Members/TeamPhoto";
 import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
@@ -11,29 +12,10 @@ import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
-import styled from "styled-components";
 import tw from "twin.macro";
 
 import { Section, SplitSection } from "../components/@UI/Section";
 import { H1, H2 } from "../components/@UI/Texts";
-import { MQ_DESKTOP, MQ_MOBILE } from "../constants/MediaQueries";
-
-const GridStyle = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  @media ${MQ_MOBILE} {
-    grid-template-columns: 1fr;
-  }
-  @media ${MQ_DESKTOP} {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  a {
-    font-weight: normal;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-`;
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(MembersDocument, {
@@ -80,23 +62,17 @@ const ArticlePage: React.FC<MembersQuery> = ({
       </div>
       <Section>
         <H2 css={tw`m-4`}>{intl("TEAM")}</H2>
-        <GridStyle>
+        <Grid>
           {members.map((item, k) => (
             <Link key={k} href={`/team/${item.slug}`}>
-              <a css={tw`m-4 border-solid border-2 border-gray-600 `}>
-                <TeamPhoto src={item?.picture?.url} />
-                <div css={tw`p-4`}>
-                  <b>{item.name}</b>
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: item.abstract ?? "",
-                    }}
-                  />
-                </div>
-              </a>
+              <Card
+                img={item?.picture?.url}
+                title={item.name ?? ""}
+                message={item.abstract ?? ""}
+              ></Card>
             </Link>
           ))}
-        </GridStyle>
+        </Grid>
       </Section>
       <div
         css={`

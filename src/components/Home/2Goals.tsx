@@ -26,13 +26,14 @@ const BackgroundWrapper: React.FC<{ activeIndex: number }> = ({
   children,
 }) =>
   // eslint-disable-next-line no-nested-ternary
-  activeIndex === 2 ? (
+  activeIndex === 1 ? (
     <BackgroundYellowWrapper>{children}</BackgroundYellowWrapper>
-  ) : activeIndex === 3 ? (
+  ) : activeIndex === 2 ? (
     <BackgroundPinkWrapper>{children}</BackgroundPinkWrapper>
   ) : (
     <BackgroundBlueWrapper>{children}</BackgroundBlueWrapper>
   );
+
 export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   const intl = useTranslations();
   const { push } = useRouter();

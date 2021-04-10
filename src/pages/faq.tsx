@@ -4,7 +4,8 @@ import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
-import React from "react";
+import React, { useState } from "react";
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import tw from "twin.macro";
 
 import { Section } from "../components/@UI/Section";
@@ -22,19 +23,43 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 
 const FaqPage: React.FC<FaqsQuery> = ({ faqs }) => {
   const intl = useTranslations();
+  const [openFaq, setOpenFaq] = useState<{ [key: number]: boolean }>({});
+  const toggleFaq = (k: number): void =>
+    setOpenFaq({ ...openFaq, ...{ [k]: !openFaq[k] } });
+
   return (
     <>
       <Section>
-        <H1>{intl("FAQ")}</H1>
+        <H1 css={tw`mb-2`}>{intl("FAQ")}</H1>
 
         {faqs.map((item, k) => (
-          <div css={tw`p-4`} key={k}>
-            <H2 css={tw`my-2`}>{item.question}</H2>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: item.answer?.html ?? "",
-              }}
-            />
+          <div
+            css={[
+              tw`p-2 border-0 border-l-2 border-b border-r  border-gray-300`,
+              openFaq[k] ? tw`bg-white border-pink-500` : tw`bg-blue-50`,
+              k === 0 && tw`border-t`,
+            ]}
+            key={k}
+          >
+            <div css={tw`flex justify-between`}>
+              <H2 css={tw`my-2`}>{item.question}</H2>
+              {openFaq[k] ? (
+                <MdKeyboardArrowUp
+                  css={tw`text-pink-500`}
+                  onClick={() => toggleFaq(k)}
+                  size={40}
+                />
+              ) : (
+                <MdKeyboardArrowDown size={40} onClick={() => toggleFaq(k)} />
+              )}
+            </div>
+            {openFaq[k] && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: item.answer?.html ?? "",
+                }}
+              />
+            )}
           </div>
         ))}
       </Section>
