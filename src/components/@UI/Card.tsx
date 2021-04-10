@@ -9,8 +9,12 @@ export const Card: React.FC<{
   subtitle?: string;
   message?: string;
   onClick?: (event: any) => void;
-  color: "pink" | "blue" | "yellow";
+  color?: "pink" | "blue" | "yellow";
 }> = ({ img, onClick, title, message, subtitle, color }) => {
+  if (!color) {
+    const index = Math.round(Math.random() * 100) % 3;
+    color = index === 0 ? "blue" : index === 1 ? "pink" : "yellow";
+  }
   return (
     <div
       role="presentation"
