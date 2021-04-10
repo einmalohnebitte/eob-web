@@ -9,15 +9,22 @@ export const Card: React.FC<{
   subtitle?: string;
   message?: string;
   onClick?: (event: any) => void;
-}> = ({ img, onClick, title, message, subtitle }) => {
+  color?: "pink" | "blue" | "yellow";
+}> = ({ img, onClick, title, message, subtitle, color }) => {
+  if (!color) {
+    const index = Math.round(Math.random() * 100) % 3;
+    color = index === 0 ? "blue" : index === 1 ? "pink" : "yellow";
+  }
   return (
     <div
       role="presentation"
       onClick={onClick}
-      css={[
-        tw`max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden m-2`,
-        onClick && tw`cursor-pointer`,
-      ]}
+      css={`
+        box-shadow: 0 10px 15px -3px ${color === "blue" ? "#1d4ed8" : color === "yellow" ? "#b45309" : "#be185d"},
+          0 4px 6px -2px ${color === "blue" ? "#dbeafe" : color === "yellow" ? "#fef3c7" : "#fce7f3"};
+
+        ${tw` cursor-pointer max-w-md mx-auto bg-white rounded   overflow-hidden m-4   `};
+      `}
     >
       {img && (
         <img

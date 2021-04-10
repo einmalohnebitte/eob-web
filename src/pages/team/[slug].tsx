@@ -38,6 +38,7 @@ const TeamPage: React.FC<MemberQuery> = ({ members }) => (
       <Card
         img={members[0]?.picture?.url}
         title={members[0]?.name ?? ""}
+        // color={"blue"}
       ></Card>
     </div>
 

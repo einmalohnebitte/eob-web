@@ -69,6 +69,7 @@ const ArticlePage: React.FC<MembersQuery> = ({
                 img={item?.picture?.url}
                 title={item.name ?? ""}
                 message={item.abstract ?? ""}
+                // color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
               ></Card>
             </Link>
           ))}
