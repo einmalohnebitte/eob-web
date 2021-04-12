@@ -803,6 +803,7 @@ const data = {
         location: { latitude: 48.810012, longitude: 11.456921 },
       },
     ],
+    shopetypes: [],
   },
 };
 
@@ -818,6 +819,8 @@ const Template: Story = (args) => (
       isOpen={true}
       isOpenMobile={true}
       selectedCategory={null}
+      onSelectType={(e) => console.log(e)}
+      selectedType={null}
     />
   </>
 );
