@@ -7286,6 +7286,7 @@ export type Shop = Node & {
   shopStatus?: Maybe<ShopStatus>;
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
   location?: Maybe<Location>;
   shopBundesland?: Maybe<ShopBundesland>;
   shopTown?: Maybe<ShopTown>;
@@ -8195,6 +8196,7 @@ export type ShopCreateInput = {
   shopStatus?: Maybe<ShopStatusCreateOneInlineInput>;
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
   shopBundesland?: Maybe<ShopBundeslandCreateOneInlineInput>;
   shopTown?: Maybe<ShopTownCreateOneInlineInput>;
@@ -8350,6 +8352,25 @@ export type ShopManyWhereInput = {
   openinghours_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   openinghours_not_ends_with?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  address_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  address_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  address_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  address_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  address_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  address_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  address_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  address_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  address_not_ends_with?: Maybe<Scalars['String']>;
   shopBundesland?: Maybe<ShopBundeslandWhereInput>;
   shopTown?: Maybe<ShopTownWhereInput>;
   categories_every?: Maybe<ShopCategoryWhereInput>;
@@ -8494,6 +8515,8 @@ export enum ShopOrderByInput {
   NameDesc = 'name_DESC',
   OpeninghoursAsc = 'openinghours_ASC',
   OpeninghoursDesc = 'openinghours_DESC',
+  AddressAsc = 'address_ASC',
+  AddressDesc = 'address_DESC',
   EmailAsc = 'email_ASC',
   EmailDesc = 'email_DESC',
   StickerFrontAsc = 'stickerFront_ASC',
@@ -9317,6 +9340,7 @@ export type ShopUpdateInput = {
   shopStatus?: Maybe<ShopStatusUpdateOneInlineInput>;
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
   shopBundesland?: Maybe<ShopBundeslandUpdateOneInlineInput>;
   shopTown?: Maybe<ShopTownUpdateOneInlineInput>;
@@ -9353,6 +9377,7 @@ export type ShopUpdateManyInlineInput = {
 export type ShopUpdateManyInput = {
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
   email?: Maybe<Scalars['String']>;
   stickerFront?: Maybe<Scalars['Int']>;
@@ -9524,6 +9549,25 @@ export type ShopWhereInput = {
   openinghours_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   openinghours_not_ends_with?: Maybe<Scalars['String']>;
+  address?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  address_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  address_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  address_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  address_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  address_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  address_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  address_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  address_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  address_not_ends_with?: Maybe<Scalars['String']>;
   shopBundesland?: Maybe<ShopBundeslandWhereInput>;
   shopTown?: Maybe<ShopTownWhereInput>;
   categories_every?: Maybe<ShopCategoryWhereInput>;

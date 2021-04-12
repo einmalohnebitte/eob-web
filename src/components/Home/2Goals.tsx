@@ -1,50 +1,79 @@
+import { Card } from "@/components/@UI/Card";
 import { PageSectionsQuery } from "@/components/PageSections/PageSections.cms.generated";
 import { useTranslations } from "@/translate";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React from "react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as _ from "styled-components/cssprop";
 import tw from "twin.macro";
 
-import {
-  BackgroundBlueWrapper,
-  BackgroundPinkWrapper,
-  BackgroundYellowWrapper,
-} from "../@UI/BackgroundWrapper";
-import { ButtonBlue, ButtonPink, ButtonYellow } from "../@UI/Buttons";
-import { SplitSection } from "../@UI/Section";
-import { H2 } from "../@UI/Texts";
+// import {
+//   BackgroundBlueWrapper,
+//   BackgroundPinkWrapper,
+//   BackgroundYellowWrapper,
+// } from "../@UI/BackgroundWrapper";
+// import { ButtonBlue, ButtonPink, ButtonYellow } from "../@UI/Buttons";
+import { Section } from "../@UI/Section";
 
-enum PageStates {
-  BUY,
-  SELL,
-  SPREAD,
-}
+// import { H2 } from "../@UI/Texts";
 
-const BackgroundWrapper: React.FC<{ activeIndex: number }> = ({
-  activeIndex,
-  children,
-}) =>
-  // eslint-disable-next-line no-nested-ternary
-  activeIndex === 1 ? (
-    <BackgroundYellowWrapper>{children}</BackgroundYellowWrapper>
-  ) : activeIndex === 2 ? (
-    <BackgroundPinkWrapper>{children}</BackgroundPinkWrapper>
-  ) : (
-    <BackgroundBlueWrapper>{children}</BackgroundBlueWrapper>
-  );
+// enum PageStates {
+//   BUY,
+//   SELL,
+//   SPREAD,
+// }
+
+// const BackgroundWrapper: React.FC<{ activeIndex: number }> = ({
+//   activeIndex,
+//   children,
+// }) =>
+//   // eslint-disable-next-line no-nested-ternary
+//   activeIndex === 1 ? (
+//     <BackgroundYellowWrapper>{children}</BackgroundYellowWrapper>
+//   ) : activeIndex === 2 ? (
+//     <BackgroundPinkWrapper>{children}</BackgroundPinkWrapper>
+//   ) : (
+//     <BackgroundBlueWrapper>{children}</BackgroundBlueWrapper>
+//   );
 
 export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   const intl = useTranslations();
   const { push } = useRouter();
-  const [current, setCurrent] = useState(PageStates.BUY);
+  // const [current, setCurrent] = useState(PageStates.BUY);
   const buy = pageSections.find((s) => s.code === "einkaufen");
   const sell = pageSections.find((s) => s.code === "verkaufen");
   const spread = pageSections.find((s) => s.code === "verbreiten");
 
   return (
-    <BackgroundWrapper activeIndex={current}>
-      <SplitSection.Section>
+    <div
+      css={`
+        background-image: linear-gradient(#dddddd, white);
+      `}
+    >
+      <Section css={tw` flex`}>
+        <Card
+          onClick={() => push("/einkaufen")}
+          color="blue"
+          title={intl("BUY")}
+          img={buy?.picture[0].url}
+          resize={true}
+        />
+        <Card
+          onClick={() => push("/verkaufen")}
+          color="yellow"
+          img={sell?.picture[0].url}
+          title={intl("SELL")}
+          resize={true}
+        />
+        <Card
+          onClick={() => push("/verbreiten")}
+          color="pink"
+          img={spread?.picture[0].url}
+          title={intl("SPREAD")}
+          resize={true}
+        />
+      </Section>
+      {/* <SplitSection.Section>
         <SplitSection.Main>
           <div css={tw`p-4`}>
             <H2
@@ -128,7 +157,7 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
             <img src={sell?.picture[0].url} alt="Verkaufen" />
           )}
         </SplitSection.Side>
-      </SplitSection.Section>
-    </BackgroundWrapper>
+      </SplitSection.Section> */}
+    </div>
   );
 };

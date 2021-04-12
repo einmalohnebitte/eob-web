@@ -10,6 +10,9 @@ export const Black = `text-gray-800`;
 export const Pink = tw`bg-pink-600 hover:bg-pink-700`;
 export const PinkInverted = tw`bg-white text-pink-600 border-solid  border-2 border-pink-600 hover:text-pink-700`;
 
+export const Yellow = tw`bg-yellow-600 hover:bg-yellow-700`;
+export const YellowInverted = tw`bg-white text-yellow-600 border-solid  border-2 border-yellow-600 hover:text-yellow-700`;
+
 export const ButtonPink = styled(Button)`
   ${Pink}
 `;
