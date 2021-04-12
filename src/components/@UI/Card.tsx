@@ -9,8 +9,9 @@ export const Card: React.FC<{
   subtitle?: string;
   message?: string;
   onClick?: (event: any) => void;
+  resize?: boolean;
   color?: "pink" | "blue" | "yellow";
-}> = ({ img, onClick, title, message, subtitle, color }) => {
+}> = ({ img, onClick, title, message, subtitle, color, resize }) => {
   if (!color) {
     const index = Math.round(Math.random() * 100) % 3;
     color = index === 0 ? "blue" : index === 1 ? "pink" : "yellow";
@@ -19,16 +20,18 @@ export const Card: React.FC<{
     <div
       role="presentation"
       onClick={onClick}
-      css={`
-        box-shadow: 0 10px 15px -3px ${color === "blue" ? "#1d4ed8" : color === "yellow" ? "#b45309" : "#be185d"},
-          0 4px 6px -2px ${color === "blue" ? "#dbeafe" : color === "yellow" ? "#fef3c7" : "#fce7f3"};
-
-        ${tw` cursor-pointer max-w-md mx-auto bg-white rounded   overflow-hidden m-4   `};
-      `}
+      css={[
+        tw`flex-1 flex flex-col cursor-pointer max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  overflow-hidden m-4   `,
+        color === "blue"
+          ? tw`border-blue-500`
+          : color === "pink"
+          ? tw`border-pink-500`
+          : tw`border-yellow-600`,
+      ]}
     >
       {img && (
         <img
-          css={tw`h-52 w-full object-cover `}
+          css={[tw`h-52 `, !resize && tw` w-full object-cover `]}
           src={img}
           alt="Man looking at item at a store"
         />

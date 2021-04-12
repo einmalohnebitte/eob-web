@@ -64,6 +64,8 @@ const Shops: React.FC = () => {
     ShopsQuery["shopCategories"][0] | null
   >(null);
 
+  const [type, setType] = useState<ShopsQuery["shopetypes"][0] | null>(null);
+
   if (isLoading || !data?.shops) {
     return (
       <Section
@@ -127,6 +129,8 @@ const Shops: React.FC = () => {
         onSelectTown={(c) =>
           setCenter([c?.location?.latitude ?? 0, c?.location?.longitude ?? 0])
         }
+        selectedType={type}
+        onSelectType={(c) => setType(type === c ? null : c)}
       />
     </>
   );

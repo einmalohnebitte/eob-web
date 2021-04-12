@@ -29,13 +29,11 @@ const BlogPage: React.FC<BlogsQuery> = ({ blogs }) => {
     <Section>
       <Grid>
         {blogs.map((item, k) => (
-          // <div css={tw`m-4`} key={k}>
           <Link css={tw`m-4`} key={k} href={`/blog/${item.date}`}>
             <Card
               title={item.title}
               subtitle={item.date}
               message={item.abstract ?? ""}
-              // color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
             ></Card>
           </Link>
           // </div>

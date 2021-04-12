@@ -32,4 +32,9 @@ query Shops {
       longitude
     }
   }
+
+  shopetypes {
+    id
+    name
+  }
 }

@@ -4,6 +4,8 @@ import {
   Button,
   Pink,
   PinkInverted,
+  Yellow,
+  YellowInverted,
 } from "@/components/@UI/Buttons";
 import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
 import { MQ_MOBILE } from "@/constants/MediaQueries";
@@ -34,20 +36,24 @@ export const ShopsSideMenu: React.FC<{
   onSearch: (key: string) => void;
   onSelectCategory: (category: ShopsQuery["shopCategories"][0]) => void;
   onSelectTown: (town: ShopsQuery["shopTowns"][0] | null) => void;
+  onSelectType: (type: ShopsQuery["shopetypes"][0] | null) => void;
   isOpen: boolean;
   isOpenMobile: boolean;
   search: string | null;
   data: ShopsQuery;
   selectedCategory: ShopsQuery["shopCategories"][0] | null;
+  selectedType: ShopsQuery["shopetypes"][0] | null;
 }> = ({
   onClose,
   onSearch,
   onSelectCategory,
   onSelectTown,
+  onSelectType,
   isOpenMobile,
   isOpen,
   search,
   selectedCategory,
+  selectedType,
   data,
 }) => {
   const intl = useTranslations();
@@ -57,7 +63,7 @@ export const ShopsSideMenu: React.FC<{
   if (!data?.shops || !data?.shopTowns || !data?.shopCategories) {
     return null;
   }
-  const { shops, shopTowns, shopCategories } = data;
+  const { shops, shopTowns, shopCategories, shopetypes } = data;
   const suggestions = shops
     .slice(0, 6)
     .filter((s) => s.name)
@@ -82,17 +88,27 @@ export const ShopsSideMenu: React.FC<{
             onClick={() => setActiveTab(0)}
             css={[
               tw`text-2xl  border-solid  border-2 m-2`,
-              activeTab === 0 ? tw`text-gray-900` : tw`text-gray-400`,
+              activeTab === 0 ? Pink : PinkInverted,
             ]}
           >
             {intl("CATEGORIES")}
           </Button>
 
           <Button
+            onClick={() => setActiveTab(2)}
+            css={[
+              tw`text-2xl  border-solid  border-2 m-2`,
+              activeTab === 2 ? Blue : BlueInverted,
+            ]}
+          >
+            {intl("Types")}
+          </Button>
+
+          <Button
             onClick={() => setActiveTab(1)}
             css={[
               tw`text-2xl  border-solid  border-2 m-2`,
-              activeTab === 1 ? tw`text-gray-900` : tw`text-gray-400`,
+              activeTab === 1 ? Yellow : YellowInverted,
             ]}
           >
             {intl("TOWNS")}
@@ -113,7 +129,7 @@ export const ShopsSideMenu: React.FC<{
               </Button>
             ))}
           </div>
-        ) : (
+        ) : activeTab === 1 ? (
           <div>
             {shopTowns.map((c) => (
               <Button
@@ -121,7 +137,21 @@ export const ShopsSideMenu: React.FC<{
                   setTown(c);
                   onSelectTown(c);
                 }}
-                css={[tw`m-2`, c === town ? Blue : BlueInverted]}
+                css={[tw`m-2`, c === town ? Yellow : YellowInverted]}
+                key={c.id}
+              >
+                {c.name}
+              </Button>
+            ))}
+          </div>
+        ) : (
+          <div>
+            {shopetypes.map((c) => (
+              <Button
+                onClick={() => {
+                  onSelectType?.(c);
+                }}
+                css={[tw`m-2`, c === selectedType ? Blue : BlueInverted]}
                 key={c.id}
               >
                 {c.name}
