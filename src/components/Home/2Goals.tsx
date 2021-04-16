@@ -1,7 +1,6 @@
 import { Card } from "@/components/@UI/Card";
 import { PageSectionsQuery } from "@/components/PageSections/PageSections.cms.generated";
 import { useTranslations } from "@/translate";
-import { useRouter } from "next/router";
 import React from "react";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import * as _ from "styled-components/cssprop";
@@ -38,7 +37,6 @@ import { Section } from "../@UI/Section";
 
 export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   const intl = useTranslations();
-  const { push } = useRouter();
   // const [current, setCurrent] = useState(PageStates.BUY);
   const buy = pageSections.find((s) => s.code === "einkaufen");
   const sell = pageSections.find((s) => s.code === "verkaufen");
@@ -52,25 +50,31 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
     >
       <Section css={tw` flex`}>
         <Card
-          onClick={() => push("/einkaufen")}
           color="blue"
           title={intl("BUY")}
           img={buy?.picture[0].url}
           resize={true}
+          messageHtml={buy?.content.html}
+          linkTitle={intl("READ_MORE")}
+          linkTo={"/einkaufen"}
         />
         <Card
-          onClick={() => push("/verkaufen")}
           color="yellow"
           img={sell?.picture[0].url}
           title={intl("SELL")}
           resize={true}
+          messageHtml={sell?.content.html}
+          linkTitle={intl("READ_MORE")}
+          linkTo={"/verkaufen"}
         />
         <Card
-          onClick={() => push("/verbreiten")}
           color="pink"
           img={spread?.picture[0].url}
           title={intl("SPREAD")}
           resize={true}
+          messageHtml={spread?.content.html}
+          linkTitle={intl("READ_MORE")}
+          linkTo={"/verbreiten"}
         />
       </Section>
       {/* <SplitSection.Section>

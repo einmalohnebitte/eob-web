@@ -2508,6 +2508,7 @@ export type Member = Node & {
   picture?: Maybe<Asset>;
   bio?: Maybe<RichText>;
   slug?: Maybe<Scalars['String']>;
+  order: Scalars['Int'];
   /** List of Member versions */
   history: Array<Version>;
 };
@@ -2593,6 +2594,7 @@ export type MemberCreateInput = {
   picture?: Maybe<AssetCreateOneInlineInput>;
   bio?: Maybe<Scalars['RichTextAST']>;
   slug?: Maybe<Scalars['String']>;
+  order: Scalars['Int'];
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<MemberCreateLocalizationsInput>;
 };
@@ -2753,6 +2755,21 @@ export type MemberManyWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  order_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  order_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  order_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  order_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  order_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  order_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  order_gte?: Maybe<Scalars['Int']>;
 };
 
 export enum MemberOrderByInput {
@@ -2769,7 +2786,9 @@ export enum MemberOrderByInput {
   AbstractAsc = 'abstract_ASC',
   AbstractDesc = 'abstract_DESC',
   SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC'
+  SlugDesc = 'slug_DESC',
+  OrderAsc = 'order_ASC',
+  OrderDesc = 'order_DESC'
 }
 
 export type MemberUpdateInput = {
@@ -2779,6 +2798,7 @@ export type MemberUpdateInput = {
   picture?: Maybe<AssetUpdateOneInlineInput>;
   bio?: Maybe<Scalars['RichTextAST']>;
   slug?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
   /** Manage document localizations */
   localizations?: Maybe<MemberUpdateLocalizationsInput>;
 };
@@ -3026,12 +3046,28 @@ export type MemberWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  order_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  order_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  order_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  order_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  order_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  order_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  order_gte?: Maybe<Scalars['Int']>;
 };
 
 /** References Member record uniquely */
 export type MemberWhereUniqueInput = {
   id?: Maybe<Scalars['ID']>;
   slug?: Maybe<Scalars['String']>;
+  order?: Maybe<Scalars['Int']>;
 };
 
 export type Mutation = {

@@ -7,7 +7,7 @@ export const SplitSection = {
   Section: styled(Section)`
     ${tw`flex flex-col md:flex-row items-center`}
     div:first-child {
-      ${tw`md:mr-4`}
+      ${tw`md:mr-8`}
     }
   `,
   Main: styled.div`

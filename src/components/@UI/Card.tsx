@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import tw from "twin.macro";
 
@@ -6,20 +8,41 @@ import { H2, H3 } from "./Texts";
 export const Card: React.FC<{
   img?: string;
   title: string;
-  subtitle?: string;
+  linkTitle?: string;
+  linkTo?: string;
   message?: string;
-  onClick?: (event: any) => void;
+  messageHtml?: string;
   resize?: boolean;
   color?: "pink" | "blue" | "yellow";
-}> = ({ img, onClick, title, message, subtitle, color, resize }) => {
+  onClick?: (event: any) => void;
+}> = ({
+  img,
+  title,
+  message,
+  linkTo,
+  linkTitle,
+  color,
+  resize,
+  onClick,
+  messageHtml,
+}) => {
   if (!color) {
     const index = Math.round(Math.random() * 100) % 3;
     color = index === 0 ? "blue" : index === 1 ? "pink" : "yellow";
   }
+  const router = useRouter();
   return (
     <div
       role="presentation"
-      onClick={onClick}
+      onClick={(e) => {
+        if (onClick) {
+          onClick(e);
+        } else {
+          if (linkTo) {
+            router.push(linkTo);
+          }
+        }
+      }}
       css={[
         tw`flex-1 flex flex-col cursor-pointer max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  overflow-hidden m-4   `,
         color === "blue"
@@ -37,9 +60,30 @@ export const Card: React.FC<{
         />
       )}
       <div css={tw`p-4`}>
-        <i css={tw`text-gray-500`}>{subtitle}</i>
         <H2 css={tw`p-4`}>{title}</H2>
         {message && <p css={tw`mt-2 text-gray-500`}>{message}</p>}
+        {messageHtml && (
+          <div
+            css={tw`mt-2 text-gray-500`}
+            dangerouslySetInnerHTML={{ __html: messageHtml }}
+          />
+        )}
+        {linkTo && (
+          <Link href={linkTo ?? ""}>
+            <a
+              css={[
+                tw`mt-2 inline-block hover:underline text-right`,
+                color === "blue"
+                  ? tw`text-blue-500`
+                  : color === "pink"
+                  ? tw`text-pink-500`
+                  : tw`text-yellow-600`,
+              ]}
+            >
+              {linkTitle}
+            </a>
+          </Link>
+        )}
       </div>
     </div>
   );
