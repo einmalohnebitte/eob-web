@@ -41,12 +41,37 @@ const ArticlePage: React.FC<MembersQuery> = ({
           <img src={pageSections[0].picture[0].url} alt="uber-uns" />
         </picture>
       </Section>
+      <Section>
+        <div css={tw`flex flex-row text-center`}>
+          <Card
+            onClick={() => {
+              window.location.hash = "#team";
+            }}
+            title={intl("ABOUT_TEAM")}
+            color={"blue"}
+          ></Card>
+          <Card
+            onClick={() => {
+              window.location.hash = "#vision";
+            }}
+            title={intl("ABOUT_VISION")}
+            color={"yellow"}
+          ></Card>
+          <Card
+            onClick={() => {
+              window.location.hash = "#mission";
+            }}
+            title={intl("ABOUT_MISSION")}
+            color={"pink"}
+          ></Card>
+        </div>
+      </Section>
       <div
         css={`
           background-color: ${pages?.[0]?.vibrantColor?.hex};
         `}
       >
-        <SplitSection.Section>
+        <SplitSection.Section id="team">
           <SplitSection.Side>
             <H1>{pageSections[0].title}</H1>
           </SplitSection.Side>
@@ -66,10 +91,13 @@ const ArticlePage: React.FC<MembersQuery> = ({
           {members.map((item, k) => (
             <Link key={k} href={`/team/${item.slug}`}>
               <Card
+                key={k}
                 img={item?.picture?.url}
                 title={item.name ?? ""}
-                message={item.abstract ?? ""}
-                // color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
+                message={`${item.abstract} `}
+                color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
+                linkTitle={`Lerne ${item.name} kennen...`}
+                linkTo={`/team/${item.slug}`}
               ></Card>
             </Link>
           ))}
@@ -83,7 +111,7 @@ const ArticlePage: React.FC<MembersQuery> = ({
           );
         `}
       >
-        <SplitSection.Section>
+        <SplitSection.Section id="mission">
           <SplitSection.Main>
             <H1>{pageSections[1].title}</H1>
             <div
@@ -100,7 +128,7 @@ const ArticlePage: React.FC<MembersQuery> = ({
           </SplitSection.Side>
         </SplitSection.Section>
 
-        <SplitSection.Section>
+        <SplitSection.Section id="vision">
           <SplitSection.Side>
             <picture>
               <img src={pageSections[2].picture[0].url} alt="uber-uns" />
@@ -109,7 +137,7 @@ const ArticlePage: React.FC<MembersQuery> = ({
           <SplitSection.Main>
             <H1>{pageSections[2].title}</H1>
             <div
-              css={tw`py-4`}
+              css={tw`py-4 list-disc`}
               dangerouslySetInnerHTML={{
                 __html: pageSections[2].content.html ?? "",
               }}

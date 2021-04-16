@@ -17,7 +17,7 @@ query Members($locale: [Locale!]!) {
     }
   }
 
-  members {
+  members(orderBy: order_ASC) {
     name
     bio {
       html
@@ -27,6 +27,7 @@ query Members($locale: [Locale!]!) {
     picture {
       url
     }
+    order
   }
 
   translations(locales: $locale) {
@@ -43,6 +44,7 @@ query Member($slug: String!, $locale: [Locale!]!) {
     picture {
       url
     }
+    order
   }
   translations(locales: $locale) {
     ...Translations
