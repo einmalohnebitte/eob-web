@@ -15,6 +15,7 @@ export const Card: React.FC<{
   resize?: boolean;
   color?: "pink" | "blue" | "yellow";
   onClick?: (event: any) => void;
+  subtitle?: string;
 }> = ({
   img,
   title,
@@ -25,6 +26,7 @@ export const Card: React.FC<{
   resize,
   onClick,
   messageHtml,
+  subtitle,
 }) => {
   if (!color) {
     const index = Math.round(Math.random() * 100) % 3;
@@ -83,6 +85,20 @@ export const Card: React.FC<{
               {linkTitle}
             </a>
           </Link>
+        )}
+        {subtitle && (
+          <i
+            css={[
+              tw`mt-2 inline-block  text-right`,
+              color === "blue"
+                ? tw`text-blue-500`
+                : color === "pink"
+                ? tw`text-pink-500`
+                : tw`text-yellow-600`,
+            ]}
+          >
+            {subtitle}
+          </i>
         )}
       </div>
     </div>
