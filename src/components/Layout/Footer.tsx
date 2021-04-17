@@ -20,7 +20,7 @@ const FooterSecion = styled.div`
 export const AppFooter = () => {
   const intl = useTranslations();
   return (
-    <footer css={tw`p-4  leading-10 bg-gray-200 `}>
+    <footer css={tw`p-4 pt-10 leading-10 bg-gray-100 `}>
       <div css={tw`flex flex-col md:flex-row justify-between`}>
         <FooterSecion css={tw`flex flex-col items-center text-center`}>
           <picture>
