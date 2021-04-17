@@ -156,7 +156,7 @@ export const AppFooter = () => {
             <a>{intl("FOOTER_DATA")}</a>
           </Link>{" "}
         </p>
-        <p css={tw`text-right text-lg`}>
+        <p css={tw`text-right text-lg mr-8`}>
           Made with <HearthStyle>♥</HearthStyle> in Munich by{" "}
           <a rel="noopener" href="https://rehab-republic.de/">
             Rehab Repulic
