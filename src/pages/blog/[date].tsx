@@ -39,6 +39,11 @@ const BlogPage: React.FC<BlogQuery> = ({ blogs }) => (
     <Section>
       <H2 css={tw`my-4`}>{blogs[0]?.title}</H2>
       <div
+        css={`
+          p {
+            margin: 10px 0;
+          }
+        `}
         dangerouslySetInnerHTML={{
           __html: blogs[0]?.content?.html ?? "",
         }}

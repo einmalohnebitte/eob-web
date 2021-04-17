@@ -1,17 +1,24 @@
 import { BackgroundPinkWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Section, SplitSection } from "@/components/@UI/Section";
-import { H1 } from "@/components/@UI/Texts";
+import { SponsorCard } from "@/components/@UI/SponsorCard";
+import { H1, H2 } from "@/components/@UI/Texts";
 import { VerbreitenForm } from "@/components/Forms/VerbreitenForm";
 import { withLayout } from "@/components/Layout";
+import {
+  CityPartnersDocument,
+  CityPartnersQuery,
+} from "@/components/PageSections/CityPartners.cms.generated";
 import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
   PageSectionsDocument,
   PageSectionsQuery,
 } from "@/components/PageSections/PageSections.cms.generated";
 import { graphCmsRequest } from "@/graphql/graphcms";
+import { useTranslations } from "@/translate";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 import tw from "twin.macro";
 
@@ -20,12 +27,16 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     page: "Verbreiten",
     locale: contextToLocale(ctx),
   });
+  const cityPartners = await graphCmsRequest(CityPartnersDocument);
   return {
-    props: data,
+    props: { ...data, cityPartners },
   };
 };
 
-const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
+const Home: React.FC<
+  PageSectionsQuery & { cityPartners: CityPartnersQuery }
+> = ({ pages, pageSections, cityPartners }) => {
+  const intl = useTranslations();
   return (
     <>
       <HeadMeta
@@ -71,6 +82,16 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         </Section>
         <Section>
           <VerbreitenForm />
+        </Section>
+        <Section css={tw` text-center`}>
+          <H2>{intl("CITY_PARTNERS")}</H2>
+          <div css={tw`px-2 py-6  flex overflow-x-auto`}>
+            {cityPartners.cityPartners.map((c) => (
+              <Link key={c.name} href={c.link ?? ""}>
+                <SponsorCard src={c.logo?.url ?? ""} alt={c.name ?? ""} />
+              </Link>
+            ))}
+          </div>
         </Section>
       </BackgroundPinkWrapper>
     </>

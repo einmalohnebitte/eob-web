@@ -51,7 +51,7 @@ export const withLayout = () => (Comp: any) => (props: any) => {
         </CookieConsent>
         <FaQuestion
           onClick={() => router.push("/faq")}
-          css={tw`w-8 h-8 fixed text-blue-500 bottom-2.5 right-2.5 cursor-pointer `}
+          css={tw`w-8 h-8 fixed text-pink-500 bottom-2.5 right-2.5 cursor-pointer hover:w-10 hover:h-10`}
         />
       </QueryClientProvider>
     </>

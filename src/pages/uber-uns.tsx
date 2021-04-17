@@ -94,7 +94,7 @@ const ArticlePage: React.FC<MembersQuery> = ({
                 key={k}
                 img={item?.picture?.url}
                 title={item.name ?? ""}
-                message={`${item.abstract} `}
+                message={item.abstract ?? ""}
                 color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
                 linkTitle={`Lerne ${item.name} kennen...`}
                 linkTo={`/team/${item.slug}`}
@@ -115,7 +115,12 @@ const ArticlePage: React.FC<MembersQuery> = ({
           <SplitSection.Main>
             <H1>{pageSections[1].title}</H1>
             <div
-              css={tw`py-4`}
+              css={`
+                ${tw`py-4 text-xl leading-8 font-gt`}
+                ul {
+                  list-style: disc;
+                }
+              `}
               dangerouslySetInnerHTML={{
                 __html: pageSections[1].content.html ?? "",
               }}
@@ -137,7 +142,12 @@ const ArticlePage: React.FC<MembersQuery> = ({
           <SplitSection.Main>
             <H1>{pageSections[2].title}</H1>
             <div
-              css={tw`py-4 list-disc`}
+              css={`
+                ${tw`py-4 text-xl leading-8 font-gt`}
+                ul {
+                  list-style: disc;
+                }
+              `}
               dangerouslySetInnerHTML={{
                 __html: pageSections[2].content.html ?? "",
               }}

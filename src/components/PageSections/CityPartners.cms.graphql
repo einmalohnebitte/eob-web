@@ -1,0 +1,9 @@
+query CityPartners {
+  cityPartners {
+    link
+    logo {
+      url
+    }
+    name
+  }
+}

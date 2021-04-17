@@ -12,7 +12,14 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = ["impressum", "press", "datenschutzerklarung"].map((path) => ({
+  const paths = [
+    "impressum",
+    "press",
+    "datenschutzerklarung",
+    "newsletter",
+    "kontakt",
+    "download",
+  ].map((path) => ({
     params: { path },
   }));
   return {
