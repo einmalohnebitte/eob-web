@@ -67,12 +67,12 @@ export const AppFooter = () => {
         <FooterSecion>
           <H2>{intl("FOOTER_ABOUT")}</H2>
           <p>
-            <Link href="/uber-uns">
+            <Link href="/uber-uns#mission">
               <a>{intl("FOOTER_MISSION_VISION")}</a>
             </Link>
           </p>
           <p>
-            <Link href="/uber-uns">
+            <Link href="/uber-uns#team">
               <a>{intl("ABOUT_TEAM")}</a>
             </Link>
           </p>

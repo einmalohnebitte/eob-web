@@ -1,6 +1,6 @@
 import { BackgroundYellowWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Section, SplitSection } from "@/components/@UI/Section";
-import { H1 } from "@/components/@UI/Texts";
+import { H1, H2 } from "@/components/@UI/Texts";
 import { VerkaufenForm } from "@/components/Forms/VerkaufenForm";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/PageSections/HeadMeta";
@@ -54,7 +54,7 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
 
       <BackgroundYellowWrapper>
         <Section>
-          <H1>{pageSections[1].title}</H1>
+          <H2>{pageSections[1].title}</H2>
           <div
             css={`
               ol {

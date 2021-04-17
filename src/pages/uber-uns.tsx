@@ -113,7 +113,7 @@ const ArticlePage: React.FC<MembersQuery> = ({
       >
         <SplitSection.Section id="mission">
           <SplitSection.Main>
-            <H1>{pageSections[1].title}</H1>
+            <H2>{pageSections[1].title}</H2>
             <div
               css={`
                 ${tw`py-4 text-xl leading-8 font-gt`}
@@ -140,7 +140,7 @@ const ArticlePage: React.FC<MembersQuery> = ({
             </picture>
           </SplitSection.Side>
           <SplitSection.Main>
-            <H1>{pageSections[2].title}</H1>
+            <H2>{pageSections[2].title}</H2>
             <div
               css={`
                 ${tw`py-4 text-xl leading-8 font-gt`}
