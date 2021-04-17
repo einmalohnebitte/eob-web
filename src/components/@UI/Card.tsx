@@ -74,7 +74,7 @@ export const Card: React.FC<{
           <Link href={linkTo ?? ""}>
             <a
               css={[
-                tw`mt-2 inline-block hover:underline text-right`,
+                tw`mt-2 inline-block hover:underline `,
                 color === "blue"
                   ? tw`text-blue-500`
                   : color === "pink"
@@ -89,7 +89,7 @@ export const Card: React.FC<{
         {subtitle && (
           <i
             css={[
-              tw`mt-2 inline-block  text-right`,
+              tw`mt-2 inline-block  `,
               color === "blue"
                 ? tw`text-blue-500`
                 : color === "pink"
