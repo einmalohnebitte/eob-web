@@ -1,3 +1,4 @@
+import { Section } from "@/components/@UI/Section";
 import { H2 } from "@/components/@UI/Texts";
 import { useTranslations } from "@/translate";
 import Link from "next/link";
@@ -21,7 +22,9 @@ export const AppFooter = () => {
   const intl = useTranslations();
   return (
     <footer css={tw`p-4 pt-10 leading-10 bg-gray-100 `}>
-      <div css={tw`flex flex-col md:flex-row justify-between`}>
+      <Section
+        css={tw`flex flex-col md:flex-row justify-between max-w-screen-xl`}
+      >
         <FooterSecion css={tw`flex flex-col items-center text-center`}>
           <picture>
             <img
@@ -134,7 +137,7 @@ export const AppFooter = () => {
             </Link>
           </p>
         </FooterSecion>
-      </div>
+      </Section>
 
       {/* <p
         dangerouslySetInnerHTML={{
