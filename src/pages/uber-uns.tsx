@@ -10,6 +10,7 @@ import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import tw from "twin.macro";
@@ -37,9 +38,12 @@ const ArticlePage: React.FC<MembersQuery> = ({
     <>
       <HeadMeta />
       <Section>
-        <picture>
-          <img src={pageSections[0].picture[0].url} alt="uber-uns" />
-        </picture>
+        <Image
+          width={960}
+          height={640}
+          src={pageSections[0].picture[0].url}
+          alt="uber-uns"
+        />
       </Section>
       <Section>
         <div css={tw`flex flex-row text-center`}>
@@ -92,13 +96,21 @@ const ArticlePage: React.FC<MembersQuery> = ({
             <Link key={k} href={`/team/${item.slug}`}>
               <Card
                 key={k}
-                img={item?.picture?.url}
                 title={item.name ?? ""}
                 message={item.abstract ?? ""}
                 color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
                 linkTitle={`Lerne ${item.name} kennen...`}
                 linkTo={`/team/${item.slug}`}
-              ></Card>
+              >
+                {item?.picture?.url && (
+                  <Image
+                    src={item?.picture?.url ?? ""}
+                    width={208}
+                    height={208}
+                    layout={"intrinsic"}
+                  />
+                )}
+              </Card>
             </Link>
           ))}
         </Grid>

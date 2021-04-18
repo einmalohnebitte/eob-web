@@ -8,12 +8,5 @@
   "FORM_VALIDATION_TOO_LONG": "Too Long!",
   "FORM_VALIDATION_REQUIRED": "Required field",
   "FORM_VALIDATION_EMAIL": "Invalid Email",
-  "FORM_OK": "OK",
-  "FORM_FIRST_NAME": "First name",
-  "FORM_LAST_NAME": "Last name",
-  "FORM_EMAIL": "Email",
-  "FORM_SUBJECT": "Subject",
-  "FORM_MESSAGE": "Message",
-  "FORM_PRIVACY": "I agree to the privacy policy.",
-  "FORM_SUBMIT": "ABSCHICKEN"
+  "FORM_OK": "OK"
 }
