@@ -27,6 +27,7 @@ export const Card: React.FC<{
   onClick,
   messageHtml,
   subtitle,
+  children,
 }) => {
   if (!color) {
     const index = Math.round(Math.random() * 100) % 3;
@@ -54,6 +55,7 @@ export const Card: React.FC<{
           : tw`border-yellow-600`,
       ]}
     >
+      {children}
       {img && (
         <img
           css={[tw`h-52 `, !resize && tw` w-full object-cover `]}
