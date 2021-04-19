@@ -56,15 +56,15 @@ export type Query = {
   hello?: Maybe<Scalars['String']>;
 };
 
-export type SendSellMailMutationVariables = Types.Exact<{
-  email: Types.SellEmailReq;
+export type SendSpreadMailMutationVariables = Types.Exact<{
+  email: Types.SpreadEmailReq;
 }>;
 
 
-export type SendSellMailMutation = (
+export type SendSpreadMailMutation = (
   { __typename?: 'Mutation' }
-  & Pick<Types.Mutation, 'sellEmail'>
+  & Pick<Types.Mutation, 'spreadEmail'>
 );
 
 
-export const SendSellMailDocument: DocumentNode<SendSellMailMutation, SendSellMailMutationVariables> = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"sendSellMail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SellEmailReq"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sellEmail"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}}]}]}}]};
+export const SendSpreadMailDocument: DocumentNode<SendSpreadMailMutation, SendSpreadMailMutationVariables> = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"sendSpreadMail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SpreadEmailReq"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"spreadEmail"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}}]}]}}]};

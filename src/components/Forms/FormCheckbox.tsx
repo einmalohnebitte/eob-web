@@ -40,7 +40,10 @@ export const FormCheckbox: React.FC<PropType> = ({
           onChange={formik.handleChange}
         />
 
-        <span css={tw`ml-2`}>{label}</span>
+        <span
+          css={tw`text-gray-700 ml-2 font-gt`}
+          dangerouslySetInnerHTML={{ __html: label }}
+        />
       </label>
     </div>
   </div>

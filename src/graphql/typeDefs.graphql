@@ -1,13 +1,31 @@
 input SellEmailReq {
+  shop: String!
   firstName: String!
   lastName: String!
-  message: String!
-  subject: String!
+
+  address: String!
+  postCode: Int!
+  town: String!
+
+  message: String
+  sticker: String!
+  email: String!
+}
+
+input SpreadEmailReq {
+  firstName: String!
+  lastName: String!
+
+  postCode: Int!
+  town: String!
+
+  message: String
   email: String!
 }
 
 type Mutation {
   sellEmail(email: SellEmailReq!): Boolean!
+  spreadEmail(email: SpreadEmailReq!): Boolean!
 }
 
 type Query {

@@ -14,21 +14,40 @@ export type Scalars = {
 };
 
 export type SellEmailReq = {
+  shop: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
-  message: Scalars['String'];
-  subject: Scalars['String'];
+  address: Scalars['String'];
+  postCode: Scalars['Int'];
+  town: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+  sticker: Scalars['String'];
+  email: Scalars['String'];
+};
+
+export type SpreadEmailReq = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  postCode: Scalars['Int'];
+  town: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
   email: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   sellEmail: Scalars['Boolean'];
+  spreadEmail: Scalars['Boolean'];
 };
 
 
 export type MutationSellEmailArgs = {
   email: SellEmailReq;
+};
+
+
+export type MutationSpreadEmailArgs = {
+  email: SpreadEmailReq;
 };
 
 export type Query = {
@@ -116,6 +135,8 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   SellEmailReq: SellEmailReq;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  SpreadEmailReq: SpreadEmailReq;
   Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Query: ResolverTypeWrapper<{}>;
@@ -125,6 +146,8 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   SellEmailReq: SellEmailReq;
   String: Scalars['String'];
+  Int: Scalars['Int'];
+  SpreadEmailReq: SpreadEmailReq;
   Mutation: {};
   Boolean: Scalars['Boolean'];
   Query: {};
@@ -132,6 +155,7 @@ export type ResolversParentTypes = {
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   sellEmail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSellEmailArgs, 'email'>>;
+  spreadEmail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSpreadEmailArgs, 'email'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
