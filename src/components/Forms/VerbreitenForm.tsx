@@ -59,7 +59,7 @@ export const VerbreitenForm = () => {
       // if (captcha) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { consent, ...rest } = values;
-      sendMail.mutate({ email: rest });
+      // sendMail.mutate({ email: rest });
       // }
     },
     validationSchema,
@@ -92,30 +92,23 @@ export const VerbreitenForm = () => {
         <H2>{intl("FORM_CONTACT_TITLE")}</H2>
         <div css={tw`flex`}>
           <FormInput
-            label="FORM_FIRST_NAME"
+            label="FORM_NAME"
             field="firstName"
             formik={formik as any}
           />
           <FormInput
-            label="FORM_LAST_NAME"
+            label="FORM_SURNAME"
             field="lastName"
             formik={formik as any}
           />
         </div>
-        <div css={tw`flex`}>
-          <FormInput label="FORM_EMAIL" field="email" formik={formik as any} />
-          <FormInput
-            label="FORM_SUBJECT"
-            field="subject"
-            formik={formik as any}
-          />
-        </div>
+        <FormInput label="FORM_EMAIL" field="email" formik={formik as any} />
 
         {/* <FormInput label="FORM_EMAIL" field="email" formik={formik as any} /> */}
 
         <FormArea
           field="message"
-          label={intl("FORM_MESSAGE")}
+          label={intl("FORM_MOTIVATION")}
           formik={formik as any}
         />
 
@@ -131,11 +124,11 @@ export const VerbreitenForm = () => {
           field={"consent"}
           checkedColor="pink"
           value={formik.values.consent ? 1 : 0}
-          label={intl("FORM_PRIVACY")}
+          label={intl("FORM_DATA_POLICY_MESSAGE")}
         />
 
         <ButtonPink css={tw`m-6`} type="submit">
-          {intl("FORM_SUBMIT")}
+          {intl("FORM_SEND")}
         </ButtonPink>
       </form>
     </div>
