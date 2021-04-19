@@ -23,14 +23,29 @@ export type SellEmailReq = {
   email: Scalars['String'];
 };
 
+export type SpreadEmailReq = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  postCode: Scalars['Int'];
+  town: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   sellEmail: Scalars['Boolean'];
+  spreadEmail: Scalars['Boolean'];
 };
 
 
 export type MutationSellEmailArgs = {
   email: SellEmailReq;
+};
+
+
+export type MutationSpreadEmailArgs = {
+  email: SpreadEmailReq;
 };
 
 export type Query = {

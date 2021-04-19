@@ -1,11 +1,9 @@
-import { SendSellMailDocument } from "@/components/Forms/sellEmail.local.generated";
+import { SendSpreadMailDocument } from "@/components/Forms/spreadEmail.local.generated";
 import { useReactMutation } from "@/components/useReactQuery";
 import { useTranslations } from "@/translate";
 import { useFormik } from "formik";
-// Render Prop
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState } from "react";
-// import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 import tw from "twin.macro";
 import * as Yup from "yup";
 
@@ -18,8 +16,9 @@ import { FormInput } from "./FormInput";
 // import { useSendMail } from "./useSendEmail";
 
 export const VerbreitenForm = () => {
-  const sendMail = useReactMutation(SendSellMailDocument);
-  // const [captcha, setCaptcha] = useState(false);
+  const sendMail = useReactMutation(SendSpreadMailDocument);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [captcha, setCaptcha] = useState(false);
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -37,7 +36,11 @@ export const VerbreitenForm = () => {
       .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
       .max(500, intl("FORM_VALIDATION_TOO_LONG"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
-    subject: Yup.string()
+    postCode: Yup.number()
+      .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
+      .max(999999, intl("FORM_VALIDATION_TOO_LONG"))
+      .required(intl("FORM_VALIDATION_REQUIRED")),
+    town: Yup.string()
       .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
       .max(50, intl("FORM_VALIDATION_TOO_LONG"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
@@ -52,14 +55,16 @@ export const VerbreitenForm = () => {
       lastName: "",
       email: "",
       message: "",
-      subject: "",
+      postCode: (null as any) as number,
+      town: "",
       consent: false,
     },
     onSubmit: (values) => {
+      console.log(values);
       // if (captcha) {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { consent, ...rest } = values;
-      // sendMail.mutate({ email: rest });
+      sendMail.mutate({ email: rest });
       // }
     },
     validationSchema,
@@ -92,31 +97,46 @@ export const VerbreitenForm = () => {
         <H2>{intl("FORM_CONTACT_TITLE")}</H2>
         <div css={tw`flex`}>
           <FormInput
-            label="FORM_NAME"
+            label={intl("FORM_NAME")}
             field="firstName"
             formik={formik as any}
           />
           <FormInput
-            label="FORM_SURNAME"
+            label={intl("FORM_SURNAME")}
             field="lastName"
             formik={formik as any}
           />
         </div>
-        <FormInput label="FORM_EMAIL" field="email" formik={formik as any} />
-
-        {/* <FormInput label="FORM_EMAIL" field="email" formik={formik as any} /> */}
+        <FormInput
+          label={intl("FORM_EMAIL")}
+          field="email"
+          formik={formik as any}
+        />
 
         <FormArea
           field="message"
           label={intl("FORM_MOTIVATION")}
           formik={formik as any}
+          placeholder={intl("FORM_MOTIVATION_CONTENT")}
         />
-
+        <div css={tw`flex`}>
+          <FormInput
+            label={intl("FORM_POSTCODE")}
+            field="postCode"
+            type="number"
+            formik={formik as any}
+          />
+          <FormInput
+            label={intl("FORM_TOWN")}
+            field="town"
+            formik={formik as any}
+          />
+        </div>
         <div css={tw`flex m-2`}>
-          {/* <ReCAPTCHA
+          <ReCAPTCHA
             sitekey="6Ld2iaMUAAAAAKuO6s305VLDpf-iTimNcKH1FS-8"
             onChange={() => setCaptcha(true)}
-          /> */}
+          />
         </div>
 
         <FormCheckbox
