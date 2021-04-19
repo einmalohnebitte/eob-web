@@ -20,6 +20,10 @@ export const VerkaufenForm = () => {
   // const [captcha, setCaptcha] = useState(false);
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
+    shop: Yup.string()
+      .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
+      .max(50, intl("FORM_VALIDATION_TOO_LONG"))
+      .required(intl("FORM_VALIDATION_REQUIRED")),
     firstName: Yup.string()
       .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
       .max(50, intl("FORM_VALIDATION_TOO_LONG"))
@@ -31,13 +35,21 @@ export const VerkaufenForm = () => {
     email: Yup.string()
       .email(intl("FORM_VALIDATION_EMAIL"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
-    message: Yup.string()
+    address: Yup.string()
       .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
       .max(500, intl("FORM_VALIDATION_TOO_LONG"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
-    subject: Yup.string()
+    postCode: Yup.number()
+      .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
+      .max(999999, intl("FORM_VALIDATION_TOO_LONG"))
+      .required(intl("FORM_VALIDATION_REQUIRED")),
+    town: Yup.string()
       .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
       .max(50, intl("FORM_VALIDATION_TOO_LONG"))
+      .required(intl("FORM_VALIDATION_REQUIRED")),
+    message: Yup.string()
+      .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
+      .max(500, intl("FORM_VALIDATION_TOO_LONG"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
     consent: Yup.boolean()
       .oneOf([true], intl("FORM_VALIDATION_REQUIRED"))
@@ -46,11 +58,14 @@ export const VerkaufenForm = () => {
 
   const formik = useFormik({
     initialValues: {
+      shop: "",
       firstName: "",
       lastName: "",
       email: "",
+      address: "",
+      postCode: (null as any) as number,
+      town: "",
       message: "",
-      subject: "",
       consent: false,
       sticker: "no",
     },
@@ -95,6 +110,13 @@ export const VerkaufenForm = () => {
             field="shop"
             formik={formik as any}
           />
+        </div>
+        <div css={tw`flex`}>
+          <FormInput
+            label={intl("FORM_NAME")}
+            field="firstName"
+            formik={formik as any}
+          />
           <FormInput
             label={intl("FORM_SURNAME")}
             field="lastName"
@@ -131,13 +153,18 @@ export const VerkaufenForm = () => {
           {formik.errors.sticker && formik.touched.sticker && (
             <p css={tw`text-red-500 text-xs italic`}>{formik.errors.sticker}</p>
           )}
-          <div css={tw`flex mt-6`}>
+          <span css={tw`text-gray-700 mt-6 font-gt`}>
+            {intl("FORM_STICKER")}
+          </span>
+          <div css={tw`flex `}>
             <label css={tw`flex items-center`}>
               <input
                 type="radio"
-                name={"stickers"}
-                id={"stickers"}
-                value={formik.values.sticker}
+                name={"sticker"}
+                id={"sticker"}
+                defaultValue={formik.values.sticker}
+                value="yes"
+                checked={formik.values.sticker === "yes"}
                 onChange={formik.handleChange}
               />
               <span
@@ -145,12 +172,14 @@ export const VerkaufenForm = () => {
                 dangerouslySetInnerHTML={{ __html: intl("FORM_YES") }}
               />
             </label>
-            <label css={tw`flex items-center`}>
+            <label css={tw`flex items-center ml-2 `}>
               <input
                 type="radio"
-                name={"stickers"}
-                id={"stickers"}
-                value={formik.values.sticker}
+                name={"sticker"}
+                id={"sticker"}
+                value="no"
+                checked={formik.values.sticker === "no"}
+                defaultValue={formik.values.sticker}
                 onChange={formik.handleChange}
               />
               <span

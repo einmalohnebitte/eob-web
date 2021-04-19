@@ -10,7 +10,7 @@ type PropType = {
   placeholder?: string;
 };
 
-export const TwInput = tw`text-xl font-lemonism  border-solid border-gray-400 leading-6 p-3 rounded mt-1 block w-full focus:border-blue-800`;
+export const TwInput = tw`text-lg font-gt  border-solid border-gray-400 leading-6 p-3 rounded mt-1 block w-full focus:border-blue-800`;
 
 export const FormInput: React.FC<PropType> = ({
   field,

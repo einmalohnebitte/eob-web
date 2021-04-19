@@ -15,10 +15,14 @@ export type Scalars = {
 };
 
 export type SellEmailReq = {
+  shop: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
-  message: Scalars['String'];
-  subject: Scalars['String'];
+  address: Scalars['String'];
+  postCode: Scalars['Int'];
+  town: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+  sticker: Scalars['String'];
   email: Scalars['String'];
 };
 

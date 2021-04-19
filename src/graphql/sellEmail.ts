@@ -4,16 +4,30 @@ import { ResolverContext } from "@/graphql/resolvers";
 
 export const sellEmail: MutationResolvers<ResolverContext>["sellEmail"] = async (
   _: any,
-  { email: { firstName, lastName, email, subject, message } }
+  {
+    email: {
+      shop,
+      firstName,
+      lastName,
+      email,
+      address,
+      postCode,
+      town,
+      sticker,
+      message,
+    },
+  }
 ) => {
   await sendMessage({
     to: process.env.EMAIL ?? "",
     from: `website@einmalohnebitte.de`, // sender address
-    subject: `[Verkaufen] ${subject}`, // Subject line
+    subject: `[Verkaufen] ${shop} ${firstName} ${lastName}`, // Subject line
     html: `
-        <h1>${firstName} ${lastName}</h1>
-        <p> ${message} </p>
-        <p> ${email} </p>
+        <h1>${shop} (${firstName} ${lastName})</h1>
+        <p>Email: ${email} </p>
+        <p>Address: ${address}, ${postCode}, ${town} </p>
+        <p>Stickers: ${sticker} </p>
+        <p>Message: ${message} </p>
     `,
   });
 

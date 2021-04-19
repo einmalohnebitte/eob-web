@@ -1,8 +1,14 @@
 input SellEmailReq {
+  shop: String!
   firstName: String!
   lastName: String!
-  message: String!
-  subject: String!
+
+  address: String!
+  postCode: Int!
+  town: String!
+
+  message: String
+  sticker: String!
   email: String!
 }
 

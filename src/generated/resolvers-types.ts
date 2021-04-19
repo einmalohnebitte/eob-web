@@ -14,10 +14,14 @@ export type Scalars = {
 };
 
 export type SellEmailReq = {
+  shop: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
-  message: Scalars['String'];
-  subject: Scalars['String'];
+  address: Scalars['String'];
+  postCode: Scalars['Int'];
+  town: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+  sticker: Scalars['String'];
   email: Scalars['String'];
 };
 
@@ -116,6 +120,7 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = {
   SellEmailReq: SellEmailReq;
   String: ResolverTypeWrapper<Scalars['String']>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   Query: ResolverTypeWrapper<{}>;
@@ -125,6 +130,7 @@ export type ResolversTypes = {
 export type ResolversParentTypes = {
   SellEmailReq: SellEmailReq;
   String: Scalars['String'];
+  Int: Scalars['Int'];
   Mutation: {};
   Boolean: Scalars['Boolean'];
   Query: {};

@@ -1355,6 +1355,7 @@ export enum Category {
   Cookies = 'cookies',
   Docs = 'docs',
   Footer = 'footer',
+  Form = 'form',
   Header = 'header',
   Home = 'home',
   Map = 'map',
