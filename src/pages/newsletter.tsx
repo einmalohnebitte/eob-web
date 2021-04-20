@@ -1,5 +1,6 @@
 import { Section } from "@/components/@UI/Section";
 import { H1 } from "@/components/@UI/Texts";
+import { NewsletterForm } from "@/components/Forms/NewsletterForm";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
@@ -8,30 +9,12 @@ import {
 } from "@/components/PageSections/PageContent.cms.generated";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 import React from "react";
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = [
-    "impressum",
-    "press",
-    "datenschutzerklarung",
-    "kontakt",
-    "download",
-  ].map((path) => ({
-    params: { path },
-  }));
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps<any, { path: string }> = async (
-  ctx
-) => {
+export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageContentDocument, {
-    page: ctx.params?.path,
+    page: "newsletter",
     locale: contextToLocale(ctx),
   });
   return {
@@ -48,11 +31,13 @@ const Page: React.FC<PageContentQuery> = (props) => {
       />
       <Section>
         <H1>{props.pages[0].title}</H1>
+
         <div
           dangerouslySetInnerHTML={{
             __html: props.pages[0]?.content?.html ?? "",
           }}
         />
+        <NewsletterForm />
       </Section>
     </>
   );
