@@ -26,8 +26,8 @@ const HeroImg: React.FC<{
         css={tw`rounded-lg`}
         src={src}
         layout="responsive"
-        width={is2Row ? 800 : 400}
-        height={is2Col ? 800 : 400}
+        width={is2Row ? 200 : 100}
+        height={is2Col ? 200 : 100}
       />
     )}
   </div>
