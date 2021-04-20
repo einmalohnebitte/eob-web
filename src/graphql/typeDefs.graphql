@@ -23,9 +23,16 @@ input SpreadEmailReq {
   email: String!
 }
 
+input NewsletterReq {
+  firstName: String!
+  lastName: String!
+  email: String!
+}
+
 type Mutation {
   sellEmail(email: SellEmailReq!): Boolean!
   spreadEmail(email: SpreadEmailReq!): Boolean!
+  newsletter(user: NewsletterReq!): Boolean!
 }
 
 type Query {

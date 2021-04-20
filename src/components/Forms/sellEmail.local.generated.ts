@@ -35,10 +35,17 @@ export type SpreadEmailReq = {
   email: Scalars['String'];
 };
 
+export type NewsletterReq = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  email: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   sellEmail: Scalars['Boolean'];
   spreadEmail: Scalars['Boolean'];
+  newsletter: Scalars['Boolean'];
 };
 
 
@@ -49,6 +56,11 @@ export type MutationSellEmailArgs = {
 
 export type MutationSpreadEmailArgs = {
   email: SpreadEmailReq;
+};
+
+
+export type MutationNewsletterArgs = {
+  user: NewsletterReq;
 };
 
 export type Query = {

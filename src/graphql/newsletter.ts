@@ -1,0 +1,44 @@
+import { MutationResolvers } from "@/generated/resolvers-types";
+import { ResolverContext } from "@/graphql/resolvers";
+
+export const newsletter: MutationResolvers<ResolverContext>["newsletter"] = async (
+  _: any,
+  { user: { firstName, lastName, email } }
+) => {
+  try {
+    const leads = await fetch(process.env.MAUTIC_BASE + "/leads", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${Buffer.from(
+          process.env.MAUTIC_USERPWD ?? ""
+        ).toString("base64")}`,
+      },
+      body: JSON.stringify({
+        is_published: 1,
+        firstname: firstName,
+        lastname: lastName,
+        created_by_user: "Admin EOB",
+        points: 0,
+        email,
+        date_identified: new Date().toISOString().replace("Z", ""),
+      }),
+    }).then((r) => r.json());
+    console.log(leads);
+
+    const update = await fetch(process.env.MAUTIC_BASE + "/lead_tags_xref", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${Buffer.from(
+          process.env.MAUTIC_USERPWD ?? ""
+        ).toString("base64")}`,
+      },
+      body: JSON.stringify({ tag_id: 233, lead_id: leads.insertId }),
+    }).then((r) => r.json());
+    console.log(update);
+  } catch (e) {
+    console.log(e);
+  }
+  return true;
+};
