@@ -1,19 +1,17 @@
+import { BaseForm, FormError } from "@/components/Forms/BaseForm";
 import { SendSellMailDocument } from "@/components/Forms/sellEmail.local.generated";
 import { useReactMutation } from "@/components/useReactQuery";
 import { useTranslations } from "@/translate";
-import { useFormik } from "formik";
-// Render Prop
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import { ErrorMessage, Field } from "formik";
+import React from "react";
 import tw from "twin.macro";
 import * as Yup from "yup";
 
-import { ButtonYellow } from "../@UI/Buttons";
 import { H2 } from "../@UI/Texts";
-import { FormArea } from "./FormArea";
-import { FormCheckbox } from "./FormCheckbox";
-import { FormInput } from "./FormInput";
+import { FieldArea } from "./FieldArea";
+import { FieldInput } from "./FieldInput";
+
+// Render Prop
 
 export const VerkaufenForm = () => {
   const sendMail = useReactMutation(SendSellMailDocument);
@@ -56,29 +54,6 @@ export const VerkaufenForm = () => {
       .required(intl("FORM_VALIDATION_REQUIRED")),
   });
 
-  const formik = useFormik({
-    initialValues: {
-      shop: "",
-      firstName: "",
-      lastName: "",
-      email: "",
-      address: "",
-      postCode: (null as any) as number,
-      town: "",
-      message: "",
-      consent: false,
-      sticker: "no",
-    },
-    onSubmit: (values) => {
-      // if (captcha) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { consent, ...rest } = values;
-      sendMail.mutate({ email: rest });
-      // }
-    },
-    validationSchema,
-  });
-
   if (sendMail.data) {
     return (
       <div css={tw`flex items-center justify-center`}>
@@ -86,135 +61,84 @@ export const VerkaufenForm = () => {
       </div>
     );
   }
+
   if (sendMail.error) {
-    return (
-      <div css={tw`flex items-center justify-center`}>
-        {intl("FORM_CONTACT_ERROR")}
-        <ButtonYellow onClick={() => sendMail.reset()}>
-          {intl("FORM_OK")}
-        </ButtonYellow>
-      </div>
-    );
+    return <FormError color={"yellow"} onReset={() => sendMail.reset()} />;
   }
 
   return (
-    <div css={tw`w-full max-w-sm`}>
-      <form
-        css={tw`bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4`}
-        onSubmit={formik.handleSubmit}
-      >
-        <H2 css={tw`mb-4`}>{intl("FORM_CONTACT_TITLE")}</H2>
-        <div css={tw`flex`}>
-          <FormInput
-            label={intl("FORM_SHOP")}
-            field="shop"
-            formik={formik as any}
-          />
-        </div>
-        <div css={tw`flex`}>
-          <FormInput
-            label={intl("FORM_NAME")}
-            field="firstName"
-            formik={formik as any}
-          />
-          <FormInput
-            label={intl("FORM_SURNAME")}
-            field="lastName"
-            formik={formik as any}
-          />
-        </div>
+    <BaseForm
+      color="yellow"
+      initialValues={{
+        shop: "",
+        firstName: "",
+        lastName: "",
+        email: "",
+        address: "",
+        postCode: (null as any) as number,
+        town: "",
+        message: "",
+        consent: false,
+        sticker: "no",
+      }}
+      validationSchema={validationSchema}
+      onSubmit={(values) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { consent, ...rest } = values;
+        sendMail.mutate({ email: rest });
+      }}
+    >
+      <H2 css={tw`mb-4`}>{intl("FORM_CONTACT_TITLE")}</H2>
+      <div css={tw`flex`}>
+        <FieldInput label={intl("FORM_SHOP")} field="shop" />
+      </div>
+      <div css={tw`flex`}>
+        <FieldInput label={intl("FORM_NAME")} field="firstName" />
+        <FieldInput label={intl("FORM_SURNAME")} field="lastName" />
+      </div>
 
-        <FormInput
-          label={intl("FORM_EMAIL")}
-          field="email"
-          formik={formik as any}
+      <FieldInput label={intl("FORM_EMAIL")} field="email" />
+      <FieldInput
+        label={intl("FORM_ADDRESS")}
+        field="address"
+        placeholder={intl("FORM_ADDRESS_PLACEHOLDER")}
+      />
+      <div css={tw`flex`}>
+        <FieldInput
+          label={intl("FORM_POSTCODE")}
+          field="postCode"
+          type="number"
         />
-        <FormInput
-          label={intl("FORM_ADDRESS")}
-          field="address"
-          placeholder={intl("FORM_ADDRESS_PLACEHOLDER")}
-          formik={formik as any}
-        />
-        <div css={tw`flex`}>
-          <FormInput
-            label={intl("FORM_POSTCODE")}
-            field="postCode"
-            type="number"
-            formik={formik as any}
-          />
-          <FormInput
-            label={intl("FORM_TOWN")}
-            field="town"
-            formik={formik as any}
-          />
-        </div>
+        <FieldInput label={intl("FORM_TOWN")} field="town" />
+      </div>
 
-        <div css={tw`m-2`}>
-          {formik.errors.sticker && formik.touched.sticker && (
-            <p css={tw`text-red-500 text-xs italic`}>{formik.errors.sticker}</p>
+      <div css={tw`m-2`}>
+        <ErrorMessage
+          render={(msg) => (
+            <p className={`text-red-500 text-xs italic`}>{msg}</p>
           )}
-          <span css={tw`text-gray-700 mt-6 font-gt`}>
-            {intl("FORM_STICKER")}
-          </span>
-          <div css={tw`flex `}>
-            <label css={tw`flex items-center`}>
-              <input
-                type="radio"
-                name={"sticker"}
-                id={"sticker"}
-                defaultValue={formik.values.sticker}
-                value="yes"
-                checked={formik.values.sticker === "yes"}
-                onChange={formik.handleChange}
-              />
-              <span
-                css={tw`text-gray-700 ml-2 font-gt`}
-                dangerouslySetInnerHTML={{ __html: intl("FORM_YES") }}
-              />
-            </label>
-            <label css={tw`flex items-center ml-2 `}>
-              <input
-                type="radio"
-                name={"sticker"}
-                id={"sticker"}
-                value="no"
-                checked={formik.values.sticker === "no"}
-                defaultValue={formik.values.sticker}
-                onChange={formik.handleChange}
-              />
-              <span
-                css={tw`text-gray-700 ml-2 font-gt`}
-                dangerouslySetInnerHTML={{ __html: intl("FORM_NO") }}
-              />
-            </label>
-          </div>
-        </div>
-
-        <FormArea
-          field="message"
-          label={intl("FORM_MESSAGE")}
-          formik={formik as any}
+          name={"sticker"}
         />
-
-        <div css={tw`flex m-2 mt-6`}>
-          <ReCAPTCHA
-            sitekey="6Ld2iaMUAAAAAKuO6s305VLDpf-iTimNcKH1FS-8"
-            // onChange={() => setCaptcha(true)}
-          />
+        <span css={tw`text-gray-700 mt-6 font-gt`}>{intl("FORM_STICKER")}</span>
+        <div css={tw`flex `}>
+          <label css={tw`flex items-center`} htmlFor={"sticker"}>
+            <Field type="radio" name={"sticker"} id={"sticker"} value="yes" />
+            <span
+              css={tw`text-gray-700 ml-2 font-gt`}
+              dangerouslySetInnerHTML={{ __html: intl("FORM_YES") }}
+            />
+          </label>
+          <label css={tw`flex items-center ml-2 `} htmlFor={"sticker"}>
+            <Field type="radio" name={"sticker"} id={"sticker"} value="no" />
+            <span
+              css={tw`text-gray-700 ml-2 font-gt`}
+              dangerouslySetInnerHTML={{ __html: intl("FORM_NO") }}
+            />
+          </label>
         </div>
+      </div>
 
-        <FormCheckbox
-          formik={formik as any}
-          field={"consent"}
-          checkedColor="yellow"
-          value={formik.values.consent ? 1 : 0}
-          label={intl("FORM_DATA_POLICY_MESSAGE")}
-        />
-
-        <ButtonYellow css={tw`m-6`} type="submit">
-          {intl("FORM_SEND")}
-        </ButtonYellow>
-      </form>
-    </div>
+      <FieldArea field="message" label={intl("FORM_MESSAGE")} />
+    </BaseForm>
   );
 };

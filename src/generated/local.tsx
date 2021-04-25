@@ -11,33 +11,6 @@ export type Scalars = {
   Float: number;
 };
 
-export type SellEmailReq = {
-  shop: Scalars['String'];
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  address: Scalars['String'];
-  postCode: Scalars['Int'];
-  town: Scalars['String'];
-  message?: Maybe<Scalars['String']>;
-  sticker: Scalars['String'];
-  email: Scalars['String'];
-};
-
-export type SpreadEmailReq = {
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  postCode: Scalars['Int'];
-  town: Scalars['String'];
-  message?: Maybe<Scalars['String']>;
-  email: Scalars['String'];
-};
-
-export type NewsletterReq = {
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  email: Scalars['String'];
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   sellEmail: Scalars['Boolean'];
@@ -60,7 +33,34 @@ export type MutationNewsletterArgs = {
   user: NewsletterReq;
 };
 
+export type NewsletterReq = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  email: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   hello?: Maybe<Scalars['String']>;
+};
+
+export type SellEmailReq = {
+  shop: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  address: Scalars['String'];
+  postCode: Scalars['Int'];
+  town: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+  sticker: Scalars['String'];
+  email: Scalars['String'];
+};
+
+export type SpreadEmailReq = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  postCode: Scalars['Int'];
+  town: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
 };

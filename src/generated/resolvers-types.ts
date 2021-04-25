@@ -13,33 +13,6 @@ export type Scalars = {
   Float: number;
 };
 
-export type SellEmailReq = {
-  shop: Scalars['String'];
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  address: Scalars['String'];
-  postCode: Scalars['Int'];
-  town: Scalars['String'];
-  message?: Maybe<Scalars['String']>;
-  sticker: Scalars['String'];
-  email: Scalars['String'];
-};
-
-export type SpreadEmailReq = {
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  postCode: Scalars['Int'];
-  town: Scalars['String'];
-  message?: Maybe<Scalars['String']>;
-  email: Scalars['String'];
-};
-
-export type NewsletterReq = {
-  firstName: Scalars['String'];
-  lastName: Scalars['String'];
-  email: Scalars['String'];
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
   sellEmail: Scalars['Boolean'];
@@ -62,9 +35,36 @@ export type MutationNewsletterArgs = {
   user: NewsletterReq;
 };
 
+export type NewsletterReq = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  email: Scalars['String'];
+};
+
 export type Query = {
   __typename?: 'Query';
   hello?: Maybe<Scalars['String']>;
+};
+
+export type SellEmailReq = {
+  shop: Scalars['String'];
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  address: Scalars['String'];
+  postCode: Scalars['Int'];
+  town: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+  sticker: Scalars['String'];
+  email: Scalars['String'];
+};
+
+export type SpreadEmailReq = {
+  firstName: Scalars['String'];
+  lastName: Scalars['String'];
+  postCode: Scalars['Int'];
+  town: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
 };
 
 
@@ -145,26 +145,26 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  SellEmailReq: SellEmailReq;
-  String: ResolverTypeWrapper<Scalars['String']>;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
-  SpreadEmailReq: SpreadEmailReq;
-  NewsletterReq: NewsletterReq;
   Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  NewsletterReq: NewsletterReq;
+  String: ResolverTypeWrapper<Scalars['String']>;
   Query: ResolverTypeWrapper<{}>;
+  SellEmailReq: SellEmailReq;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  SpreadEmailReq: SpreadEmailReq;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  SellEmailReq: SellEmailReq;
-  String: Scalars['String'];
-  Int: Scalars['Int'];
-  SpreadEmailReq: SpreadEmailReq;
-  NewsletterReq: NewsletterReq;
   Mutation: {};
   Boolean: Scalars['Boolean'];
+  NewsletterReq: NewsletterReq;
+  String: Scalars['String'];
   Query: {};
+  SellEmailReq: SellEmailReq;
+  Int: Scalars['Int'];
+  SpreadEmailReq: SpreadEmailReq;
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {

@@ -1,19 +1,13 @@
-import { BaseForm, FormError } from "@/components/Forms/BaseForm";
-import { SendSpreadMailDocument } from "@/components/Forms/spreadEmail.local.generated";
-import { useReactMutation } from "@/components/useReactQuery";
+import { BaseForm } from "@/components/Forms/BaseForm";
 import { useTranslations } from "@/translate";
 import React from "react";
 import tw from "twin.macro";
 import * as Yup from "yup";
 
-import { H2 } from "../@UI/Texts";
 import { FieldArea } from "./FieldArea";
 import { FieldInput } from "./FieldInput";
 
-// import { useSendMail } from "./useSendEmail";
-
-export const VerbreitenForm: React.FC = () => {
-  const sendMail = useReactMutation(SendSpreadMailDocument);
+export const FormContact: React.FC = () => {
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -44,17 +38,6 @@ export const VerbreitenForm: React.FC = () => {
       .required(intl("FORM_VALIDATION_REQUIRED")),
   });
 
-  if (sendMail.data) {
-    return (
-      <div css={tw`flex items-center justify-center`}>
-        {intl("FORM_CONTACT_SUCCESS")}
-      </div>
-    );
-  }
-  if (sendMail.error) {
-    return <FormError color={"pink"} onReset={() => sendMail.reset()} />;
-  }
-
   return (
     <BaseForm
       color="pink"
@@ -71,10 +54,9 @@ export const VerbreitenForm: React.FC = () => {
       onSubmit={(values) => {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { consent, ...rest } = values;
-        sendMail.mutate({ email: rest });
+        console.log(rest);
       }}
     >
-      <H2>{intl("FORM_CONTACT_TITLE")}</H2>
       <div css={tw`flex`}>
         <FieldInput label={intl("FORM_NAME")} field="firstName" />
         <FieldInput label={intl("FORM_SURNAME")} field="lastName" />
@@ -83,17 +65,9 @@ export const VerbreitenForm: React.FC = () => {
 
       <FieldArea
         field="message"
-        label={intl("FORM_MOTIVATION")}
+        label={intl("MESSAGE")}
         placeholder={intl("FORM_MOTIVATION_CONTENT")}
       />
-      <div css={tw`flex`}>
-        <FieldInput
-          label={intl("FORM_POSTCODE")}
-          field="postCode"
-          type="number"
-        />
-        <FieldInput label={intl("FORM_TOWN")} field="town" />
-      </div>
     </BaseForm>
   );
 };
