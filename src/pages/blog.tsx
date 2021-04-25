@@ -3,7 +3,7 @@ import { Grid } from "@/components/@UI/Grid";
 import {
   BlogsDocument,
   BlogsQuery,
-} from "@/components/Blog/Blog.cms.generated";
+} from "@/components/CmsQueries/Blog.cms.generated";
 import { withLayout } from "@/components/Layout";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";

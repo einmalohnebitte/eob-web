@@ -1,11 +1,11 @@
 import { Card } from "@/components/@UI/Card";
 import { Grid } from "@/components/@UI/Grid";
-import { withLayout } from "@/components/Layout";
 import {
   MembersDocument,
   MembersQuery,
-} from "@/components/Members/Members.cms.generated";
-import { HeadMeta } from "@/components/PageSections/HeadMeta";
+} from "@/components/CmsQueries/Members.cms.generated";
+import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
 import { contextToLocale } from "@/translate/contextToLocale";

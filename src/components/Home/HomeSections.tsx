@@ -1,6 +1,6 @@
 import { Section } from "@/components/@UI/Section";
+import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.generated";
 import { Hero } from "@/components/Home/1Hero";
-import { PageSectionsQuery } from "@/components/PageSections/PageSections.cms.generated";
 import React from "react";
 
 export const HomeSections: React.FC<PageSectionsQuery["pageSections"][0]> = (

@@ -1,13 +1,13 @@
 import { BackgroundYellowWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { H1, H2 } from "@/components/@UI/Texts";
-import { FormVerkaufen } from "@/components/Forms/FormVerkaufen";
-import { withLayout } from "@/components/Layout";
-import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
   PageSectionsDocument,
   PageSectionsQuery,
-} from "@/components/PageSections/PageSections.cms.generated";
+} from "@/components/CmsQueries/PageSections.cms.generated";
+import { FormVerkaufen } from "@/components/Forms/FormVerkaufen";
+import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";

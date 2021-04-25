@@ -1,5 +1,5 @@
 import { Card } from "@/components/@UI/Card";
-import { PageSectionsQuery } from "@/components/PageSections/PageSections.cms.generated";
+import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.generated";
 import { useTranslations } from "@/translate";
 import React from "react";
 import tw from "twin.macro";

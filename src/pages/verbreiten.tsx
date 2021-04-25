@@ -2,17 +2,17 @@ import { BackgroundPinkWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { SponsorCard } from "@/components/@UI/SponsorCard";
 import { H1, H2 } from "@/components/@UI/Texts";
-import { FormVerbreiten } from "@/components/Forms/FormVerbreiten";
-import { withLayout } from "@/components/Layout";
 import {
   CityPartnersDocument,
   CityPartnersQuery,
-} from "@/components/PageSections/CityPartners.cms.generated";
-import { HeadMeta } from "@/components/PageSections/HeadMeta";
+} from "@/components/CmsQueries/CityPartners.cms.generated";
 import {
   PageSectionsDocument,
   PageSectionsQuery,
-} from "@/components/PageSections/PageSections.cms.generated";
+} from "@/components/CmsQueries/PageSections.cms.generated";
+import { FormVerbreiten } from "@/components/Forms/FormVerbreiten";
+import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";
 import { contextToLocale } from "@/translate/contextToLocale";
