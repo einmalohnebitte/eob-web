@@ -1,5 +1,6 @@
 import { Section } from "@/components/@UI/Section";
 import { H1 } from "@/components/@UI/Texts";
+import { FormContact } from "@/components/Forms/FormContact";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
@@ -53,6 +54,7 @@ const Page: React.FC<PageContentQuery> = (props) => {
             __html: props.pages[0]?.content?.html ?? "",
           }}
         />
+        {props.pages[0]?.slug === "kontakt" && <FormContact />}
       </Section>
     </>
   );

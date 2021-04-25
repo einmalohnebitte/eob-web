@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import tw from "twin.macro";
 
+export type Colors = "pink" | "yellow" | "blue";
+
 export const Button = styled.button`
   ${tw`text-xl text-white font-lemonism tracking-wider py-2 px-6 rounded focus:outline-none`}
 `;
@@ -26,4 +28,8 @@ export const ButtonBlue = styled(Button)`
 
 export const ButtonYellow = styled(Button)`
   ${tw`bg-yellow-500 hover:bg-yellow-600`}
+`;
+
+export const ButtonColor = styled(Button)<{ color: Colors }>`
+  ${({ color }) => (color === "blue" ? Blue : color === "pink" ? Pink : Yellow)}
 `;
