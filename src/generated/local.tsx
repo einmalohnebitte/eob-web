@@ -11,11 +11,22 @@ export type Scalars = {
   Float: number;
 };
 
+export type EmailReq = {
+  subject: Scalars['String'];
+  html: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  sendEmail: Scalars['Boolean'];
   sellEmail: Scalars['Boolean'];
   spreadEmail: Scalars['Boolean'];
   newsletter: Scalars['Boolean'];
+};
+
+
+export type MutationSendEmailArgs = {
+  email: EmailReq;
 };
 
 

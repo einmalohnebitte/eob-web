@@ -1,8 +1,7 @@
 import { Resolvers } from "@/generated/resolvers-types";
 
+import { sendEmail } from "./emails";
 import { newsletter } from "./newsletter";
-import { sellEmail } from "./sellEmail";
-import { spreadEmail } from "./spreadEmail";
 
 export type ResolverContext = {
   session?: {
@@ -15,8 +14,7 @@ export type ResolverContext = {
 
 export const resolvers: Resolvers = {
   Mutation: {
-    sellEmail,
-    spreadEmail,
+    sendEmail,
     newsletter,
   },
   Query: {

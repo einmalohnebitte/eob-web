@@ -13,11 +13,22 @@ export type Scalars = {
   Float: number;
 };
 
+export type EmailReq = {
+  subject: Scalars['String'];
+  html: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  sendEmail: Scalars['Boolean'];
   sellEmail: Scalars['Boolean'];
   spreadEmail: Scalars['Boolean'];
   newsletter: Scalars['Boolean'];
+};
+
+
+export type MutationSendEmailArgs = {
+  email: EmailReq;
 };
 
 
@@ -145,10 +156,11 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  EmailReq: EmailReq;
+  String: ResolverTypeWrapper<Scalars['String']>;
   Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
   NewsletterReq: NewsletterReq;
-  String: ResolverTypeWrapper<Scalars['String']>;
   Query: ResolverTypeWrapper<{}>;
   SellEmailReq: SellEmailReq;
   Int: ResolverTypeWrapper<Scalars['Int']>;
@@ -157,10 +169,11 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  EmailReq: EmailReq;
+  String: Scalars['String'];
   Mutation: {};
   Boolean: Scalars['Boolean'];
   NewsletterReq: NewsletterReq;
-  String: Scalars['String'];
   Query: {};
   SellEmailReq: SellEmailReq;
   Int: Scalars['Int'];
@@ -168,6 +181,7 @@ export type ResolversParentTypes = {
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  sendEmail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSendEmailArgs, 'email'>>;
   sellEmail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSellEmailArgs, 'email'>>;
   spreadEmail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSpreadEmailArgs, 'email'>>;
   newsletter?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationNewsletterArgs, 'user'>>;

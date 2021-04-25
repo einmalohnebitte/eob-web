@@ -1,3 +1,0 @@
-mutation sendSpreadMail($email: SpreadEmailReq!) {
-  spreadEmail(email: $email)
-}

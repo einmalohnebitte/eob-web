@@ -14,11 +14,22 @@ export type Scalars = {
   Float: number;
 };
 
+export type EmailReq = {
+  subject: Scalars['String'];
+  html: Scalars['String'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  sendEmail: Scalars['Boolean'];
   sellEmail: Scalars['Boolean'];
   spreadEmail: Scalars['Boolean'];
   newsletter: Scalars['Boolean'];
+};
+
+
+export type MutationSendEmailArgs = {
+  email: EmailReq;
 };
 
 
@@ -68,15 +79,15 @@ export type SpreadEmailReq = {
   email: Scalars['String'];
 };
 
-export type SendSpreadMailMutationVariables = Types.Exact<{
-  email: Types.SpreadEmailReq;
+export type SendEmailMutationVariables = Types.Exact<{
+  email: Types.EmailReq;
 }>;
 
 
-export type SendSpreadMailMutation = (
+export type SendEmailMutation = (
   { __typename?: 'Mutation' }
-  & Pick<Types.Mutation, 'spreadEmail'>
+  & Pick<Types.Mutation, 'sendEmail'>
 );
 
 
-export const SendSpreadMailDocument: DocumentNode<SendSpreadMailMutation, SendSpreadMailMutationVariables> = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"sendSpreadMail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"SpreadEmailReq"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"spreadEmail"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}}]}]}}]};
+export const SendEmailDocument: DocumentNode<SendEmailMutation, SendEmailMutationVariables> = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"SendEmail"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"email"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"EmailReq"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sendEmail"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"email"},"value":{"kind":"Variable","name":{"kind":"Name","value":"email"}}}]}]}}]};

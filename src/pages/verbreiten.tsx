@@ -2,7 +2,7 @@ import { BackgroundPinkWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { SponsorCard } from "@/components/@UI/SponsorCard";
 import { H1, H2 } from "@/components/@UI/Texts";
-import { VerbreitenForm } from "@/components/Forms/VerbreitenForm";
+import { FormVerbreiten } from "@/components/Forms/FormVerbreiten";
 import { withLayout } from "@/components/Layout";
 import {
   CityPartnersDocument,
@@ -81,7 +81,7 @@ const Home: React.FC<
           />
         </Section>
         <Section>
-          <VerbreitenForm />
+          <FormVerbreiten />
         </Section>
         <Section css={tw` text-center`}>
           <H2>{intl("CITY_PARTNERS")}</H2>

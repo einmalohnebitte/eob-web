@@ -1,6 +1,6 @@
 import { Section } from "@/components/@UI/Section";
 import { H1 } from "@/components/@UI/Texts";
-import { NewsletterForm } from "@/components/Forms/NewsletterForm";
+import { FormNewsletter } from "@/components/Forms/FormNewsletter";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
@@ -37,7 +37,7 @@ const Page: React.FC<PageContentQuery> = (props) => {
             __html: props.pages[0]?.content?.html ?? "",
           }}
         />
-        <NewsletterForm />
+        <FormNewsletter />
       </Section>
     </>
   );

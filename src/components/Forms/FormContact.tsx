@@ -1,4 +1,6 @@
-import { BaseForm } from "@/components/Forms/BaseForm";
+import { FormBase } from "@/components/Forms/FormBase";
+import { SendEmailDocument } from "@/components/Forms/sendEmail.local.generated";
+import { useReactMutation } from "@/components/useReactQuery";
 import { useTranslations } from "@/translate";
 import React from "react";
 import tw from "twin.macro";
@@ -8,6 +10,7 @@ import { FieldArea } from "./FieldArea";
 import { FieldInput } from "./FieldInput";
 
 export const FormContact: React.FC = () => {
+  const sendEmail = useReactMutation(SendEmailDocument);
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -25,21 +28,16 @@ export const FormContact: React.FC = () => {
       .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
       .max(500, intl("FORM_VALIDATION_TOO_LONG"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
-    postCode: Yup.number()
-      .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
-      .max(999999, intl("FORM_VALIDATION_TOO_LONG"))
-      .required(intl("FORM_VALIDATION_REQUIRED")),
-    town: Yup.string()
-      .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
-      .max(50, intl("FORM_VALIDATION_TOO_LONG"))
-      .required(intl("FORM_VALIDATION_REQUIRED")),
     consent: Yup.boolean()
       .oneOf([true], intl("FORM_VALIDATION_REQUIRED"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
   });
 
   return (
-    <BaseForm
+    <FormBase
+      onReset={() => sendEmail.reset()}
+      isError={!!sendEmail.error}
+      isSuccess={!!sendEmail.data}
       color="pink"
       initialValues={{
         firstName: "",
@@ -52,9 +50,15 @@ export const FormContact: React.FC = () => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { consent, ...rest } = values;
-        console.log(rest);
+        const { email, firstName, lastName, message } = values;
+        sendEmail.mutate({
+          email: {
+            subject: `[Kontakt]: ${firstName}`,
+            html: `<p>${firstName} ${lastName} - ${email}</p>
+                  <p>${message}</p>
+          `,
+          },
+        });
       }}
     >
       <div css={tw`flex`}>
@@ -63,11 +67,7 @@ export const FormContact: React.FC = () => {
       </div>
       <FieldInput label={intl("FORM_EMAIL")} field="email" />
 
-      <FieldArea
-        field="message"
-        label={intl("MESSAGE")}
-        placeholder={intl("FORM_MOTIVATION_CONTENT")}
-      />
-    </BaseForm>
+      <FieldArea field="message" label={intl("FORM_MESSAGE")} />
+    </FormBase>
   );
 };

@@ -1,7 +1,7 @@
 import { BackgroundYellowWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { H1, H2 } from "@/components/@UI/Texts";
-import { VerkaufenForm } from "@/components/Forms/VerkaufenForm";
+import { FormVerkaufen } from "@/components/Forms/FormVerkaufen";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
@@ -70,7 +70,7 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
           />
         </Section>
         <Section>
-          <VerkaufenForm />
+          <FormVerkaufen />
         </Section>
       </BackgroundYellowWrapper>
     </>
