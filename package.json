@@ -65,7 +65,7 @@
     "@storybook/addon-links": "6.2.9",
     "@storybook/react": "6.2.9",
     "@types/ical": "0.6.2",
-    "@types/jest": "26.0.22",
+    "@types/jest": "26.0.23",
     "@types/leaflet": "1.7.0",
     "@types/mailgun-js": "0.22.11",
     "@types/next-auth": "3.13.0",
