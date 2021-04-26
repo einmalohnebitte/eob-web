@@ -1,14 +1,14 @@
+import {
+  PageSectionsDocument,
+  PageSectionsQuery,
+} from "@/components/CmsQueries/PageSections.cms.generated";
 import { Goals } from "@/components/Home/2Goals";
 import { Map } from "@/components/Home/3Map";
 import { Social } from "@/components/Home/4Social";
 import { Sponsors } from "@/components/Home/5Sponsors";
 import { HomeSections } from "@/components/Home/HomeSections";
 import { withLayout } from "@/components/Layout";
-import { HeadMeta } from "@/components/PageSections/HeadMeta";
-import {
-  PageSectionsDocument,
-  PageSectionsQuery,
-} from "@/components/PageSections/PageSections.cms.generated";
+import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";

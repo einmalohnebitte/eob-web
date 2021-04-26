@@ -1,4 +1,4 @@
-import { TwInput } from "@/components/Forms/FormInput";
+import { TwInput } from "@/components/Forms/FieldInput";
 import type { Maybe } from "@/generated/graphql";
 import { useTranslations } from "@/translate";
 import React from "react";
@@ -20,7 +20,6 @@ export const Search: React.FC<{
         <input
           type="text"
           css={`
-            border-width: 1px;
             ${TwInput}
             ${tw` pl-8`}
           `}

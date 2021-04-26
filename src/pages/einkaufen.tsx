@@ -1,11 +1,11 @@
 import { BackgroundBlueWrapper } from "@/components/@UI/BackgroundWrapper";
 import { SplitSection } from "@/components/@UI/Section";
 import { H1, H2 } from "@/components/@UI/Texts";
-import { withLayout } from "@/components/Layout";
 import {
   PageSectionsDocument,
   PageSectionsQuery,
-} from "@/components/PageSections/PageSections.cms.generated";
+} from "@/components/CmsQueries/PageSections.cms.generated";
+import { withLayout } from "@/components/Layout";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";

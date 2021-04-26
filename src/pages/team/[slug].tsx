@@ -1,11 +1,11 @@
 import { Card } from "@/components/@UI/Card";
 import { Section } from "@/components/@UI/Section";
-import { withLayout } from "@/components/Layout";
 import {
   MemberDocument,
   MemberQuery,
   MembersDocument,
-} from "@/components/Members/Members.cms.generated";
+} from "@/components/CmsQueries/Members.cms.generated";
+import { withLayout } from "@/components/Layout";
 import { Locale } from "@/generated/graphql";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";

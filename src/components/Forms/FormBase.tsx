@@ -8,25 +8,77 @@ import * as Yup from "yup";
 import { ButtonColor, Colors } from "../@UI/Buttons";
 import { FieldCheckbox } from "./FieldCheckbox";
 
+export const FormError: React.FC<{
+  onReset: () => void;
+  color: Colors;
+}> = ({ onReset, color }) => {
+  const intl = useTranslations();
+  return (
+    <div
+      css={[
+        tw`flex flex-col items-center justify-center border border-solid p-4`,
+        color === "blue" && tw`border-blue-400`,
+        color === "yellow" && tw`border-yellow-400`,
+        color === "pink" && tw`border-pink-400`,
+      ]}
+    >
+      {intl("FORM_CONTACT_ERROR")}
+
+      <ButtonColor css={tw`mt-4`} color={color} onClick={onReset}>
+        {intl("FORM_OK")}
+      </ButtonColor>
+    </div>
+  );
+};
+
+export const FormSuccess: React.FC<{ color: Colors }> = ({ color }) => {
+  const intl = useTranslations();
+  return (
+    <div
+      css={[
+        tw`flex flex-col items-center justify-center border border-solid p-4`,
+        color === "blue" && tw`border-blue-400`,
+        color === "yellow" && tw`border-yellow-400`,
+        color === "pink" && tw`border-pink-400`,
+      ]}
+    >
+      {intl("FORM_CONTACT_SUCCESS")}
+    </div>
+  );
+};
+
 interface Props<T> {
   children?: React.ReactNode;
   initialValues: T;
   validationSchema: Yup.SchemaOf<any>;
   color: Colors;
   onSubmit: (values: T) => void;
+  onReset: () => void;
+  isSuccess: boolean;
+  isError: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
-export const BaseForm = <T extends {}>({
+export const FormBase = <T extends {}>({
   children,
   onSubmit,
+  onReset,
   initialValues,
   validationSchema,
   color,
+  isSuccess,
+  isError,
 }: Props<T>): React.ReactElement<any, any> | null => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [captcha, setCaptcha] = useState(false);
   const intl = useTranslations();
+
+  if (isSuccess) {
+    return <FormSuccess color={color} />;
+  }
+  if (isError) {
+    return <FormError color={color} onReset={onReset} />;
+  }
 
   return (
     <div css={tw`w-full max-w-sm`}>
@@ -62,22 +114,6 @@ export const BaseForm = <T extends {}>({
           </Form>
         )}
       </Formik>
-    </div>
-  );
-};
-
-export const FormError: React.FC<{
-  onReset: () => void;
-  color: "pink" | "blue" | "yellow";
-}> = ({ onReset, color }) => {
-  const intl = useTranslations();
-  return (
-    <div css={tw`flex items-center justify-center`}>
-      {intl("FORM_CONTACT_ERROR")}
-
-      <ButtonColor color={color} onClick={onReset}>
-        {intl("FORM_OK")}
-      </ButtonColor>
     </div>
   );
 };

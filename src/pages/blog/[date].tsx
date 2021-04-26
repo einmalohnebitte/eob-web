@@ -4,9 +4,9 @@ import {
   BlogDocument,
   BlogQuery,
   BlogsDocument,
-} from "@/components/Blog/Blog.cms.generated";
+} from "@/components/CmsQueries/Blog.cms.generated";
 import { withLayout } from "@/components/Layout";
-import { HeadMeta } from "@/components/PageSections/HeadMeta";
+import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { Locale } from "@/generated/graphql";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";

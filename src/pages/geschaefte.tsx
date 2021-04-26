@@ -2,7 +2,7 @@ import { Button } from "@/components/@UI/Buttons";
 import { Loading } from "@/components/@UI/Loading";
 import { Section } from "@/components/@UI/Section";
 import { withLayout } from "@/components/Layout";
-import { HeadMeta } from "@/components/PageSections/HeadMeta";
+import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { Search } from "@/components/ShopsMap/Search";
 import {
   ShopsDocument,

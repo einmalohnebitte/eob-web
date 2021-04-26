@@ -29,9 +29,13 @@ input NewsletterReq {
   email: String!
 }
 
+input EmailReq {
+  subject: String!
+  html: String!
+}
+
 type Mutation {
-  sellEmail(email: SellEmailReq!): Boolean!
-  spreadEmail(email: SpreadEmailReq!): Boolean!
+  sendEmail(email: EmailReq!): Boolean!
   newsletter(user: NewsletterReq!): Boolean!
 }
 

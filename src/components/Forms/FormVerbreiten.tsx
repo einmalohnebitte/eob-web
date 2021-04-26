@@ -1,5 +1,5 @@
-import { BaseForm, FormError } from "@/components/Forms/BaseForm";
-import { SendSpreadMailDocument } from "@/components/Forms/spreadEmail.local.generated";
+import { FormBase } from "@/components/Forms/FormBase";
+import { SendEmailDocument } from "@/components/Forms/sendEmail.local.generated";
 import { useReactMutation } from "@/components/useReactQuery";
 import { useTranslations } from "@/translate";
 import React from "react";
@@ -10,10 +10,8 @@ import { H2 } from "../@UI/Texts";
 import { FieldArea } from "./FieldArea";
 import { FieldInput } from "./FieldInput";
 
-// import { useSendMail } from "./useSendEmail";
-
-export const VerbreitenForm: React.FC = () => {
-  const sendMail = useReactMutation(SendSpreadMailDocument);
+export const FormVerbreiten: React.FC = () => {
+  const sendMail = useReactMutation(SendEmailDocument);
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -44,19 +42,11 @@ export const VerbreitenForm: React.FC = () => {
       .required(intl("FORM_VALIDATION_REQUIRED")),
   });
 
-  if (sendMail.data) {
-    return (
-      <div css={tw`flex items-center justify-center`}>
-        {intl("FORM_CONTACT_SUCCESS")}
-      </div>
-    );
-  }
-  if (sendMail.error) {
-    return <FormError color={"pink"} onReset={() => sendMail.reset()} />;
-  }
-
   return (
-    <BaseForm
+    <FormBase
+      onReset={() => sendMail.reset()}
+      isError={!!sendMail.error}
+      isSuccess={!!sendMail.data}
       color="pink"
       initialValues={{
         firstName: "",
@@ -69,9 +59,16 @@ export const VerbreitenForm: React.FC = () => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { consent, ...rest } = values;
-        sendMail.mutate({ email: rest });
+        const { firstName, lastName, email, postCode, town, message } = values;
+        sendMail.mutate({
+          email: {
+            subject: `[Verbreiten] ${firstName} ${lastName}`,
+            html: ` <h1> ${firstName} ${lastName}</h1>
+          <p>Email: ${email} </p>
+          <p>Location:  ${postCode}, ${town} </p>
+          <p>Message: ${message} </p>`,
+          },
+        });
       }}
     >
       <H2>{intl("FORM_CONTACT_TITLE")}</H2>
@@ -94,6 +91,6 @@ export const VerbreitenForm: React.FC = () => {
         />
         <FieldInput label={intl("FORM_TOWN")} field="town" />
       </div>
-    </BaseForm>
+    </FormBase>
   );
 };

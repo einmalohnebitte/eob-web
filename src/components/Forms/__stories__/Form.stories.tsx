@@ -6,7 +6,7 @@ import tw from "twin.macro";
 
 import { FOOTER_HEIGHT } from "../../../constants/MediaQueries";
 import { Section } from "../../@UI/Section";
-import { VerkaufenForm } from "../VerkaufenForm";
+import { FormVerkaufen } from "../FormVerkaufen";
 
 export default {
   title: "Form",
@@ -25,7 +25,7 @@ const Template: Story = (args) => (
   <>
     <Layout>
       <Section>
-        <VerkaufenForm />
+        <FormVerkaufen />
       </Section>
     </Layout>
   </>

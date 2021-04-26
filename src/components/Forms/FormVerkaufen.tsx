@@ -1,5 +1,5 @@
-import { BaseForm, FormError } from "@/components/Forms/BaseForm";
-import { SendSellMailDocument } from "@/components/Forms/sellEmail.local.generated";
+import { FormBase } from "@/components/Forms/FormBase";
+import { SendEmailDocument } from "@/components/Forms/sendEmail.local.generated";
 import { useReactMutation } from "@/components/useReactQuery";
 import { useTranslations } from "@/translate";
 import { ErrorMessage, Field } from "formik";
@@ -11,11 +11,9 @@ import { H2 } from "../@UI/Texts";
 import { FieldArea } from "./FieldArea";
 import { FieldInput } from "./FieldInput";
 
-// Render Prop
+export const FormVerkaufen: React.FC = () => {
+  const sendMail = useReactMutation(SendEmailDocument);
 
-export const VerkaufenForm = () => {
-  const sendMail = useReactMutation(SendSellMailDocument);
-  // const [captcha, setCaptcha] = useState(false);
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
     shop: Yup.string()
@@ -54,20 +52,11 @@ export const VerkaufenForm = () => {
       .required(intl("FORM_VALIDATION_REQUIRED")),
   });
 
-  if (sendMail.data) {
-    return (
-      <div css={tw`flex items-center justify-center`}>
-        {intl("FORM_CONTACT_SUCCESS")}
-      </div>
-    );
-  }
-
-  if (sendMail.error) {
-    return <FormError color={"yellow"} onReset={() => sendMail.reset()} />;
-  }
-
   return (
-    <BaseForm
+    <FormBase
+      onReset={() => sendMail.reset()}
+      isError={!!sendMail.error}
+      isSuccess={!!sendMail.data}
       color="yellow"
       initialValues={{
         shop: "",
@@ -83,9 +72,29 @@ export const VerkaufenForm = () => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { consent, ...rest } = values;
-        sendMail.mutate({ email: rest });
+        const {
+          shop,
+          firstName,
+          lastName,
+          email,
+          address,
+          postCode,
+          town,
+          sticker,
+          message,
+        } = values;
+        sendMail.mutate({
+          email: {
+            subject: `[Verkaufen] ${shop} ${firstName} ${lastName}`, // Subject line
+            html: `
+        <h1>${shop} (${firstName} ${lastName})</h1>
+        <p>Email: ${email} </p>
+        <p>Address: ${address}, ${postCode}, ${town} </p>
+        <p>Stickers: ${sticker} </p>
+        <p>Message: ${message} </p>
+    `,
+          },
+        });
       }}
     >
       <H2 css={tw`mb-4`}>{intl("FORM_CONTACT_TITLE")}</H2>
@@ -139,6 +148,6 @@ export const VerkaufenForm = () => {
       </div>
 
       <FieldArea field="message" label={intl("FORM_MESSAGE")} />
-    </BaseForm>
+    </FormBase>
   );
 };

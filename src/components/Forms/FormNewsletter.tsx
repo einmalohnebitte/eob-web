@@ -1,5 +1,5 @@
-import { BaseForm, FormError } from "@/components/Forms/BaseForm";
 import { FieldInput } from "@/components/Forms/FieldInput";
+import { FormBase } from "@/components/Forms/FormBase";
 import { SubscribeNewsletterDocument } from "@/components/Forms/newsletter.local.generated";
 import { useReactMutation } from "@/components/useReactQuery";
 import { useTranslations } from "@/translate";
@@ -7,7 +7,7 @@ import React from "react";
 import tw from "twin.macro";
 import * as Yup from "yup";
 
-export const NewsletterForm: React.FC = () => {
+export const FormNewsletter: React.FC = () => {
   const sendMail = useReactMutation(SubscribeNewsletterDocument);
 
   const intl = useTranslations();
@@ -28,20 +28,11 @@ export const NewsletterForm: React.FC = () => {
       .required(intl("FORM_VALIDATION_REQUIRED")),
   });
 
-  if (sendMail.data) {
-    return (
-      <div css={tw`flex items-center justify-center`}>
-        {intl("FORM_CONTACT_SUCCESS")}
-      </div>
-    );
-  }
-
-  if (sendMail.error) {
-    return <FormError color={"pink"} onReset={() => sendMail.reset()} />;
-  }
-
   return (
-    <BaseForm
+    <FormBase
+      onReset={() => sendMail.reset()}
+      isError={!!sendMail.error}
+      isSuccess={!!sendMail.data}
       color="pink"
       initialValues={{
         firstName: "",
@@ -61,6 +52,6 @@ export const NewsletterForm: React.FC = () => {
         <FieldInput label={intl("FORM_SURNAME")} field="lastName" />
       </div>
       <FieldInput label={intl("FORM_EMAIL")} field="email" />
-    </BaseForm>
+    </FormBase>
   );
 };

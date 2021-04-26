@@ -1,12 +1,12 @@
 import { Section } from "@/components/@UI/Section";
 import { H1 } from "@/components/@UI/Texts";
-import { NewsletterForm } from "@/components/Forms/NewsletterForm";
-import { withLayout } from "@/components/Layout";
-import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
   PageContentDocument,
   PageContentQuery,
-} from "@/components/PageSections/PageContent.cms.generated";
+} from "@/components/CmsQueries/PageContent.cms.generated";
+import { FormNewsletter } from "@/components/Forms/FormNewsletter";
+import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticProps } from "next";
@@ -37,7 +37,7 @@ const Page: React.FC<PageContentQuery> = (props) => {
             __html: props.pages[0]?.content?.html ?? "",
           }}
         />
-        <NewsletterForm />
+        <FormNewsletter />
       </Section>
     </>
   );

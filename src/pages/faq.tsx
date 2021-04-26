@@ -1,4 +1,7 @@
-import { FaqsDocument, FaqsQuery } from "@/components/Faq/Faq.cms.generated";
+import {
+  FaqsDocument,
+  FaqsQuery,
+} from "@/components/CmsQueries/Faq.cms.generated";
 import { withLayout } from "@/components/Layout";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { useTranslations } from "@/translate";

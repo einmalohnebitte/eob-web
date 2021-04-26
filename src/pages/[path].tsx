@@ -1,12 +1,12 @@
 import { Section } from "@/components/@UI/Section";
 import { H1 } from "@/components/@UI/Texts";
-import { FormContact } from "@/components/Forms/FormContact";
-import { withLayout } from "@/components/Layout";
-import { HeadMeta } from "@/components/PageSections/HeadMeta";
 import {
   PageContentDocument,
   PageContentQuery,
-} from "@/components/PageSections/PageContent.cms.generated";
+} from "@/components/CmsQueries/PageContent.cms.generated";
+import { FormContact } from "@/components/Forms/FormContact";
+import { withLayout } from "@/components/Layout";
+import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { graphCmsRequest } from "@/graphql/graphcms";
 import { contextToLocale } from "@/translate/contextToLocale";
 import { GetStaticPaths, GetStaticProps } from "next";

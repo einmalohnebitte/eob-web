@@ -1,4 +1,4 @@
-import { TwInput } from "@/components/Forms/FormInput";
+import { TwInput } from "@/components/Forms/FieldInput";
 import { ErrorMessage, useField } from "formik";
 import React from "react";
 import tw from "twin.macro";
@@ -25,10 +25,7 @@ export const FieldArea: React.FC<PropType> = ({
         {label}
       </label>
       <textarea
-        css={`
-          border-width: 1px;
-          ${TwInput}
-        `}
+        css={TwInput}
         {...formikProps}
         rows={6}
         cols={50}
