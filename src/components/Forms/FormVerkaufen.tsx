@@ -86,13 +86,7 @@ export const FormVerkaufen: React.FC = () => {
         sendMail.mutate({
           email: {
             subject: `[Verkaufen] ${shop} ${firstName} ${lastName}`, // Subject line
-            html: `
-        <h1>${shop} (${firstName} ${lastName})</h1>
-        <p>Email: ${email} </p>
-        <p>Address: ${address}, ${postCode}, ${town} </p>
-        <p>Stickers: ${sticker} </p>
-        <p>Message: ${message} </p>
-    `,
+            html: `<h1>${shop} (${firstName} ${lastName})</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Stickers: ${sticker} </p><p>Message: ${message} </p>`,
           },
         });
       }}
@@ -138,7 +132,13 @@ export const FormVerkaufen: React.FC = () => {
             />
           </label>
           <label css={tw`flex items-center ml-2 `} htmlFor={"sticker"}>
-            <Field type="radio" name={"sticker"} id={"sticker"} value="no" />
+            <Field
+              data-testid="STICKER-NO"
+              type="radio"
+              name={"sticker"}
+              id={"sticker"}
+              value="no"
+            />
             <span
               css={tw`text-gray-700 ml-2 font-gt`}
               dangerouslySetInnerHTML={{ __html: intl("FORM_NO") }}

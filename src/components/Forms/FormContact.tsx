@@ -54,9 +54,7 @@ export const FormContact: React.FC = () => {
         sendEmail.mutate({
           email: {
             subject: `[Kontakt]: ${firstName}`,
-            html: `<p>${firstName} ${lastName} - ${email}</p>
-                  <p>${message}</p>
-          `,
+            html: `<p>${firstName} ${lastName} - ${email}</p><p>${message}</p>`,
           },
         });
       }}
