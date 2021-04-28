@@ -63,10 +63,7 @@ export const FormVerbreiten: React.FC = () => {
         sendMail.mutate({
           email: {
             subject: `[Verbreiten] ${firstName} ${lastName}`,
-            html: ` <h1> ${firstName} ${lastName}</h1>
-          <p>Email: ${email} </p>
-          <p>Location:  ${postCode}, ${town} </p>
-          <p>Message: ${message} </p>`,
+            html: ` <h1> ${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Location:  ${postCode}, ${town} </p><p>Message: ${message} </p>`,
           },
         });
       }}

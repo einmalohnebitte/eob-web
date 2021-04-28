@@ -13,5 +13,5 @@ jobs:
       run: npx tsc   
     - name: Run Codegen
       run: npm run codegen 
-#     - name: Run Tests
-#       run: npm test
+    - name: Run Tests
+      run: npm test
