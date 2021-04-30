@@ -1,4 +1,4 @@
-import { TranslationsQuery } from "@/translate/Translations.cms.generated";
+import { TranslationsQuery } from "@/hooks/useTranslations/Translations.cms.generated";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -16,9 +16,8 @@ export const useTranslations = (
   const context = useRouter();
   useState(() => {
     initialTranslations?.forEach((item) => {
-      const locale = context.locale === "en" ? "en" : "de";
       if (item?.key && item.value) {
-        globalTranslations[locale][item.key] = item.value;
+        globalTranslations[item.locale][item.key] = item.value;
       }
     });
 

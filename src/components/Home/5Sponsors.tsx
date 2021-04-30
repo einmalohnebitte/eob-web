@@ -1,5 +1,5 @@
 import { SponsorCard } from "@/components/@UI/SponsorCard";
-import { useTranslations } from "@/translate";
+import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
 import tw from "twin.macro";
 

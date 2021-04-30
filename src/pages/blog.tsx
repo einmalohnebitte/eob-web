@@ -5,8 +5,8 @@ import {
   BlogsQuery,
 } from "@/components/CmsQueries/Blog.cms.generated";
 import { withLayout } from "@/components/Layout";
-import { graphCmsRequest } from "@/graphql/graphcms";
-import { contextToLocale } from "@/translate/contextToLocale";
+import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
+import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";

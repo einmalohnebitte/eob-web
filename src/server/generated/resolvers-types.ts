@@ -21,24 +21,12 @@ export type EmailReq = {
 export type Mutation = {
   __typename?: 'Mutation';
   sendEmail: Scalars['Boolean'];
-  sellEmail: Scalars['Boolean'];
-  spreadEmail: Scalars['Boolean'];
   newsletter: Scalars['Boolean'];
 };
 
 
 export type MutationSendEmailArgs = {
   email: EmailReq;
-};
-
-
-export type MutationSellEmailArgs = {
-  email: SellEmailReq;
-};
-
-
-export type MutationSpreadEmailArgs = {
-  email: SpreadEmailReq;
 };
 
 
@@ -182,8 +170,6 @@ export type ResolversParentTypes = {
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
   sendEmail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSendEmailArgs, 'email'>>;
-  sellEmail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSellEmailArgs, 'email'>>;
-  spreadEmail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSpreadEmailArgs, 'email'>>;
   newsletter?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationNewsletterArgs, 'user'>>;
 };
 

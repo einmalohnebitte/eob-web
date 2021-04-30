@@ -9,10 +9,10 @@ import {
   ShopsQuery,
 } from "@/components/ShopsMap/Shops.cms.generated";
 import { ShopsSideMenu } from "@/components/ShopsMap/ShopsSideMenu";
-import { useReactQueryCms } from "@/components/useReactQuery";
-import { graphCmsRequest } from "@/graphql/graphcms";
-import { contextToLocale } from "@/translate/contextToLocale";
-import { TranslationsDocument } from "@/translate/Translations.cms.generated";
+import { useReactQueryCms } from "@/hooks/useReactQuery";
+import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
+import { TranslationsDocument } from "@/hooks/useTranslations/Translations.cms.generated";
+import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";

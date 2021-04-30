@@ -11176,6 +11176,8 @@ export type User = Node & {
   picture?: Maybe<Scalars['String']>;
   /** User Kind. Can be either MEMBER, PAT or PUBLIC */
   kind: UserKind;
+  /** Flag to determine if user is active or not */
+  isActive: Scalars['Boolean'];
 };
 
 
@@ -11332,6 +11334,9 @@ export type UserManyWhereInput = {
   kind_in?: Maybe<Array<UserKind>>;
   /** All values that are not contained in given list. */
   kind_not_in?: Maybe<Array<UserKind>>;
+  isActive?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  isActive_not?: Maybe<Scalars['Boolean']>;
 };
 
 export enum UserOrderByInput {
@@ -11348,7 +11353,9 @@ export enum UserOrderByInput {
   PictureAsc = 'picture_ASC',
   PictureDesc = 'picture_DESC',
   KindAsc = 'kind_ASC',
-  KindDesc = 'kind_DESC'
+  KindDesc = 'kind_DESC',
+  IsActiveAsc = 'isActive_ASC',
+  IsActiveDesc = 'isActive_DESC'
 }
 
 /** Identifies documents */
@@ -11470,6 +11477,9 @@ export type UserWhereInput = {
   kind_in?: Maybe<Array<UserKind>>;
   /** All values that are not contained in given list. */
   kind_not_in?: Maybe<Array<UserKind>>;
+  isActive?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  isActive_not?: Maybe<Scalars['Boolean']>;
 };
 
 /** References User record uniquely */

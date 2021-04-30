@@ -1,4 +1,4 @@
-import { Resolvers } from "@/generated/resolvers-types";
+import { Resolvers } from "@/server/generated/resolvers-types";
 
 import { sendEmail } from "./emails";
 import { newsletter } from "./newsletter";

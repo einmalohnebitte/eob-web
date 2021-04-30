@@ -13,9 +13,9 @@ import {
 import { FormVerbreiten } from "@/components/Forms/FormVerbreiten";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/Layout/HeadMeta";
-import { graphCmsRequest } from "@/graphql/graphcms";
-import { useTranslations } from "@/translate";
-import { contextToLocale } from "@/translate/contextToLocale";
+import { useTranslations } from "@/hooks/useTranslations";
+import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
+import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";

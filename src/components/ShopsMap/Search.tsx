@@ -1,6 +1,6 @@
 import { TwInput } from "@/components/Forms/FieldInput";
-import type { Maybe } from "@/generated/graphql";
-import { useTranslations } from "@/translate";
+import { useTranslations } from "@/hooks/useTranslations";
+import type { Maybe } from "@/server/generated/graphql";
 import React from "react";
 import { MdSearch } from "react-icons/md";
 import tw from "twin.macro";

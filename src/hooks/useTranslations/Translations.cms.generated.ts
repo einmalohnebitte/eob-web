@@ -1,31 +1,54 @@
 import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 
-import { TranslationsFragment } from "../../hooks/useTranslations/Translations.cms.generated";
-import { TranslationsFragmentDoc } from "../../hooks/useTranslations/Translations.cms.generated";
 import * as Types from "../../server/generated/graphql";
 
-export type FaqsQueryVariables = Types.Exact<{
+export type TranslationsQueryVariables = Types.Exact<{
   locale: Array<Types.Locale> | Types.Locale;
 }>;
 
-export type FaqsQuery = { __typename?: "Query" } & {
-  faqs: Array<
-    { __typename?: "Faq" } & Pick<Types.Faq, "question"> & {
-        answer?: Types.Maybe<
-          { __typename?: "RichText" } & Pick<Types.RichText, "html">
-        >;
-      }
-  >;
+export type TranslationsQuery = { __typename?: "Query" } & {
   translations: Array<{ __typename?: "Translation" } & TranslationsFragment>;
 };
 
-export const FaqsDocument: DocumentNode<FaqsQuery, FaqsQueryVariables> = {
+export type TranslationsFragment = { __typename?: "Translation" } & Pick<
+  Types.Translation,
+  "locale" | "key" | "value"
+>;
+
+export const TranslationsFragmentDoc: DocumentNode<
+  TranslationsFragment,
+  unknown
+> = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "Translations" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Translation" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "locale" } },
+          { kind: "Field", name: { kind: "Name", value: "key" } },
+          { kind: "Field", name: { kind: "Name", value: "value" } },
+        ],
+      },
+    },
+  ],
+};
+export const TranslationsDocument: DocumentNode<
+  TranslationsQuery,
+  TranslationsQueryVariables
+> = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "Faqs" },
+      name: { kind: "Name", value: "Translations" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -51,26 +74,6 @@ export const FaqsDocument: DocumentNode<FaqsQuery, FaqsQueryVariables> = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "faqs" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "question" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "answer" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "html" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
           {
             kind: "Field",
             name: { kind: "Name", value: "translations" },

@@ -1,4 +1,4 @@
-import { useTranslations } from "@/translate";
+import { useTranslations } from "@/hooks/useTranslations";
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
