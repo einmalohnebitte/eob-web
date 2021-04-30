@@ -1,5 +1,5 @@
-import * as RQ from "@/components/useReactQuery/useReactQuery";
-import * as TR from "@/translate/useTranslations";
+import * as RQ from "@/hooks/useReactQuery/useReactQuery";
+import * as TR from "@/hooks/useTranslations/useTranslations";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";

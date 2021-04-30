@@ -1,5 +1,5 @@
-import { resolvers } from "@/graphql/resolvers";
 import typeDefs from "@/graphql/typeDefs.graphql";
+import { resolvers } from "@/server/resolvers";
 import { ApolloServer } from "apollo-server-micro";
 import type { NextApiRequest, NextApiResponse } from "next";
 // import { getSession } from "next-auth/client";

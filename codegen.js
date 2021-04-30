@@ -4,10 +4,10 @@ const { generate } = require("@graphql-codegen/cli");
 async function run() {
   await generate(
     {
-      schema: "./src/graphql/typeDefs.graphql",
+      schema: "./src/server/typeDefs.graphql",
       documents: "src/components/**/*.local.graphql",
       generates: {
-        [process.cwd() + "/src/generated/local.tsx"]: {
+        [process.cwd() + "/src/server/generated/local.tsx"]: {
           plugins: ["typescript"],
         },
         ["src/"]: {
@@ -22,7 +22,7 @@ async function run() {
             "typed-document-node",
           ],
         },
-        [process.cwd() + "/src/graphql.schema.json"]: {
+        [process.cwd() + "/src/server.schema.json"]: {
           plugins: ["introspection"],
         },
       },
@@ -41,7 +41,7 @@ async function run() {
       },
       documents: "src/**/*.cms.graphql",
       generates: {
-        [process.cwd() + "/src/generated/graphql.tsx"]: {
+        [process.cwd() + "/src/server/generated/graphql.tsx"]: {
           plugins: ["typescript"],
         },
         ["src/"]: {
@@ -52,7 +52,7 @@ async function run() {
           },
           plugins: ["typescript-operations", "typed-document-node"],
         },
-        [process.cwd() + "/src/graphql.schema.json"]: {
+        [process.cwd() + "/src/server.schema.json"]: {
           plugins: ["introspection"],
         },
       },
@@ -61,10 +61,10 @@ async function run() {
   );
   await generate(
     {
-      schema: "./src/graphql/typeDefs.graphql",
+      schema: "./src/server/typeDefs.graphql",
       // documents: "src/components/**/*.graphql",
       generates: {
-        [process.cwd() + "/src/generated/resolvers-types.ts"]: {
+        [process.cwd() + "/src/server/generated/resolvers-types.ts"]: {
           plugins: ["typescript", "typescript-resolvers"],
         },
       },

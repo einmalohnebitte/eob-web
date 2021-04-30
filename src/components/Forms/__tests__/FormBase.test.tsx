@@ -1,4 +1,4 @@
-import * as TR from "@/translate/useTranslations";
+import * as TR from "@/hooks/useTranslations/useTranslations";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";

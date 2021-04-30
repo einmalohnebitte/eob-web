@@ -9,7 +9,7 @@ import {
 } from "@/components/@UI/Buttons";
 import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
 import { MQ_MOBILE } from "@/constants/MediaQueries";
-import { useTranslations } from "@/translate";
+import { useTranslations } from "@/hooks/useTranslations";
 import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
 import styled from "styled-components";

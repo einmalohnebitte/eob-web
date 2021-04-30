@@ -7,8 +7,8 @@ import {
 import { FormNewsletter } from "@/components/Forms/FormNewsletter";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/Layout/HeadMeta";
-import { graphCmsRequest } from "@/graphql/graphcms";
-import { contextToLocale } from "@/translate/contextToLocale";
+import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
+import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
 import React from "react";
 

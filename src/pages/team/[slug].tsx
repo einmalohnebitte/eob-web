@@ -6,9 +6,9 @@ import {
   MembersDocument,
 } from "@/components/CmsQueries/Members.cms.generated";
 import { withLayout } from "@/components/Layout";
-import { Locale } from "@/generated/graphql";
-import { graphCmsRequest } from "@/graphql/graphcms";
-import { contextToLocale } from "@/translate/contextToLocale";
+import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
+import { Locale } from "@/server/generated/graphql";
+import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
 import tw from "twin.macro";

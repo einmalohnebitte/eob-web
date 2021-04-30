@@ -6,8 +6,8 @@ import {
   PageSectionsQuery,
 } from "@/components/CmsQueries/PageSections.cms.generated";
 import { withLayout } from "@/components/Layout";
-import { graphCmsRequest } from "@/graphql/graphcms";
-import { contextToLocale } from "@/translate/contextToLocale";
+import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
+import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import React from "react";

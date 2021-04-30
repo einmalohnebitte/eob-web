@@ -1,7 +1,7 @@
 import { FormBase } from "@/components/Forms/FormBase";
 import { SendEmailDocument } from "@/components/Forms/sendEmail.local.generated";
-import { useReactMutation } from "@/components/useReactQuery";
-import { useTranslations } from "@/translate";
+import { useReactMutation } from "@/hooks/useReactQuery";
+import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
 import tw from "twin.macro";
 import * as Yup from "yup";

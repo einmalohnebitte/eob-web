@@ -1,4 +1,4 @@
-import { Locale } from "@/generated/graphql";
+import { Locale } from "@/server/generated/graphql";
 import { GetStaticPropsContext } from "next";
 
 export const contextToLocale = (ctx: GetStaticPropsContext) => {

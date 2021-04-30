@@ -9,8 +9,8 @@ import { Sponsors } from "@/components/Home/5Sponsors";
 import { HomeSections } from "@/components/Home/HomeSections";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/Layout/HeadMeta";
-import { graphCmsRequest } from "@/graphql/graphcms";
-import { contextToLocale } from "@/translate/contextToLocale";
+import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
+import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
 import React from "react";
 

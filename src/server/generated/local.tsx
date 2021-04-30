@@ -19,24 +19,12 @@ export type EmailReq = {
 export type Mutation = {
   __typename?: 'Mutation';
   sendEmail: Scalars['Boolean'];
-  sellEmail: Scalars['Boolean'];
-  spreadEmail: Scalars['Boolean'];
   newsletter: Scalars['Boolean'];
 };
 
 
 export type MutationSendEmailArgs = {
   email: EmailReq;
-};
-
-
-export type MutationSellEmailArgs = {
-  email: SellEmailReq;
-};
-
-
-export type MutationSpreadEmailArgs = {
-  email: SpreadEmailReq;
 };
 
 
