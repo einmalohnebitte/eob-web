@@ -9,7 +9,6 @@ import {
   ShopsQuery,
 } from "@/components/ShopsMap/Shops.cms.generated";
 import { ShopsSideMenu } from "@/components/ShopsMap/ShopsSideMenu";
-import { useReactQueryCms } from "@/hooks/useReactQuery";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
 import { TranslationsDocument } from "@/hooks/useTranslations/Translations.cms.generated";
 import { graphCmsRequest } from "@/server/graphcms";
@@ -17,6 +16,7 @@ import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { GrNext } from "react-icons/gr";
+import { useReactQuery } from "react-query-gql";
 import styled from "styled-components";
 import tw from "twin.macro";
 
@@ -52,7 +52,13 @@ const OpenButton = styled(Button)<{ isVisible: boolean }>`
 `;
 
 const Shops: React.FC = () => {
-  const { data, isLoading } = useReactQueryCms(ShopsDocument);
+  const { data, isLoading } = useReactQuery(
+    ShopsDocument,
+    {},
+    {
+      url: `https://api-eu-central-1.graphcms.com/v2/${process.env.GQL_CMS_ID}/master`,
+    }
+  );
 
   const [search, setSearch] = useState<string | null>(null);
   const [showSidebar, setShowSidebar] = useState(true);

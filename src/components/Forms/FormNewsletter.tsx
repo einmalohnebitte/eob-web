@@ -1,9 +1,9 @@
 import { FieldInput } from "@/components/Forms/FieldInput";
 import { FormBase } from "@/components/Forms/FormBase";
 import { SubscribeNewsletterDocument } from "@/components/Forms/newsletter.local.generated";
-import { useReactMutation } from "@/hooks/useReactQuery";
 import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
+import { useReactMutation } from "react-query-gql";
 import tw from "twin.macro";
 import * as Yup from "yup";
 
