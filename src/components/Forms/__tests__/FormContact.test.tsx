@@ -2,7 +2,7 @@ import * as TR from "@/hooks/useTranslations/useTranslations";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import * as RQ from "react-query-gql/useReactQuery";
+import * as RQ from "react-query-gql";
 
 import { FormContact } from "../FormContact";
 
