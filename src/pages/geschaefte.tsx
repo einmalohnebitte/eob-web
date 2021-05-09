@@ -12,11 +12,11 @@ import { ShopsSideMenu } from "@/components/ShopsMap/ShopsSideMenu";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
 import { TranslationsDocument } from "@/hooks/useTranslations/Translations.cms.generated";
 import { graphCmsRequest } from "@/server/graphcms";
+import { useReactQuery } from "@correttojs/next-utils/useReactQuery";
 import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { GrNext } from "react-icons/gr";
-import { useReactQuery } from "react-query-gql";
 import styled from "styled-components";
 import tw from "twin.macro";
 
