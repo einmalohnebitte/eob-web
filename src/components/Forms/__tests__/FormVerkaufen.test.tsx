@@ -6,6 +6,11 @@ import React from "react";
 
 import { FormVerkaufen } from "../FormVerkaufen";
 
+jest.mock("@correttojs/next-utils/useReactQuery", () => {
+  return {
+    useReactMutation: jest.fn(),
+  };
+});
 test("Verkaufen Form Should call send", async () => {
   const mutate = jest.fn();
   jest.spyOn(RQ, "useReactMutation").mockImplementation(
