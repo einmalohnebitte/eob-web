@@ -25,6 +25,7 @@ export const FieldCheckbox: React.FC<PropType> = ({
           type="checkbox"
           css={[
             tw`w-5 h-5 border border-gray-400 rounded-md appearance-none  checked:border-transparent focus:outline-none`,
+            // eslint-disable-next-line no-nested-ternary
             checkedColor === "pink"
               ? tw`checked:bg-pink-500`
               : checkedColor === "yellow"

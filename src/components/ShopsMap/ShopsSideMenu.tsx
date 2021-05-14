@@ -115,50 +115,53 @@ export const ShopsSideMenu: React.FC<{
           </Button>
         </div>
 
-        {activeTab === 0 ? (
-          <div>
-            {shopCategories.map((c) => (
-              <Button
-                key={c.id}
-                onClick={() => {
-                  onSelectCategory(c);
-                }}
-                css={[tw`m-2`, c === selectedCategory ? Pink : PinkInverted]}
-              >
-                {c.name}
-              </Button>
-            ))}
-          </div>
-        ) : activeTab === 1 ? (
-          <div>
-            {shopTowns.map((c) => (
-              <Button
-                onClick={() => {
-                  setTown(c);
-                  onSelectTown(c);
-                }}
-                css={[tw`m-2`, c === town ? Yellow : YellowInverted]}
-                key={c.id}
-              >
-                {c.name}
-              </Button>
-            ))}
-          </div>
-        ) : (
-          <div>
-            {shopetypes.map((c) => (
-              <Button
-                onClick={() => {
-                  onSelectType?.(c);
-                }}
-                css={[tw`m-2`, c === selectedType ? Blue : BlueInverted]}
-                key={c.id}
-              >
-                {c.name}
-              </Button>
-            ))}
-          </div>
-        )}
+        {
+          // eslint-disable-next-line no-nested-ternary
+          activeTab === 0 ? (
+            <div>
+              {shopCategories.map((c) => (
+                <Button
+                  key={c.id}
+                  onClick={() => {
+                    onSelectCategory(c);
+                  }}
+                  css={[tw`m-2`, c === selectedCategory ? Pink : PinkInverted]}
+                >
+                  {c.name}
+                </Button>
+              ))}
+            </div>
+          ) : activeTab === 1 ? (
+            <div>
+              {shopTowns.map((c) => (
+                <Button
+                  onClick={() => {
+                    setTown(c);
+                    onSelectTown(c);
+                  }}
+                  css={[tw`m-2`, c === town ? Yellow : YellowInverted]}
+                  key={c.id}
+                >
+                  {c.name}
+                </Button>
+              ))}
+            </div>
+          ) : (
+            <div>
+              {shopetypes.map((c) => (
+                <Button
+                  onClick={() => {
+                    onSelectType?.(c);
+                  }}
+                  css={[tw`m-2`, c === selectedType ? Blue : BlueInverted]}
+                  key={c.id}
+                >
+                  {c.name}
+                </Button>
+              ))}
+            </div>
+          )
+        }
       </div>
     </Sidebar>
   );

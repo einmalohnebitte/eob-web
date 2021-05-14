@@ -1,11 +1,16 @@
 import * as TR from "@/hooks/useTranslations/useTranslations";
+import * as RQ from "@correttojs/next-utils/useReactQuery";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
-import * as RQ from "react-query-gql";
 
 import { FormVerbreiten } from "../FormVerbreiten";
 
+jest.mock("@correttojs/next-utils/useReactQuery", () => {
+  return {
+    useReactMutation: jest.fn(),
+  };
+});
 test("FormVerbreiten Should call send", async () => {
   const mutate = jest.fn();
   jest.spyOn(RQ, "useReactMutation").mockImplementation(
