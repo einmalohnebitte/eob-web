@@ -31,6 +31,7 @@ export const Card: React.FC<{
 }) => {
   if (!color) {
     const index = Math.round(Math.random() * 100) % 3;
+    // eslint-disable-next-line no-nested-ternary
     color = index === 0 ? "blue" : index === 1 ? "pink" : "yellow";
   }
   const router = useRouter();
@@ -40,14 +41,13 @@ export const Card: React.FC<{
       onClick={(e) => {
         if (onClick) {
           onClick(e);
-        } else {
-          if (linkTo) {
-            router.push(linkTo);
-          }
+        } else if (linkTo) {
+          router.push(linkTo);
         }
       }}
       css={[
         tw`flex-1 flex flex-col cursor-pointer max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  overflow-hidden m-4   `,
+        // eslint-disable-next-line no-nested-ternary
         color === "blue"
           ? tw`border-blue-500`
           : color === "pink"
@@ -77,6 +77,7 @@ export const Card: React.FC<{
             <a
               css={[
                 tw`mt-2 inline-block hover:underline `,
+                // eslint-disable-next-line no-nested-ternary
                 color === "blue"
                   ? tw`text-blue-500`
                   : color === "pink"
@@ -92,6 +93,7 @@ export const Card: React.FC<{
           <i
             css={[
               tw`mt-2 inline-block  `,
+              // eslint-disable-next-line no-nested-ternary
               color === "blue"
                 ? tw`text-blue-500`
                 : color === "pink"

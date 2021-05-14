@@ -34,6 +34,7 @@ const BlogPage: React.FC<BlogsQuery> = ({ blogs }) => {
               title={item.title}
               subtitle={item.date}
               message={item.abstract ?? ""}
+              // eslint-disable-next-line no-nested-ternary
               color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
             ></Card>
           </Link>

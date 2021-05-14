@@ -98,6 +98,7 @@ const ArticlePage: React.FC<MembersQuery> = ({
                 key={k}
                 title={item.name ?? ""}
                 message={item.abstract ?? ""}
+                // eslint-disable-next-line no-nested-ternary
                 color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
                 linkTitle={`Lerne ${item.name} kennen...`}
                 linkTo={`/team/${item.slug}`}
