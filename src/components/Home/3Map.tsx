@@ -11,7 +11,7 @@ export const Map: React.FC = () => {
     <>
       <div css={tw`bg-gray-700`}>
         <Section css={tw`text-white text-center`}>
-          <H2>DAS HABEN WIR SHON ERREICHT</H2>
+          <H2>DAS HABEN WIR SCHON ERREICHT</H2>
           <div
             css={tw`flex flex-col md:flex-row justify-between items-center md:items-start mx-10 py-4`}
           >
@@ -21,7 +21,7 @@ export const Map: React.FC = () => {
             </div>
             <div css={tw`w-40`}>
               <H1>10</H1>
-              <p css={tw`text-sm`}>Botshafter*innen</p>
+              <p css={tw`text-sm`}>Botschafter*innen</p>
             </div>
             <div css={tw`w-40`}>
               <H1>16</H1>

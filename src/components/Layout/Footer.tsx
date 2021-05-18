@@ -22,9 +22,7 @@ export const AppFooter = () => {
   const intl = useTranslations();
   return (
     <footer css={tw`p-4 pt-10 leading-10 bg-gray-100 `}>
-      <Section
-        css={tw`flex flex-col md:flex-row justify-between max-w-screen-xl`}
-      >
+      <Section css={tw`flex flex-col md:flex-row justify-between `}>
         <FooterSecion css={tw`flex flex-col items-center text-center`}>
           <picture>
             <img
@@ -47,7 +45,7 @@ export const AppFooter = () => {
               target="_blank"
               href="https://www.facebook.com/einmalohnebitte/"
             >
-              <GrFacebook style={{ display: "inline-block" }} />
+              <GrFacebook style={{ display: "inline-block" }} size={30} />
             </a>
             <a
               rel="noreferrer"
@@ -55,7 +53,7 @@ export const AppFooter = () => {
               href="https://www.facebook.com/einmalohnebitte/"
               css={tw`ml-4`}
             >
-              <GrInstagram style={{ display: "inline-block" }} />
+              <GrInstagram style={{ display: "inline-block" }} size={30} />
             </a>
             <a
               rel="noreferrer"
@@ -63,12 +61,12 @@ export const AppFooter = () => {
               href="https://www.linkedin.com/company/einmal-ohne-bitte/"
               css={tw`ml-4`}
             >
-              <GrLinkedin style={{ display: "inline-block" }} />
+              <GrLinkedin style={{ display: "inline-block" }} size={30} />
             </a>
           </div>
         </FooterSecion>
         <FooterSecion>
-          <H2>{intl("FOOTER_ABOUT")}</H2>
+          <H2 css={tw`pb-2`}>{intl("FOOTER_ABOUT")}</H2>
           <p>
             <Link href="/uber-uns#mission">
               <a>{intl("FOOTER_MISSION_VISION")}</a>
@@ -87,7 +85,7 @@ export const AppFooter = () => {
           </p>
         </FooterSecion>
         <FooterSecion>
-          <H2>{intl("FOOTER_INFO")}</H2>
+          <H2 css={tw`pb-2`}>{intl("FOOTER_INFO")}</H2>
           <p>
             <Link href="/blog">
               <a>{intl("Blog")}</a>
@@ -120,7 +118,7 @@ export const AppFooter = () => {
             ${tw`my-4 md:my-0`}
           `}
         >
-          <H2>{intl("FOOTER_PARTNER")}</H2>
+          <H2 css={tw`pb-2`}>{intl("FOOTER_PARTNER")}</H2>
           <p>
             <Link href="/verkaufen">
               <a>{intl("FOOTER_PARTNER1")}</a>

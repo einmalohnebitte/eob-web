@@ -37,15 +37,7 @@ const ArticlePage: React.FC<MembersQuery> = ({
   return (
     <>
       <HeadMeta />
-      <Section>
-        <Image
-          width={960}
-          height={640}
-          src={pageSections[0].picture[0].url}
-          alt="uber-uns"
-        />
-      </Section>
-      <Section>
+      <Section css={tw`pb-0`}>
         <div css={tw`flex flex-row text-center`}>
           <Card
             onClick={() => {
@@ -70,6 +62,15 @@ const ArticlePage: React.FC<MembersQuery> = ({
           ></Card>
         </div>
       </Section>
+      <Section>
+        <Image
+          width={960}
+          height={640}
+          src={pageSections[0].picture[0].url}
+          alt="uber-uns"
+        />
+      </Section>
+
       <div
         css={`
           background-color: ${pages?.[0]?.vibrantColor?.hex};
