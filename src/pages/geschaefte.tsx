@@ -12,11 +12,12 @@ import { ShopsSideMenu } from "@/components/ShopsMap/ShopsSideMenu";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
 import { TranslationsDocument } from "@/hooks/useTranslations/Translations.cms.generated";
 import { graphCmsRequest } from "@/server/graphcms";
-import { useReactQuery } from "@correttojs/next-utils/useReactQuery";
+import { gqlRequest } from "@correttojs/next-utils/useReactQuery";
 import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { GrNext } from "react-icons/gr";
+import { useInfiniteQuery } from "react-query";
 import styled from "styled-components";
 import tw from "twin.macro";
 
@@ -52,27 +53,56 @@ const OpenButton = styled(Button)<{ isVisible: boolean }>`
 `;
 
 const Shops: React.FC = () => {
-  const { data, isLoading } = useReactQuery(
-    ShopsDocument,
-    {},
+  const { data, isLoading, fetchNextPage } = useInfiniteQuery(
+    "ShopMap",
+    ({ pageParam }) => {
+      return gqlRequest(
+        ShopsDocument,
+        pageParam ? { endCursor: pageParam } : {},
+        `https://api-eu-central-1.graphcms.com/v2/${process.env.GQL_CMS_ID}/master`
+      );
+    },
     {
-      url: `https://api-eu-central-1.graphcms.com/v2/${process.env.GQL_CMS_ID}/master`,
+      select: (selectedData) => {
+        const [firstPage, ...restPages] = selectedData.pages;
+        firstPage.shops = selectedData.pages
+          .slice(1)
+          .reduce(
+            (prev, current) => [...prev, ...current.shops],
+            firstPage.shops.slice(0, 500)
+          );
+        return {
+          ...selectedData,
+          pages: [firstPage, ...restPages],
+        };
+      },
     }
   );
+
+  useEffect(() => {
+    const lastPage = data?.pages[data?.pages.length - 1];
+    if (lastPage) {
+      if (lastPage.shopsConnection.pageInfo.hasNextPage) {
+        fetchNextPage({
+          pageParam: lastPage.shopsConnection.pageInfo.endCursor,
+        });
+      }
+    }
+  }, [data?.pages?.length]);
 
   const [search, setSearch] = useState<string | null>(null);
   const [showSidebar, setShowSidebar] = useState(true);
   const [isOpenMobile, setIsOpenMobile] = useState(false);
 
-  const [center, setCenter] = useState<[number, number]>([48.13743, 11.57549]);
+  const [center, setCenter] = useState<[number, number]>([51.1657, 10.2336]);
 
   const [category, setCategory] = useState<
     ShopsQuery["shopCategories"][0] | null
   >(null);
 
-  const [type, setType] = useState<ShopsQuery["shopetypes"][0] | null>(null);
+  const [type, setType] = useState<ShopsQuery["shopTypes"][0] | null>(null);
 
-  if (isLoading || !data?.shops) {
+  if (isLoading || !data?.pages[0].shops) {
     return (
       <Section
         css={`
@@ -84,8 +114,8 @@ const Shops: React.FC = () => {
       </Section>
     );
   }
-
-  let { shops } = data;
+  const firstData = data.pages[0];
+  let { shops } = firstData;
   if (category?.name) {
     shops = shops?.filter(
       (s) =>
@@ -93,11 +123,15 @@ const Shops: React.FC = () => {
         0
     );
   }
+  if (type?.name) {
+    shops = shops?.filter(
+      (s) => (s.shopType ?? []).filter((t) => type.name === t.name).length > 0
+    );
+  }
   if (search) {
     const regexp = new RegExp(`${search}`, "i");
     shops = shops?.filter((s) => regexp.test(s.name ?? ""));
   }
-
   return (
     <>
       <HeadMeta />
@@ -131,7 +165,7 @@ const Shops: React.FC = () => {
           setCategory(category === c ? null : c);
         }}
         selectedCategory={category}
-        data={data}
+        data={firstData}
         onSelectTown={(c) =>
           setCenter([c?.location?.latitude ?? 0, c?.location?.longitude ?? 0])
         }

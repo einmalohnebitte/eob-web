@@ -3,3 +3,4 @@ src/server/generated/*.*
 src/**/__stories__/*
 cypress/support/*
 cypress/plugins/*
+codegen.js

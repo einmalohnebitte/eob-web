@@ -1,5 +1,11 @@
-query Shops {
-  shops(first: 1000) {
+query Shops($endCursor: String) {
+  shopsConnection(first: 500, after: $endCursor) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+  }
+  shops(first: 500, after: $endCursor) {
     id
     name
     openinghours
@@ -14,6 +20,9 @@ query Shops {
       isMain
     }
     shopTown {
+      name
+    }
+    shopType {
       name
     }
   }
@@ -33,7 +42,7 @@ query Shops {
     }
   }
 
-  shopetypes {
+  shopTypes {
     id
     name
   }
