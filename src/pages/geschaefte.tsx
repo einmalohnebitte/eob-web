@@ -64,13 +64,13 @@ const Shops: React.FC = () => {
   const [showSidebar, setShowSidebar] = useState(true);
   const [isOpenMobile, setIsOpenMobile] = useState(false);
 
-  const [center, setCenter] = useState<[number, number]>([48.13743, 11.57549]);
+  const [center, setCenter] = useState<[number, number]>([51.1657, 10.2336]);
 
   const [category, setCategory] = useState<
     ShopsQuery["shopCategories"][0] | null
   >(null);
 
-  const [type, setType] = useState<ShopsQuery["shopetypes"][0] | null>(null);
+  const [type, setType] = useState<ShopsQuery["shopTypes"][0] | null>(null);
 
   if (isLoading || !data?.shops) {
     return (

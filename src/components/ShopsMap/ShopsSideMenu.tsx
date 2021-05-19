@@ -36,13 +36,13 @@ export const ShopsSideMenu: React.FC<{
   onSearch: (key: string) => void;
   onSelectCategory: (category: ShopsQuery["shopCategories"][0]) => void;
   onSelectTown: (town: ShopsQuery["shopTowns"][0] | null) => void;
-  onSelectType: (type: ShopsQuery["shopetypes"][0] | null) => void;
+  onSelectType: (type: ShopsQuery["shopTypes"][0] | null) => void;
   isOpen: boolean;
   isOpenMobile: boolean;
   search: string | null;
   data: ShopsQuery;
   selectedCategory: ShopsQuery["shopCategories"][0] | null;
-  selectedType: ShopsQuery["shopetypes"][0] | null;
+  selectedType: ShopsQuery["shopTypes"][0] | null;
 }> = ({
   onClose,
   onSearch,
@@ -63,7 +63,7 @@ export const ShopsSideMenu: React.FC<{
   if (!data?.shops || !data?.shopTowns || !data?.shopCategories) {
     return null;
   }
-  const { shops, shopTowns, shopCategories, shopetypes } = data;
+  const { shops, shopTowns, shopCategories, shopTypes } = data;
   const suggestions = shops
     .slice(0, 6)
     .filter((s) => s.name)
@@ -148,7 +148,7 @@ export const ShopsSideMenu: React.FC<{
             </div>
           ) : (
             <div>
-              {shopetypes.map((c) => (
+              {shopTypes.map((c) => (
                 <Button
                   onClick={() => {
                     onSelectType?.(c);

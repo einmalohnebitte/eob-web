@@ -1,4 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 require("dotenv").config({ path: ".env.local" });
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { generate } = require("@graphql-codegen/cli");
 
 async function run() {
@@ -48,7 +50,7 @@ async function run() {
           preset: "near-operation-file",
           presetConfig: {
             extension: ".generated.ts",
-            baseTypesPath: "/generated/graphql.tsx",
+            baseTypesPath: "/server/generated/graphql.tsx",
           },
           plugins: ["typescript-operations", "typed-document-node"],
         },

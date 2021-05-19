@@ -39,7 +39,7 @@ const StyledMap = styled.div`
   }
 `;
 
-const CENTER: [number, number] = [48.13743, 11.57549];
+const CENTER: [number, number] = [51.1657, 10.4515];
 
 const MapItem: React.FC<{
   center?: [number, number] | null;
@@ -95,7 +95,7 @@ export const ShopsMap: React.FC<{
       <MapContainer
         className={"map"}
         center={center ?? CENTER}
-        zoom={12}
+        zoom={6}
         maxZoom={15}
         style={{
           height,

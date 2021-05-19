@@ -33,7 +33,7 @@ query Shops {
     }
   }
 
-  shopetypes {
+  shopTypes {
     id
     name
   }
