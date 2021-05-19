@@ -814,7 +814,7 @@ const Template: Story = (args) => (
       onSearch={(e) => console.log(e)}
       onSelectCategory={(e) => console.log(e)}
       onSelectTown={(e) => console.log(e)}
-      data={data.data}
+      data={data.data as any}
       search={null}
       isOpen={true}
       isOpenMobile={true}

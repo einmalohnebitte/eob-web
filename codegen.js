@@ -16,7 +16,7 @@ async function run() {
           preset: "near-operation-file",
           presetConfig: {
             extension: ".generated.ts",
-            baseTypesPath: "/generated/local.tsx",
+            baseTypesPath: "/server/generated/local.tsx",
           },
           plugins: [
             "typescript",

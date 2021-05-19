@@ -1,4 +1,4 @@
-import * as Types from '../../generated/local';
+import * as Types from '../../server/generated/local';
 
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
