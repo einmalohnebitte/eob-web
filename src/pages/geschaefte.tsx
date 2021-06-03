@@ -119,8 +119,8 @@ const Shops: React.FC = () => {
   if (category?.name) {
     shops = shops?.filter(
       (s) =>
-        (s.categories ?? []).filter((ct) => category.name === ct.name).length >
-        0
+        (s.shopcategories ?? []).filter((ct) => category.name === ct.name)
+          .length > 0
     );
   }
   if (type?.name) {

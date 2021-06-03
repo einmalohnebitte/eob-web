@@ -7327,8 +7327,8 @@ export type Shop = Node & {
   location?: Maybe<Location>;
   shopBundesland?: Maybe<ShopBundesland>;
   shopTown?: Maybe<ShopTown>;
-  categories: Array<ShopCategory>;
   shopType: Array<ShopType>;
+  shopcategories: Array<ShopCategory>;
   dataProtectionForm?: Maybe<Asset>;
   email?: Maybe<Scalars['String']>;
   stickerFront?: Maybe<Scalars['Int']>;
@@ -7381,9 +7381,9 @@ export type ShopShopTownArgs = {
 };
 
 
-export type ShopCategoriesArgs = {
-  where?: Maybe<ShopCategoryWhereInput>;
-  orderBy?: Maybe<ShopCategoryOrderByInput>;
+export type ShopShopTypeArgs = {
+  where?: Maybe<ShopTypeWhereInput>;
+  orderBy?: Maybe<ShopTypeOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -7393,9 +7393,9 @@ export type ShopCategoriesArgs = {
 };
 
 
-export type ShopShopTypeArgs = {
-  where?: Maybe<ShopTypeWhereInput>;
-  orderBy?: Maybe<ShopTypeOrderByInput>;
+export type ShopShopcategoriesArgs = {
+  where?: Maybe<ShopCategoryWhereInput>;
+  orderBy?: Maybe<ShopCategoryOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -7840,8 +7840,8 @@ export type ShopCategory = Node & {
   /** User that last published this document */
   publishedBy?: Maybe<User>;
   name?: Maybe<Scalars['String']>;
-  shop?: Maybe<Shop>;
   isMain?: Maybe<Scalars['Boolean']>;
+  shop?: Maybe<Shop>;
   /** List of ShopCategory versions */
   history: Array<Version>;
 };
@@ -7901,8 +7901,8 @@ export type ShopCategoryCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   name?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopCreateOneInlineInput>;
   isMain?: Maybe<Scalars['Boolean']>;
+  shop?: Maybe<ShopCreateOneInlineInput>;
 };
 
 export type ShopCategoryCreateManyInlineInput = {
@@ -8024,10 +8024,10 @@ export type ShopCategoryManyWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopWhereInput>;
   isMain?: Maybe<Scalars['Boolean']>;
   /** All values that are not equal to given value. */
   isMain_not?: Maybe<Scalars['Boolean']>;
+  shop?: Maybe<ShopWhereInput>;
 };
 
 export enum ShopCategoryOrderByInput {
@@ -8047,8 +8047,8 @@ export enum ShopCategoryOrderByInput {
 
 export type ShopCategoryUpdateInput = {
   name?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopUpdateOneInlineInput>;
   isMain?: Maybe<Scalars['Boolean']>;
+  shop?: Maybe<ShopUpdateOneInlineInput>;
 };
 
 export type ShopCategoryUpdateManyInlineInput = {
@@ -8212,10 +8212,10 @@ export type ShopCategoryWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopWhereInput>;
   isMain?: Maybe<Scalars['Boolean']>;
   /** All values that are not equal to given value. */
   isMain_not?: Maybe<Scalars['Boolean']>;
+  shop?: Maybe<ShopWhereInput>;
 };
 
 /** References ShopCategory record uniquely */
@@ -8250,8 +8250,8 @@ export type ShopCreateInput = {
   location?: Maybe<LocationInput>;
   shopBundesland?: Maybe<ShopBundeslandCreateOneInlineInput>;
   shopTown?: Maybe<ShopTownCreateOneInlineInput>;
-  categories?: Maybe<ShopCategoryCreateManyInlineInput>;
   shopType?: Maybe<ShopTypeCreateManyInlineInput>;
+  shopcategories?: Maybe<ShopCategoryCreateManyInlineInput>;
   dataProtectionForm?: Maybe<AssetCreateOneInlineInput>;
   email?: Maybe<Scalars['String']>;
   stickerFront?: Maybe<Scalars['Int']>;
@@ -8424,12 +8424,12 @@ export type ShopManyWhereInput = {
   address_not_ends_with?: Maybe<Scalars['String']>;
   shopBundesland?: Maybe<ShopBundeslandWhereInput>;
   shopTown?: Maybe<ShopTownWhereInput>;
-  categories_every?: Maybe<ShopCategoryWhereInput>;
-  categories_some?: Maybe<ShopCategoryWhereInput>;
-  categories_none?: Maybe<ShopCategoryWhereInput>;
   shopType_every?: Maybe<ShopTypeWhereInput>;
   shopType_some?: Maybe<ShopTypeWhereInput>;
   shopType_none?: Maybe<ShopTypeWhereInput>;
+  shopcategories_every?: Maybe<ShopCategoryWhereInput>;
+  shopcategories_some?: Maybe<ShopCategoryWhereInput>;
+  shopcategories_none?: Maybe<ShopCategoryWhereInput>;
   dataProtectionForm?: Maybe<AssetWhereInput>;
   email?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
@@ -9801,8 +9801,8 @@ export type ShopUpdateInput = {
   location?: Maybe<LocationInput>;
   shopBundesland?: Maybe<ShopBundeslandUpdateOneInlineInput>;
   shopTown?: Maybe<ShopTownUpdateOneInlineInput>;
-  categories?: Maybe<ShopCategoryUpdateManyInlineInput>;
   shopType?: Maybe<ShopTypeUpdateManyInlineInput>;
+  shopcategories?: Maybe<ShopCategoryUpdateManyInlineInput>;
   dataProtectionForm?: Maybe<AssetUpdateOneInlineInput>;
   email?: Maybe<Scalars['String']>;
   stickerFront?: Maybe<Scalars['Int']>;
@@ -10028,12 +10028,12 @@ export type ShopWhereInput = {
   address_not_ends_with?: Maybe<Scalars['String']>;
   shopBundesland?: Maybe<ShopBundeslandWhereInput>;
   shopTown?: Maybe<ShopTownWhereInput>;
-  categories_every?: Maybe<ShopCategoryWhereInput>;
-  categories_some?: Maybe<ShopCategoryWhereInput>;
-  categories_none?: Maybe<ShopCategoryWhereInput>;
   shopType_every?: Maybe<ShopTypeWhereInput>;
   shopType_some?: Maybe<ShopTypeWhereInput>;
   shopType_none?: Maybe<ShopTypeWhereInput>;
+  shopcategories_every?: Maybe<ShopCategoryWhereInput>;
+  shopcategories_some?: Maybe<ShopCategoryWhereInput>;
+  shopcategories_none?: Maybe<ShopCategoryWhereInput>;
   dataProtectionForm?: Maybe<AssetWhereInput>;
   email?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */

@@ -14,7 +14,7 @@ query Shops($endCursor: String) {
       longitude
     }
     website
-    categories {
+    shopcategories {
       id
       name
       isMain
