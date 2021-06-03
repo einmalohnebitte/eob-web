@@ -27,7 +27,7 @@
     "graphql": "^15.5.0",
     "leaflet": "^1.7.1",
     "mailgun-js": "^0.22.0",
-    "next": "^10.2.0",
+    "next": "^10.2.3",
     "next-fonts": "^1.5.1",
     "next-images": "^1.7.0",
     "next-plugin-graphql": "0.0.2",

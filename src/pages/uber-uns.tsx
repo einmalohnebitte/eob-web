@@ -105,11 +105,11 @@ const ArticlePage: React.FC<MembersQuery> = ({
                 linkTo={`/team/${item.slug}`}
               >
                 {item?.picture?.url && (
-                  <Image
+                  <img
+                    alt={item.name ?? ""}
                     src={item?.picture?.url ?? ""}
-                    width={208}
                     height={208}
-                    layout={"intrinsic"}
+                    css={tw`object-cover`}
                   />
                 )}
               </Card>

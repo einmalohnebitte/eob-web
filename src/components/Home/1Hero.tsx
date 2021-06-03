@@ -33,17 +33,24 @@ const HeroImg: React.FC<{
   </div>
 );
 
-export const Hero: React.FC<PageSectionsQuery["pageSections"][0]> = ({
-  content,
-  title,
-}) => {
+export const Hero: React.FC<
+  PageSectionsQuery["pageSections"][0] & { shops: number }
+> = ({ content, title, shops }) => {
   return (
     <div>
       <Section>
         <H1>{title}</H1>
         <div
-          css={tw`py-4`}
-          dangerouslySetInnerHTML={{ __html: content.html }}
+          css={`
+            ${tw`py-4 `}
+            strong {
+              font-size: 1.8rem;
+              ${tw`text-pink-600`}
+            }
+          `}
+          dangerouslySetInnerHTML={{
+            __html: content.html.replace("[shops]", shops.toString()),
+          }}
         />
       </Section>
       <div css={tw`overflow-x-scroll`}>

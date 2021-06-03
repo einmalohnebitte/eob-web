@@ -1354,6 +1354,7 @@ export type BlogWhereUniqueInput = {
 export enum Category {
   Cookies = 'cookies',
   Docs = 'docs',
+  Download = 'download',
   Footer = 'footer',
   Form = 'form',
   Header = 'header',

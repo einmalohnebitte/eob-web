@@ -1,0 +1,7 @@
+query ShopsNumber {
+  shopsConnection(stage: PUBLISHED) {
+    aggregate {
+      count
+    }
+  }
+}

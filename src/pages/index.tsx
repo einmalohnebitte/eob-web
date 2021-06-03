@@ -2,6 +2,7 @@ import {
   PageSectionsDocument,
   PageSectionsQuery,
 } from "@/components/CmsQueries/PageSections.cms.generated";
+import { ShopsNumberDocument } from "@/components/CmsQueries/ShopsNumber.cms.generated";
 import { Goals } from "@/components/Home/2Goals";
 import { Map } from "@/components/Home/3Map";
 import { Social } from "@/components/Home/4Social";
@@ -19,12 +20,13 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     page: "Home",
     locale: contextToLocale(ctx),
   });
+  const shops = await graphCmsRequest(ShopsNumberDocument);
   return {
-    props: data,
+    props: { ...data, shops: shops.shopsConnection.aggregate.count },
   };
 };
 
-const Home: React.FC<PageSectionsQuery> = (props) => {
+const Home: React.FC<PageSectionsQuery & { shops: number }> = (props) => {
   return (
     <>
       <HeadMeta
@@ -32,7 +34,7 @@ const Home: React.FC<PageSectionsQuery> = (props) => {
         metaKeywords={props.pages[0]?.metaKeywords}
       />
       {props.pageSections.map((section, k) => (
-        <HomeSections {...section} key={k} />
+        <HomeSections {...section} key={k} shops={props.shops} />
       ))}
       <Goals {...props} />
       <Map />

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import tw from "twin.macro";
 
-import { H2, H4 } from "./Texts";
+import { H2, H3 } from "./Texts";
 
 export const Card: React.FC<{
   img?: string;
@@ -134,7 +134,7 @@ export const CardHorizontal: React.FC<{
         </div>
         <div css={tw`p-4`}>
           {message && <p css={tw`mt-2 text-gray-500`}>{message}</p>}
-          <H4>{title}</H4>
+          <H3>{title}</H3>
         </div>
       </div>
     </div>

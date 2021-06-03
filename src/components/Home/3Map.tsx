@@ -9,25 +9,25 @@ export const Map: React.FC = () => {
   const { push } = useRouter();
   return (
     <>
-      <div css={tw`bg-gray-700`}>
-        <Section css={tw`text-white text-center`}>
+      <div css={tw`bg-gray-200`}>
+        <Section css={tw` text-center`}>
           <H2>DAS HABEN WIR SCHON ERREICHT</H2>
           <div
             css={tw`flex flex-col md:flex-row justify-between items-center md:items-start mx-10 py-4`}
           >
-            <div css={tw`w-40`}>
+            <div css={tw`w-40 text-pink-600`}>
               <H1>8</H1>
               <p css={tw`text-sm`}>Städtpartner</p>
             </div>
-            <div css={tw`w-40`}>
+            <div css={tw`w-40  text-blue-600`}>
               <H1>10</H1>
               <p css={tw`text-sm`}>Botschafter*innen</p>
             </div>
-            <div css={tw`w-40`}>
+            <div css={tw`w-40 text-yellow-600`}>
               <H1>16</H1>
               <p css={tw`text-sm`}>Tonnen Verpackungsmüll eingespart</p>
             </div>
-            <div css={tw`w-40`}>
+            <div css={tw`w-40 text-pink-600`}>
               <H1>52</H1>
               <p css={tw`text-sm`}>
                 Ehrenamtliche Unterstützer*innen deutschlandweit

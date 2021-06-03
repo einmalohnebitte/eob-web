@@ -3,9 +3,9 @@ import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.gene
 import { Hero } from "@/components/Home/1Hero";
 import React from "react";
 
-export const HomeSections: React.FC<PageSectionsQuery["pageSections"][0]> = (
-  props
-) => {
+export const HomeSections: React.FC<
+  PageSectionsQuery["pageSections"][0] & { shops: number }
+> = (props) => {
   switch (props.code) {
     case "hero":
       return <Hero {...props} />;

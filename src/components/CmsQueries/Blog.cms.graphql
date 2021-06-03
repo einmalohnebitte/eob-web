@@ -1,5 +1,5 @@
 query Blogs($locale: [Locale!]!) {
-  blogs {
+  blogs(orderBy: date_DESC) {
     title
     date
     abstract
