@@ -19,6 +19,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     "datenschutzerklarung",
     "kontakt",
     "download",
+    "spenden",
   ].map((path) => ({
     params: { path },
   }));

@@ -1,6 +1,7 @@
 import { Section } from "@/components/@UI/Section";
-import { H2 } from "@/components/@UI/Texts";
+import { H3 } from "@/components/@UI/Texts";
 import { useTranslations } from "@/hooks/useTranslations";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { GrFacebook, GrInstagram, GrLinkedin } from "react-icons/gr";
@@ -25,9 +26,9 @@ export const AppFooter = () => {
       <Section css={tw`flex flex-col md:flex-row justify-between `}>
         <FooterSecion css={tw`flex flex-col items-center text-center`}>
           <picture>
-            <img
+            <Image
               css={tw`cursor-pointer  h-32 w-32  rounded-full border-2 border-solid border-gray-300`}
-              src="/images/logo_header.webp"
+              src="/images/logo_start.webp"
               width="128"
               height="128"
               alt="logo"
@@ -66,7 +67,7 @@ export const AppFooter = () => {
           </div>
         </FooterSecion>
         <FooterSecion>
-          <H2 css={tw`pb-2`}>{intl("FOOTER_ABOUT")}</H2>
+          <H3 css={tw`pb-2`}>{intl("FOOTER_ABOUT")}</H3>
           <p>
             <Link href="/uber-uns#mission">
               <a>{intl("FOOTER_MISSION_VISION")}</a>
@@ -85,7 +86,7 @@ export const AppFooter = () => {
           </p>
         </FooterSecion>
         <FooterSecion>
-          <H2 css={tw`pb-2`}>{intl("FOOTER_INFO")}</H2>
+          <H3 css={tw`pb-2`}>{intl("FOOTER_INFO")}</H3>
           <p>
             <Link href="/blog">
               <a>{intl("Blog")}</a>
@@ -118,7 +119,7 @@ export const AppFooter = () => {
             ${tw`my-4 md:my-0`}
           `}
         >
-          <H2 css={tw`pb-2`}>{intl("FOOTER_PARTNER")}</H2>
+          <H3 css={tw`pb-2`}>{intl("FOOTER_PARTNER")}</H3>
           <p>
             <Link href="/verkaufen">
               <a>{intl("FOOTER_PARTNER1")}</a>
@@ -160,7 +161,7 @@ export const AppFooter = () => {
         <p css={tw`text-right text-lg mr-8`}>
           Made with <HearthStyle>♥</HearthStyle> in Munich by{" "}
           <a rel="noopener" href="https://rehab-republic.de/">
-            Rehab Repulic
+            rehab republic
           </a>
         </p>
       </div>

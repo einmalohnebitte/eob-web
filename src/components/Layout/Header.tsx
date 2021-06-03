@@ -1,6 +1,7 @@
 import { ButtonPink } from "@/components/@UI/Buttons";
 import { DropDown, DropDownItem } from "@/components/@UI/DropDown";
 import { useTranslations } from "@/hooks/useTranslations";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -25,9 +26,9 @@ export const Header: React.FC = () => {
         {!isOpen && (
           <Link href={"/"}>
             <picture>
-              <img
+              <Image
                 css={tw`cursor-pointer mx-2 h-12 w-12 md:h-16 md:w-16 rounded-full border-2 border-solid border-gray-300`}
-                src="/images/logo_header.webp"
+                src="/images/logo_start.webp"
                 width="64"
                 height="64"
                 alt="logo"
@@ -67,10 +68,7 @@ export const Header: React.FC = () => {
           <ButtonPink
             css={tw`mx-2`}
             onClick={() => {
-              window.open(
-                "https://rehab-republic.de/spenden",
-                "_blank" // <- This is what makes it open in a new window.
-              );
+              push("/spenden");
             }}
           >
             {intl("Donate")}

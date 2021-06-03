@@ -43,6 +43,11 @@ const TeamPage: React.FC<MemberQuery> = ({ members }) => (
     </div>
 
     <div
+      css={`
+        p {
+          padding-bottom: 1rem !important;
+        }
+      `}
       dangerouslySetInnerHTML={{
         __html: members[0]?.bio?.html ?? "",
       }}

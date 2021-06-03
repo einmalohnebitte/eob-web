@@ -50,20 +50,18 @@ export const Hero: React.FC<PageSectionsQuery["pageSections"][0]> = ({
         <div
           css={`
             min-width: 1020px;
-            ${tw`gap-4 grid grid-flow-col grid-cols-9 grid-rows-2`}
+            ${tw`gap-4 grid grid-flow-col grid-cols-7 grid-rows-2 px-10`}
           `}
         >
           <HeroImg src={"/images/hero/Bild6 - Berlin.jpg"} />
 
           <HeroImg src={"/images/hero/Bild13 - Hände.jpg"} />
 
-          <HeroImg src={"/images/hero/Bild7 - Neary.jpg"} is2Row={true} />
           <HeroImg src={"/images/hero/Bild4.jpg"} is2Row={true} is2Col={true} />
 
           <HeroImg src={"/images/hero/Bild1 - sticker.jpg"} />
           <HeroImg src={"/images/hero/Bild3.jpg"} />
 
-          <HeroImg src={"/images/hero/Bild2 - Brot.jpg"} is2Row={true} />
           <HeroImg
             src={"/images/hero/Bild11 - Sticker.jpg"}
             is2Row={true}

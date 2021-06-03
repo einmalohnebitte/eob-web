@@ -42,6 +42,7 @@ const BlogPage: React.FC<BlogQuery> = ({ blogs }) => (
         css={`
           p {
             margin: 10px 0;
+            padding-bottom: 1rem !important;
           }
         `}
         dangerouslySetInnerHTML={{

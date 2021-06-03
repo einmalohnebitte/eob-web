@@ -46,8 +46,9 @@ export const Map: React.FC = () => {
             @media (min-width: 768px) {
               position: relative;
               left: 32%;
-              top: -50px;
+              top: -20px;
             }
+            padding-bottom: 20px;
           `}
         >
           <img src="/images/map.png" alt="Unser Map" />
