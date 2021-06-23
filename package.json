@@ -48,7 +48,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
-    "@babel/core": "7.14.3",
+    "@babel/core": "7.14.6",
     "@next/bundle-analyzer": "10.2.3",
     "@types/ical": "0.6.2",
     "@types/jest": "26.0.23",
