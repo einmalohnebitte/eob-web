@@ -20,4 +20,5 @@ module.exports = {
     "\\.tsx?$": "babel-jest",
   },
   globals: {},
+  testEnvironment: "jsdom",
 };
