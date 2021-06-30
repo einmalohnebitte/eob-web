@@ -65,7 +65,7 @@
     "@storybook/addon-links": "6.3.0",
     "@storybook/react": "6.3.0",
     "@testing-library/react": "12.0.0",
-    "@testing-library/react-hooks": "7.0.0",
+    "@testing-library/react-hooks": "7.0.1",
     "@testing-library/user-event": "13.1.9",
     "@types/ical": "0.6.2",
     "@types/jest": "26.0.23",
