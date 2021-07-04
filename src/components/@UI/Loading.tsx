@@ -35,7 +35,7 @@ const Spinner = styled.div`
   }
 `;
 
-export const Loading = () => {
+export const Loading: React.FC = () => {
   return (
     <Spinner css={tw`my-8`}>
       <div></div>
