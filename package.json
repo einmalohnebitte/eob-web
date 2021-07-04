@@ -76,7 +76,7 @@
     "@types/react": "17.0.11",
     "@types/react-google-recaptcha": "2.1.0",
     "@types/react-leaflet-markercluster": "2.0.0",
-    "@types/styled-components": "5.1.10",
+    "@types/styled-components": "5.1.11",
     "@types/yup": "0.29.11",
     "@typescript-eslint/eslint-plugin": "4.28.0",
     "@typescript-eslint/parser": "4.28.0",
