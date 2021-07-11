@@ -19,16 +19,14 @@ export const sendMessage = (data: messages.SendData) => {
   });
 };
 
-export const sendEmail: MutationResolvers<ResolverContext>["sendEmail"] = async (
-  _: any,
-  { email: { subject, html } }
-) => {
-  await sendMessage({
-    to: process.env.EMAIL ?? "",
-    from: `website@einmalohnebitte.de`, // sender address
-    subject,
-    html,
-  });
+export const sendEmail: MutationResolvers<ResolverContext>["sendEmail"] =
+  async (_: any, { email: { subject, html } }) => {
+    await sendMessage({
+      to: process.env.EMAIL ?? "",
+      from: `website@einmalohnebitte.de`, // sender address
+      subject,
+      html,
+    });
 
-  return true;
-};
+    return true;
+  };
