@@ -64,7 +64,7 @@ export const FormVerkaufen: React.FC = () => {
         lastName: "",
         email: "",
         address: "",
-        postCode: (null as any) as number,
+        postCode: null as any as number,
         town: "",
         message: "",
         consent: false,
