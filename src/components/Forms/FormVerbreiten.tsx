@@ -53,7 +53,7 @@ export const FormVerbreiten: React.FC = () => {
         lastName: "",
         email: "",
         message: "",
-        postCode: (null as any) as number,
+        postCode: null as any as number,
         town: "",
         consent: false,
       }}
