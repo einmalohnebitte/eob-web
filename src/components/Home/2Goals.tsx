@@ -4,7 +4,7 @@ import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
 import tw from "twin.macro";
 
-import { Section } from "../@UI/Section";
+import { HomeSection } from "../@UI/Section";
 
 export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   const intl = useTranslations();
@@ -18,7 +18,7 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
         background-image: linear-gradient(#dddddd, white);
       `}
     >
-      <Section css={tw` flex`}>
+      <HomeSection.Section>
         <Card
           color="blue"
           title={intl("BUY")}
@@ -46,7 +46,7 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           linkTitle={intl("READ_MORE")}
           linkTo={"/verbreiten"}
         />
-      </Section>
+      </HomeSection.Section>
     </div>
   );
 };
