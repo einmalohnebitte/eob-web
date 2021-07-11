@@ -68,7 +68,7 @@
     "@testing-library/react-hooks": "7.0.1",
     "@testing-library/user-event": "13.1.9",
     "@types/ical": "0.6.3",
-    "@types/jest": "26.0.23",
+    "@types/jest": "26.0.24",
     "@types/leaflet": "1.7.4",
     "@types/mailgun-js": "0.22.12",
     "@types/next-auth": "3.15.0",
