@@ -14,3 +14,8 @@ public/workbox-*
 .vercel
 cypress/videos
 coverage
+.DS_Store
+package-lock.json
+src/components/Forms/newsletter.local.generated.ts
+src/components/Forms/sendEmail.local.generated.ts
+src/server.schema.json
