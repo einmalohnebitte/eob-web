@@ -1,7 +1,7 @@
 import {
   Blue,
   BlueInverted,
-  Button,
+  ButtonNoColor,
   Pink,
   PinkInverted,
   Yellow,
@@ -84,7 +84,7 @@ export const ShopsSideMenu: React.FC<{
       </div>
       <div>
         <div css={tw`flex justify-center`}>
-          <Button
+          <ButtonNoColor
             onClick={() => setActiveTab(0)}
             css={[
               tw`text-2xl  border-solid  border-2 m-2`,
@@ -92,9 +92,9 @@ export const ShopsSideMenu: React.FC<{
             ]}
           >
             {intl("CATEGORIES")}
-          </Button>
+          </ButtonNoColor>
 
-          <Button
+          <ButtonNoColor
             onClick={() => setActiveTab(2)}
             css={[
               tw`text-2xl  border-solid  border-2 m-2`,
@@ -102,9 +102,9 @@ export const ShopsSideMenu: React.FC<{
             ]}
           >
             {intl("Types")}
-          </Button>
+          </ButtonNoColor>
 
-          <Button
+          <ButtonNoColor
             onClick={() => setActiveTab(1)}
             css={[
               tw`text-2xl  border-solid  border-2 m-2`,
@@ -112,7 +112,7 @@ export const ShopsSideMenu: React.FC<{
             ]}
           >
             {intl("TOWNS")}
-          </Button>
+          </ButtonNoColor>
         </div>
 
         {
@@ -120,7 +120,7 @@ export const ShopsSideMenu: React.FC<{
           activeTab === 0 ? (
             <div>
               {shopCategories.map((c) => (
-                <Button
+                <ButtonNoColor
                   key={c.id}
                   onClick={() => {
                     onSelectCategory(c);
@@ -128,13 +128,13 @@ export const ShopsSideMenu: React.FC<{
                   css={[tw`m-2`, c === selectedCategory ? Pink : PinkInverted]}
                 >
                   {c.name}
-                </Button>
+                </ButtonNoColor>
               ))}
             </div>
           ) : activeTab === 1 ? (
             <div>
               {shopTowns.map((c) => (
-                <Button
+                <ButtonNoColor
                   onClick={() => {
                     setTown(c);
                     onSelectTown(c);
@@ -143,13 +143,13 @@ export const ShopsSideMenu: React.FC<{
                   key={c.id}
                 >
                   {c.name}
-                </Button>
+                </ButtonNoColor>
               ))}
             </div>
           ) : (
             <div>
               {shopTypes.map((c) => (
-                <Button
+                <ButtonNoColor
                   onClick={() => {
                     onSelectType?.(c);
                   }}
@@ -157,7 +157,7 @@ export const ShopsSideMenu: React.FC<{
                   key={c.id}
                 >
                   {c.name}
-                </Button>
+                </ButtonNoColor>
               ))}
             </div>
           )
