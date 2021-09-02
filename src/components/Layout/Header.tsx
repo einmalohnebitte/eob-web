@@ -48,7 +48,7 @@ export const Header: React.FC = () => {
             <Link key={k} href={item.href}>
               <a css={[tw`m-4`, asPath === item.href && tw`underline`]}>
                 <p
-                  css={tw`text-3xl font-lemonism mx-0 sm:mx-2 my-2 border-b-2 border-transparent py-1 sm:p-0`}
+                  css={tw`text-2xl font-lemonism mx-0 sm:mx-2 my-2 border-b-2 border-transparent py-1 sm:p-0`}
                 >
                   {intl(item.label)}
                 </p>

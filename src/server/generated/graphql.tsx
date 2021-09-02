@@ -48,16 +48,10 @@ export type Asset = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
   /** The file handle */
   handle: Scalars['String'];
   /** The file name */
@@ -70,12 +64,18 @@ export type Asset = Node & {
   size?: Maybe<Scalars['Float']>;
   /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   picturePageSection: Array<PageSection>;
   pictureMember: Array<Member>;
   dataProtectionFormShop: Array<Shop>;
-  category?: Maybe<Category>;
   pictureSupporter: Array<Supporter>;
   logoCityPartner: Array<CityPartner>;
+  category?: Maybe<Category>;
   /** List of Asset versions */
   history: Array<Version>;
   /** Get the url for the asset with provided transformations applied. */
@@ -105,26 +105,26 @@ export type AssetCreatedAtArgs = {
 
 
 /** Asset system model */
-export type AssetCreatedByArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
-/** Asset system model */
 export type AssetUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
 /** Asset system model */
-export type AssetUpdatedByArgs = {
+export type AssetPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+/** Asset system model */
+export type AssetCreatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
 
 /** Asset system model */
-export type AssetPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
+export type AssetUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -241,9 +241,9 @@ export type AssetCreateInput = {
   picturePageSection?: Maybe<PageSectionCreateManyInlineInput>;
   pictureMember?: Maybe<MemberCreateManyInlineInput>;
   dataProtectionFormShop?: Maybe<ShopCreateManyInlineInput>;
-  category?: Maybe<Category>;
   pictureSupporter?: Maybe<SupporterCreateManyInlineInput>;
   logoCityPartner?: Maybe<CityPartnerCreateManyInlineInput>;
+  category?: Maybe<Category>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<AssetCreateLocalizationsInput>;
 };
@@ -337,7 +337,6 @@ export type AssetManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -353,7 +352,6 @@ export type AssetManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -369,6 +367,8 @@ export type AssetManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedBy?: Maybe<UserWhereInput>;
   picturePageSection_every?: Maybe<PageSectionWhereInput>;
   picturePageSection_some?: Maybe<PageSectionWhereInput>;
@@ -379,6 +379,12 @@ export type AssetManyWhereInput = {
   dataProtectionFormShop_every?: Maybe<ShopWhereInput>;
   dataProtectionFormShop_some?: Maybe<ShopWhereInput>;
   dataProtectionFormShop_none?: Maybe<ShopWhereInput>;
+  pictureSupporter_every?: Maybe<SupporterWhereInput>;
+  pictureSupporter_some?: Maybe<SupporterWhereInput>;
+  pictureSupporter_none?: Maybe<SupporterWhereInput>;
+  logoCityPartner_every?: Maybe<CityPartnerWhereInput>;
+  logoCityPartner_some?: Maybe<CityPartnerWhereInput>;
+  logoCityPartner_none?: Maybe<CityPartnerWhereInput>;
   category?: Maybe<Category>;
   /** All values that are not equal to given value. */
   category_not?: Maybe<Category>;
@@ -386,12 +392,6 @@ export type AssetManyWhereInput = {
   category_in?: Maybe<Array<Category>>;
   /** All values that are not contained in given list. */
   category_not_in?: Maybe<Array<Category>>;
-  pictureSupporter_every?: Maybe<SupporterWhereInput>;
-  pictureSupporter_some?: Maybe<SupporterWhereInput>;
-  pictureSupporter_none?: Maybe<SupporterWhereInput>;
-  logoCityPartner_every?: Maybe<CityPartnerWhereInput>;
-  logoCityPartner_some?: Maybe<CityPartnerWhereInput>;
-  logoCityPartner_none?: Maybe<CityPartnerWhereInput>;
 };
 
 export enum AssetOrderByInput {
@@ -437,9 +437,9 @@ export type AssetUpdateInput = {
   picturePageSection?: Maybe<PageSectionUpdateManyInlineInput>;
   pictureMember?: Maybe<MemberUpdateManyInlineInput>;
   dataProtectionFormShop?: Maybe<ShopUpdateManyInlineInput>;
-  category?: Maybe<Category>;
   pictureSupporter?: Maybe<SupporterUpdateManyInlineInput>;
   logoCityPartner?: Maybe<CityPartnerUpdateManyInlineInput>;
+  category?: Maybe<Category>;
   /** Manage document localizations */
   localizations?: Maybe<AssetUpdateLocalizationsInput>;
 };
@@ -607,7 +607,6 @@ export type AssetWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -623,7 +622,6 @@ export type AssetWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -639,7 +637,6 @@ export type AssetWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   handle?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   handle_not?: Maybe<Scalars['String']>;
@@ -742,6 +739,9 @@ export type AssetWhereInput = {
   mimeType_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   mimeType_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   picturePageSection_every?: Maybe<PageSectionWhereInput>;
   picturePageSection_some?: Maybe<PageSectionWhereInput>;
   picturePageSection_none?: Maybe<PageSectionWhereInput>;
@@ -751,6 +751,12 @@ export type AssetWhereInput = {
   dataProtectionFormShop_every?: Maybe<ShopWhereInput>;
   dataProtectionFormShop_some?: Maybe<ShopWhereInput>;
   dataProtectionFormShop_none?: Maybe<ShopWhereInput>;
+  pictureSupporter_every?: Maybe<SupporterWhereInput>;
+  pictureSupporter_some?: Maybe<SupporterWhereInput>;
+  pictureSupporter_none?: Maybe<SupporterWhereInput>;
+  logoCityPartner_every?: Maybe<CityPartnerWhereInput>;
+  logoCityPartner_some?: Maybe<CityPartnerWhereInput>;
+  logoCityPartner_none?: Maybe<CityPartnerWhereInput>;
   category?: Maybe<Category>;
   /** All values that are not equal to given value. */
   category_not?: Maybe<Category>;
@@ -758,12 +764,6 @@ export type AssetWhereInput = {
   category_in?: Maybe<Array<Category>>;
   /** All values that are not contained in given list. */
   category_not_in?: Maybe<Array<Category>>;
-  pictureSupporter_every?: Maybe<SupporterWhereInput>;
-  pictureSupporter_some?: Maybe<SupporterWhereInput>;
-  pictureSupporter_none?: Maybe<SupporterWhereInput>;
-  logoCityPartner_every?: Maybe<CityPartnerWhereInput>;
-  logoCityPartner_some?: Maybe<CityPartnerWhereInput>;
-  logoCityPartner_none?: Maybe<CityPartnerWhereInput>;
 };
 
 /** References Asset record uniquely */
@@ -791,21 +791,21 @@ export type Blog = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
   title: Scalars['String'];
   date?: Maybe<Scalars['Date']>;
   content?: Maybe<RichText>;
   slug?: Maybe<Scalars['String']>;
   abstract?: Maybe<Scalars['String']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   /** List of Blog versions */
   history: Array<Version>;
 };
@@ -829,23 +829,23 @@ export type BlogCreatedAtArgs = {
 };
 
 
-export type BlogCreatedByArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
 export type BlogUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
-export type BlogUpdatedByArgs = {
+export type BlogPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type BlogCreatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
 
-export type BlogPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
+export type BlogUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -978,7 +978,6 @@ export type BlogManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -994,7 +993,6 @@ export type BlogManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1010,7 +1008,6 @@ export type BlogManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   date?: Maybe<Scalars['Date']>;
   /** All values that are not equal to given value. */
   date_not?: Maybe<Scalars['Date']>;
@@ -1045,6 +1042,9 @@ export type BlogManyWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
 };
 
 export enum BlogOrderByInput {
@@ -1238,7 +1238,6 @@ export type BlogWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1254,7 +1253,6 @@ export type BlogWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1270,7 +1268,6 @@ export type BlogWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   title?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   title_not?: Maybe<Scalars['String']>;
@@ -1343,6 +1340,9 @@ export type BlogWhereInput = {
   abstract_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   abstract_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
 };
 
 /** References Blog record uniquely */
@@ -1352,16 +1352,16 @@ export type BlogWhereUniqueInput = {
 };
 
 export enum Category {
-  Cookies = 'cookies',
-  Docs = 'docs',
-  Download = 'download',
-  Footer = 'footer',
   Form = 'form',
-  Header = 'header',
-  Home = 'home',
-  Map = 'map',
   Members = 'members',
-  Uberuns = 'uberuns'
+  Home = 'home',
+  Docs = 'docs',
+  Uberuns = 'uberuns',
+  Header = 'header',
+  Map = 'map',
+  Cookies = 'cookies',
+  Footer = 'footer',
+  Download = 'download'
 }
 
 export type CityPartner = Node & {
@@ -1378,19 +1378,19 @@ export type CityPartner = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  link?: Maybe<Scalars['String']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** User that last published this document */
   publishedBy?: Maybe<User>;
-  name?: Maybe<Scalars['String']>;
   logo?: Maybe<Asset>;
-  link?: Maybe<Scalars['String']>;
   /** List of CityPartner versions */
   history: Array<Version>;
 };
@@ -1414,23 +1414,23 @@ export type CityPartnerCreatedAtArgs = {
 };
 
 
-export type CityPartnerCreatedByArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
 export type CityPartnerUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
-export type CityPartnerUpdatedByArgs = {
+export type CityPartnerPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type CityPartnerCreatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
 
-export type CityPartnerPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
+export type CityPartnerUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -1472,8 +1472,8 @@ export type CityPartnerCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** name input for default locale (de) */
   name?: Maybe<Scalars['String']>;
-  logo?: Maybe<AssetCreateOneInlineInput>;
   link?: Maybe<Scalars['String']>;
+  logo?: Maybe<AssetCreateOneInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<CityPartnerCreateLocalizationsInput>;
 };
@@ -1562,7 +1562,6 @@ export type CityPartnerManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1578,7 +1577,6 @@ export type CityPartnerManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1594,8 +1592,6 @@ export type CityPartnerManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
-  logo?: Maybe<AssetWhereInput>;
   link?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   link_not?: Maybe<Scalars['String']>;
@@ -1615,6 +1611,10 @@ export type CityPartnerManyWhereInput = {
   link_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   link_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  logo?: Maybe<AssetWhereInput>;
 };
 
 export enum CityPartnerOrderByInput {
@@ -1635,8 +1635,8 @@ export enum CityPartnerOrderByInput {
 export type CityPartnerUpdateInput = {
   /** name input for default locale (de) */
   name?: Maybe<Scalars['String']>;
-  logo?: Maybe<AssetUpdateOneInlineInput>;
   link?: Maybe<Scalars['String']>;
+  logo?: Maybe<AssetUpdateOneInlineInput>;
   /** Manage document localizations */
   localizations?: Maybe<CityPartnerUpdateLocalizationsInput>;
 };
@@ -1792,7 +1792,6 @@ export type CityPartnerWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1808,7 +1807,6 @@ export type CityPartnerWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -1824,7 +1822,6 @@ export type CityPartnerWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -1844,7 +1841,6 @@ export type CityPartnerWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
-  logo?: Maybe<AssetWhereInput>;
   link?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   link_not?: Maybe<Scalars['String']>;
@@ -1864,6 +1860,10 @@ export type CityPartnerWhereInput = {
   link_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   link_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  logo?: Maybe<AssetWhereInput>;
 };
 
 /** References CityPartner record uniquely */
@@ -1976,18 +1976,18 @@ export type Faq = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
   question: Scalars['String'];
   answer?: Maybe<RichText>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   /** List of Faq versions */
   history: Array<Version>;
 };
@@ -2011,23 +2011,23 @@ export type FaqCreatedAtArgs = {
 };
 
 
-export type FaqCreatedByArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
 export type FaqUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
-export type FaqUpdatedByArgs = {
+export type FaqPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type FaqCreatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
 
-export type FaqPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
+export type FaqUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -2155,7 +2155,6 @@ export type FaqManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2171,7 +2170,6 @@ export type FaqManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2187,6 +2185,8 @@ export type FaqManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedBy?: Maybe<UserWhereInput>;
 };
 
@@ -2366,7 +2366,6 @@ export type FaqWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2382,7 +2381,6 @@ export type FaqWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2398,7 +2396,6 @@ export type FaqWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   question?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   question_not?: Maybe<Scalars['String']>;
@@ -2418,6 +2415,9 @@ export type FaqWhereInput = {
   question_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   question_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
 };
 
 /** References Faq record uniquely */
@@ -2495,22 +2495,22 @@ export type Member = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
   name?: Maybe<Scalars['String']>;
   abstract?: Maybe<Scalars['String']>;
-  picture?: Maybe<Asset>;
   bio?: Maybe<RichText>;
   slug?: Maybe<Scalars['String']>;
   order: Scalars['Int'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  picture?: Maybe<Asset>;
   /** List of Member versions */
   history: Array<Version>;
 };
@@ -2534,23 +2534,23 @@ export type MemberCreatedAtArgs = {
 };
 
 
-export type MemberCreatedByArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
 export type MemberUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
-export type MemberUpdatedByArgs = {
+export type MemberPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type MemberCreatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
 
-export type MemberPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
+export type MemberUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -2593,10 +2593,10 @@ export type MemberCreateInput = {
   name?: Maybe<Scalars['String']>;
   /** abstract input for default locale (de) */
   abstract?: Maybe<Scalars['String']>;
-  picture?: Maybe<AssetCreateOneInlineInput>;
   bio?: Maybe<Scalars['RichTextAST']>;
   slug?: Maybe<Scalars['String']>;
   order: Scalars['Int'];
+  picture?: Maybe<AssetCreateOneInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<MemberCreateLocalizationsInput>;
 };
@@ -2685,7 +2685,6 @@ export type MemberManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2701,7 +2700,6 @@ export type MemberManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2717,7 +2715,6 @@ export type MemberManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -2737,7 +2734,6 @@ export type MemberManyWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
-  picture?: Maybe<AssetWhereInput>;
   slug?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   slug_not?: Maybe<Scalars['String']>;
@@ -2772,6 +2768,10 @@ export type MemberManyWhereInput = {
   order_gt?: Maybe<Scalars['Int']>;
   /** All values greater than or equal the given value. */
   order_gte?: Maybe<Scalars['Int']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  picture?: Maybe<AssetWhereInput>;
 };
 
 export enum MemberOrderByInput {
@@ -2797,10 +2797,10 @@ export type MemberUpdateInput = {
   name?: Maybe<Scalars['String']>;
   /** abstract input for default locale (de) */
   abstract?: Maybe<Scalars['String']>;
-  picture?: Maybe<AssetUpdateOneInlineInput>;
   bio?: Maybe<Scalars['RichTextAST']>;
   slug?: Maybe<Scalars['String']>;
   order?: Maybe<Scalars['Int']>;
+  picture?: Maybe<AssetUpdateOneInlineInput>;
   /** Manage document localizations */
   localizations?: Maybe<MemberUpdateLocalizationsInput>;
 };
@@ -2957,7 +2957,6 @@ export type MemberWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2973,7 +2972,6 @@ export type MemberWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -2989,7 +2987,6 @@ export type MemberWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -3028,7 +3025,6 @@ export type MemberWhereInput = {
   abstract_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   abstract_not_ends_with?: Maybe<Scalars['String']>;
-  picture?: Maybe<AssetWhereInput>;
   slug?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   slug_not?: Maybe<Scalars['String']>;
@@ -3063,6 +3059,10 @@ export type MemberWhereInput = {
   order_gt?: Maybe<Scalars['Int']>;
   /** All values greater than or equal the given value. */
   order_gte?: Maybe<Scalars['Int']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  picture?: Maybe<AssetWhereInput>;
 };
 
 /** References Member record uniquely */
@@ -3074,6 +3074,166 @@ export type MemberWhereUniqueInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  /** Create one supporter */
+  createSupporter?: Maybe<Supporter>;
+  /** Update one supporter */
+  updateSupporter?: Maybe<Supporter>;
+  /** Delete one supporter from _all_ existing stages. Returns deleted document. */
+  deleteSupporter?: Maybe<Supporter>;
+  /** Upsert one supporter */
+  upsertSupporter?: Maybe<Supporter>;
+  /** Publish one supporter */
+  publishSupporter?: Maybe<Supporter>;
+  /** Unpublish one supporter from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishSupporter?: Maybe<Supporter>;
+  /** Update many Supporter documents */
+  updateManySupportersConnection: SupporterConnection;
+  /** Delete many Supporter documents, return deleted documents */
+  deleteManySupportersConnection: SupporterConnection;
+  /** Publish many Supporter documents */
+  publishManySupportersConnection: SupporterConnection;
+  /** Find many Supporter documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManySupportersConnection: SupporterConnection;
+  /**
+   * Update many supporters
+   * @deprecated Please use the new paginated many mutation (updateManySupportersConnection)
+   */
+  updateManySupporters: BatchPayload;
+  /**
+   * Delete many Supporter documents
+   * @deprecated Please use the new paginated many mutation (deleteManySupportersConnection)
+   */
+  deleteManySupporters: BatchPayload;
+  /**
+   * Publish many Supporter documents
+   * @deprecated Please use the new paginated many mutation (publishManySupportersConnection)
+   */
+  publishManySupporters: BatchPayload;
+  /**
+   * Unpublish many Supporter documents
+   * @deprecated Please use the new paginated many mutation (unpublishManySupportersConnection)
+   */
+  unpublishManySupporters: BatchPayload;
+  /** Create one shopTown */
+  createShopTown?: Maybe<ShopTown>;
+  /** Update one shopTown */
+  updateShopTown?: Maybe<ShopTown>;
+  /** Delete one shopTown from _all_ existing stages. Returns deleted document. */
+  deleteShopTown?: Maybe<ShopTown>;
+  /** Upsert one shopTown */
+  upsertShopTown?: Maybe<ShopTown>;
+  /** Publish one shopTown */
+  publishShopTown?: Maybe<ShopTown>;
+  /** Unpublish one shopTown from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishShopTown?: Maybe<ShopTown>;
+  /** Update many ShopTown documents */
+  updateManyShopTownsConnection: ShopTownConnection;
+  /** Delete many ShopTown documents, return deleted documents */
+  deleteManyShopTownsConnection: ShopTownConnection;
+  /** Publish many ShopTown documents */
+  publishManyShopTownsConnection: ShopTownConnection;
+  /** Find many ShopTown documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyShopTownsConnection: ShopTownConnection;
+  /**
+   * Update many shopTowns
+   * @deprecated Please use the new paginated many mutation (updateManyShopTownsConnection)
+   */
+  updateManyShopTowns: BatchPayload;
+  /**
+   * Delete many ShopTown documents
+   * @deprecated Please use the new paginated many mutation (deleteManyShopTownsConnection)
+   */
+  deleteManyShopTowns: BatchPayload;
+  /**
+   * Publish many ShopTown documents
+   * @deprecated Please use the new paginated many mutation (publishManyShopTownsConnection)
+   */
+  publishManyShopTowns: BatchPayload;
+  /**
+   * Unpublish many ShopTown documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyShopTownsConnection)
+   */
+  unpublishManyShopTowns: BatchPayload;
+  /** Create one shopType */
+  createShopType?: Maybe<ShopType>;
+  /** Update one shopType */
+  updateShopType?: Maybe<ShopType>;
+  /** Delete one shopType from _all_ existing stages. Returns deleted document. */
+  deleteShopType?: Maybe<ShopType>;
+  /** Upsert one shopType */
+  upsertShopType?: Maybe<ShopType>;
+  /** Publish one shopType */
+  publishShopType?: Maybe<ShopType>;
+  /** Unpublish one shopType from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishShopType?: Maybe<ShopType>;
+  /** Update many ShopType documents */
+  updateManyShopTypesConnection: ShopTypeConnection;
+  /** Delete many ShopType documents, return deleted documents */
+  deleteManyShopTypesConnection: ShopTypeConnection;
+  /** Publish many ShopType documents */
+  publishManyShopTypesConnection: ShopTypeConnection;
+  /** Find many ShopType documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyShopTypesConnection: ShopTypeConnection;
+  /**
+   * Update many shopTypes
+   * @deprecated Please use the new paginated many mutation (updateManyShopTypesConnection)
+   */
+  updateManyShopTypes: BatchPayload;
+  /**
+   * Delete many ShopType documents
+   * @deprecated Please use the new paginated many mutation (deleteManyShopTypesConnection)
+   */
+  deleteManyShopTypes: BatchPayload;
+  /**
+   * Publish many ShopType documents
+   * @deprecated Please use the new paginated many mutation (publishManyShopTypesConnection)
+   */
+  publishManyShopTypes: BatchPayload;
+  /**
+   * Unpublish many ShopType documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyShopTypesConnection)
+   */
+  unpublishManyShopTypes: BatchPayload;
+  /** Create one shopCategory */
+  createShopCategory?: Maybe<ShopCategory>;
+  /** Update one shopCategory */
+  updateShopCategory?: Maybe<ShopCategory>;
+  /** Delete one shopCategory from _all_ existing stages. Returns deleted document. */
+  deleteShopCategory?: Maybe<ShopCategory>;
+  /** Upsert one shopCategory */
+  upsertShopCategory?: Maybe<ShopCategory>;
+  /** Publish one shopCategory */
+  publishShopCategory?: Maybe<ShopCategory>;
+  /** Unpublish one shopCategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishShopCategory?: Maybe<ShopCategory>;
+  /** Update many ShopCategory documents */
+  updateManyShopCategoriesConnection: ShopCategoryConnection;
+  /** Delete many ShopCategory documents, return deleted documents */
+  deleteManyShopCategoriesConnection: ShopCategoryConnection;
+  /** Publish many ShopCategory documents */
+  publishManyShopCategoriesConnection: ShopCategoryConnection;
+  /** Find many ShopCategory documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyShopCategoriesConnection: ShopCategoryConnection;
+  /**
+   * Update many shopCategories
+   * @deprecated Please use the new paginated many mutation (updateManyShopCategoriesConnection)
+   */
+  updateManyShopCategories: BatchPayload;
+  /**
+   * Delete many ShopCategory documents
+   * @deprecated Please use the new paginated many mutation (deleteManyShopCategoriesConnection)
+   */
+  deleteManyShopCategories: BatchPayload;
+  /**
+   * Publish many ShopCategory documents
+   * @deprecated Please use the new paginated many mutation (publishManyShopCategoriesConnection)
+   */
+  publishManyShopCategories: BatchPayload;
+  /**
+   * Unpublish many ShopCategory documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyShopCategoriesConnection)
+   */
+  unpublishManyShopCategories: BatchPayload;
   /**
    * Create one asset
    * @deprecated Asset mutations will be overhauled soon
@@ -3117,46 +3277,46 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyAssetsConnection)
    */
   unpublishManyAssets: BatchPayload;
-  /** Create one blog */
-  createBlog?: Maybe<Blog>;
-  /** Update one blog */
-  updateBlog?: Maybe<Blog>;
-  /** Delete one blog from _all_ existing stages. Returns deleted document. */
-  deleteBlog?: Maybe<Blog>;
-  /** Upsert one blog */
-  upsertBlog?: Maybe<Blog>;
-  /** Publish one blog */
-  publishBlog?: Maybe<Blog>;
-  /** Unpublish one blog from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishBlog?: Maybe<Blog>;
-  /** Update many Blog documents */
-  updateManyBlogsConnection: BlogConnection;
-  /** Delete many Blog documents, return deleted documents */
-  deleteManyBlogsConnection: BlogConnection;
-  /** Publish many Blog documents */
-  publishManyBlogsConnection: BlogConnection;
-  /** Find many Blog documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyBlogsConnection: BlogConnection;
+  /** Create one pageSection */
+  createPageSection?: Maybe<PageSection>;
+  /** Update one pageSection */
+  updatePageSection?: Maybe<PageSection>;
+  /** Delete one pageSection from _all_ existing stages. Returns deleted document. */
+  deletePageSection?: Maybe<PageSection>;
+  /** Upsert one pageSection */
+  upsertPageSection?: Maybe<PageSection>;
+  /** Publish one pageSection */
+  publishPageSection?: Maybe<PageSection>;
+  /** Unpublish one pageSection from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishPageSection?: Maybe<PageSection>;
+  /** Update many PageSection documents */
+  updateManyPageSectionsConnection: PageSectionConnection;
+  /** Delete many PageSection documents, return deleted documents */
+  deleteManyPageSectionsConnection: PageSectionConnection;
+  /** Publish many PageSection documents */
+  publishManyPageSectionsConnection: PageSectionConnection;
+  /** Find many PageSection documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyPageSectionsConnection: PageSectionConnection;
   /**
-   * Update many blogs
-   * @deprecated Please use the new paginated many mutation (updateManyBlogsConnection)
+   * Update many pageSections
+   * @deprecated Please use the new paginated many mutation (updateManyPageSectionsConnection)
    */
-  updateManyBlogs: BatchPayload;
+  updateManyPageSections: BatchPayload;
   /**
-   * Delete many Blog documents
-   * @deprecated Please use the new paginated many mutation (deleteManyBlogsConnection)
+   * Delete many PageSection documents
+   * @deprecated Please use the new paginated many mutation (deleteManyPageSectionsConnection)
    */
-  deleteManyBlogs: BatchPayload;
+  deleteManyPageSections: BatchPayload;
   /**
-   * Publish many Blog documents
-   * @deprecated Please use the new paginated many mutation (publishManyBlogsConnection)
+   * Publish many PageSection documents
+   * @deprecated Please use the new paginated many mutation (publishManyPageSectionsConnection)
    */
-  publishManyBlogs: BatchPayload;
+  publishManyPageSections: BatchPayload;
   /**
-   * Unpublish many Blog documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyBlogsConnection)
+   * Unpublish many PageSection documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyPageSectionsConnection)
    */
-  unpublishManyBlogs: BatchPayload;
+  unpublishManyPageSections: BatchPayload;
   /** Create one cityPartner */
   createCityPartner?: Maybe<CityPartner>;
   /** Update one cityPartner */
@@ -3197,6 +3357,126 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyCityPartnersConnection)
    */
   unpublishManyCityPartners: BatchPayload;
+  /** Create one shopBundesland */
+  createShopBundesland?: Maybe<ShopBundesland>;
+  /** Update one shopBundesland */
+  updateShopBundesland?: Maybe<ShopBundesland>;
+  /** Delete one shopBundesland from _all_ existing stages. Returns deleted document. */
+  deleteShopBundesland?: Maybe<ShopBundesland>;
+  /** Upsert one shopBundesland */
+  upsertShopBundesland?: Maybe<ShopBundesland>;
+  /** Publish one shopBundesland */
+  publishShopBundesland?: Maybe<ShopBundesland>;
+  /** Unpublish one shopBundesland from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishShopBundesland?: Maybe<ShopBundesland>;
+  /** Update many ShopBundesland documents */
+  updateManyShopBundeslandsConnection: ShopBundeslandConnection;
+  /** Delete many ShopBundesland documents, return deleted documents */
+  deleteManyShopBundeslandsConnection: ShopBundeslandConnection;
+  /** Publish many ShopBundesland documents */
+  publishManyShopBundeslandsConnection: ShopBundeslandConnection;
+  /** Find many ShopBundesland documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyShopBundeslandsConnection: ShopBundeslandConnection;
+  /**
+   * Update many shopBundeslands
+   * @deprecated Please use the new paginated many mutation (updateManyShopBundeslandsConnection)
+   */
+  updateManyShopBundeslands: BatchPayload;
+  /**
+   * Delete many ShopBundesland documents
+   * @deprecated Please use the new paginated many mutation (deleteManyShopBundeslandsConnection)
+   */
+  deleteManyShopBundeslands: BatchPayload;
+  /**
+   * Publish many ShopBundesland documents
+   * @deprecated Please use the new paginated many mutation (publishManyShopBundeslandsConnection)
+   */
+  publishManyShopBundeslands: BatchPayload;
+  /**
+   * Unpublish many ShopBundesland documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyShopBundeslandsConnection)
+   */
+  unpublishManyShopBundeslands: BatchPayload;
+  /** Create one shopStatus */
+  createShopStatus?: Maybe<ShopStatus>;
+  /** Update one shopStatus */
+  updateShopStatus?: Maybe<ShopStatus>;
+  /** Delete one shopStatus from _all_ existing stages. Returns deleted document. */
+  deleteShopStatus?: Maybe<ShopStatus>;
+  /** Upsert one shopStatus */
+  upsertShopStatus?: Maybe<ShopStatus>;
+  /** Publish one shopStatus */
+  publishShopStatus?: Maybe<ShopStatus>;
+  /** Unpublish one shopStatus from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishShopStatus?: Maybe<ShopStatus>;
+  /** Update many ShopStatus documents */
+  updateManyShopStatusesConnection: ShopStatusConnection;
+  /** Delete many ShopStatus documents, return deleted documents */
+  deleteManyShopStatusesConnection: ShopStatusConnection;
+  /** Publish many ShopStatus documents */
+  publishManyShopStatusesConnection: ShopStatusConnection;
+  /** Find many ShopStatus documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyShopStatusesConnection: ShopStatusConnection;
+  /**
+   * Update many shopStatuses
+   * @deprecated Please use the new paginated many mutation (updateManyShopStatusesConnection)
+   */
+  updateManyShopStatuses: BatchPayload;
+  /**
+   * Delete many ShopStatus documents
+   * @deprecated Please use the new paginated many mutation (deleteManyShopStatusesConnection)
+   */
+  deleteManyShopStatuses: BatchPayload;
+  /**
+   * Publish many ShopStatus documents
+   * @deprecated Please use the new paginated many mutation (publishManyShopStatusesConnection)
+   */
+  publishManyShopStatuses: BatchPayload;
+  /**
+   * Unpublish many ShopStatus documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyShopStatusesConnection)
+   */
+  unpublishManyShopStatuses: BatchPayload;
+  /** Create one translation */
+  createTranslation?: Maybe<Translation>;
+  /** Update one translation */
+  updateTranslation?: Maybe<Translation>;
+  /** Delete one translation from _all_ existing stages. Returns deleted document. */
+  deleteTranslation?: Maybe<Translation>;
+  /** Upsert one translation */
+  upsertTranslation?: Maybe<Translation>;
+  /** Publish one translation */
+  publishTranslation?: Maybe<Translation>;
+  /** Unpublish one translation from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishTranslation?: Maybe<Translation>;
+  /** Update many Translation documents */
+  updateManyTranslationsConnection: TranslationConnection;
+  /** Delete many Translation documents, return deleted documents */
+  deleteManyTranslationsConnection: TranslationConnection;
+  /** Publish many Translation documents */
+  publishManyTranslationsConnection: TranslationConnection;
+  /** Find many Translation documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyTranslationsConnection: TranslationConnection;
+  /**
+   * Update many translations
+   * @deprecated Please use the new paginated many mutation (updateManyTranslationsConnection)
+   */
+  updateManyTranslations: BatchPayload;
+  /**
+   * Delete many Translation documents
+   * @deprecated Please use the new paginated many mutation (deleteManyTranslationsConnection)
+   */
+  deleteManyTranslations: BatchPayload;
+  /**
+   * Publish many Translation documents
+   * @deprecated Please use the new paginated many mutation (publishManyTranslationsConnection)
+   */
+  publishManyTranslations: BatchPayload;
+  /**
+   * Unpublish many Translation documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyTranslationsConnection)
+   */
+  unpublishManyTranslations: BatchPayload;
   /** Create one faq */
   createFaq?: Maybe<Faq>;
   /** Update one faq */
@@ -3317,46 +3597,46 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyPagesConnection)
    */
   unpublishManyPages: BatchPayload;
-  /** Create one pageSection */
-  createPageSection?: Maybe<PageSection>;
-  /** Update one pageSection */
-  updatePageSection?: Maybe<PageSection>;
-  /** Delete one pageSection from _all_ existing stages. Returns deleted document. */
-  deletePageSection?: Maybe<PageSection>;
-  /** Upsert one pageSection */
-  upsertPageSection?: Maybe<PageSection>;
-  /** Publish one pageSection */
-  publishPageSection?: Maybe<PageSection>;
-  /** Unpublish one pageSection from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishPageSection?: Maybe<PageSection>;
-  /** Update many PageSection documents */
-  updateManyPageSectionsConnection: PageSectionConnection;
-  /** Delete many PageSection documents, return deleted documents */
-  deleteManyPageSectionsConnection: PageSectionConnection;
-  /** Publish many PageSection documents */
-  publishManyPageSectionsConnection: PageSectionConnection;
-  /** Find many PageSection documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyPageSectionsConnection: PageSectionConnection;
+  /** Create one blog */
+  createBlog?: Maybe<Blog>;
+  /** Update one blog */
+  updateBlog?: Maybe<Blog>;
+  /** Delete one blog from _all_ existing stages. Returns deleted document. */
+  deleteBlog?: Maybe<Blog>;
+  /** Upsert one blog */
+  upsertBlog?: Maybe<Blog>;
+  /** Publish one blog */
+  publishBlog?: Maybe<Blog>;
+  /** Unpublish one blog from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishBlog?: Maybe<Blog>;
+  /** Update many Blog documents */
+  updateManyBlogsConnection: BlogConnection;
+  /** Delete many Blog documents, return deleted documents */
+  deleteManyBlogsConnection: BlogConnection;
+  /** Publish many Blog documents */
+  publishManyBlogsConnection: BlogConnection;
+  /** Find many Blog documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyBlogsConnection: BlogConnection;
   /**
-   * Update many pageSections
-   * @deprecated Please use the new paginated many mutation (updateManyPageSectionsConnection)
+   * Update many blogs
+   * @deprecated Please use the new paginated many mutation (updateManyBlogsConnection)
    */
-  updateManyPageSections: BatchPayload;
+  updateManyBlogs: BatchPayload;
   /**
-   * Delete many PageSection documents
-   * @deprecated Please use the new paginated many mutation (deleteManyPageSectionsConnection)
+   * Delete many Blog documents
+   * @deprecated Please use the new paginated many mutation (deleteManyBlogsConnection)
    */
-  deleteManyPageSections: BatchPayload;
+  deleteManyBlogs: BatchPayload;
   /**
-   * Publish many PageSection documents
-   * @deprecated Please use the new paginated many mutation (publishManyPageSectionsConnection)
+   * Publish many Blog documents
+   * @deprecated Please use the new paginated many mutation (publishManyBlogsConnection)
    */
-  publishManyPageSections: BatchPayload;
+  publishManyBlogs: BatchPayload;
   /**
-   * Unpublish many PageSection documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyPageSectionsConnection)
+   * Unpublish many Blog documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyBlogsConnection)
    */
-  unpublishManyPageSections: BatchPayload;
+  unpublishManyBlogs: BatchPayload;
   /** Create one shop */
   createShop?: Maybe<Shop>;
   /** Update one shop */
@@ -3397,286 +3677,429 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyShopsConnection)
    */
   unpublishManyShops: BatchPayload;
-  /** Create one shopBundesland */
-  createShopBundesland?: Maybe<ShopBundesland>;
-  /** Update one shopBundesland */
-  updateShopBundesland?: Maybe<ShopBundesland>;
-  /** Delete one shopBundesland from _all_ existing stages. Returns deleted document. */
-  deleteShopBundesland?: Maybe<ShopBundesland>;
-  /** Upsert one shopBundesland */
-  upsertShopBundesland?: Maybe<ShopBundesland>;
-  /** Publish one shopBundesland */
-  publishShopBundesland?: Maybe<ShopBundesland>;
-  /** Unpublish one shopBundesland from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishShopBundesland?: Maybe<ShopBundesland>;
-  /** Update many ShopBundesland documents */
-  updateManyShopBundeslandsConnection: ShopBundeslandConnection;
-  /** Delete many ShopBundesland documents, return deleted documents */
-  deleteManyShopBundeslandsConnection: ShopBundeslandConnection;
-  /** Publish many ShopBundesland documents */
-  publishManyShopBundeslandsConnection: ShopBundeslandConnection;
-  /** Find many ShopBundesland documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyShopBundeslandsConnection: ShopBundeslandConnection;
-  /**
-   * Update many shopBundeslands
-   * @deprecated Please use the new paginated many mutation (updateManyShopBundeslandsConnection)
-   */
-  updateManyShopBundeslands: BatchPayload;
-  /**
-   * Delete many ShopBundesland documents
-   * @deprecated Please use the new paginated many mutation (deleteManyShopBundeslandsConnection)
-   */
-  deleteManyShopBundeslands: BatchPayload;
-  /**
-   * Publish many ShopBundesland documents
-   * @deprecated Please use the new paginated many mutation (publishManyShopBundeslandsConnection)
-   */
-  publishManyShopBundeslands: BatchPayload;
-  /**
-   * Unpublish many ShopBundesland documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyShopBundeslandsConnection)
-   */
-  unpublishManyShopBundeslands: BatchPayload;
-  /** Create one shopCategory */
-  createShopCategory?: Maybe<ShopCategory>;
-  /** Update one shopCategory */
-  updateShopCategory?: Maybe<ShopCategory>;
-  /** Delete one shopCategory from _all_ existing stages. Returns deleted document. */
-  deleteShopCategory?: Maybe<ShopCategory>;
-  /** Upsert one shopCategory */
-  upsertShopCategory?: Maybe<ShopCategory>;
-  /** Publish one shopCategory */
-  publishShopCategory?: Maybe<ShopCategory>;
-  /** Unpublish one shopCategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishShopCategory?: Maybe<ShopCategory>;
-  /** Update many ShopCategory documents */
-  updateManyShopCategoriesConnection: ShopCategoryConnection;
-  /** Delete many ShopCategory documents, return deleted documents */
-  deleteManyShopCategoriesConnection: ShopCategoryConnection;
-  /** Publish many ShopCategory documents */
-  publishManyShopCategoriesConnection: ShopCategoryConnection;
-  /** Find many ShopCategory documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyShopCategoriesConnection: ShopCategoryConnection;
-  /**
-   * Update many shopCategories
-   * @deprecated Please use the new paginated many mutation (updateManyShopCategoriesConnection)
-   */
-  updateManyShopCategories: BatchPayload;
-  /**
-   * Delete many ShopCategory documents
-   * @deprecated Please use the new paginated many mutation (deleteManyShopCategoriesConnection)
-   */
-  deleteManyShopCategories: BatchPayload;
-  /**
-   * Publish many ShopCategory documents
-   * @deprecated Please use the new paginated many mutation (publishManyShopCategoriesConnection)
-   */
-  publishManyShopCategories: BatchPayload;
-  /**
-   * Unpublish many ShopCategory documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyShopCategoriesConnection)
-   */
-  unpublishManyShopCategories: BatchPayload;
-  /** Create one shopStatus */
-  createShopStatus?: Maybe<ShopStatus>;
-  /** Update one shopStatus */
-  updateShopStatus?: Maybe<ShopStatus>;
-  /** Delete one shopStatus from _all_ existing stages. Returns deleted document. */
-  deleteShopStatus?: Maybe<ShopStatus>;
-  /** Upsert one shopStatus */
-  upsertShopStatus?: Maybe<ShopStatus>;
-  /** Publish one shopStatus */
-  publishShopStatus?: Maybe<ShopStatus>;
-  /** Unpublish one shopStatus from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishShopStatus?: Maybe<ShopStatus>;
-  /** Update many ShopStatus documents */
-  updateManyShopStatusesConnection: ShopStatusConnection;
-  /** Delete many ShopStatus documents, return deleted documents */
-  deleteManyShopStatusesConnection: ShopStatusConnection;
-  /** Publish many ShopStatus documents */
-  publishManyShopStatusesConnection: ShopStatusConnection;
-  /** Find many ShopStatus documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyShopStatusesConnection: ShopStatusConnection;
-  /**
-   * Update many shopStatuses
-   * @deprecated Please use the new paginated many mutation (updateManyShopStatusesConnection)
-   */
-  updateManyShopStatuses: BatchPayload;
-  /**
-   * Delete many ShopStatus documents
-   * @deprecated Please use the new paginated many mutation (deleteManyShopStatusesConnection)
-   */
-  deleteManyShopStatuses: BatchPayload;
-  /**
-   * Publish many ShopStatus documents
-   * @deprecated Please use the new paginated many mutation (publishManyShopStatusesConnection)
-   */
-  publishManyShopStatuses: BatchPayload;
-  /**
-   * Unpublish many ShopStatus documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyShopStatusesConnection)
-   */
-  unpublishManyShopStatuses: BatchPayload;
-  /** Create one shopTown */
-  createShopTown?: Maybe<ShopTown>;
-  /** Update one shopTown */
-  updateShopTown?: Maybe<ShopTown>;
-  /** Delete one shopTown from _all_ existing stages. Returns deleted document. */
-  deleteShopTown?: Maybe<ShopTown>;
-  /** Upsert one shopTown */
-  upsertShopTown?: Maybe<ShopTown>;
-  /** Publish one shopTown */
-  publishShopTown?: Maybe<ShopTown>;
-  /** Unpublish one shopTown from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishShopTown?: Maybe<ShopTown>;
-  /** Update many ShopTown documents */
-  updateManyShopTownsConnection: ShopTownConnection;
-  /** Delete many ShopTown documents, return deleted documents */
-  deleteManyShopTownsConnection: ShopTownConnection;
-  /** Publish many ShopTown documents */
-  publishManyShopTownsConnection: ShopTownConnection;
-  /** Find many ShopTown documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyShopTownsConnection: ShopTownConnection;
-  /**
-   * Update many shopTowns
-   * @deprecated Please use the new paginated many mutation (updateManyShopTownsConnection)
-   */
-  updateManyShopTowns: BatchPayload;
-  /**
-   * Delete many ShopTown documents
-   * @deprecated Please use the new paginated many mutation (deleteManyShopTownsConnection)
-   */
-  deleteManyShopTowns: BatchPayload;
-  /**
-   * Publish many ShopTown documents
-   * @deprecated Please use the new paginated many mutation (publishManyShopTownsConnection)
-   */
-  publishManyShopTowns: BatchPayload;
-  /**
-   * Unpublish many ShopTown documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyShopTownsConnection)
-   */
-  unpublishManyShopTowns: BatchPayload;
-  /** Create one shopType */
-  createShopType?: Maybe<ShopType>;
-  /** Update one shopType */
-  updateShopType?: Maybe<ShopType>;
-  /** Delete one shopType from _all_ existing stages. Returns deleted document. */
-  deleteShopType?: Maybe<ShopType>;
-  /** Upsert one shopType */
-  upsertShopType?: Maybe<ShopType>;
-  /** Publish one shopType */
-  publishShopType?: Maybe<ShopType>;
-  /** Unpublish one shopType from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishShopType?: Maybe<ShopType>;
-  /** Update many ShopType documents */
-  updateManyShopTypesConnection: ShopTypeConnection;
-  /** Delete many ShopType documents, return deleted documents */
-  deleteManyShopTypesConnection: ShopTypeConnection;
-  /** Publish many ShopType documents */
-  publishManyShopTypesConnection: ShopTypeConnection;
-  /** Find many ShopType documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyShopTypesConnection: ShopTypeConnection;
-  /**
-   * Update many shopTypes
-   * @deprecated Please use the new paginated many mutation (updateManyShopTypesConnection)
-   */
-  updateManyShopTypes: BatchPayload;
-  /**
-   * Delete many ShopType documents
-   * @deprecated Please use the new paginated many mutation (deleteManyShopTypesConnection)
-   */
-  deleteManyShopTypes: BatchPayload;
-  /**
-   * Publish many ShopType documents
-   * @deprecated Please use the new paginated many mutation (publishManyShopTypesConnection)
-   */
-  publishManyShopTypes: BatchPayload;
-  /**
-   * Unpublish many ShopType documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyShopTypesConnection)
-   */
-  unpublishManyShopTypes: BatchPayload;
-  /** Create one supporter */
-  createSupporter?: Maybe<Supporter>;
-  /** Update one supporter */
-  updateSupporter?: Maybe<Supporter>;
-  /** Delete one supporter from _all_ existing stages. Returns deleted document. */
-  deleteSupporter?: Maybe<Supporter>;
-  /** Upsert one supporter */
-  upsertSupporter?: Maybe<Supporter>;
-  /** Publish one supporter */
-  publishSupporter?: Maybe<Supporter>;
-  /** Unpublish one supporter from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishSupporter?: Maybe<Supporter>;
-  /** Update many Supporter documents */
-  updateManySupportersConnection: SupporterConnection;
-  /** Delete many Supporter documents, return deleted documents */
-  deleteManySupportersConnection: SupporterConnection;
-  /** Publish many Supporter documents */
-  publishManySupportersConnection: SupporterConnection;
-  /** Find many Supporter documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManySupportersConnection: SupporterConnection;
-  /**
-   * Update many supporters
-   * @deprecated Please use the new paginated many mutation (updateManySupportersConnection)
-   */
-  updateManySupporters: BatchPayload;
-  /**
-   * Delete many Supporter documents
-   * @deprecated Please use the new paginated many mutation (deleteManySupportersConnection)
-   */
-  deleteManySupporters: BatchPayload;
-  /**
-   * Publish many Supporter documents
-   * @deprecated Please use the new paginated many mutation (publishManySupportersConnection)
-   */
-  publishManySupporters: BatchPayload;
-  /**
-   * Unpublish many Supporter documents
-   * @deprecated Please use the new paginated many mutation (unpublishManySupportersConnection)
-   */
-  unpublishManySupporters: BatchPayload;
-  /** Create one translation */
-  createTranslation?: Maybe<Translation>;
-  /** Update one translation */
-  updateTranslation?: Maybe<Translation>;
-  /** Delete one translation from _all_ existing stages. Returns deleted document. */
-  deleteTranslation?: Maybe<Translation>;
-  /** Upsert one translation */
-  upsertTranslation?: Maybe<Translation>;
-  /** Publish one translation */
-  publishTranslation?: Maybe<Translation>;
-  /** Unpublish one translation from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishTranslation?: Maybe<Translation>;
-  /** Update many Translation documents */
-  updateManyTranslationsConnection: TranslationConnection;
-  /** Delete many Translation documents, return deleted documents */
-  deleteManyTranslationsConnection: TranslationConnection;
-  /** Publish many Translation documents */
-  publishManyTranslationsConnection: TranslationConnection;
-  /** Find many Translation documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyTranslationsConnection: TranslationConnection;
-  /**
-   * Update many translations
-   * @deprecated Please use the new paginated many mutation (updateManyTranslationsConnection)
-   */
-  updateManyTranslations: BatchPayload;
-  /**
-   * Delete many Translation documents
-   * @deprecated Please use the new paginated many mutation (deleteManyTranslationsConnection)
-   */
-  deleteManyTranslations: BatchPayload;
-  /**
-   * Publish many Translation documents
-   * @deprecated Please use the new paginated many mutation (publishManyTranslationsConnection)
-   */
-  publishManyTranslations: BatchPayload;
-  /**
-   * Unpublish many Translation documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyTranslationsConnection)
-   */
-  unpublishManyTranslations: BatchPayload;
+};
+
+
+export type MutationCreateSupporterArgs = {
+  data: SupporterCreateInput;
+};
+
+
+export type MutationUpdateSupporterArgs = {
+  where: SupporterWhereUniqueInput;
+  data: SupporterUpdateInput;
+};
+
+
+export type MutationDeleteSupporterArgs = {
+  where: SupporterWhereUniqueInput;
+};
+
+
+export type MutationUpsertSupporterArgs = {
+  where: SupporterWhereUniqueInput;
+  upsert: SupporterUpsertInput;
+};
+
+
+export type MutationPublishSupporterArgs = {
+  where: SupporterWhereUniqueInput;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishSupporterArgs = {
+  where: SupporterWhereUniqueInput;
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateManySupportersConnectionArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  data: SupporterUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManySupportersConnectionArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManySupportersConnectionArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUnpublishManySupportersConnectionArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateManySupportersArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  data: SupporterUpdateManyInput;
+};
+
+
+export type MutationDeleteManySupportersArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+};
+
+
+export type MutationPublishManySupportersArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  to?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUnpublishManySupportersArgs = {
+  where?: Maybe<SupporterManyWhereInput>;
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateShopTownArgs = {
+  data: ShopTownCreateInput;
+};
+
+
+export type MutationUpdateShopTownArgs = {
+  where: ShopTownWhereUniqueInput;
+  data: ShopTownUpdateInput;
+};
+
+
+export type MutationDeleteShopTownArgs = {
+  where: ShopTownWhereUniqueInput;
+};
+
+
+export type MutationUpsertShopTownArgs = {
+  where: ShopTownWhereUniqueInput;
+  upsert: ShopTownUpsertInput;
+};
+
+
+export type MutationPublishShopTownArgs = {
+  where: ShopTownWhereUniqueInput;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishShopTownArgs = {
+  where: ShopTownWhereUniqueInput;
+  from?: Array<Stage>;
+};
+
+
+export type MutationUpdateManyShopTownsConnectionArgs = {
+  where?: Maybe<ShopTownManyWhereInput>;
+  data: ShopTownUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyShopTownsConnectionArgs = {
+  where?: Maybe<ShopTownManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyShopTownsConnectionArgs = {
+  where?: Maybe<ShopTownManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUnpublishManyShopTownsConnectionArgs = {
+  where?: Maybe<ShopTownManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUpdateManyShopTownsArgs = {
+  where?: Maybe<ShopTownManyWhereInput>;
+  data: ShopTownUpdateManyInput;
+};
+
+
+export type MutationDeleteManyShopTownsArgs = {
+  where?: Maybe<ShopTownManyWhereInput>;
+};
+
+
+export type MutationPublishManyShopTownsArgs = {
+  where?: Maybe<ShopTownManyWhereInput>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishManyShopTownsArgs = {
+  where?: Maybe<ShopTownManyWhereInput>;
+  from?: Array<Stage>;
+};
+
+
+export type MutationCreateShopTypeArgs = {
+  data: ShopTypeCreateInput;
+};
+
+
+export type MutationUpdateShopTypeArgs = {
+  where: ShopTypeWhereUniqueInput;
+  data: ShopTypeUpdateInput;
+};
+
+
+export type MutationDeleteShopTypeArgs = {
+  where: ShopTypeWhereUniqueInput;
+};
+
+
+export type MutationUpsertShopTypeArgs = {
+  where: ShopTypeWhereUniqueInput;
+  upsert: ShopTypeUpsertInput;
+};
+
+
+export type MutationPublishShopTypeArgs = {
+  where: ShopTypeWhereUniqueInput;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishShopTypeArgs = {
+  where: ShopTypeWhereUniqueInput;
+  from?: Array<Stage>;
+};
+
+
+export type MutationUpdateManyShopTypesConnectionArgs = {
+  where?: Maybe<ShopTypeManyWhereInput>;
+  data: ShopTypeUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyShopTypesConnectionArgs = {
+  where?: Maybe<ShopTypeManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyShopTypesConnectionArgs = {
+  where?: Maybe<ShopTypeManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUnpublishManyShopTypesConnectionArgs = {
+  where?: Maybe<ShopTypeManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUpdateManyShopTypesArgs = {
+  where?: Maybe<ShopTypeManyWhereInput>;
+  data: ShopTypeUpdateManyInput;
+};
+
+
+export type MutationDeleteManyShopTypesArgs = {
+  where?: Maybe<ShopTypeManyWhereInput>;
+};
+
+
+export type MutationPublishManyShopTypesArgs = {
+  where?: Maybe<ShopTypeManyWhereInput>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishManyShopTypesArgs = {
+  where?: Maybe<ShopTypeManyWhereInput>;
+  from?: Array<Stage>;
+};
+
+
+export type MutationCreateShopCategoryArgs = {
+  data: ShopCategoryCreateInput;
+};
+
+
+export type MutationUpdateShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+  data: ShopCategoryUpdateInput;
+};
+
+
+export type MutationDeleteShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+};
+
+
+export type MutationUpsertShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+  upsert: ShopCategoryUpsertInput;
+};
+
+
+export type MutationPublishShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+  from?: Array<Stage>;
+};
+
+
+export type MutationUpdateManyShopCategoriesConnectionArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  data: ShopCategoryUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyShopCategoriesConnectionArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyShopCategoriesConnectionArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUnpublishManyShopCategoriesConnectionArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUpdateManyShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  data: ShopCategoryUpdateManyInput;
+};
+
+
+export type MutationDeleteManyShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+};
+
+
+export type MutationPublishManyShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishManyShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryManyWhereInput>;
+  from?: Array<Stage>;
 };
 
 
@@ -3797,30 +4220,30 @@ export type MutationUnpublishManyAssetsArgs = {
 };
 
 
-export type MutationCreateBlogArgs = {
-  data: BlogCreateInput;
+export type MutationCreatePageSectionArgs = {
+  data: PageSectionCreateInput;
 };
 
 
-export type MutationUpdateBlogArgs = {
-  where: BlogWhereUniqueInput;
-  data: BlogUpdateInput;
+export type MutationUpdatePageSectionArgs = {
+  where: PageSectionWhereUniqueInput;
+  data: PageSectionUpdateInput;
 };
 
 
-export type MutationDeleteBlogArgs = {
-  where: BlogWhereUniqueInput;
+export type MutationDeletePageSectionArgs = {
+  where: PageSectionWhereUniqueInput;
 };
 
 
-export type MutationUpsertBlogArgs = {
-  where: BlogWhereUniqueInput;
-  upsert: BlogUpsertInput;
+export type MutationUpsertPageSectionArgs = {
+  where: PageSectionWhereUniqueInput;
+  upsert: PageSectionUpsertInput;
 };
 
 
-export type MutationPublishBlogArgs = {
-  where: BlogWhereUniqueInput;
+export type MutationPublishPageSectionArgs = {
+  where: PageSectionWhereUniqueInput;
   locales?: Maybe<Array<Locale>>;
   publishBase?: Maybe<Scalars['Boolean']>;
   withDefaultLocale?: Maybe<Scalars['Boolean']>;
@@ -3828,17 +4251,17 @@ export type MutationPublishBlogArgs = {
 };
 
 
-export type MutationUnpublishBlogArgs = {
-  where: BlogWhereUniqueInput;
+export type MutationUnpublishPageSectionArgs = {
+  where: PageSectionWhereUniqueInput;
   from?: Array<Stage>;
   locales?: Maybe<Array<Locale>>;
   unpublishBase?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type MutationUpdateManyBlogsConnectionArgs = {
-  where?: Maybe<BlogManyWhereInput>;
-  data: BlogUpdateManyInput;
+export type MutationUpdateManyPageSectionsConnectionArgs = {
+  where?: Maybe<PageSectionManyWhereInput>;
+  data: PageSectionUpdateManyInput;
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
@@ -3847,8 +4270,8 @@ export type MutationUpdateManyBlogsConnectionArgs = {
 };
 
 
-export type MutationDeleteManyBlogsConnectionArgs = {
-  where?: Maybe<BlogManyWhereInput>;
+export type MutationDeleteManyPageSectionsConnectionArgs = {
+  where?: Maybe<PageSectionManyWhereInput>;
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
@@ -3857,8 +4280,8 @@ export type MutationDeleteManyBlogsConnectionArgs = {
 };
 
 
-export type MutationPublishManyBlogsConnectionArgs = {
-  where?: Maybe<BlogManyWhereInput>;
+export type MutationPublishManyPageSectionsConnectionArgs = {
+  where?: Maybe<PageSectionManyWhereInput>;
   from?: Maybe<Stage>;
   to?: Array<Stage>;
   skip?: Maybe<Scalars['Int']>;
@@ -3872,8 +4295,8 @@ export type MutationPublishManyBlogsConnectionArgs = {
 };
 
 
-export type MutationUnpublishManyBlogsConnectionArgs = {
-  where?: Maybe<BlogManyWhereInput>;
+export type MutationUnpublishManyPageSectionsConnectionArgs = {
+  where?: Maybe<PageSectionManyWhereInput>;
   stage?: Maybe<Stage>;
   from?: Array<Stage>;
   skip?: Maybe<Scalars['Int']>;
@@ -3886,19 +4309,19 @@ export type MutationUnpublishManyBlogsConnectionArgs = {
 };
 
 
-export type MutationUpdateManyBlogsArgs = {
-  where?: Maybe<BlogManyWhereInput>;
-  data: BlogUpdateManyInput;
+export type MutationUpdateManyPageSectionsArgs = {
+  where?: Maybe<PageSectionManyWhereInput>;
+  data: PageSectionUpdateManyInput;
 };
 
 
-export type MutationDeleteManyBlogsArgs = {
-  where?: Maybe<BlogManyWhereInput>;
+export type MutationDeleteManyPageSectionsArgs = {
+  where?: Maybe<PageSectionManyWhereInput>;
 };
 
 
-export type MutationPublishManyBlogsArgs = {
-  where?: Maybe<BlogManyWhereInput>;
+export type MutationPublishManyPageSectionsArgs = {
+  where?: Maybe<PageSectionManyWhereInput>;
   to?: Array<Stage>;
   locales?: Maybe<Array<Locale>>;
   publishBase?: Maybe<Scalars['Boolean']>;
@@ -3906,8 +4329,8 @@ export type MutationPublishManyBlogsArgs = {
 };
 
 
-export type MutationUnpublishManyBlogsArgs = {
-  where?: Maybe<BlogManyWhereInput>;
+export type MutationUnpublishManyPageSectionsArgs = {
+  where?: Maybe<PageSectionManyWhereInput>;
   from?: Array<Stage>;
   locales?: Maybe<Array<Locale>>;
   unpublishBase?: Maybe<Scalars['Boolean']>;
@@ -4025,6 +4448,327 @@ export type MutationPublishManyCityPartnersArgs = {
 
 export type MutationUnpublishManyCityPartnersArgs = {
   where?: Maybe<CityPartnerManyWhereInput>;
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationCreateShopBundeslandArgs = {
+  data: ShopBundeslandCreateInput;
+};
+
+
+export type MutationUpdateShopBundeslandArgs = {
+  where: ShopBundeslandWhereUniqueInput;
+  data: ShopBundeslandUpdateInput;
+};
+
+
+export type MutationDeleteShopBundeslandArgs = {
+  where: ShopBundeslandWhereUniqueInput;
+};
+
+
+export type MutationUpsertShopBundeslandArgs = {
+  where: ShopBundeslandWhereUniqueInput;
+  upsert: ShopBundeslandUpsertInput;
+};
+
+
+export type MutationPublishShopBundeslandArgs = {
+  where: ShopBundeslandWhereUniqueInput;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishShopBundeslandArgs = {
+  where: ShopBundeslandWhereUniqueInput;
+  from?: Array<Stage>;
+};
+
+
+export type MutationUpdateManyShopBundeslandsConnectionArgs = {
+  where?: Maybe<ShopBundeslandManyWhereInput>;
+  data: ShopBundeslandUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyShopBundeslandsConnectionArgs = {
+  where?: Maybe<ShopBundeslandManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyShopBundeslandsConnectionArgs = {
+  where?: Maybe<ShopBundeslandManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUnpublishManyShopBundeslandsConnectionArgs = {
+  where?: Maybe<ShopBundeslandManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUpdateManyShopBundeslandsArgs = {
+  where?: Maybe<ShopBundeslandManyWhereInput>;
+  data: ShopBundeslandUpdateManyInput;
+};
+
+
+export type MutationDeleteManyShopBundeslandsArgs = {
+  where?: Maybe<ShopBundeslandManyWhereInput>;
+};
+
+
+export type MutationPublishManyShopBundeslandsArgs = {
+  where?: Maybe<ShopBundeslandManyWhereInput>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishManyShopBundeslandsArgs = {
+  where?: Maybe<ShopBundeslandManyWhereInput>;
+  from?: Array<Stage>;
+};
+
+
+export type MutationCreateShopStatusArgs = {
+  data: ShopStatusCreateInput;
+};
+
+
+export type MutationUpdateShopStatusArgs = {
+  where: ShopStatusWhereUniqueInput;
+  data: ShopStatusUpdateInput;
+};
+
+
+export type MutationDeleteShopStatusArgs = {
+  where: ShopStatusWhereUniqueInput;
+};
+
+
+export type MutationUpsertShopStatusArgs = {
+  where: ShopStatusWhereUniqueInput;
+  upsert: ShopStatusUpsertInput;
+};
+
+
+export type MutationPublishShopStatusArgs = {
+  where: ShopStatusWhereUniqueInput;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishShopStatusArgs = {
+  where: ShopStatusWhereUniqueInput;
+  from?: Array<Stage>;
+};
+
+
+export type MutationUpdateManyShopStatusesConnectionArgs = {
+  where?: Maybe<ShopStatusManyWhereInput>;
+  data: ShopStatusUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyShopStatusesConnectionArgs = {
+  where?: Maybe<ShopStatusManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyShopStatusesConnectionArgs = {
+  where?: Maybe<ShopStatusManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUnpublishManyShopStatusesConnectionArgs = {
+  where?: Maybe<ShopStatusManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationUpdateManyShopStatusesArgs = {
+  where?: Maybe<ShopStatusManyWhereInput>;
+  data: ShopStatusUpdateManyInput;
+};
+
+
+export type MutationDeleteManyShopStatusesArgs = {
+  where?: Maybe<ShopStatusManyWhereInput>;
+};
+
+
+export type MutationPublishManyShopStatusesArgs = {
+  where?: Maybe<ShopStatusManyWhereInput>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishManyShopStatusesArgs = {
+  where?: Maybe<ShopStatusManyWhereInput>;
+  from?: Array<Stage>;
+};
+
+
+export type MutationCreateTranslationArgs = {
+  data: TranslationCreateInput;
+};
+
+
+export type MutationUpdateTranslationArgs = {
+  where: TranslationWhereUniqueInput;
+  data: TranslationUpdateInput;
+};
+
+
+export type MutationDeleteTranslationArgs = {
+  where: TranslationWhereUniqueInput;
+};
+
+
+export type MutationUpsertTranslationArgs = {
+  where: TranslationWhereUniqueInput;
+  upsert: TranslationUpsertInput;
+};
+
+
+export type MutationPublishTranslationArgs = {
+  where: TranslationWhereUniqueInput;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishTranslationArgs = {
+  where: TranslationWhereUniqueInput;
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateManyTranslationsConnectionArgs = {
+  where?: Maybe<TranslationManyWhereInput>;
+  data: TranslationUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyTranslationsConnectionArgs = {
+  where?: Maybe<TranslationManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyTranslationsConnectionArgs = {
+  where?: Maybe<TranslationManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUnpublishManyTranslationsConnectionArgs = {
+  where?: Maybe<TranslationManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateManyTranslationsArgs = {
+  where?: Maybe<TranslationManyWhereInput>;
+  data: TranslationUpdateManyInput;
+};
+
+
+export type MutationDeleteManyTranslationsArgs = {
+  where?: Maybe<TranslationManyWhereInput>;
+};
+
+
+export type MutationPublishManyTranslationsArgs = {
+  where?: Maybe<TranslationManyWhereInput>;
+  to?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUnpublishManyTranslationsArgs = {
+  where?: Maybe<TranslationManyWhereInput>;
   from?: Array<Stage>;
   locales?: Maybe<Array<Locale>>;
   unpublishBase?: Maybe<Scalars['Boolean']>;
@@ -4382,30 +5126,30 @@ export type MutationUnpublishManyPagesArgs = {
 };
 
 
-export type MutationCreatePageSectionArgs = {
-  data: PageSectionCreateInput;
+export type MutationCreateBlogArgs = {
+  data: BlogCreateInput;
 };
 
 
-export type MutationUpdatePageSectionArgs = {
-  where: PageSectionWhereUniqueInput;
-  data: PageSectionUpdateInput;
+export type MutationUpdateBlogArgs = {
+  where: BlogWhereUniqueInput;
+  data: BlogUpdateInput;
 };
 
 
-export type MutationDeletePageSectionArgs = {
-  where: PageSectionWhereUniqueInput;
+export type MutationDeleteBlogArgs = {
+  where: BlogWhereUniqueInput;
 };
 
 
-export type MutationUpsertPageSectionArgs = {
-  where: PageSectionWhereUniqueInput;
-  upsert: PageSectionUpsertInput;
+export type MutationUpsertBlogArgs = {
+  where: BlogWhereUniqueInput;
+  upsert: BlogUpsertInput;
 };
 
 
-export type MutationPublishPageSectionArgs = {
-  where: PageSectionWhereUniqueInput;
+export type MutationPublishBlogArgs = {
+  where: BlogWhereUniqueInput;
   locales?: Maybe<Array<Locale>>;
   publishBase?: Maybe<Scalars['Boolean']>;
   withDefaultLocale?: Maybe<Scalars['Boolean']>;
@@ -4413,17 +5157,17 @@ export type MutationPublishPageSectionArgs = {
 };
 
 
-export type MutationUnpublishPageSectionArgs = {
-  where: PageSectionWhereUniqueInput;
+export type MutationUnpublishBlogArgs = {
+  where: BlogWhereUniqueInput;
   from?: Array<Stage>;
   locales?: Maybe<Array<Locale>>;
   unpublishBase?: Maybe<Scalars['Boolean']>;
 };
 
 
-export type MutationUpdateManyPageSectionsConnectionArgs = {
-  where?: Maybe<PageSectionManyWhereInput>;
-  data: PageSectionUpdateManyInput;
+export type MutationUpdateManyBlogsConnectionArgs = {
+  where?: Maybe<BlogManyWhereInput>;
+  data: BlogUpdateManyInput;
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
@@ -4432,8 +5176,8 @@ export type MutationUpdateManyPageSectionsConnectionArgs = {
 };
 
 
-export type MutationDeleteManyPageSectionsConnectionArgs = {
-  where?: Maybe<PageSectionManyWhereInput>;
+export type MutationDeleteManyBlogsConnectionArgs = {
+  where?: Maybe<BlogManyWhereInput>;
   skip?: Maybe<Scalars['Int']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
@@ -4442,8 +5186,8 @@ export type MutationDeleteManyPageSectionsConnectionArgs = {
 };
 
 
-export type MutationPublishManyPageSectionsConnectionArgs = {
-  where?: Maybe<PageSectionManyWhereInput>;
+export type MutationPublishManyBlogsConnectionArgs = {
+  where?: Maybe<BlogManyWhereInput>;
   from?: Maybe<Stage>;
   to?: Array<Stage>;
   skip?: Maybe<Scalars['Int']>;
@@ -4457,8 +5201,8 @@ export type MutationPublishManyPageSectionsConnectionArgs = {
 };
 
 
-export type MutationUnpublishManyPageSectionsConnectionArgs = {
-  where?: Maybe<PageSectionManyWhereInput>;
+export type MutationUnpublishManyBlogsConnectionArgs = {
+  where?: Maybe<BlogManyWhereInput>;
   stage?: Maybe<Stage>;
   from?: Array<Stage>;
   skip?: Maybe<Scalars['Int']>;
@@ -4471,19 +5215,19 @@ export type MutationUnpublishManyPageSectionsConnectionArgs = {
 };
 
 
-export type MutationUpdateManyPageSectionsArgs = {
-  where?: Maybe<PageSectionManyWhereInput>;
-  data: PageSectionUpdateManyInput;
+export type MutationUpdateManyBlogsArgs = {
+  where?: Maybe<BlogManyWhereInput>;
+  data: BlogUpdateManyInput;
 };
 
 
-export type MutationDeleteManyPageSectionsArgs = {
-  where?: Maybe<PageSectionManyWhereInput>;
+export type MutationDeleteManyBlogsArgs = {
+  where?: Maybe<BlogManyWhereInput>;
 };
 
 
-export type MutationPublishManyPageSectionsArgs = {
-  where?: Maybe<PageSectionManyWhereInput>;
+export type MutationPublishManyBlogsArgs = {
+  where?: Maybe<BlogManyWhereInput>;
   to?: Array<Stage>;
   locales?: Maybe<Array<Locale>>;
   publishBase?: Maybe<Scalars['Boolean']>;
@@ -4491,8 +5235,8 @@ export type MutationPublishManyPageSectionsArgs = {
 };
 
 
-export type MutationUnpublishManyPageSectionsArgs = {
-  where?: Maybe<PageSectionManyWhereInput>;
+export type MutationUnpublishManyBlogsArgs = {
+  where?: Maybe<BlogManyWhereInput>;
   from?: Array<Stage>;
   locales?: Maybe<Array<Locale>>;
   unpublishBase?: Maybe<Scalars['Boolean']>;
@@ -4600,750 +5344,6 @@ export type MutationUnpublishManyShopsArgs = {
   from?: Array<Stage>;
 };
 
-
-export type MutationCreateShopBundeslandArgs = {
-  data: ShopBundeslandCreateInput;
-};
-
-
-export type MutationUpdateShopBundeslandArgs = {
-  where: ShopBundeslandWhereUniqueInput;
-  data: ShopBundeslandUpdateInput;
-};
-
-
-export type MutationDeleteShopBundeslandArgs = {
-  where: ShopBundeslandWhereUniqueInput;
-};
-
-
-export type MutationUpsertShopBundeslandArgs = {
-  where: ShopBundeslandWhereUniqueInput;
-  upsert: ShopBundeslandUpsertInput;
-};
-
-
-export type MutationPublishShopBundeslandArgs = {
-  where: ShopBundeslandWhereUniqueInput;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishShopBundeslandArgs = {
-  where: ShopBundeslandWhereUniqueInput;
-  from?: Array<Stage>;
-};
-
-
-export type MutationUpdateManyShopBundeslandsConnectionArgs = {
-  where?: Maybe<ShopBundeslandManyWhereInput>;
-  data: ShopBundeslandUpdateManyInput;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationDeleteManyShopBundeslandsConnectionArgs = {
-  where?: Maybe<ShopBundeslandManyWhereInput>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationPublishManyShopBundeslandsConnectionArgs = {
-  where?: Maybe<ShopBundeslandManyWhereInput>;
-  from?: Maybe<Stage>;
-  to?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUnpublishManyShopBundeslandsConnectionArgs = {
-  where?: Maybe<ShopBundeslandManyWhereInput>;
-  stage?: Maybe<Stage>;
-  from?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUpdateManyShopBundeslandsArgs = {
-  where?: Maybe<ShopBundeslandManyWhereInput>;
-  data: ShopBundeslandUpdateManyInput;
-};
-
-
-export type MutationDeleteManyShopBundeslandsArgs = {
-  where?: Maybe<ShopBundeslandManyWhereInput>;
-};
-
-
-export type MutationPublishManyShopBundeslandsArgs = {
-  where?: Maybe<ShopBundeslandManyWhereInput>;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishManyShopBundeslandsArgs = {
-  where?: Maybe<ShopBundeslandManyWhereInput>;
-  from?: Array<Stage>;
-};
-
-
-export type MutationCreateShopCategoryArgs = {
-  data: ShopCategoryCreateInput;
-};
-
-
-export type MutationUpdateShopCategoryArgs = {
-  where: ShopCategoryWhereUniqueInput;
-  data: ShopCategoryUpdateInput;
-};
-
-
-export type MutationDeleteShopCategoryArgs = {
-  where: ShopCategoryWhereUniqueInput;
-};
-
-
-export type MutationUpsertShopCategoryArgs = {
-  where: ShopCategoryWhereUniqueInput;
-  upsert: ShopCategoryUpsertInput;
-};
-
-
-export type MutationPublishShopCategoryArgs = {
-  where: ShopCategoryWhereUniqueInput;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishShopCategoryArgs = {
-  where: ShopCategoryWhereUniqueInput;
-  from?: Array<Stage>;
-};
-
-
-export type MutationUpdateManyShopCategoriesConnectionArgs = {
-  where?: Maybe<ShopCategoryManyWhereInput>;
-  data: ShopCategoryUpdateManyInput;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationDeleteManyShopCategoriesConnectionArgs = {
-  where?: Maybe<ShopCategoryManyWhereInput>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationPublishManyShopCategoriesConnectionArgs = {
-  where?: Maybe<ShopCategoryManyWhereInput>;
-  from?: Maybe<Stage>;
-  to?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUnpublishManyShopCategoriesConnectionArgs = {
-  where?: Maybe<ShopCategoryManyWhereInput>;
-  stage?: Maybe<Stage>;
-  from?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUpdateManyShopCategoriesArgs = {
-  where?: Maybe<ShopCategoryManyWhereInput>;
-  data: ShopCategoryUpdateManyInput;
-};
-
-
-export type MutationDeleteManyShopCategoriesArgs = {
-  where?: Maybe<ShopCategoryManyWhereInput>;
-};
-
-
-export type MutationPublishManyShopCategoriesArgs = {
-  where?: Maybe<ShopCategoryManyWhereInput>;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishManyShopCategoriesArgs = {
-  where?: Maybe<ShopCategoryManyWhereInput>;
-  from?: Array<Stage>;
-};
-
-
-export type MutationCreateShopStatusArgs = {
-  data: ShopStatusCreateInput;
-};
-
-
-export type MutationUpdateShopStatusArgs = {
-  where: ShopStatusWhereUniqueInput;
-  data: ShopStatusUpdateInput;
-};
-
-
-export type MutationDeleteShopStatusArgs = {
-  where: ShopStatusWhereUniqueInput;
-};
-
-
-export type MutationUpsertShopStatusArgs = {
-  where: ShopStatusWhereUniqueInput;
-  upsert: ShopStatusUpsertInput;
-};
-
-
-export type MutationPublishShopStatusArgs = {
-  where: ShopStatusWhereUniqueInput;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishShopStatusArgs = {
-  where: ShopStatusWhereUniqueInput;
-  from?: Array<Stage>;
-};
-
-
-export type MutationUpdateManyShopStatusesConnectionArgs = {
-  where?: Maybe<ShopStatusManyWhereInput>;
-  data: ShopStatusUpdateManyInput;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationDeleteManyShopStatusesConnectionArgs = {
-  where?: Maybe<ShopStatusManyWhereInput>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationPublishManyShopStatusesConnectionArgs = {
-  where?: Maybe<ShopStatusManyWhereInput>;
-  from?: Maybe<Stage>;
-  to?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUnpublishManyShopStatusesConnectionArgs = {
-  where?: Maybe<ShopStatusManyWhereInput>;
-  stage?: Maybe<Stage>;
-  from?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUpdateManyShopStatusesArgs = {
-  where?: Maybe<ShopStatusManyWhereInput>;
-  data: ShopStatusUpdateManyInput;
-};
-
-
-export type MutationDeleteManyShopStatusesArgs = {
-  where?: Maybe<ShopStatusManyWhereInput>;
-};
-
-
-export type MutationPublishManyShopStatusesArgs = {
-  where?: Maybe<ShopStatusManyWhereInput>;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishManyShopStatusesArgs = {
-  where?: Maybe<ShopStatusManyWhereInput>;
-  from?: Array<Stage>;
-};
-
-
-export type MutationCreateShopTownArgs = {
-  data: ShopTownCreateInput;
-};
-
-
-export type MutationUpdateShopTownArgs = {
-  where: ShopTownWhereUniqueInput;
-  data: ShopTownUpdateInput;
-};
-
-
-export type MutationDeleteShopTownArgs = {
-  where: ShopTownWhereUniqueInput;
-};
-
-
-export type MutationUpsertShopTownArgs = {
-  where: ShopTownWhereUniqueInput;
-  upsert: ShopTownUpsertInput;
-};
-
-
-export type MutationPublishShopTownArgs = {
-  where: ShopTownWhereUniqueInput;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishShopTownArgs = {
-  where: ShopTownWhereUniqueInput;
-  from?: Array<Stage>;
-};
-
-
-export type MutationUpdateManyShopTownsConnectionArgs = {
-  where?: Maybe<ShopTownManyWhereInput>;
-  data: ShopTownUpdateManyInput;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationDeleteManyShopTownsConnectionArgs = {
-  where?: Maybe<ShopTownManyWhereInput>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationPublishManyShopTownsConnectionArgs = {
-  where?: Maybe<ShopTownManyWhereInput>;
-  from?: Maybe<Stage>;
-  to?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUnpublishManyShopTownsConnectionArgs = {
-  where?: Maybe<ShopTownManyWhereInput>;
-  stage?: Maybe<Stage>;
-  from?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUpdateManyShopTownsArgs = {
-  where?: Maybe<ShopTownManyWhereInput>;
-  data: ShopTownUpdateManyInput;
-};
-
-
-export type MutationDeleteManyShopTownsArgs = {
-  where?: Maybe<ShopTownManyWhereInput>;
-};
-
-
-export type MutationPublishManyShopTownsArgs = {
-  where?: Maybe<ShopTownManyWhereInput>;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishManyShopTownsArgs = {
-  where?: Maybe<ShopTownManyWhereInput>;
-  from?: Array<Stage>;
-};
-
-
-export type MutationCreateShopTypeArgs = {
-  data: ShopTypeCreateInput;
-};
-
-
-export type MutationUpdateShopTypeArgs = {
-  where: ShopTypeWhereUniqueInput;
-  data: ShopTypeUpdateInput;
-};
-
-
-export type MutationDeleteShopTypeArgs = {
-  where: ShopTypeWhereUniqueInput;
-};
-
-
-export type MutationUpsertShopTypeArgs = {
-  where: ShopTypeWhereUniqueInput;
-  upsert: ShopTypeUpsertInput;
-};
-
-
-export type MutationPublishShopTypeArgs = {
-  where: ShopTypeWhereUniqueInput;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishShopTypeArgs = {
-  where: ShopTypeWhereUniqueInput;
-  from?: Array<Stage>;
-};
-
-
-export type MutationUpdateManyShopTypesConnectionArgs = {
-  where?: Maybe<ShopTypeManyWhereInput>;
-  data: ShopTypeUpdateManyInput;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationDeleteManyShopTypesConnectionArgs = {
-  where?: Maybe<ShopTypeManyWhereInput>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationPublishManyShopTypesConnectionArgs = {
-  where?: Maybe<ShopTypeManyWhereInput>;
-  from?: Maybe<Stage>;
-  to?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUnpublishManyShopTypesConnectionArgs = {
-  where?: Maybe<ShopTypeManyWhereInput>;
-  stage?: Maybe<Stage>;
-  from?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationUpdateManyShopTypesArgs = {
-  where?: Maybe<ShopTypeManyWhereInput>;
-  data: ShopTypeUpdateManyInput;
-};
-
-
-export type MutationDeleteManyShopTypesArgs = {
-  where?: Maybe<ShopTypeManyWhereInput>;
-};
-
-
-export type MutationPublishManyShopTypesArgs = {
-  where?: Maybe<ShopTypeManyWhereInput>;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishManyShopTypesArgs = {
-  where?: Maybe<ShopTypeManyWhereInput>;
-  from?: Array<Stage>;
-};
-
-
-export type MutationCreateSupporterArgs = {
-  data: SupporterCreateInput;
-};
-
-
-export type MutationUpdateSupporterArgs = {
-  where: SupporterWhereUniqueInput;
-  data: SupporterUpdateInput;
-};
-
-
-export type MutationDeleteSupporterArgs = {
-  where: SupporterWhereUniqueInput;
-};
-
-
-export type MutationUpsertSupporterArgs = {
-  where: SupporterWhereUniqueInput;
-  upsert: SupporterUpsertInput;
-};
-
-
-export type MutationPublishSupporterArgs = {
-  where: SupporterWhereUniqueInput;
-  locales?: Maybe<Array<Locale>>;
-  publishBase?: Maybe<Scalars['Boolean']>;
-  withDefaultLocale?: Maybe<Scalars['Boolean']>;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishSupporterArgs = {
-  where: SupporterWhereUniqueInput;
-  from?: Array<Stage>;
-  locales?: Maybe<Array<Locale>>;
-  unpublishBase?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationUpdateManySupportersConnectionArgs = {
-  where?: Maybe<SupporterManyWhereInput>;
-  data: SupporterUpdateManyInput;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationDeleteManySupportersConnectionArgs = {
-  where?: Maybe<SupporterManyWhereInput>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationPublishManySupportersConnectionArgs = {
-  where?: Maybe<SupporterManyWhereInput>;
-  from?: Maybe<Stage>;
-  to?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-  locales?: Maybe<Array<Locale>>;
-  publishBase?: Maybe<Scalars['Boolean']>;
-  withDefaultLocale?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationUnpublishManySupportersConnectionArgs = {
-  where?: Maybe<SupporterManyWhereInput>;
-  stage?: Maybe<Stage>;
-  from?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-  locales?: Maybe<Array<Locale>>;
-  unpublishBase?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationUpdateManySupportersArgs = {
-  where?: Maybe<SupporterManyWhereInput>;
-  data: SupporterUpdateManyInput;
-};
-
-
-export type MutationDeleteManySupportersArgs = {
-  where?: Maybe<SupporterManyWhereInput>;
-};
-
-
-export type MutationPublishManySupportersArgs = {
-  where?: Maybe<SupporterManyWhereInput>;
-  to?: Array<Stage>;
-  locales?: Maybe<Array<Locale>>;
-  publishBase?: Maybe<Scalars['Boolean']>;
-  withDefaultLocale?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationUnpublishManySupportersArgs = {
-  where?: Maybe<SupporterManyWhereInput>;
-  from?: Array<Stage>;
-  locales?: Maybe<Array<Locale>>;
-  unpublishBase?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationCreateTranslationArgs = {
-  data: TranslationCreateInput;
-};
-
-
-export type MutationUpdateTranslationArgs = {
-  where: TranslationWhereUniqueInput;
-  data: TranslationUpdateInput;
-};
-
-
-export type MutationDeleteTranslationArgs = {
-  where: TranslationWhereUniqueInput;
-};
-
-
-export type MutationUpsertTranslationArgs = {
-  where: TranslationWhereUniqueInput;
-  upsert: TranslationUpsertInput;
-};
-
-
-export type MutationPublishTranslationArgs = {
-  where: TranslationWhereUniqueInput;
-  locales?: Maybe<Array<Locale>>;
-  publishBase?: Maybe<Scalars['Boolean']>;
-  withDefaultLocale?: Maybe<Scalars['Boolean']>;
-  to?: Array<Stage>;
-};
-
-
-export type MutationUnpublishTranslationArgs = {
-  where: TranslationWhereUniqueInput;
-  from?: Array<Stage>;
-  locales?: Maybe<Array<Locale>>;
-  unpublishBase?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationUpdateManyTranslationsConnectionArgs = {
-  where?: Maybe<TranslationManyWhereInput>;
-  data: TranslationUpdateManyInput;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationDeleteManyTranslationsConnectionArgs = {
-  where?: Maybe<TranslationManyWhereInput>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-};
-
-
-export type MutationPublishManyTranslationsConnectionArgs = {
-  where?: Maybe<TranslationManyWhereInput>;
-  from?: Maybe<Stage>;
-  to?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-  locales?: Maybe<Array<Locale>>;
-  publishBase?: Maybe<Scalars['Boolean']>;
-  withDefaultLocale?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationUnpublishManyTranslationsConnectionArgs = {
-  where?: Maybe<TranslationManyWhereInput>;
-  stage?: Maybe<Stage>;
-  from?: Array<Stage>;
-  skip?: Maybe<Scalars['Int']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  before?: Maybe<Scalars['ID']>;
-  after?: Maybe<Scalars['ID']>;
-  locales?: Maybe<Array<Locale>>;
-  unpublishBase?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationUpdateManyTranslationsArgs = {
-  where?: Maybe<TranslationManyWhereInput>;
-  data: TranslationUpdateManyInput;
-};
-
-
-export type MutationDeleteManyTranslationsArgs = {
-  where?: Maybe<TranslationManyWhereInput>;
-};
-
-
-export type MutationPublishManyTranslationsArgs = {
-  where?: Maybe<TranslationManyWhereInput>;
-  to?: Array<Stage>;
-  locales?: Maybe<Array<Locale>>;
-  publishBase?: Maybe<Scalars['Boolean']>;
-  withDefaultLocale?: Maybe<Scalars['Boolean']>;
-};
-
-
-export type MutationUnpublishManyTranslationsArgs = {
-  where?: Maybe<TranslationManyWhereInput>;
-  from?: Array<Stage>;
-  locales?: Maybe<Array<Locale>>;
-  unpublishBase?: Maybe<Scalars['Boolean']>;
-};
-
 /** An object with an ID */
 export type Node = {
   /** The id of the object. */
@@ -5366,23 +5366,23 @@ export type Page = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
   vibrantColor?: Maybe<Color>;
   metaDescription?: Maybe<Scalars['String']>;
   metaKeywords?: Maybe<Scalars['String']>;
-  pageSections: Array<PageSection>;
   content?: Maybe<RichText>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  pageSections: Array<PageSection>;
   /** List of Page versions */
   history: Array<Version>;
 };
@@ -5406,23 +5406,23 @@ export type PageCreatedAtArgs = {
 };
 
 
-export type PageCreatedByArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
 export type PageUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
-export type PageUpdatedByArgs = {
+export type PagePublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type PageCreatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
 
-export type PagePublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
+export type PageUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -5475,8 +5475,8 @@ export type PageCreateInput = {
   vibrantColor?: Maybe<ColorInput>;
   metaDescription?: Maybe<Scalars['String']>;
   metaKeywords?: Maybe<Scalars['String']>;
-  pageSections?: Maybe<PageSectionCreateManyInlineInput>;
   content?: Maybe<Scalars['RichTextAST']>;
+  pageSections?: Maybe<PageSectionCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<PageCreateLocalizationsInput>;
 };
@@ -5580,7 +5580,6 @@ export type PageManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -5596,7 +5595,6 @@ export type PageManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -5612,7 +5610,6 @@ export type PageManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   slug?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   slug_not?: Maybe<Scalars['String']>;
@@ -5670,6 +5667,9 @@ export type PageManyWhereInput = {
   metaKeywords_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   metaKeywords_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   pageSections_every?: Maybe<PageSectionWhereInput>;
   pageSections_some?: Maybe<PageSectionWhereInput>;
   pageSections_none?: Maybe<PageSectionWhereInput>;
@@ -5708,21 +5708,21 @@ export type PageSection = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
   title: Scalars['String'];
-  picture: Array<Asset>;
-  page?: Maybe<Page>;
   code?: Maybe<Scalars['String']>;
   content: RichText;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  picture: Array<Asset>;
+  page?: Maybe<Page>;
   /** List of PageSection versions */
   history: Array<Version>;
 };
@@ -5746,23 +5746,23 @@ export type PageSectionCreatedAtArgs = {
 };
 
 
-export type PageSectionCreatedByArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
 export type PageSectionUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
-export type PageSectionUpdatedByArgs = {
+export type PageSectionPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type PageSectionCreatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
 
-export type PageSectionPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
+export type PageSectionUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -5816,11 +5816,11 @@ export type PageSectionCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** title input for default locale (de) */
   title: Scalars['String'];
-  picture?: Maybe<AssetCreateManyInlineInput>;
-  page?: Maybe<PageCreateOneInlineInput>;
   code?: Maybe<Scalars['String']>;
   /** content input for default locale (de) */
   content: Scalars['RichTextAST'];
+  picture?: Maybe<AssetCreateManyInlineInput>;
+  page?: Maybe<PageCreateOneInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<PageSectionCreateLocalizationsInput>;
 };
@@ -5910,7 +5910,6 @@ export type PageSectionManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -5926,7 +5925,6 @@ export type PageSectionManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -5942,11 +5940,6 @@ export type PageSectionManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
-  picture_every?: Maybe<AssetWhereInput>;
-  picture_some?: Maybe<AssetWhereInput>;
-  picture_none?: Maybe<AssetWhereInput>;
-  page?: Maybe<PageWhereInput>;
   code?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   code_not?: Maybe<Scalars['String']>;
@@ -5966,6 +5959,13 @@ export type PageSectionManyWhereInput = {
   code_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   code_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  picture_every?: Maybe<AssetWhereInput>;
+  picture_some?: Maybe<AssetWhereInput>;
+  picture_none?: Maybe<AssetWhereInput>;
+  page?: Maybe<PageWhereInput>;
 };
 
 export enum PageSectionOrderByInput {
@@ -5986,11 +5986,11 @@ export enum PageSectionOrderByInput {
 export type PageSectionUpdateInput = {
   /** title input for default locale (de) */
   title?: Maybe<Scalars['String']>;
-  picture?: Maybe<AssetUpdateManyInlineInput>;
-  page?: Maybe<PageUpdateOneInlineInput>;
   code?: Maybe<Scalars['String']>;
   /** content input for default locale (de) */
   content?: Maybe<Scalars['RichTextAST']>;
+  picture?: Maybe<AssetUpdateManyInlineInput>;
+  page?: Maybe<PageUpdateOneInlineInput>;
   /** Manage document localizations */
   localizations?: Maybe<PageSectionUpdateLocalizationsInput>;
 };
@@ -6150,7 +6150,6 @@ export type PageSectionWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -6166,7 +6165,6 @@ export type PageSectionWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -6182,7 +6180,6 @@ export type PageSectionWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   title?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   title_not?: Maybe<Scalars['String']>;
@@ -6202,10 +6199,6 @@ export type PageSectionWhereInput = {
   title_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   title_not_ends_with?: Maybe<Scalars['String']>;
-  picture_every?: Maybe<AssetWhereInput>;
-  picture_some?: Maybe<AssetWhereInput>;
-  picture_none?: Maybe<AssetWhereInput>;
-  page?: Maybe<PageWhereInput>;
   code?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   code_not?: Maybe<Scalars['String']>;
@@ -6225,6 +6218,13 @@ export type PageSectionWhereInput = {
   code_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   code_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  picture_every?: Maybe<AssetWhereInput>;
+  picture_some?: Maybe<AssetWhereInput>;
+  picture_none?: Maybe<AssetWhereInput>;
+  page?: Maybe<PageWhereInput>;
 };
 
 /** References PageSection record uniquely */
@@ -6239,8 +6239,8 @@ export type PageUpdateInput = {
   vibrantColor?: Maybe<ColorInput>;
   metaDescription?: Maybe<Scalars['String']>;
   metaKeywords?: Maybe<Scalars['String']>;
-  pageSections?: Maybe<PageSectionUpdateManyInlineInput>;
   content?: Maybe<Scalars['RichTextAST']>;
+  pageSections?: Maybe<PageSectionUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: Maybe<PageUpdateLocalizationsInput>;
 };
@@ -6399,7 +6399,6 @@ export type PageWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -6415,7 +6414,6 @@ export type PageWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -6431,7 +6429,6 @@ export type PageWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   title?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   title_not?: Maybe<Scalars['String']>;
@@ -6508,6 +6505,9 @@ export type PageWhereInput = {
   metaKeywords_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   metaKeywords_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   pageSections_every?: Maybe<PageSectionWhereInput>;
   pageSections_some?: Maybe<PageSectionWhereInput>;
   pageSections_none?: Maybe<PageSectionWhereInput>;
@@ -6530,6 +6530,44 @@ export type Query = {
   __typename?: 'Query';
   /** Fetches an object given its ID */
   node?: Maybe<Node>;
+  /** Retrieve multiple supporters */
+  supporters: Array<Supporter>;
+  /** Retrieve a single supporter */
+  supporter?: Maybe<Supporter>;
+  /** Retrieve multiple supporters using the Relay connection interface */
+  supportersConnection: SupporterConnection;
+  /** Retrieve document version */
+  supporterVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple shopTowns */
+  shopTowns: Array<ShopTown>;
+  /** Retrieve a single shopTown */
+  shopTown?: Maybe<ShopTown>;
+  /** Retrieve multiple shopTowns using the Relay connection interface */
+  shopTownsConnection: ShopTownConnection;
+  /** Retrieve document version */
+  shopTownVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple shopTypes */
+  shopTypes: Array<ShopType>;
+  /** Retrieve a single shopType */
+  shopType?: Maybe<ShopType>;
+  /** Retrieve multiple shopTypes using the Relay connection interface */
+  shopTypesConnection: ShopTypeConnection;
+  /** Retrieve document version */
+  shopTypeVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple shopCategories */
+  shopCategories: Array<ShopCategory>;
+  /** Retrieve a single shopCategory */
+  shopCategory?: Maybe<ShopCategory>;
+  /** Retrieve multiple shopCategories using the Relay connection interface */
+  shopCategoriesConnection: ShopCategoryConnection;
+  /** Retrieve document version */
+  shopCategoryVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple users */
+  users: Array<User>;
+  /** Retrieve a single user */
+  user?: Maybe<User>;
+  /** Retrieve multiple users using the Relay connection interface */
+  usersConnection: UserConnection;
   /** Retrieve multiple assets */
   assets: Array<Asset>;
   /** Retrieve a single asset */
@@ -6538,14 +6576,14 @@ export type Query = {
   assetsConnection: AssetConnection;
   /** Retrieve document version */
   assetVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple blogs */
-  blogs: Array<Blog>;
-  /** Retrieve a single blog */
-  blog?: Maybe<Blog>;
-  /** Retrieve multiple blogs using the Relay connection interface */
-  blogsConnection: BlogConnection;
+  /** Retrieve multiple pageSections */
+  pageSections: Array<PageSection>;
+  /** Retrieve a single pageSection */
+  pageSection?: Maybe<PageSection>;
+  /** Retrieve multiple pageSections using the Relay connection interface */
+  pageSectionsConnection: PageSectionConnection;
   /** Retrieve document version */
-  blogVersion?: Maybe<DocumentVersion>;
+  pageSectionVersion?: Maybe<DocumentVersion>;
   /** Retrieve multiple cityPartners */
   cityPartners: Array<CityPartner>;
   /** Retrieve a single cityPartner */
@@ -6554,6 +6592,30 @@ export type Query = {
   cityPartnersConnection: CityPartnerConnection;
   /** Retrieve document version */
   cityPartnerVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple shopBundeslands */
+  shopBundeslands: Array<ShopBundesland>;
+  /** Retrieve a single shopBundesland */
+  shopBundesland?: Maybe<ShopBundesland>;
+  /** Retrieve multiple shopBundeslands using the Relay connection interface */
+  shopBundeslandsConnection: ShopBundeslandConnection;
+  /** Retrieve document version */
+  shopBundeslandVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple shopStatuses */
+  shopStatuses: Array<ShopStatus>;
+  /** Retrieve a single shopStatus */
+  shopStatus?: Maybe<ShopStatus>;
+  /** Retrieve multiple shopStatuses using the Relay connection interface */
+  shopStatusesConnection: ShopStatusConnection;
+  /** Retrieve document version */
+  shopStatusVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple translations */
+  translations: Array<Translation>;
+  /** Retrieve a single translation */
+  translation?: Maybe<Translation>;
+  /** Retrieve multiple translations using the Relay connection interface */
+  translationsConnection: TranslationConnection;
+  /** Retrieve document version */
+  translationVersion?: Maybe<DocumentVersion>;
   /** Retrieve multiple faqs */
   faqs: Array<Faq>;
   /** Retrieve a single faq */
@@ -6578,14 +6640,14 @@ export type Query = {
   pagesConnection: PageConnection;
   /** Retrieve document version */
   pageVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple pageSections */
-  pageSections: Array<PageSection>;
-  /** Retrieve a single pageSection */
-  pageSection?: Maybe<PageSection>;
-  /** Retrieve multiple pageSections using the Relay connection interface */
-  pageSectionsConnection: PageSectionConnection;
+  /** Retrieve multiple blogs */
+  blogs: Array<Blog>;
+  /** Retrieve a single blog */
+  blog?: Maybe<Blog>;
+  /** Retrieve multiple blogs using the Relay connection interface */
+  blogsConnection: BlogConnection;
   /** Retrieve document version */
-  pageSectionVersion?: Maybe<DocumentVersion>;
+  blogVersion?: Maybe<DocumentVersion>;
   /** Retrieve multiple shops */
   shops: Array<Shop>;
   /** Retrieve a single shop */
@@ -6594,73 +6656,196 @@ export type Query = {
   shopsConnection: ShopConnection;
   /** Retrieve document version */
   shopVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple shopBundeslands */
-  shopBundeslands: Array<ShopBundesland>;
-  /** Retrieve a single shopBundesland */
-  shopBundesland?: Maybe<ShopBundesland>;
-  /** Retrieve multiple shopBundeslands using the Relay connection interface */
-  shopBundeslandsConnection: ShopBundeslandConnection;
-  /** Retrieve document version */
-  shopBundeslandVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple shopCategories */
-  shopCategories: Array<ShopCategory>;
-  /** Retrieve a single shopCategory */
-  shopCategory?: Maybe<ShopCategory>;
-  /** Retrieve multiple shopCategories using the Relay connection interface */
-  shopCategoriesConnection: ShopCategoryConnection;
-  /** Retrieve document version */
-  shopCategoryVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple shopStatuses */
-  shopStatuses: Array<ShopStatus>;
-  /** Retrieve a single shopStatus */
-  shopStatus?: Maybe<ShopStatus>;
-  /** Retrieve multiple shopStatuses using the Relay connection interface */
-  shopStatusesConnection: ShopStatusConnection;
-  /** Retrieve document version */
-  shopStatusVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple shopTowns */
-  shopTowns: Array<ShopTown>;
-  /** Retrieve a single shopTown */
-  shopTown?: Maybe<ShopTown>;
-  /** Retrieve multiple shopTowns using the Relay connection interface */
-  shopTownsConnection: ShopTownConnection;
-  /** Retrieve document version */
-  shopTownVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple shopTypes */
-  shopTypes: Array<ShopType>;
-  /** Retrieve a single shopType */
-  shopType?: Maybe<ShopType>;
-  /** Retrieve multiple shopTypes using the Relay connection interface */
-  shopTypesConnection: ShopTypeConnection;
-  /** Retrieve document version */
-  shopTypeVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple supporters */
-  supporters: Array<Supporter>;
-  /** Retrieve a single supporter */
-  supporter?: Maybe<Supporter>;
-  /** Retrieve multiple supporters using the Relay connection interface */
-  supportersConnection: SupporterConnection;
-  /** Retrieve document version */
-  supporterVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple translations */
-  translations: Array<Translation>;
-  /** Retrieve a single translation */
-  translation?: Maybe<Translation>;
-  /** Retrieve multiple translations using the Relay connection interface */
-  translationsConnection: TranslationConnection;
-  /** Retrieve document version */
-  translationVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple users */
-  users: Array<User>;
-  /** Retrieve a single user */
-  user?: Maybe<User>;
-  /** Retrieve multiple users using the Relay connection interface */
-  usersConnection: UserConnection;
 };
 
 
 export type QueryNodeArgs = {
   id: Scalars['ID'];
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QuerySupportersArgs = {
+  where?: Maybe<SupporterWhereInput>;
+  orderBy?: Maybe<SupporterOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QuerySupporterArgs = {
+  where: SupporterWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QuerySupportersConnectionArgs = {
+  where?: Maybe<SupporterWhereInput>;
+  orderBy?: Maybe<SupporterOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QuerySupporterVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryShopTownsArgs = {
+  where?: Maybe<ShopTownWhereInput>;
+  orderBy?: Maybe<ShopTownOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopTownArgs = {
+  where: ShopTownWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopTownsConnectionArgs = {
+  where?: Maybe<ShopTownWhereInput>;
+  orderBy?: Maybe<ShopTownOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopTownVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryShopTypesArgs = {
+  where?: Maybe<ShopTypeWhereInput>;
+  orderBy?: Maybe<ShopTypeOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopTypeArgs = {
+  where: ShopTypeWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopTypesConnectionArgs = {
+  where?: Maybe<ShopTypeWhereInput>;
+  orderBy?: Maybe<ShopTypeOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopTypeVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryShopCategoriesArgs = {
+  where?: Maybe<ShopCategoryWhereInput>;
+  orderBy?: Maybe<ShopCategoryOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopCategoryArgs = {
+  where: ShopCategoryWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopCategoriesConnectionArgs = {
+  where?: Maybe<ShopCategoryWhereInput>;
+  orderBy?: Maybe<ShopCategoryOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopCategoryVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryUsersArgs = {
+  where?: Maybe<UserWhereInput>;
+  orderBy?: Maybe<UserOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryUserArgs = {
+  where: UserWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryUsersConnectionArgs = {
+  where?: Maybe<UserWhereInput>;
+  orderBy?: Maybe<UserOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   stage?: Stage;
   locales?: Array<Locale>;
 };
@@ -6704,9 +6889,9 @@ export type QueryAssetVersionArgs = {
 };
 
 
-export type QueryBlogsArgs = {
-  where?: Maybe<BlogWhereInput>;
-  orderBy?: Maybe<BlogOrderByInput>;
+export type QueryPageSectionsArgs = {
+  where?: Maybe<PageSectionWhereInput>;
+  orderBy?: Maybe<PageSectionOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -6717,16 +6902,16 @@ export type QueryBlogsArgs = {
 };
 
 
-export type QueryBlogArgs = {
-  where: BlogWhereUniqueInput;
+export type QueryPageSectionArgs = {
+  where: PageSectionWhereUniqueInput;
   stage?: Stage;
   locales?: Array<Locale>;
 };
 
 
-export type QueryBlogsConnectionArgs = {
-  where?: Maybe<BlogWhereInput>;
-  orderBy?: Maybe<BlogOrderByInput>;
+export type QueryPageSectionsConnectionArgs = {
+  where?: Maybe<PageSectionWhereInput>;
+  orderBy?: Maybe<PageSectionOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -6737,7 +6922,7 @@ export type QueryBlogsConnectionArgs = {
 };
 
 
-export type QueryBlogVersionArgs = {
+export type QueryPageSectionVersionArgs = {
   where: VersionWhereInput;
 };
 
@@ -6776,6 +6961,120 @@ export type QueryCityPartnersConnectionArgs = {
 
 
 export type QueryCityPartnerVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryShopBundeslandsArgs = {
+  where?: Maybe<ShopBundeslandWhereInput>;
+  orderBy?: Maybe<ShopBundeslandOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopBundeslandArgs = {
+  where: ShopBundeslandWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopBundeslandsConnectionArgs = {
+  where?: Maybe<ShopBundeslandWhereInput>;
+  orderBy?: Maybe<ShopBundeslandOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopBundeslandVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryShopStatusesArgs = {
+  where?: Maybe<ShopStatusWhereInput>;
+  orderBy?: Maybe<ShopStatusOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopStatusArgs = {
+  where: ShopStatusWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopStatusesConnectionArgs = {
+  where?: Maybe<ShopStatusWhereInput>;
+  orderBy?: Maybe<ShopStatusOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryShopStatusVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryTranslationsArgs = {
+  where?: Maybe<TranslationWhereInput>;
+  orderBy?: Maybe<TranslationOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryTranslationArgs = {
+  where: TranslationWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryTranslationsConnectionArgs = {
+  where?: Maybe<TranslationWhereInput>;
+  orderBy?: Maybe<TranslationOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryTranslationVersionArgs = {
   where: VersionWhereInput;
 };
 
@@ -6894,9 +7193,9 @@ export type QueryPageVersionArgs = {
 };
 
 
-export type QueryPageSectionsArgs = {
-  where?: Maybe<PageSectionWhereInput>;
-  orderBy?: Maybe<PageSectionOrderByInput>;
+export type QueryBlogsArgs = {
+  where?: Maybe<BlogWhereInput>;
+  orderBy?: Maybe<BlogOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -6907,16 +7206,16 @@ export type QueryPageSectionsArgs = {
 };
 
 
-export type QueryPageSectionArgs = {
-  where: PageSectionWhereUniqueInput;
+export type QueryBlogArgs = {
+  where: BlogWhereUniqueInput;
   stage?: Stage;
   locales?: Array<Locale>;
 };
 
 
-export type QueryPageSectionsConnectionArgs = {
-  where?: Maybe<PageSectionWhereInput>;
-  orderBy?: Maybe<PageSectionOrderByInput>;
+export type QueryBlogsConnectionArgs = {
+  where?: Maybe<BlogWhereInput>;
+  orderBy?: Maybe<BlogOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
@@ -6927,7 +7226,7 @@ export type QueryPageSectionsConnectionArgs = {
 };
 
 
-export type QueryPageSectionVersionArgs = {
+export type QueryBlogVersionArgs = {
   where: VersionWhereInput;
 };
 
@@ -6967,305 +7266,6 @@ export type QueryShopsConnectionArgs = {
 
 export type QueryShopVersionArgs = {
   where: VersionWhereInput;
-};
-
-
-export type QueryShopBundeslandsArgs = {
-  where?: Maybe<ShopBundeslandWhereInput>;
-  orderBy?: Maybe<ShopBundeslandOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopBundeslandArgs = {
-  where: ShopBundeslandWhereUniqueInput;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopBundeslandsConnectionArgs = {
-  where?: Maybe<ShopBundeslandWhereInput>;
-  orderBy?: Maybe<ShopBundeslandOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopBundeslandVersionArgs = {
-  where: VersionWhereInput;
-};
-
-
-export type QueryShopCategoriesArgs = {
-  where?: Maybe<ShopCategoryWhereInput>;
-  orderBy?: Maybe<ShopCategoryOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopCategoryArgs = {
-  where: ShopCategoryWhereUniqueInput;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopCategoriesConnectionArgs = {
-  where?: Maybe<ShopCategoryWhereInput>;
-  orderBy?: Maybe<ShopCategoryOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopCategoryVersionArgs = {
-  where: VersionWhereInput;
-};
-
-
-export type QueryShopStatusesArgs = {
-  where?: Maybe<ShopStatusWhereInput>;
-  orderBy?: Maybe<ShopStatusOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopStatusArgs = {
-  where: ShopStatusWhereUniqueInput;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopStatusesConnectionArgs = {
-  where?: Maybe<ShopStatusWhereInput>;
-  orderBy?: Maybe<ShopStatusOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopStatusVersionArgs = {
-  where: VersionWhereInput;
-};
-
-
-export type QueryShopTownsArgs = {
-  where?: Maybe<ShopTownWhereInput>;
-  orderBy?: Maybe<ShopTownOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopTownArgs = {
-  where: ShopTownWhereUniqueInput;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopTownsConnectionArgs = {
-  where?: Maybe<ShopTownWhereInput>;
-  orderBy?: Maybe<ShopTownOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopTownVersionArgs = {
-  where: VersionWhereInput;
-};
-
-
-export type QueryShopTypesArgs = {
-  where?: Maybe<ShopTypeWhereInput>;
-  orderBy?: Maybe<ShopTypeOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopTypeArgs = {
-  where: ShopTypeWhereUniqueInput;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopTypesConnectionArgs = {
-  where?: Maybe<ShopTypeWhereInput>;
-  orderBy?: Maybe<ShopTypeOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryShopTypeVersionArgs = {
-  where: VersionWhereInput;
-};
-
-
-export type QuerySupportersArgs = {
-  where?: Maybe<SupporterWhereInput>;
-  orderBy?: Maybe<SupporterOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QuerySupporterArgs = {
-  where: SupporterWhereUniqueInput;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QuerySupportersConnectionArgs = {
-  where?: Maybe<SupporterWhereInput>;
-  orderBy?: Maybe<SupporterOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QuerySupporterVersionArgs = {
-  where: VersionWhereInput;
-};
-
-
-export type QueryTranslationsArgs = {
-  where?: Maybe<TranslationWhereInput>;
-  orderBy?: Maybe<TranslationOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryTranslationArgs = {
-  where: TranslationWhereUniqueInput;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryTranslationsConnectionArgs = {
-  where?: Maybe<TranslationWhereInput>;
-  orderBy?: Maybe<TranslationOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryTranslationVersionArgs = {
-  where: VersionWhereInput;
-};
-
-
-export type QueryUsersArgs = {
-  where?: Maybe<UserWhereInput>;
-  orderBy?: Maybe<UserOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryUserArgs = {
-  where: UserWhereUniqueInput;
-  stage?: Stage;
-  locales?: Array<Locale>;
-};
-
-
-export type QueryUsersConnectionArgs = {
-  where?: Maybe<UserWhereInput>;
-  orderBy?: Maybe<UserOrderByInput>;
-  skip?: Maybe<Scalars['Int']>;
-  after?: Maybe<Scalars['String']>;
-  before?: Maybe<Scalars['String']>;
-  first?: Maybe<Scalars['Int']>;
-  last?: Maybe<Scalars['Int']>;
-  stage?: Stage;
-  locales?: Array<Locale>;
 };
 
 /** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
@@ -7311,26 +7311,14 @@ export type Shop = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
-  shopStatus?: Maybe<ShopStatus>;
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
   address?: Maybe<Scalars['String']>;
   location?: Maybe<Location>;
-  shopBundesland?: Maybe<ShopBundesland>;
-  shopTown?: Maybe<ShopTown>;
-  shopType: Array<ShopType>;
-  shopcategories: Array<ShopCategory>;
-  dataProtectionForm?: Maybe<Asset>;
   email?: Maybe<Scalars['String']>;
   stickerFront?: Maybe<Scalars['Int']>;
   stickerBack?: Maybe<Scalars['Int']>;
@@ -7340,6 +7328,18 @@ export type Shop = Node & {
   website?: Maybe<Scalars['String']>;
   trayinformation?: Maybe<Scalars['Int']>;
   infoflyer?: Maybe<Scalars['Int']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  shopStatus?: Maybe<ShopStatus>;
+  shopBundesland?: Maybe<ShopBundesland>;
+  shopType: Array<ShopType>;
+  shopcategories: Array<ShopCategory>;
+  dataProtectionForm?: Maybe<Asset>;
+  shopTown?: Maybe<ShopShopTown>;
   /** List of Shop versions */
   history: Array<Version>;
 };
@@ -7377,11 +7377,6 @@ export type ShopShopBundeslandArgs = {
 };
 
 
-export type ShopShopTownArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
 export type ShopShopTypeArgs = {
   where?: Maybe<ShopTypeWhereInput>;
   orderBy?: Maybe<ShopTypeOrderByInput>;
@@ -7411,6 +7406,11 @@ export type ShopDataProtectionFormArgs = {
 };
 
 
+export type ShopShopTownArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
 export type ShopHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
@@ -7427,17 +7427,17 @@ export type ShopBundesland = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** User that last published this document */
   publishedBy?: Maybe<User>;
-  name?: Maybe<Scalars['String']>;
   shops: Array<Shop>;
   /** List of ShopBundesland versions */
   history: Array<Version>;
@@ -7575,7 +7575,6 @@ export type ShopBundeslandManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7591,7 +7590,6 @@ export type ShopBundeslandManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7607,7 +7605,6 @@ export type ShopBundeslandManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -7627,6 +7624,9 @@ export type ShopBundeslandManyWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   shops_every?: Maybe<ShopWhereInput>;
   shops_some?: Maybe<ShopWhereInput>;
   shops_none?: Maybe<ShopWhereInput>;
@@ -7758,7 +7758,6 @@ export type ShopBundeslandWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7774,7 +7773,6 @@ export type ShopBundeslandWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7790,7 +7788,6 @@ export type ShopBundeslandWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -7810,6 +7807,9 @@ export type ShopBundeslandWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   shops_every?: Maybe<ShopWhereInput>;
   shops_some?: Maybe<ShopWhereInput>;
   shops_none?: Maybe<ShopWhereInput>;
@@ -7830,19 +7830,19 @@ export type ShopCategory = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
   name?: Maybe<Scalars['String']>;
   isMain?: Maybe<Scalars['Boolean']>;
-  shop?: Maybe<Shop>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  shop: Array<Shop>;
   /** List of ShopCategory versions */
   history: Array<Version>;
 };
@@ -7871,6 +7871,13 @@ export type ShopCategoryPublishedByArgs = {
 
 
 export type ShopCategoryShopArgs = {
+  where?: Maybe<ShopWhereInput>;
+  orderBy?: Maybe<ShopOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   locales?: Maybe<Array<Locale>>;
 };
 
@@ -7903,7 +7910,7 @@ export type ShopCategoryCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   name?: Maybe<Scalars['String']>;
   isMain?: Maybe<Scalars['Boolean']>;
-  shop?: Maybe<ShopCreateOneInlineInput>;
+  shop?: Maybe<ShopCreateManyInlineInput>;
 };
 
 export type ShopCategoryCreateManyInlineInput = {
@@ -7973,7 +7980,6 @@ export type ShopCategoryManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -7989,7 +7995,6 @@ export type ShopCategoryManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8005,7 +8010,6 @@ export type ShopCategoryManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -8028,7 +8032,12 @@ export type ShopCategoryManyWhereInput = {
   isMain?: Maybe<Scalars['Boolean']>;
   /** All values that are not equal to given value. */
   isMain_not?: Maybe<Scalars['Boolean']>;
-  shop?: Maybe<ShopWhereInput>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  shop_every?: Maybe<ShopWhereInput>;
+  shop_some?: Maybe<ShopWhereInput>;
+  shop_none?: Maybe<ShopWhereInput>;
 };
 
 export enum ShopCategoryOrderByInput {
@@ -8049,7 +8058,7 @@ export enum ShopCategoryOrderByInput {
 export type ShopCategoryUpdateInput = {
   name?: Maybe<Scalars['String']>;
   isMain?: Maybe<Scalars['Boolean']>;
-  shop?: Maybe<ShopUpdateOneInlineInput>;
+  shop?: Maybe<ShopUpdateManyInlineInput>;
 };
 
 export type ShopCategoryUpdateManyInlineInput = {
@@ -8161,7 +8170,6 @@ export type ShopCategoryWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8177,7 +8185,6 @@ export type ShopCategoryWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8193,7 +8200,6 @@ export type ShopCategoryWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -8216,7 +8222,12 @@ export type ShopCategoryWhereInput = {
   isMain?: Maybe<Scalars['Boolean']>;
   /** All values that are not equal to given value. */
   isMain_not?: Maybe<Scalars['Boolean']>;
-  shop?: Maybe<ShopWhereInput>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  shop_every?: Maybe<ShopWhereInput>;
+  shop_some?: Maybe<ShopWhereInput>;
+  shop_none?: Maybe<ShopWhereInput>;
 };
 
 /** References ShopCategory record uniquely */
@@ -8244,16 +8255,10 @@ export type ShopConnection = {
 export type ShopCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  shopStatus?: Maybe<ShopStatusCreateOneInlineInput>;
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
   address?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
-  shopBundesland?: Maybe<ShopBundeslandCreateOneInlineInput>;
-  shopTown?: Maybe<ShopTownCreateOneInlineInput>;
-  shopType?: Maybe<ShopTypeCreateManyInlineInput>;
-  shopcategories?: Maybe<ShopCategoryCreateManyInlineInput>;
-  dataProtectionForm?: Maybe<AssetCreateOneInlineInput>;
   email?: Maybe<Scalars['String']>;
   stickerFront?: Maybe<Scalars['Int']>;
   stickerBack?: Maybe<Scalars['Int']>;
@@ -8263,6 +8268,12 @@ export type ShopCreateInput = {
   website?: Maybe<Scalars['String']>;
   trayinformation?: Maybe<Scalars['Int']>;
   infoflyer?: Maybe<Scalars['Int']>;
+  shopStatus?: Maybe<ShopStatusCreateOneInlineInput>;
+  shopBundesland?: Maybe<ShopBundeslandCreateOneInlineInput>;
+  shopType?: Maybe<ShopTypeCreateManyInlineInput>;
+  shopcategories?: Maybe<ShopCategoryCreateManyInlineInput>;
+  dataProtectionForm?: Maybe<AssetCreateOneInlineInput>;
+  shopTown?: Maybe<ShopShopTownCreateOneInlineInput>;
 };
 
 export type ShopCreateManyInlineInput = {
@@ -8332,7 +8343,6 @@ export type ShopManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8348,7 +8358,6 @@ export type ShopManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8364,8 +8373,6 @@ export type ShopManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
-  shopStatus?: Maybe<ShopStatusWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -8423,15 +8430,6 @@ export type ShopManyWhereInput = {
   address_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   address_not_ends_with?: Maybe<Scalars['String']>;
-  shopBundesland?: Maybe<ShopBundeslandWhereInput>;
-  shopTown?: Maybe<ShopTownWhereInput>;
-  shopType_every?: Maybe<ShopTypeWhereInput>;
-  shopType_some?: Maybe<ShopTypeWhereInput>;
-  shopType_none?: Maybe<ShopTypeWhereInput>;
-  shopcategories_every?: Maybe<ShopCategoryWhereInput>;
-  shopcategories_some?: Maybe<ShopCategoryWhereInput>;
-  shopcategories_none?: Maybe<ShopCategoryWhereInput>;
-  dataProtectionForm?: Maybe<AssetWhereInput>;
   email?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   email_not?: Maybe<Scalars['String']>;
@@ -8555,6 +8553,18 @@ export type ShopManyWhereInput = {
   infoflyer_gt?: Maybe<Scalars['Int']>;
   /** All values greater than or equal the given value. */
   infoflyer_gte?: Maybe<Scalars['Int']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  shopStatus?: Maybe<ShopStatusWhereInput>;
+  shopBundesland?: Maybe<ShopBundeslandWhereInput>;
+  shopType_every?: Maybe<ShopTypeWhereInput>;
+  shopType_some?: Maybe<ShopTypeWhereInput>;
+  shopType_none?: Maybe<ShopTypeWhereInput>;
+  shopcategories_every?: Maybe<ShopCategoryWhereInput>;
+  shopcategories_some?: Maybe<ShopCategoryWhereInput>;
+  shopcategories_none?: Maybe<ShopCategoryWhereInput>;
+  dataProtectionForm?: Maybe<AssetWhereInput>;
 };
 
 export enum ShopOrderByInput {
@@ -8592,6 +8602,86 @@ export enum ShopOrderByInput {
   InfoflyerDesc = 'infoflyer_DESC'
 }
 
+export type ShopShopTown = ShopTown;
+
+export type ShopShopTownConnectInput = {
+  ShopTown?: Maybe<ShopTownConnectInput>;
+};
+
+export type ShopShopTownCreateInput = {
+  ShopTown?: Maybe<ShopTownCreateInput>;
+};
+
+export type ShopShopTownCreateManyInlineInput = {
+  /** Create and connect multiple existing ShopShopTown documents */
+  create?: Maybe<Array<ShopShopTownCreateInput>>;
+  /** Connect multiple existing ShopShopTown documents */
+  connect?: Maybe<Array<ShopShopTownWhereUniqueInput>>;
+};
+
+export type ShopShopTownCreateOneInlineInput = {
+  /** Create and connect one ShopShopTown document */
+  create?: Maybe<ShopShopTownCreateInput>;
+  /** Connect one existing ShopShopTown document */
+  connect?: Maybe<ShopShopTownWhereUniqueInput>;
+};
+
+export type ShopShopTownUpdateInput = {
+  ShopTown?: Maybe<ShopTownUpdateInput>;
+};
+
+export type ShopShopTownUpdateManyInlineInput = {
+  /** Create and connect multiple ShopShopTown documents */
+  create?: Maybe<Array<ShopShopTownCreateInput>>;
+  /** Connect multiple existing ShopShopTown documents */
+  connect?: Maybe<Array<ShopShopTownConnectInput>>;
+  /** Override currently-connected documents with multiple existing ShopShopTown documents */
+  set?: Maybe<Array<ShopShopTownWhereUniqueInput>>;
+  /** Update multiple ShopShopTown documents */
+  update?: Maybe<Array<ShopShopTownUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple ShopShopTown documents */
+  upsert?: Maybe<Array<ShopShopTownUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple ShopShopTown documents */
+  disconnect?: Maybe<Array<ShopShopTownWhereUniqueInput>>;
+  /** Delete multiple ShopShopTown documents */
+  delete?: Maybe<Array<ShopShopTownWhereUniqueInput>>;
+};
+
+export type ShopShopTownUpdateManyWithNestedWhereInput = {
+  ShopTown?: Maybe<ShopTownUpdateManyWithNestedWhereInput>;
+};
+
+export type ShopShopTownUpdateOneInlineInput = {
+  /** Create and connect one ShopShopTown document */
+  create?: Maybe<ShopShopTownCreateInput>;
+  /** Update single ShopShopTown document */
+  update?: Maybe<ShopShopTownUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ShopShopTown document */
+  upsert?: Maybe<ShopShopTownUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing ShopShopTown document */
+  connect?: Maybe<ShopShopTownWhereUniqueInput>;
+  /** Disconnect currently connected ShopShopTown document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected ShopShopTown document */
+  delete?: Maybe<Scalars['Boolean']>;
+};
+
+export type ShopShopTownUpdateWithNestedWhereUniqueInput = {
+  ShopTown?: Maybe<ShopTownUpdateWithNestedWhereUniqueInput>;
+};
+
+export type ShopShopTownUpsertWithNestedWhereUniqueInput = {
+  ShopTown?: Maybe<ShopTownUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ShopShopTownWhereInput = {
+  ShopTown?: Maybe<ShopTownWhereInput>;
+};
+
+export type ShopShopTownWhereUniqueInput = {
+  ShopTown?: Maybe<ShopTownWhereUniqueInput>;
+};
+
 export type ShopStatus = Node & {
   __typename?: 'ShopStatus';
   /** System stage field */
@@ -8602,17 +8692,17 @@ export type ShopStatus = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** User that last published this document */
   publishedBy?: Maybe<User>;
-  name?: Maybe<Scalars['String']>;
   shops: Array<Shop>;
   /** List of ShopStatus versions */
   history: Array<Version>;
@@ -8750,7 +8840,6 @@ export type ShopStatusManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8766,7 +8855,6 @@ export type ShopStatusManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8782,7 +8870,6 @@ export type ShopStatusManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -8802,6 +8889,9 @@ export type ShopStatusManyWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   shops_every?: Maybe<ShopWhereInput>;
   shops_some?: Maybe<ShopWhereInput>;
   shops_none?: Maybe<ShopWhereInput>;
@@ -8933,7 +9023,6 @@ export type ShopStatusWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8949,7 +9038,6 @@ export type ShopStatusWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -8965,7 +9053,6 @@ export type ShopStatusWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -8985,6 +9072,9 @@ export type ShopStatusWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   shops_every?: Maybe<ShopWhereInput>;
   shops_some?: Maybe<ShopWhereInput>;
   shops_none?: Maybe<ShopWhereInput>;
@@ -9005,19 +9095,19 @@ export type ShopTown = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
   name?: Maybe<Scalars['String']>;
   location?: Maybe<Location>;
-  shop?: Maybe<Shop>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  shops: Array<Shop>;
   /** List of ShopTown versions */
   history: Array<Version>;
 };
@@ -9045,7 +9135,12 @@ export type ShopTownPublishedByArgs = {
 };
 
 
-export type ShopTownShopArgs = {
+export type ShopTownShopsArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
   locales?: Maybe<Array<Locale>>;
 };
 
@@ -9078,7 +9173,7 @@ export type ShopTownCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   name?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
-  shop?: Maybe<ShopCreateOneInlineInput>;
+  shops?: Maybe<ShopCreateManyInlineInput>;
 };
 
 export type ShopTownCreateManyInlineInput = {
@@ -9148,7 +9243,6 @@ export type ShopTownManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -9164,7 +9258,6 @@ export type ShopTownManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -9180,7 +9273,6 @@ export type ShopTownManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -9200,7 +9292,12 @@ export type ShopTownManyWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopWhereInput>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  shops_every?: Maybe<ShopWhereInput>;
+  shops_some?: Maybe<ShopWhereInput>;
+  shops_none?: Maybe<ShopWhereInput>;
 };
 
 export enum ShopTownOrderByInput {
@@ -9219,7 +9316,7 @@ export enum ShopTownOrderByInput {
 export type ShopTownUpdateInput = {
   name?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
-  shop?: Maybe<ShopUpdateOneInlineInput>;
+  shops?: Maybe<ShopUpdateManyInlineInput>;
 };
 
 export type ShopTownUpdateManyInlineInput = {
@@ -9331,7 +9428,6 @@ export type ShopTownWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -9347,7 +9443,6 @@ export type ShopTownWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -9363,7 +9458,6 @@ export type ShopTownWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -9383,7 +9477,12 @@ export type ShopTownWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
-  shop?: Maybe<ShopWhereInput>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  shops_every?: Maybe<ShopWhereInput>;
+  shops_some?: Maybe<ShopWhereInput>;
+  shops_none?: Maybe<ShopWhereInput>;
 };
 
 /** References ShopTown record uniquely */
@@ -9401,17 +9500,17 @@ export type ShopType = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** User that last published this document */
   publishedBy?: Maybe<User>;
-  name?: Maybe<Scalars['String']>;
   shops: Array<Shop>;
   /** List of ShopType versions */
   history: Array<Version>;
@@ -9549,7 +9648,6 @@ export type ShopTypeManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -9565,7 +9663,6 @@ export type ShopTypeManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -9581,7 +9678,6 @@ export type ShopTypeManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -9601,6 +9697,9 @@ export type ShopTypeManyWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   shops_every?: Maybe<ShopWhereInput>;
   shops_some?: Maybe<ShopWhereInput>;
   shops_none?: Maybe<ShopWhereInput>;
@@ -9732,7 +9831,6 @@ export type ShopTypeWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -9748,7 +9846,6 @@ export type ShopTypeWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -9764,7 +9861,6 @@ export type ShopTypeWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -9784,6 +9880,9 @@ export type ShopTypeWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   shops_every?: Maybe<ShopWhereInput>;
   shops_some?: Maybe<ShopWhereInput>;
   shops_none?: Maybe<ShopWhereInput>;
@@ -9795,16 +9894,10 @@ export type ShopTypeWhereUniqueInput = {
 };
 
 export type ShopUpdateInput = {
-  shopStatus?: Maybe<ShopStatusUpdateOneInlineInput>;
   name?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
   address?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
-  shopBundesland?: Maybe<ShopBundeslandUpdateOneInlineInput>;
-  shopTown?: Maybe<ShopTownUpdateOneInlineInput>;
-  shopType?: Maybe<ShopTypeUpdateManyInlineInput>;
-  shopcategories?: Maybe<ShopCategoryUpdateManyInlineInput>;
-  dataProtectionForm?: Maybe<AssetUpdateOneInlineInput>;
   email?: Maybe<Scalars['String']>;
   stickerFront?: Maybe<Scalars['Int']>;
   stickerBack?: Maybe<Scalars['Int']>;
@@ -9814,6 +9907,12 @@ export type ShopUpdateInput = {
   website?: Maybe<Scalars['String']>;
   trayinformation?: Maybe<Scalars['Int']>;
   infoflyer?: Maybe<Scalars['Int']>;
+  shopStatus?: Maybe<ShopStatusUpdateOneInlineInput>;
+  shopBundesland?: Maybe<ShopBundeslandUpdateOneInlineInput>;
+  shopType?: Maybe<ShopTypeUpdateManyInlineInput>;
+  shopcategories?: Maybe<ShopCategoryUpdateManyInlineInput>;
+  dataProtectionForm?: Maybe<AssetUpdateOneInlineInput>;
+  shopTown?: Maybe<ShopShopTownUpdateOneInlineInput>;
 };
 
 export type ShopUpdateManyInlineInput = {
@@ -9936,7 +10035,6 @@ export type ShopWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -9952,7 +10050,6 @@ export type ShopWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -9968,8 +10065,6 @@ export type ShopWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
-  shopStatus?: Maybe<ShopStatusWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -10027,15 +10122,6 @@ export type ShopWhereInput = {
   address_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   address_not_ends_with?: Maybe<Scalars['String']>;
-  shopBundesland?: Maybe<ShopBundeslandWhereInput>;
-  shopTown?: Maybe<ShopTownWhereInput>;
-  shopType_every?: Maybe<ShopTypeWhereInput>;
-  shopType_some?: Maybe<ShopTypeWhereInput>;
-  shopType_none?: Maybe<ShopTypeWhereInput>;
-  shopcategories_every?: Maybe<ShopCategoryWhereInput>;
-  shopcategories_some?: Maybe<ShopCategoryWhereInput>;
-  shopcategories_none?: Maybe<ShopCategoryWhereInput>;
-  dataProtectionForm?: Maybe<AssetWhereInput>;
   email?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   email_not?: Maybe<Scalars['String']>;
@@ -10159,6 +10245,18 @@ export type ShopWhereInput = {
   infoflyer_gt?: Maybe<Scalars['Int']>;
   /** All values greater than or equal the given value. */
   infoflyer_gte?: Maybe<Scalars['Int']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  shopStatus?: Maybe<ShopStatusWhereInput>;
+  shopBundesland?: Maybe<ShopBundeslandWhereInput>;
+  shopType_every?: Maybe<ShopTypeWhereInput>;
+  shopType_some?: Maybe<ShopTypeWhereInput>;
+  shopType_none?: Maybe<ShopTypeWhereInput>;
+  shopcategories_every?: Maybe<ShopCategoryWhereInput>;
+  shopcategories_some?: Maybe<ShopCategoryWhereInput>;
+  shopcategories_none?: Maybe<ShopCategoryWhereInput>;
+  dataProtectionForm?: Maybe<AssetWhereInput>;
 };
 
 /** References Shop record uniquely */
@@ -10188,19 +10286,19 @@ export type Supporter = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
+  name?: Maybe<Scalars['String']>;
+  website?: Maybe<Scalars['String']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
   /** User that last published this document */
   publishedBy?: Maybe<User>;
-  name?: Maybe<Scalars['String']>;
   picture?: Maybe<Asset>;
-  website?: Maybe<Scalars['String']>;
   /** List of Supporter versions */
   history: Array<Version>;
 };
@@ -10224,23 +10322,23 @@ export type SupporterCreatedAtArgs = {
 };
 
 
-export type SupporterCreatedByArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
 export type SupporterUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
-export type SupporterUpdatedByArgs = {
+export type SupporterPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type SupporterCreatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
 
-export type SupporterPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
+export type SupporterUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -10282,9 +10380,9 @@ export type SupporterCreateInput = {
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** name input for default locale (de) */
   name?: Maybe<Scalars['String']>;
-  picture?: Maybe<AssetCreateOneInlineInput>;
   /** website input for default locale (de) */
   website?: Maybe<Scalars['String']>;
+  picture?: Maybe<AssetCreateOneInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<SupporterCreateLocalizationsInput>;
 };
@@ -10374,7 +10472,6 @@ export type SupporterManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -10390,7 +10487,6 @@ export type SupporterManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -10406,6 +10502,8 @@ export type SupporterManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
   publishedBy?: Maybe<UserWhereInput>;
   picture?: Maybe<AssetWhereInput>;
 };
@@ -10428,9 +10526,9 @@ export enum SupporterOrderByInput {
 export type SupporterUpdateInput = {
   /** name input for default locale (de) */
   name?: Maybe<Scalars['String']>;
-  picture?: Maybe<AssetUpdateOneInlineInput>;
   /** website input for default locale (de) */
   website?: Maybe<Scalars['String']>;
+  picture?: Maybe<AssetUpdateOneInlineInput>;
   /** Manage document localizations */
   localizations?: Maybe<SupporterUpdateLocalizationsInput>;
 };
@@ -10589,7 +10687,6 @@ export type SupporterWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -10605,7 +10702,6 @@ export type SupporterWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -10621,7 +10717,6 @@ export type SupporterWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   name?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   name_not?: Maybe<Scalars['String']>;
@@ -10641,7 +10736,6 @@ export type SupporterWhereInput = {
   name_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   name_not_ends_with?: Maybe<Scalars['String']>;
-  picture?: Maybe<AssetWhereInput>;
   website?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   website_not?: Maybe<Scalars['String']>;
@@ -10661,6 +10755,10 @@ export type SupporterWhereInput = {
   website_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   website_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+  picture?: Maybe<AssetWhereInput>;
 };
 
 /** References Supporter record uniquely */
@@ -10688,18 +10786,18 @@ export type Translation = Node & {
   id: Scalars['ID'];
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
-  /** User that created this document */
-  createdBy?: Maybe<User>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
-  /** User that last updated this document */
-  updatedBy?: Maybe<User>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
-  /** User that last published this document */
-  publishedBy?: Maybe<User>;
   key: Scalars['String'];
   value?: Maybe<Scalars['String']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
   category?: Maybe<Category>;
   /** List of Translation versions */
   history: Array<Version>;
@@ -10724,23 +10822,23 @@ export type TranslationCreatedAtArgs = {
 };
 
 
-export type TranslationCreatedByArgs = {
-  locales?: Maybe<Array<Locale>>;
-};
-
-
 export type TranslationUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
 
 
-export type TranslationUpdatedByArgs = {
+export type TranslationPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type TranslationCreatedByArgs = {
   locales?: Maybe<Array<Locale>>;
 };
 
 
-export type TranslationPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
+export type TranslationUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
 };
 
 
@@ -10867,7 +10965,6 @@ export type TranslationManyWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -10883,7 +10980,6 @@ export type TranslationManyWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -10899,7 +10995,6 @@ export type TranslationManyWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   key?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   key_not?: Maybe<Scalars['String']>;
@@ -10919,6 +11014,9 @@ export type TranslationManyWhereInput = {
   key_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   key_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   category?: Maybe<Category>;
   /** All values that are not equal to given value. */
   category_not?: Maybe<Category>;
@@ -11105,7 +11203,6 @@ export type TranslationWhereInput = {
   createdAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   createdAt_gte?: Maybe<Scalars['DateTime']>;
-  createdBy?: Maybe<UserWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   updatedAt_not?: Maybe<Scalars['DateTime']>;
@@ -11121,7 +11218,6 @@ export type TranslationWhereInput = {
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   updatedAt_gte?: Maybe<Scalars['DateTime']>;
-  updatedBy?: Maybe<UserWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values that are not equal to given value. */
   publishedAt_not?: Maybe<Scalars['DateTime']>;
@@ -11137,7 +11233,6 @@ export type TranslationWhereInput = {
   publishedAt_gt?: Maybe<Scalars['DateTime']>;
   /** All values greater than or equal the given value. */
   publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedBy?: Maybe<UserWhereInput>;
   key?: Maybe<Scalars['String']>;
   /** All values that are not equal to given value. */
   key_not?: Maybe<Scalars['String']>;
@@ -11176,6 +11271,9 @@ export type TranslationWhereInput = {
   value_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   value_not_ends_with?: Maybe<Scalars['String']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
   category?: Maybe<Category>;
   /** All values that are not equal to given value. */
   category_not?: Maybe<Category>;
@@ -11217,10 +11315,10 @@ export type User = Node & {
   name: Scalars['String'];
   /** Profile Picture url */
   picture?: Maybe<Scalars['String']>;
-  /** User Kind. Can be either MEMBER, PAT or PUBLIC */
-  kind: UserKind;
   /** Flag to determine if user is active or not */
   isActive: Scalars['Boolean'];
+  /** User Kind. Can be either MEMBER, PAT or PUBLIC */
+  kind: UserKind;
 };
 
 
@@ -11231,6 +11329,13 @@ export type UserDocumentInStagesArgs = {
   inheritLocale?: Scalars['Boolean'];
 };
 
+export type UserConnectInput = {
+  /** Document to connect */
+  where: UserWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+};
+
 /** A connection to a list of items. */
 export type UserConnection = {
   __typename?: 'UserConnection';
@@ -11239,6 +11344,16 @@ export type UserConnection = {
   /** A list of edges. */
   edges: Array<UserEdge>;
   aggregate: Aggregate;
+};
+
+export type UserCreateManyInlineInput = {
+  /** Connect multiple existing User documents */
+  connect?: Maybe<Array<UserWhereUniqueInput>>;
+};
+
+export type UserCreateOneInlineInput = {
+  /** Connect one existing User document */
+  connect?: Maybe<UserWhereUniqueInput>;
 };
 
 /** An edge in a connection. */
@@ -11370,6 +11485,9 @@ export type UserManyWhereInput = {
   picture_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   picture_not_ends_with?: Maybe<Scalars['String']>;
+  isActive?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  isActive_not?: Maybe<Scalars['Boolean']>;
   kind?: Maybe<UserKind>;
   /** All values that are not equal to given value. */
   kind_not?: Maybe<UserKind>;
@@ -11377,9 +11495,6 @@ export type UserManyWhereInput = {
   kind_in?: Maybe<Array<UserKind>>;
   /** All values that are not contained in given list. */
   kind_not_in?: Maybe<Array<UserKind>>;
-  isActive?: Maybe<Scalars['Boolean']>;
-  /** All values that are not equal to given value. */
-  isActive_not?: Maybe<Scalars['Boolean']>;
 };
 
 export enum UserOrderByInput {
@@ -11395,11 +11510,27 @@ export enum UserOrderByInput {
   NameDesc = 'name_DESC',
   PictureAsc = 'picture_ASC',
   PictureDesc = 'picture_DESC',
-  KindAsc = 'kind_ASC',
-  KindDesc = 'kind_DESC',
   IsActiveAsc = 'isActive_ASC',
-  IsActiveDesc = 'isActive_DESC'
+  IsActiveDesc = 'isActive_DESC',
+  KindAsc = 'kind_ASC',
+  KindDesc = 'kind_DESC'
 }
+
+export type UserUpdateManyInlineInput = {
+  /** Connect multiple existing User documents */
+  connect?: Maybe<Array<UserConnectInput>>;
+  /** Override currently-connected documents with multiple existing User documents */
+  set?: Maybe<Array<UserWhereUniqueInput>>;
+  /** Disconnect multiple User documents */
+  disconnect?: Maybe<Array<UserWhereUniqueInput>>;
+};
+
+export type UserUpdateOneInlineInput = {
+  /** Connect existing User document */
+  connect?: Maybe<UserWhereUniqueInput>;
+  /** Disconnect currently connected User document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+};
 
 /** Identifies documents */
 export type UserWhereInput = {
@@ -11513,6 +11644,9 @@ export type UserWhereInput = {
   picture_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   picture_not_ends_with?: Maybe<Scalars['String']>;
+  isActive?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  isActive_not?: Maybe<Scalars['Boolean']>;
   kind?: Maybe<UserKind>;
   /** All values that are not equal to given value. */
   kind_not?: Maybe<UserKind>;
@@ -11520,9 +11654,6 @@ export type UserWhereInput = {
   kind_in?: Maybe<Array<UserKind>>;
   /** All values that are not contained in given list. */
   kind_not_in?: Maybe<Array<UserKind>>;
-  isActive?: Maybe<Scalars['Boolean']>;
-  /** All values that are not equal to given value. */
-  isActive_not?: Maybe<Scalars['Boolean']>;
 };
 
 /** References User record uniquely */
