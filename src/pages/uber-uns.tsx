@@ -101,7 +101,11 @@ const ArticlePage: React.FC<MembersQuery> = ({
                 message={item.abstract ?? ""}
                 // eslint-disable-next-line no-nested-ternary
                 color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
-                linkTitle={`Lerne ${item.name} kennen...`}
+                linkTitle={
+                  /rehab/.test(item.name ?? "")
+                    ? `weiterlesen ${item.name}`
+                    : `Lerne ${item.name} kennen...`
+                }
                 linkTo={`/team/${item.slug}`}
               >
                 {item?.picture?.url && (
