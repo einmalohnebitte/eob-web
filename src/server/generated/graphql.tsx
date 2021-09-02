@@ -2453,6 +2453,495 @@ export type ImageTransformationInput = {
 };
 
 
+export type Kpi = Node & {
+  __typename?: 'Kpi';
+  /** System stage field */
+  stage: Stage;
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Kpi>;
+  /** Get the document in other stages */
+  documentInStages: Array<Kpi>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  text?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['Int']>;
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  /** List of Kpi versions */
+  history: Array<Version>;
+};
+
+
+export type KpiLocalizationsArgs = {
+  locales?: Array<Locale>;
+  includeCurrent?: Scalars['Boolean'];
+};
+
+
+export type KpiDocumentInStagesArgs = {
+  stages?: Array<Stage>;
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+};
+
+
+export type KpiCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type KpiUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type KpiPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type KpiCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type KpiUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type KpiPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type KpiHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+export type KpiConnectInput = {
+  /** Document to connect */
+  where: KpiWhereUniqueInput;
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+};
+
+/** A connection to a list of items. */
+export type KpiConnection = {
+  __typename?: 'KpiConnection';
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+  /** A list of edges. */
+  edges: Array<KpiEdge>;
+  aggregate: Aggregate;
+};
+
+export type KpiCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** text input for default locale (de) */
+  text?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['Int']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<KpiCreateLocalizationsInput>;
+};
+
+export type KpiCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  text?: Maybe<Scalars['String']>;
+};
+
+export type KpiCreateLocalizationInput = {
+  /** Localization input */
+  data: KpiCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type KpiCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<KpiCreateLocalizationInput>>;
+};
+
+export type KpiCreateManyInlineInput = {
+  /** Create and connect multiple existing Kpi documents */
+  create?: Maybe<Array<KpiCreateInput>>;
+  /** Connect multiple existing Kpi documents */
+  connect?: Maybe<Array<KpiWhereUniqueInput>>;
+};
+
+export type KpiCreateOneInlineInput = {
+  /** Create and connect one Kpi document */
+  create?: Maybe<KpiCreateInput>;
+  /** Connect one existing Kpi document */
+  connect?: Maybe<KpiWhereUniqueInput>;
+};
+
+/** An edge in a connection. */
+export type KpiEdge = {
+  __typename?: 'KpiEdge';
+  /** The item at the end of the edge. */
+  node: Kpi;
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+};
+
+/** Identifies documents */
+export type KpiManyWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<KpiWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<KpiWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<KpiWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  value?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  value_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  value_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  value_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  value_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  value_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  value_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  value_gte?: Maybe<Scalars['Int']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+};
+
+export enum KpiOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  TextAsc = 'text_ASC',
+  TextDesc = 'text_DESC',
+  ValueAsc = 'value_ASC',
+  ValueDesc = 'value_DESC'
+}
+
+export type KpiUpdateInput = {
+  /** text input for default locale (de) */
+  text?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['Int']>;
+  /** Manage document localizations */
+  localizations?: Maybe<KpiUpdateLocalizationsInput>;
+};
+
+export type KpiUpdateLocalizationDataInput = {
+  text?: Maybe<Scalars['String']>;
+};
+
+export type KpiUpdateLocalizationInput = {
+  data: KpiUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type KpiUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<KpiCreateLocalizationInput>>;
+  /** Localizations to update */
+  update?: Maybe<Array<KpiUpdateLocalizationInput>>;
+  upsert?: Maybe<Array<KpiUpsertLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>;
+};
+
+export type KpiUpdateManyInlineInput = {
+  /** Create and connect multiple Kpi documents */
+  create?: Maybe<Array<KpiCreateInput>>;
+  /** Connect multiple existing Kpi documents */
+  connect?: Maybe<Array<KpiConnectInput>>;
+  /** Override currently-connected documents with multiple existing Kpi documents */
+  set?: Maybe<Array<KpiWhereUniqueInput>>;
+  /** Update multiple Kpi documents */
+  update?: Maybe<Array<KpiUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Kpi documents */
+  upsert?: Maybe<Array<KpiUpsertWithNestedWhereUniqueInput>>;
+  /** Disconnect multiple Kpi documents */
+  disconnect?: Maybe<Array<KpiWhereUniqueInput>>;
+  /** Delete multiple Kpi documents */
+  delete?: Maybe<Array<KpiWhereUniqueInput>>;
+};
+
+export type KpiUpdateManyInput = {
+  /** text input for default locale (de) */
+  text?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['Int']>;
+  /** Optional updates to localizations */
+  localizations?: Maybe<KpiUpdateManyLocalizationsInput>;
+};
+
+export type KpiUpdateManyLocalizationDataInput = {
+  text?: Maybe<Scalars['String']>;
+};
+
+export type KpiUpdateManyLocalizationInput = {
+  data: KpiUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type KpiUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: Maybe<Array<KpiUpdateManyLocalizationInput>>;
+};
+
+export type KpiUpdateManyWithNestedWhereInput = {
+  /** Document search */
+  where: KpiWhereInput;
+  /** Update many input */
+  data: KpiUpdateManyInput;
+};
+
+export type KpiUpdateOneInlineInput = {
+  /** Create and connect one Kpi document */
+  create?: Maybe<KpiCreateInput>;
+  /** Update single Kpi document */
+  update?: Maybe<KpiUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Kpi document */
+  upsert?: Maybe<KpiUpsertWithNestedWhereUniqueInput>;
+  /** Connect existing Kpi document */
+  connect?: Maybe<KpiWhereUniqueInput>;
+  /** Disconnect currently connected Kpi document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Delete currently connected Kpi document */
+  delete?: Maybe<Scalars['Boolean']>;
+};
+
+export type KpiUpdateWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: KpiWhereUniqueInput;
+  /** Document to update */
+  data: KpiUpdateInput;
+};
+
+export type KpiUpsertInput = {
+  /** Create document if it didn't exist */
+  create: KpiCreateInput;
+  /** Update document if it exists */
+  update: KpiUpdateInput;
+};
+
+export type KpiUpsertLocalizationInput = {
+  update: KpiUpdateLocalizationDataInput;
+  create: KpiCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type KpiUpsertWithNestedWhereUniqueInput = {
+  /** Unique document search */
+  where: KpiWhereUniqueInput;
+  /** Upsert data */
+  data: KpiUpsertInput;
+};
+
+/** Identifies documents */
+export type KpiWhereInput = {
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<KpiWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<KpiWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<KpiWhereInput>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  text?: Maybe<Scalars['String']>;
+  /** All values that are not equal to given value. */
+  text_not?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  text_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not contained in given list. */
+  text_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values containing the given string. */
+  text_contains?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  text_not_contains?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  text_starts_with?: Maybe<Scalars['String']>;
+  /** All values not starting with the given string. */
+  text_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  text_ends_with?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  text_not_ends_with?: Maybe<Scalars['String']>;
+  value?: Maybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  value_not?: Maybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  value_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values that are not contained in given list. */
+  value_not_in?: Maybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  value_lt?: Maybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  value_lte?: Maybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  value_gt?: Maybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  value_gte?: Maybe<Scalars['Int']>;
+  createdBy?: Maybe<UserWhereInput>;
+  updatedBy?: Maybe<UserWhereInput>;
+  publishedBy?: Maybe<UserWhereInput>;
+};
+
+/** References Kpi record uniquely */
+export type KpiWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
+};
+
 /** Locale system enumeration */
 export enum Locale {
   /** System locale */
@@ -3677,6 +4166,46 @@ export type Mutation = {
    * @deprecated Please use the new paginated many mutation (unpublishManyShopsConnection)
    */
   unpublishManyShops: BatchPayload;
+  /** Create one kpi */
+  createKpi?: Maybe<Kpi>;
+  /** Update one kpi */
+  updateKpi?: Maybe<Kpi>;
+  /** Delete one kpi from _all_ existing stages. Returns deleted document. */
+  deleteKpi?: Maybe<Kpi>;
+  /** Upsert one kpi */
+  upsertKpi?: Maybe<Kpi>;
+  /** Publish one kpi */
+  publishKpi?: Maybe<Kpi>;
+  /** Unpublish one kpi from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishKpi?: Maybe<Kpi>;
+  /** Update many Kpi documents */
+  updateManyKpisConnection: KpiConnection;
+  /** Delete many Kpi documents, return deleted documents */
+  deleteManyKpisConnection: KpiConnection;
+  /** Publish many Kpi documents */
+  publishManyKpisConnection: KpiConnection;
+  /** Find many Kpi documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyKpisConnection: KpiConnection;
+  /**
+   * Update many kpis
+   * @deprecated Please use the new paginated many mutation (updateManyKpisConnection)
+   */
+  updateManyKpis: BatchPayload;
+  /**
+   * Delete many Kpi documents
+   * @deprecated Please use the new paginated many mutation (deleteManyKpisConnection)
+   */
+  deleteManyKpis: BatchPayload;
+  /**
+   * Publish many Kpi documents
+   * @deprecated Please use the new paginated many mutation (publishManyKpisConnection)
+   */
+  publishManyKpis: BatchPayload;
+  /**
+   * Unpublish many Kpi documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyKpisConnection)
+   */
+  unpublishManyKpis: BatchPayload;
 };
 
 
@@ -5344,6 +5873,123 @@ export type MutationUnpublishManyShopsArgs = {
   from?: Array<Stage>;
 };
 
+
+export type MutationCreateKpiArgs = {
+  data: KpiCreateInput;
+};
+
+
+export type MutationUpdateKpiArgs = {
+  where: KpiWhereUniqueInput;
+  data: KpiUpdateInput;
+};
+
+
+export type MutationDeleteKpiArgs = {
+  where: KpiWhereUniqueInput;
+};
+
+
+export type MutationUpsertKpiArgs = {
+  where: KpiWhereUniqueInput;
+  upsert: KpiUpsertInput;
+};
+
+
+export type MutationPublishKpiArgs = {
+  where: KpiWhereUniqueInput;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+};
+
+
+export type MutationUnpublishKpiArgs = {
+  where: KpiWhereUniqueInput;
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateManyKpisConnectionArgs = {
+  where?: Maybe<KpiManyWhereInput>;
+  data: KpiUpdateManyInput;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationDeleteManyKpisConnectionArgs = {
+  where?: Maybe<KpiManyWhereInput>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+};
+
+
+export type MutationPublishManyKpisConnectionArgs = {
+  where?: Maybe<KpiManyWhereInput>;
+  from?: Maybe<Stage>;
+  to?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUnpublishManyKpisConnectionArgs = {
+  where?: Maybe<KpiManyWhereInput>;
+  stage?: Maybe<Stage>;
+  from?: Array<Stage>;
+  skip?: Maybe<Scalars['Int']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['ID']>;
+  after?: Maybe<Scalars['ID']>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUpdateManyKpisArgs = {
+  where?: Maybe<KpiManyWhereInput>;
+  data: KpiUpdateManyInput;
+};
+
+
+export type MutationDeleteManyKpisArgs = {
+  where?: Maybe<KpiManyWhereInput>;
+};
+
+
+export type MutationPublishManyKpisArgs = {
+  where?: Maybe<KpiManyWhereInput>;
+  to?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationUnpublishManyKpisArgs = {
+  where?: Maybe<KpiManyWhereInput>;
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+};
+
 /** An object with an ID */
 export type Node = {
   /** The id of the object. */
@@ -6656,6 +7302,14 @@ export type Query = {
   shopsConnection: ShopConnection;
   /** Retrieve document version */
   shopVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple kpis */
+  kpis: Array<Kpi>;
+  /** Retrieve a single kpi */
+  kpi?: Maybe<Kpi>;
+  /** Retrieve multiple kpis using the Relay connection interface */
+  kpisConnection: KpiConnection;
+  /** Retrieve document version */
+  kpiVersion?: Maybe<DocumentVersion>;
 };
 
 
@@ -7265,6 +7919,44 @@ export type QueryShopsConnectionArgs = {
 
 
 export type QueryShopVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryKpisArgs = {
+  where?: Maybe<KpiWhereInput>;
+  orderBy?: Maybe<KpiOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryKpiArgs = {
+  where: KpiWhereUniqueInput;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryKpisConnectionArgs = {
+  where?: Maybe<KpiWhereInput>;
+  orderBy?: Maybe<KpiOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  locales?: Array<Locale>;
+};
+
+
+export type QueryKpiVersionArgs = {
   where: VersionWhereInput;
 };
 

@@ -1,3 +1,4 @@
+import { ShopsNumberQuery } from "@/components/CmsQueries/ShopsNumber.cms.generated";
 import { useRouter } from "next/router";
 import React from "react";
 import tw from "twin.macro";
@@ -5,7 +6,7 @@ import tw from "twin.macro";
 import { Section } from "../@UI/Section";
 import { H1, H2 } from "../@UI/Texts";
 
-export const Map: React.FC = () => {
+export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
   const { push } = useRouter();
   return (
     <>
@@ -15,24 +16,20 @@ export const Map: React.FC = () => {
           <div
             css={tw`flex flex-col md:flex-row justify-between items-center md:items-start mx-10 py-4`}
           >
-            <div css={tw`w-40 text-pink-600`}>
-              <H1>8</H1>
-              <p css={tw`text-sm`}>Städtpartner</p>
-            </div>
-            <div css={tw`w-40  text-blue-600`}>
-              <H1>10</H1>
-              <p css={tw`text-sm`}>Botschafter*innen</p>
-            </div>
-            <div css={tw`w-40 text-yellow-600`}>
-              <H1>16</H1>
-              <p css={tw`text-sm`}>Tonnen Verpackungsmüll eingespart</p>
-            </div>
-            <div css={tw`w-40 text-pink-600`}>
-              <H1>52</H1>
-              <p css={tw`text-sm`}>
-                Ehrenamtliche Unterstützer*innen deutschlandweit
-              </p>
-            </div>
+            {kpis.map((kpi, i) => (
+              <div
+                css={[
+                  tw`w-40`,
+                  i % 3 === 0 && tw`text-pink-600`,
+                  i % 3 === 1 && tw`text-blue-600`,
+                  i % 3 === 2 && tw`text-yellow-600`,
+                ]}
+                key={`kpi${i}`}
+              >
+                <H1>{kpi.value}</H1>
+                <p css={tw`text-sm`}>{kpi.text}</p>
+              </div>
+            ))}
           </div>
         </Section>
       </div>

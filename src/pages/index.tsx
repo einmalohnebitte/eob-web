@@ -2,7 +2,10 @@ import {
   PageSectionsDocument,
   PageSectionsQuery,
 } from "@/components/CmsQueries/PageSections.cms.generated";
-import { ShopsNumberDocument } from "@/components/CmsQueries/ShopsNumber.cms.generated";
+import {
+  ShopsNumberDocument,
+  ShopsNumberQuery,
+} from "@/components/CmsQueries/ShopsNumber.cms.generated";
 import { Goals } from "@/components/Home/2Goals";
 import { Map } from "@/components/Home/3Map";
 import { Social } from "@/components/Home/4Social";
@@ -22,11 +25,17 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   });
   const shops = await graphCmsRequest(ShopsNumberDocument);
   return {
-    props: { ...data, shops: shops.shopsConnection.aggregate.count },
+    props: {
+      ...data,
+      shops: shops.shopsConnection.aggregate.count,
+      kpis: shops.kpis,
+    },
   };
 };
 
-const Home: React.FC<PageSectionsQuery & { shops: number }> = (props) => {
+const Home: React.FC<
+  PageSectionsQuery & { shops: number; kpis: ShopsNumberQuery["kpis"] }
+> = (props) => {
   return (
     <>
       <HeadMeta
@@ -37,7 +46,7 @@ const Home: React.FC<PageSectionsQuery & { shops: number }> = (props) => {
         <HomeSections {...section} key={k} shops={props.shops} />
       ))}
       <Goals {...props} />
-      <Map />
+      <Map kpis={props.kpis} />
       <Social />
       <Sponsors />
     </>

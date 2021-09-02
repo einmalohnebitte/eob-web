@@ -4,4 +4,8 @@ query ShopsNumber {
       count
     }
   }
+  kpis {
+    text
+    value
+  }
 }
