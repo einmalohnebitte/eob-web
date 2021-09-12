@@ -47,7 +47,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
-    "@babel/core": "7.14.6",
+    "@babel/core": "7.15.5",
     "@next/bundle-analyzer": "11.1.2",
     "@next/eslint-plugin-next": "10.2.3",
     "@graphql-codegen/cli": "1.21.8",
