@@ -73,7 +73,7 @@
     "@types/mailgun-js": "0.22.12",
     "@types/next-auth": "3.15.0",
     "@types/node": "15.3.0",
-    "@types/react": "17.0.14",
+    "@types/react": "17.0.21",
     "@types/react-google-recaptcha": "2.1.2",
     "@types/react-leaflet-markercluster": "2.0.0",
     "@types/styled-components": "5.1.11",
