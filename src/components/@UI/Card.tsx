@@ -46,7 +46,7 @@ export const Card: React.FC<{
         }
       }}
       css={[
-        tw`flex-1 flex flex-col cursor-pointer max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  overflow-hidden m-4   `,
+        tw`flex-1 flex flex-col cursor-pointer transform scale-100 sm:hover:scale-105 sm:max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  mb-4 overflow-hidden sm:m-4   `,
         // eslint-disable-next-line no-nested-ternary
         color === "blue"
           ? tw`border-blue-500`
