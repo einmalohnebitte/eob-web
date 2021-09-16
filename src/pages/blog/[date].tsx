@@ -12,7 +12,6 @@ import { Locale } from "@/server/generated/graphql";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
-import tw from "twin.macro";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await graphCmsRequest(BlogsDocument, { locale: [Locale.De] });
@@ -37,7 +36,7 @@ const BlogPage: React.FC<BlogQuery> = ({ blogs }) => (
   <>
     <HeadMeta />
     <Section>
-      <H2 css={tw`my-4`}>{blogs[0]?.title}</H2>
+      <H2 css={{ lineHeight: "1.5rem" }}>{blogs[0]?.title}</H2>
       <div
         css={`
           p {
