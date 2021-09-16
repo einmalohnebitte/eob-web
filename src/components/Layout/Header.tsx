@@ -18,7 +18,7 @@ export const Header: React.FC = () => {
   return (
     <header
       style={{ zIndex: 9999999 }}
-      css={tw`py-2 bg-white h-16 md:h-20 fixed  z-10 inset-x-0 top-0`}
+      css={tw`py-2 bg-white h-auto fixed  z-10 inset-x-0 top-0`}
     >
       <div
         css={tw`bg-white items-start md:items-center max-w-screen-lg mx-auto flex justify-between`}
@@ -39,7 +39,7 @@ export const Header: React.FC = () => {
 
         <nav
           css={[
-            tw`w-full px-4 md:px-0 flex-grow md:flex md:items-center md:w-auto md:flex pt-6 md:pt-0 overflow-y-visible max-h-screen md:max-h-full h-screen md:h-full overflow-y-scroll`,
+            tw`w-full px-4 md:px-0 flex-grow md:flex md:items-center md:w-auto md:flex pt-6 md:pt-0 max-h-screen md:max-h-full h-screen md:h-full`,
             !isOpen && tw`hidden`,
             `-webkit-overflow-scrolling:touch;`,
           ]}
