@@ -15,19 +15,14 @@ export type Scalars = {
 };
 
 export type EmailReq = {
-  subject: Scalars['String'];
   html: Scalars['String'];
+  subject: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  sendEmail: Scalars['Boolean'];
   newsletter: Scalars['Boolean'];
-};
-
-
-export type MutationSendEmailArgs = {
-  email: EmailReq;
+  sendEmail: Scalars['Boolean'];
 };
 
 
@@ -35,10 +30,15 @@ export type MutationNewsletterArgs = {
   user: NewsletterReq;
 };
 
+
+export type MutationSendEmailArgs = {
+  email: EmailReq;
+};
+
 export type NewsletterReq = {
+  email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
-  email: Scalars['String'];
 };
 
 export type Query = {
@@ -47,24 +47,24 @@ export type Query = {
 };
 
 export type SellEmailReq = {
-  shop: Scalars['String'];
+  address: Scalars['String'];
+  email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
-  address: Scalars['String'];
-  postCode: Scalars['Int'];
-  town: Scalars['String'];
   message?: Maybe<Scalars['String']>;
+  postCode: Scalars['Int'];
+  shop: Scalars['String'];
   sticker: Scalars['String'];
-  email: Scalars['String'];
+  town: Scalars['String'];
 };
 
 export type SpreadEmailReq = {
+  email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
   postCode: Scalars['Int'];
   town: Scalars['String'];
-  message?: Maybe<Scalars['String']>;
-  email: Scalars['String'];
 };
 
 export type SubscribeNewsletterMutationVariables = Types.Exact<{
@@ -72,10 +72,7 @@ export type SubscribeNewsletterMutationVariables = Types.Exact<{
 }>;
 
 
-export type SubscribeNewsletterMutation = (
-  { __typename?: 'Mutation' }
-  & Pick<Types.Mutation, 'newsletter'>
-);
+export type SubscribeNewsletterMutation = { __typename?: 'Mutation', newsletter: boolean };
 
 
 export const SubscribeNewsletterDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"subscribeNewsletter"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"user"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"NewsletterReq"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"newsletter"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"user"},"value":{"kind":"Variable","name":{"kind":"Name","value":"user"}}}]}]}}]} as unknown as DocumentNode<SubscribeNewsletterMutation, SubscribeNewsletterMutationVariables>;
