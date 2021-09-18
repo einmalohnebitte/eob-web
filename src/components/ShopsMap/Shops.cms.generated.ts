@@ -6,45 +6,7 @@ export type ShopsQueryVariables = Types.Exact<{
 }>;
 
 
-export type ShopsQuery = (
-  { __typename?: 'Query' }
-  & { shopsConnection: (
-    { __typename?: 'ShopConnection' }
-    & { pageInfo: (
-      { __typename?: 'PageInfo' }
-      & Pick<Types.PageInfo, 'hasNextPage' | 'endCursor'>
-    ) }
-  ), shops: Array<(
-    { __typename?: 'Shop' }
-    & Pick<Types.Shop, 'id' | 'name' | 'openinghours' | 'website'>
-    & { location?: Types.Maybe<(
-      { __typename?: 'Location' }
-      & Pick<Types.Location, 'latitude' | 'longitude'>
-    )>, shopcategories: Array<(
-      { __typename?: 'ShopCategory' }
-      & Pick<Types.ShopCategory, 'id' | 'name' | 'isMain'>
-    )>, shopTown?: Types.Maybe<(
-      { __typename?: 'ShopTown' }
-      & Pick<Types.ShopTown, 'name'>
-    )>, shopType: Array<(
-      { __typename?: 'ShopType' }
-      & Pick<Types.ShopType, 'name'>
-    )> }
-  )>, shopCategories: Array<(
-    { __typename?: 'ShopCategory' }
-    & Pick<Types.ShopCategory, 'id' | 'name' | 'isMain'>
-  )>, shopTowns: Array<(
-    { __typename?: 'ShopTown' }
-    & Pick<Types.ShopTown, 'id' | 'name'>
-    & { location?: Types.Maybe<(
-      { __typename?: 'Location' }
-      & Pick<Types.Location, 'latitude' | 'longitude'>
-    )> }
-  )>, shopTypes: Array<(
-    { __typename?: 'ShopType' }
-    & Pick<Types.ShopType, 'id' | 'name'>
-  )> }
-);
+export type ShopsQuery = { __typename?: 'Query', shopsConnection: { __typename?: 'ShopConnection', pageInfo: { __typename?: 'PageInfo', hasNextPage: boolean, endCursor?: Types.Maybe<string> } }, shops: Array<{ __typename?: 'Shop', id: string, name?: Types.Maybe<string>, openinghours?: Types.Maybe<string>, website?: Types.Maybe<string>, location?: Types.Maybe<{ __typename?: 'Location', latitude: number, longitude: number }>, shopcategories: Array<{ __typename?: 'ShopCategory', id: string, name?: Types.Maybe<string>, isMain?: Types.Maybe<boolean> }>, shopTown?: Types.Maybe<{ __typename?: 'ShopTown', name?: Types.Maybe<string> }>, shopType: Array<{ __typename?: 'ShopType', name?: Types.Maybe<string> }> }>, shopCategories: Array<{ __typename?: 'ShopCategory', id: string, name?: Types.Maybe<string>, isMain?: Types.Maybe<boolean> }>, shopTowns: Array<{ __typename?: 'ShopTown', id: string, name?: Types.Maybe<string>, location?: Types.Maybe<{ __typename?: 'Location', latitude: number, longitude: number }> }>, shopTypes: Array<{ __typename?: 'ShopType', id: string, name?: Types.Maybe<string> }> };
 
 
 export const ShopsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Shops"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"endCursor"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"shopsConnection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"500"}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"endCursor"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"endCursor"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"shops"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"500"}},{"kind":"Argument","name":{"kind":"Name","value":"after"},"value":{"kind":"Variable","name":{"kind":"Name","value":"endCursor"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"openinghours"}},{"kind":"Field","name":{"kind":"Name","value":"location"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"latitude"}},{"kind":"Field","name":{"kind":"Name","value":"longitude"}}]}},{"kind":"Field","name":{"kind":"Name","value":"website"}},{"kind":"Field","name":{"kind":"Name","value":"shopcategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"isMain"}}]}},{"kind":"Field","name":{"kind":"Name","value":"shopTown"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ShopTown"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"shopType"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"shopCategories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"isMain"}}]}},{"kind":"Field","name":{"kind":"Name","value":"shopTowns"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"location"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"latitude"}},{"kind":"Field","name":{"kind":"Name","value":"longitude"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"shopTypes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]} as unknown as DocumentNode<ShopsQuery, ShopsQueryVariables>;

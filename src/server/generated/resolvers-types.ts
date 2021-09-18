@@ -14,19 +14,14 @@ export type Scalars = {
 };
 
 export type EmailReq = {
-  subject: Scalars['String'];
   html: Scalars['String'];
+  subject: Scalars['String'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  sendEmail: Scalars['Boolean'];
   newsletter: Scalars['Boolean'];
-};
-
-
-export type MutationSendEmailArgs = {
-  email: EmailReq;
+  sendEmail: Scalars['Boolean'];
 };
 
 
@@ -34,10 +29,15 @@ export type MutationNewsletterArgs = {
   user: NewsletterReq;
 };
 
+
+export type MutationSendEmailArgs = {
+  email: EmailReq;
+};
+
 export type NewsletterReq = {
+  email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
-  email: Scalars['String'];
 };
 
 export type Query = {
@@ -46,24 +46,24 @@ export type Query = {
 };
 
 export type SellEmailReq = {
-  shop: Scalars['String'];
+  address: Scalars['String'];
+  email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
-  address: Scalars['String'];
-  postCode: Scalars['Int'];
-  town: Scalars['String'];
   message?: Maybe<Scalars['String']>;
+  postCode: Scalars['Int'];
+  shop: Scalars['String'];
   sticker: Scalars['String'];
-  email: Scalars['String'];
+  town: Scalars['String'];
 };
 
 export type SpreadEmailReq = {
+  email: Scalars['String'];
   firstName: Scalars['String'];
   lastName: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
   postCode: Scalars['Int'];
   town: Scalars['String'];
-  message?: Maybe<Scalars['String']>;
-  email: Scalars['String'];
 };
 
 
@@ -71,19 +71,10 @@ export type SpreadEmailReq = {
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
 
-export type LegacyStitchingResolver<TResult, TParent, TContext, TArgs> = {
-  fragment: string;
+export type ResolverWithResolve<TResult, TParent, TContext, TArgs> = {
   resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
 };
-
-export type NewStitchingResolver<TResult, TParent, TContext, TArgs> = {
-  selectionSet: string;
-  resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
-};
-export type StitchingResolver<TResult, TParent, TContext, TArgs> = LegacyStitchingResolver<TResult, TParent, TContext, TArgs> | NewStitchingResolver<TResult, TParent, TContext, TArgs>;
-export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
-  | ResolverFn<TResult, TParent, TContext, TArgs>
-  | StitchingResolver<TResult, TParent, TContext, TArgs>;
+export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> = ResolverFn<TResult, TParent, TContext, TArgs> | ResolverWithResolve<TResult, TParent, TContext, TArgs>;
 
 export type ResolverFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
@@ -144,33 +135,33 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
-  EmailReq: EmailReq;
-  String: ResolverTypeWrapper<Scalars['String']>;
-  Mutation: ResolverTypeWrapper<{}>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  EmailReq: EmailReq;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  Mutation: ResolverTypeWrapper<{}>;
   NewsletterReq: NewsletterReq;
   Query: ResolverTypeWrapper<{}>;
   SellEmailReq: SellEmailReq;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
   SpreadEmailReq: SpreadEmailReq;
+  String: ResolverTypeWrapper<Scalars['String']>;
 };
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
-  EmailReq: EmailReq;
-  String: Scalars['String'];
-  Mutation: {};
   Boolean: Scalars['Boolean'];
+  EmailReq: EmailReq;
+  Int: Scalars['Int'];
+  Mutation: {};
   NewsletterReq: NewsletterReq;
   Query: {};
   SellEmailReq: SellEmailReq;
-  Int: Scalars['Int'];
   SpreadEmailReq: SpreadEmailReq;
+  String: Scalars['String'];
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  sendEmail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSendEmailArgs, 'email'>>;
   newsletter?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationNewsletterArgs, 'user'>>;
+  sendEmail?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSendEmailArgs, 'email'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
@@ -182,9 +173,3 @@ export type Resolvers<ContextType = any> = {
   Query?: QueryResolvers<ContextType>;
 };
 
-
-/**
- * @deprecated
- * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
- */
-export type IResolvers<ContextType = any> = Resolvers<ContextType>;
