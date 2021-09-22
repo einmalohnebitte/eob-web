@@ -24,6 +24,10 @@ NEXT_PUBLIC_MATOMO_URL=...
 
 - run `npm run codegen`
 
+## Build
+
+- run `npm run build`
+
 ## Tests
 
 - run `npm run test`

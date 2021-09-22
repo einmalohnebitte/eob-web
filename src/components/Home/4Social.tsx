@@ -11,7 +11,7 @@ export const Social: React.FC = () => (
       background-color: #f9f8fd;
     `}
   >
-    <Section css={tw` text-center`}>
+    <Section css={tw` text-blue-500 underline text-center`}>
       <H2>FOLGE EINMAL OHNE, BITTE AUF INSTAGRAM ODER FACEBOOK</H2>
 
       <picture css={tw`p-4`}>

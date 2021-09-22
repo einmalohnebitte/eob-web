@@ -18,7 +18,7 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
         background-image: linear-gradient(#dddddd, white);
       `}
     >
-      <Section css={tw` flex`}>
+      <Section css={tw` sm:flex `}>
         <Card
           color="blue"
           title={intl("BUY")}
