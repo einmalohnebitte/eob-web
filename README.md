@@ -30,4 +30,4 @@ NEXT_PUBLIC_MATOMO_URL=...
 
 ## Tests
 
-- run `npm run test`
+- run `npm run test`.
