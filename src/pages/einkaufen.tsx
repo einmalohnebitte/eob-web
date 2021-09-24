@@ -1,5 +1,5 @@
 import { BackgroundBlueWrapper } from "@/components/@UI/BackgroundWrapper";
-import { SplitSection } from "@/components/@UI/Section";
+import { Section, SplitSection } from "@/components/@UI/Section";
 import { H1, H2 } from "@/components/@UI/Texts";
 import {
   PageSectionsDocument,
@@ -134,7 +134,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                 display: flex;
               `}
             >
-              <div css={tw`self-center m-2 flex-1`}>
+              <div css={tw`self-center flex-1 m-2`}>
                 <Image
                   src={pageSections[3].picture[0].url}
                   alt="side"
@@ -148,7 +148,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                   height={160}
                 />
               </div>
-              <div css={tw`self-center m-2 flex-1`}>
+              <div css={tw`self-center flex-1 m-2`}>
                 <Image
                   src={pageSections[3].picture[1].url}
                   alt="side"
@@ -159,13 +159,28 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
             </div>
           </SplitSection.Side>
         </SplitSection.Section>
+
+        <Section>
+          <H2>{pageSections[4].title}</H2>
+          <div
+            css={`
+              ${tw`py-4 `}
+              ol {
+                list-style: decimal;
+              }
+            `}
+            dangerouslySetInnerHTML={{
+              __html: pageSections[4].content.html ?? "",
+            }}
+          />
+        </Section>
       </BackgroundBlueWrapper>
       <BackgroundBlueWrapper
         ref={ref}
         css={tw`flex justify-center p-10 md:p-0`}
       >
         {inView && (
-          <div css={tw`md:w-3/5 py-20 flex justify-center`}>
+          <div css={tw`flex justify-center py-20 md:w-3/5`}>
             <iframe
               width="560"
               height="315"
