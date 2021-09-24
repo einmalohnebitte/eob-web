@@ -22,12 +22,9 @@ if (L.Icon) {
   delete (L.Icon.Default as any).prototype._getIconUrl;
 
   L.Icon.Default.mergeOptions({
-    // eslint-disable-next-line global-require
-    iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-    // eslint-disable-next-line global-require
-    iconUrl: require("leaflet/dist/images/marker-icon.png"),
-    // eslint-disable-next-line global-require
-    shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+    iconRetinaUrl: "/images/leaflet/marker-icon-2x.png",
+    iconUrl: "/images/leaflet/marker-icon.png",
+    shadowUrl: "/images/leaflet/marker-shadow.png",
   });
 }
 const StyledMap = styled.div`
