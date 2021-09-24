@@ -1,5 +1,5 @@
 import { MutationResolvers } from "@/server/generated/resolvers-types";
-import { ResolverContext } from "@/server/resolvers";
+import type { ResolverContext } from "@/server/resolvers";
 import mailgun, { messages } from "mailgun-js";
 
 const mg = mailgun({

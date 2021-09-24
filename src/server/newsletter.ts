@@ -1,5 +1,5 @@
 import { MutationResolvers } from "@/server/generated/resolvers-types";
-import { ResolverContext } from "@/server/resolvers";
+import type { ResolverContext } from "@/server/resolvers";
 
 export const newsletter: MutationResolvers<ResolverContext>["newsletter"] =
   async (_: any, { user: { firstName, lastName, email } }) => {

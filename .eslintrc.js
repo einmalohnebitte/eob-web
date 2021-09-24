@@ -12,13 +12,33 @@ module.exports = {
     "plugin:jsx-a11y/recommended", // Accessibility rules
     "plugin:jest/recommended",
     "next",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended", // Prettier recommended rules
   ],
-  plugins: ["prettier"],
+  plugins: ["prettier", "import"],
   parser: "@typescript-eslint/parser",
-  settings: { react: { version: "detect" } },
+  settings: {
+    "import/ignore": [
+      "node_modules",
+      "\\.(json|css|jpg|png|gif|eot|svg|ttf|woff|woff2|mp4|webm)$",
+    ],
+    "import/extensions": [".js"],
+    "import/resolver": {
+      node: {
+        paths: ["src"],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+      },
+      typescript: {},
+    },
+    react: {
+      version: "detect",
+    },
+  },
   rules: {
+    "import/no-cycle": "error",
     "prettier/prettier": ["error", {}, { usePrettierrc: true }],
     // We will use TypeScript's types for component props instead
     "react/prop-types": "off",
@@ -37,5 +57,24 @@ module.exports = {
       },
     ],
     camelcase: "off",
+    "import/order": [
+      "error",
+      {
+        pathGroups: [
+          {
+            pattern: "@/**",
+            group: "external",
+            position: "before",
+          },
+        ],
+        groups: [
+          "external",
+          "internal",
+          "builtin",
+          ["parent", "sibling"],
+          "index",
+        ],
+      },
+    ],
   },
 };

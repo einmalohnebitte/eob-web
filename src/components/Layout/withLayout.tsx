@@ -5,9 +5,9 @@ import React from "react";
 import CookieConsent from "react-cookie-consent";
 import { FaQuestion } from "react-icons/fa";
 import { QueryClient, QueryClientProvider } from "react-query";
-import styled from "styled-components";
 import tw from "twin.macro";
 
+import styled from "styled-components";
 import { FOOTER_HEIGHT } from "../../constants/MediaQueries";
 // import SEO from "../SEO";
 import { AppFooter } from "./Footer";
