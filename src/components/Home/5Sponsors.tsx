@@ -11,7 +11,7 @@ export const Sponsors: React.FC = () => {
   const intl = useTranslations();
   return (
     <div>
-      <Section css={tw`text-blue-500 underline text-center`}>
+      <Section css={tw`text-blue-500 text-center`}>
         <H2>{intl("SPONSORS")}</H2>
         <SliderContainer>
           <SlideTrack>
