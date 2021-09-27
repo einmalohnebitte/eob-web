@@ -34,7 +34,7 @@ export const SliderContainer = styled.div`
 `;
 
 export const SlideTrack = styled.div`
-  width: calc(80px * 20);
+  width: calc(75px * 20);
   display: flex;
   animation: scroll 20s linear infinite;
   justify-content: space-around;
