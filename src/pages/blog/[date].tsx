@@ -36,7 +36,13 @@ const BlogPage: React.FC<BlogQuery> = ({ blogs }) => (
   <>
     <HeadMeta />
     <Section>
-      <H2 css={{ lineHeight: "1.5rem" }}>{blogs[0]?.title}</H2>
+      <H2
+        css={`
+          line-height: 3rem !important;
+        `}
+      >
+        {blogs[0]?.title}
+      </H2>
       <div
         css={`
           p {
