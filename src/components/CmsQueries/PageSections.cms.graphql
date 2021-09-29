@@ -1,4 +1,4 @@
-query PageSections($page: String! = "Home", $locale: [Locale!]!) {
+query PageSections($page: String! = "home", $locale: [Locale!]!) {
   pages(where: { slug: $page }, locales: $locale) {
     metaDescription
     metaKeywords
