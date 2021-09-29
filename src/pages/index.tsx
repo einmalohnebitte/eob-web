@@ -20,7 +20,7 @@ import React from "react";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageSectionsDocument, {
-    page: "Home",
+    page: "home",
     locale: contextToLocale(ctx),
   });
   const shops = await graphCmsRequest(ShopsNumberDocument);

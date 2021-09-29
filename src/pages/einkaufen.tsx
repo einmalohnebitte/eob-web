@@ -16,7 +16,7 @@ import tw from "twin.macro";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageSectionsDocument, {
-    page: "Einkaufen",
+    page: "einkaufen",
     locale: contextToLocale(ctx),
   });
   return {

@@ -24,7 +24,7 @@ import tw from "twin.macro";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageSectionsDocument, {
-    page: "Verbreiten",
+    page: "verbreiten",
     locale: contextToLocale(ctx),
   });
   const cityPartners = await graphCmsRequest(CityPartnersDocument);
@@ -82,9 +82,9 @@ const Home: React.FC<PageSectionsQuery & { cityPartners: CityPartnersQuery }> =
           <Section>
             <FormVerbreiten />
           </Section>
-          <Section css={tw` text-center`}>
+          <Section css={tw`text-center `}>
             <H2>{intl("CITY_PARTNERS")}</H2>
-            <div css={tw`px-2 py-6  flex overflow-x-auto`}>
+            <div css={tw`flex px-2 py-6 overflow-x-auto`}>
               {cityPartners.cityPartners.map((c) => (
                 <Link key={c.name} href={c.link ?? ""}>
                   <SponsorCard src={c.logo?.url ?? ""} alt={c.name ?? ""} />
