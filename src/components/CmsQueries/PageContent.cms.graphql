@@ -1,5 +1,5 @@
-query PageContent($page: String! = "Home", $locale: [Locale!]!) {
-  pages(where: { slug: $page }) {
+query PageContent($page: String! = "home", $locale: [Locale!]!) {
+  pages(where: { slug: $page }, locales: $locale) {
     title
     content {
       html

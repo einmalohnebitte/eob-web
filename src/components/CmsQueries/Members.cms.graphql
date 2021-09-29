@@ -1,5 +1,5 @@
 query Members($locale: [Locale!]!) {
-  pageSections(where: { page: { title: "Über uns" } }) {
+  pageSections(where: { page: { slug: "uber-uns" } }, locales: $locale) {
     title
     content {
       html
@@ -11,13 +11,13 @@ query Members($locale: [Locale!]!) {
     code
   }
 
-  pages(where: { title: "Über uns" }) {
+  pages(where: { slug: "uber-uns" }, locales: $locale) {
     vibrantColor {
       hex
     }
   }
 
-  members(orderBy: order_ASC) {
+  members(orderBy: order_ASC, locales: $locale) {
     name
     bio {
       html

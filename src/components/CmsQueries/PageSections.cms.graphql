@@ -1,9 +1,9 @@
 query PageSections($page: String! = "Home", $locale: [Locale!]!) {
-  pages(where: { title: $page }) {
+  pages(where: { title: $page }, locales: $locale) {
     metaDescription
     metaKeywords
   }
-  pageSections(where: { page: { title: $page } }) {
+  pageSections(where: { page: { title: $page } }, locales: $locale) {
     title
     content {
       html

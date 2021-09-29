@@ -1,5 +1,5 @@
 query Faqs($locale: [Locale!]!) {
-  faqs {
+  faqs(locales: $locale) {
     question
     answer {
       html

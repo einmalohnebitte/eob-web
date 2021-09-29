@@ -1,5 +1,5 @@
 query Blogs($locale: [Locale!]!) {
-  blogs(orderBy: date_DESC) {
+  blogs(orderBy: date_DESC, locales: $locale) {
     title
     date
     abstract
@@ -11,7 +11,7 @@ query Blogs($locale: [Locale!]!) {
 }
 
 query Blog($date: Date!, $locale: [Locale!]!) {
-  blogs(where: { date: $date }) {
+  blogs(where: { date: $date }, locales: $locale) {
     title
     content {
       html
