@@ -70,23 +70,23 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
           />
         </Section>
         <Section>
+          <H2>{pageSections[2].title}</H2>
+          <div
+            css={`
+              ${tw`py-4 `}
+              ol {
+                list-style: decimal;
+              }
+            `}
+            dangerouslySetInnerHTML={{
+              __html: pageSections[2].content.html ?? "",
+            }}
+          />
+        </Section>
+        <Section>
           <FormVerkaufen />
         </Section>
       </BackgroundYellowWrapper>
-      <Section>
-        <H2>{pageSections[2].title}</H2>
-        <div
-          css={`
-            ${tw`py-4 `}
-            ol {
-              list-style: decimal;
-            }
-          `}
-          dangerouslySetInnerHTML={{
-            __html: pageSections[2].content.html ?? "",
-          }}
-        />
-      </Section>
     </>
   );
 };

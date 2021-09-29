@@ -104,7 +104,7 @@ const ArticlePage: React.FC<MembersQuery> = ({
                 color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
                 linkTitle={
                   /rehab/.test(item.name ?? "")
-                    ? `weiterlesen ${item.name}`
+                    ? `Lerne den rehab republic Vorstand kennen`
                     : `Lerne ${item.name} kennen...`
                 }
                 linkTo={`/team/${item.slug}`}
