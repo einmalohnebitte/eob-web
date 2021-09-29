@@ -90,6 +90,9 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
               alt="side"
               width={350}
               height={350}
+              css={`
+                border-radius: 13px;
+              `}
             />
           </SplitSection.Side>
           <SplitSection.Main>
@@ -129,31 +132,38 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           >
             <div
               css={`
-                bottom: -100px;
+                bottom: -50px;
                 position: relative;
                 display: flex;
               `}
             >
-              <div css={tw`self-center flex-1 m-2`}>
+              <div css={tw`self-center flex-1 m-4`}>
                 <Image
                   src={pageSections[3].picture[0].url}
                   alt="side"
-                  width={250}
-                  height={160}
+                  width={350}
+                  height={200}
+                  css={`
+                    border-radius: 13px;
+                  `}
                 />
                 <Image
                   src={pageSections[3].picture[2].url}
                   alt="side"
-                  width={250}
-                  height={160}
+                  width={350}
+                  height={200}
+                  css={`
+                    border-radius: 13px;
+                  `}
                 />
-              </div>
-              <div css={tw`self-center flex-1 m-2`}>
                 <Image
                   src={pageSections[3].picture[1].url}
                   alt="side"
-                  width={250}
-                  height={160}
+                  width={350}
+                  height={200}
+                  css={`
+                    border-radius: 13px;
+                  `}
                 />
               </div>
             </div>

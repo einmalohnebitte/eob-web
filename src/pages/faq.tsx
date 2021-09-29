@@ -33,7 +33,7 @@ const FaqPage: React.FC<FaqsQuery> = ({ faqs }) => {
   return (
     <>
       <Section>
-        <H1 css={tw`mb-2`}>{intl("FAQ")}</H1>
+        <H1 css={tw` mb-4 `}>{intl("FAQ")}</H1>
 
         {faqs.map((item, k) => (
           <div
@@ -45,7 +45,7 @@ const FaqPage: React.FC<FaqsQuery> = ({ faqs }) => {
             key={k}
           >
             <div css={tw`flex justify-between transition-all`}>
-              <H2 css={tw`my-2`}>{item.question}</H2>
+              <H2 css={tw`my-2 mb-4 text-4xl`}>{item.question}</H2>
               {openFaq[k] ? (
                 <MdKeyboardArrowUp
                   css={tw`text-pink-500`}
