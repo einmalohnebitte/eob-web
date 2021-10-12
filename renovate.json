@@ -1,4 +1,10 @@
 {
   "extends": ["config:base"],
-  "ignoreDeps": ["husky"]
+  "ignoreDeps": ["husky"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    }
+  ]
 }
