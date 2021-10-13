@@ -6,12 +6,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install modules
-      run: npm install
-    - name: Run lint
-      run: npm run lint && npm run prettify     
-    - name: Run typescript
-      run: npx tsc   
+      run: npm install 
     - name: Run Codegen
       run: npm run codegen 
+    - name: Run lint
+      run: npm run lint && npm run prettify    
+    - name: Run typescript
+      run: npx tsc   
     - name: Run Tests
       run: npm test
