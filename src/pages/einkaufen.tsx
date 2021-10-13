@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    rootMargin: "300px 0px 300px 0px",
+    // rootMargin: "300px 0px 300px 0px",
   });
 
   return (
@@ -137,11 +137,11 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                 display: flex;
               `}
             >
-              <div css={tw`self-center flex-1 m-4`}>
+              <div css={tw`content-between m-4`}>
                 <Image
                   src={pageSections[3].picture[0].url}
                   alt="side"
-                  width={350}
+                  width={250}
                   height={200}
                   css={`
                     border-radius: 13px;
@@ -150,22 +150,31 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                 <Image
                   src={pageSections[3].picture[2].url}
                   alt="side"
-                  width={350}
-                  height={200}
-                  css={`
-                    border-radius: 13px;
-                  `}
-                />
-                <Image
-                  src={pageSections[3].picture[1].url}
-                  alt="side"
-                  width={350}
+                  width={250}
                   height={200}
                   css={`
                     border-radius: 13px;
                   `}
                 />
               </div>
+            </div>
+            <div
+              css={`
+                left: 350px;
+                bottom: 300px;
+                position: relative;
+                display: flex;
+              `}
+            >
+              <Image
+                src={pageSections[3].picture[1].url}
+                alt="side"
+                width={250}
+                height={200}
+                css={`
+                  border-radius: 13px;
+                `}
+              />
             </div>
           </SplitSection.Side>
         </SplitSection.Section>

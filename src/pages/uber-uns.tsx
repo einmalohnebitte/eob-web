@@ -164,7 +164,10 @@ const ArticlePage: React.FC<MembersQuery> = ({
               css={`
                 ${tw`py-4 text-xl leading-8 font-gt`}
                 ul {
-                  list-style: disc;
+                  list-style: disc inside;
+                  div {
+                    display: inline;
+                  }
                 }
               `}
               dangerouslySetInnerHTML={{

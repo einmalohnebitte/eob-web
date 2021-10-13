@@ -74,8 +74,12 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
           <div
             css={`
               ${tw`py-4 `}
-              ol {
-                list-style: decimal;
+              ul {
+                text-indent: 10px;
+                list-style: disc inside;
+                div {
+                  display: inline;
+                }
               }
             `}
             dangerouslySetInnerHTML={{
