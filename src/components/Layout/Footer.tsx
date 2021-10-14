@@ -23,11 +23,11 @@ export const AppFooter = () => {
   const intl = useTranslations();
   return (
     <footer css={tw`p-4 pt-10 leading-10 bg-gray-100 `}>
-      <Section css={tw`flex flex-col md:flex-row justify-between `}>
+      <Section css={tw`flex flex-col justify-between md:flex-row `}>
         <FooterSecion css={tw`flex flex-col items-center text-center`}>
           <picture>
             <Image
-              css={tw`cursor-pointer  h-32 w-32  rounded-full border-2 border-solid border-gray-300`}
+              css={tw`w-32 h-32 border-2 border-gray-300 border-solid rounded-full cursor-pointer`}
               src="/images/logo_start.webp"
               width="128"
               height="128"
@@ -35,7 +35,7 @@ export const AppFooter = () => {
             />
           </picture>
           <p
-            css={tw`text-base m-4`}
+            css={tw`m-4 text-base`}
             dangerouslySetInnerHTML={{
               __html: intl("FOOTER_LINE_2"),
             }}
@@ -75,7 +75,7 @@ export const AppFooter = () => {
           </p>
           <p>
             <Link href="/uber-uns#team">
-              <a>{intl("ABOUT_TEAM")}</a>
+              <a>{intl("FOOTER_ABOUT_TEAM")}</a>
             </Link>
           </p>
 
@@ -138,18 +138,13 @@ export const AppFooter = () => {
         </FooterSecion>
       </Section>
 
-      {/* <p
-        dangerouslySetInnerHTML={{
-          __html: intl("FOOTER_LINE_3"),
-        }}
-      /> */}
       <hr
         css={`
-          ${tw` m-4`}
+          ${tw`m-4 `}
           border: rgba(209,213,219) solid 1px;
         `}
       />
-      <div css={tw`flex justify-between flex-col md:flex-row `}>
+      <div css={tw`flex flex-col justify-between md:flex-row `}>
         <p css={tw`text-lg`}>
           <Link href="/impressum">
             <a>{intl("FOOTER_IMPRESSUM")}</a>
@@ -158,7 +153,7 @@ export const AppFooter = () => {
             <a>{intl("FOOTER_DATA")}</a>
           </Link>{" "}
         </p>
-        <p css={tw`text-right text-lg mr-8`}>
+        <p css={tw`mr-8 text-lg text-right`}>
           Made with <HearthStyle>♥</HearthStyle> in Munich by{" "}
           <a rel="noopener" href="https://rehab-republic.de/">
             rehab republic

@@ -49,7 +49,7 @@ const Page: React.FC<PageContentQuery> = (props) => {
         metaKeywords={props.pages[0]?.metaKeywords}
       />
       <Section>
-        <H1>{props.pages[0].title}</H1>
+        <H1>{props.pages[0]?.title}</H1>
         <div
           dangerouslySetInnerHTML={{
             __html: props.pages[0]?.content?.html ?? "",
