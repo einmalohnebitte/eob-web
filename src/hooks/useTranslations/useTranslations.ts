@@ -2,9 +2,6 @@ import { TranslationsQuery } from "@/hooks/useTranslations/Translations.cms.gene
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import DE from "./de.json";
-import EN from "./en.json";
-
 const globalTranslations: {
   de: { [key: string]: string };
   en: { [key: string]: string };
@@ -25,11 +22,7 @@ export const useTranslations = (
   });
 
   return (key: string, params?: any) => {
-    const translationSet: { [key: string]: string } =
-      context.locale === "en" ? EN : DE;
-    // console.log(translationsState, translationsState[key]);
     const translatedRawString =
-      translationSet[key] ??
       globalTranslations[context.locale === "en" ? "en" : "de"][key];
 
     if (params && translatedRawString) {
