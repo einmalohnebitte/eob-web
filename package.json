@@ -73,7 +73,7 @@
     "@types/node": "15.3.0",
     "@types/react": "17.0.28",
     "@types/react-google-recaptcha": "2.1.2",
-    "@types/react-leaflet-markercluster": "2.0.0",
+    "@types/react-leaflet-markercluster": "2.0.1",
     "@types/styled-components": "5.1.15",
     "@types/yup": "0.29.13",
     "@typescript-eslint/eslint-plugin": "5.0.0",
