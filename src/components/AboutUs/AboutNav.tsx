@@ -8,7 +8,7 @@ export const AboutNav: React.FC = () => {
   const intl = useTranslations();
   return (
     <Section css={tw`pb-0`}>
-      <div css={tw`flex flex-row text-center`}>
+      <div css={tw`grid grid-cols-2 md:grid-cols-4 text-center`}>
         <Card
           onClick={() => {
             window.location.hash = "#vision";
