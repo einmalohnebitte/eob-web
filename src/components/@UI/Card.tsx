@@ -1,9 +1,16 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import tw from "twin.macro";
+import tw, { TwStyle } from "twin.macro";
+import Image from "next/image";
 
 import { H2, H3 } from "./Texts";
+const getBorderColor = (color?: "pink" | "blue" | "yellow"): TwStyle =>
+  color === "blue"
+    ? tw`border-blue-500`
+    : color === "pink"
+    ? tw`border-pink-500`
+    : tw`border-yellow-600`;
 
 export const Card: React.FC<{
   img?: string;
@@ -47,12 +54,7 @@ export const Card: React.FC<{
       }}
       css={[
         tw`flex flex-col content-between cursor-pointer transform scale-100 sm:hover:scale-105 sm:max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  mb-4 overflow-hidden sm:m-4   `,
-        // eslint-disable-next-line no-nested-ternary
-        color === "blue"
-          ? tw`border-blue-500`
-          : color === "pink"
-          ? tw`border-pink-500`
-          : tw`border-yellow-600`,
+        getBorderColor(color),
       ]}
     >
       {children}
@@ -94,7 +96,7 @@ export const Card: React.FC<{
         {subtitle && (
           <i
             css={[
-              tw`mt-2 inline-block  `,
+              tw`mt-2  inline-block   `,
               // eslint-disable-next-line no-nested-ternary
               color === "blue"
                 ? tw`text-blue-500`
@@ -115,28 +117,45 @@ export const CardHorizontal: React.FC<{
   img?: string;
   title: string;
   message?: string;
+  color?: "pink" | "blue" | "yellow";
   onClick?: (event: any) => void;
-}> = ({ img, onClick, title, message, children }) => {
+}> = ({ img, onClick, title, message, color }) => {
   return (
     <div
       role="presentation"
       onClick={onClick}
       data-cy="card"
       css={[
-        tw`max-w-2xl bg-white rounded-xl shadow-md overflow-hidden`,
+        tw`max-w-3xl bg-white my-4  shadow-md overflow-hidden  border-l-4  border-b-8 border-r-4 border-t-2`,
+        getBorderColor(color),
         onClick && tw`cursor-pointer`,
       ]}
     >
       <div css={tw`flex`}>
-        <div css={tw`flex-shrink-0`}>
+        <div
+          css={`
+            min-width: 128px;
+            ${tw`flex`}
+          `}
+        >
           {img && (
-            <img alt="Card" css={tw`w-32 h-32  object-cover `} src={img} />
+            <Image
+              objectFit="cover"
+              width="128"
+              height="128"
+              alt="Card"
+              src={img}
+            />
           )}
-          {children}
         </div>
         <div css={tw`p-4`}>
-          {message && <p css={tw`mt-2 text-gray-500`}>{message}</p>}
           <H3>{title}</H3>
+          {message && (
+            <div
+              css={tw`mt-2 text-gray-500`}
+              dangerouslySetInnerHTML={{ __html: message }}
+            />
+          )}
         </div>
       </div>
     </div>

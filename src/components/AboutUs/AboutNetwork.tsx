@@ -11,6 +11,15 @@ export const AboutNetwork: React.FC<{
   vibrantColor: string;
 }> = ({ networks, vibrantColor }) => {
   const intl = useTranslations();
+  const letters: any = {};
+
+  networks.forEach((n) => {
+    const letter: string = n.title?.substr(0, 1) ?? "";
+    if (!letters[letter]) {
+      letters[letter] = letter;
+    }
+  });
+
   return (
     <div
       css={`
@@ -19,6 +28,12 @@ export const AboutNetwork: React.FC<{
     >
       <Section id="network">
         <H2 css={tw`m-4`}>{intl("ABOUT_NETWORK")}</H2>
+        {Object.keys(letters).map((l, i) => (
+          <span css={tw`font-lemonism text-3xl`} key={l}>
+            {i > 0 && " - "}
+            {l}
+          </span>
+        ))}
         {networks.map((network, k) => {
           return (
             <CardHorizontal
@@ -26,6 +41,7 @@ export const AboutNetwork: React.FC<{
               title={network.title ?? ""}
               img={network.logo?.url}
               message={network.description?.html ?? ""}
+              color={k % 3 === 0 ? "pink" : k % 3 === 1 ? "blue" : "yellow"}
             ></CardHorizontal>
           );
         })}

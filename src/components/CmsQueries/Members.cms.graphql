@@ -29,7 +29,7 @@ query Members($locale: [Locale!]!) {
     }
     order
   }
-  networks {
+  networks(orderBy: title_ASC) {
     title
     description {
       html
