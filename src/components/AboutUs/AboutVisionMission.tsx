@@ -14,7 +14,7 @@ export const AboutVisionMission: React.FC<{
         background-image: linear-gradient(${vibrantColor}, white);
       `}
     >
-      <SplitSection.Section id="mission">
+      <SplitSection.Section id="vision">
         <SplitSection.Main>
           <H2>{pageSections[1].title}</H2>
           <div
@@ -36,7 +36,7 @@ export const AboutVisionMission: React.FC<{
         </SplitSection.Side>
       </SplitSection.Section>
 
-      <SplitSection.Section id="vision">
+      <SplitSection.Section id="mission">
         <SplitSection.Side>
           <picture>
             <img src={pageSections[2].picture[0].url} alt="uber-uns" />
