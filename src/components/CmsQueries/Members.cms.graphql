@@ -29,6 +29,17 @@ query Members($locale: [Locale!]!) {
     }
     order
   }
+  networks(orderBy: title_ASC) {
+    title
+    description {
+      html
+    }
+    logo {
+      width
+      height
+      url
+    }
+  }
 
   translations(locales: $locale) {
     ...Translations
