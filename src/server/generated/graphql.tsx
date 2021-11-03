@@ -8008,7 +8008,7 @@ export type Shop = Node & {
   publishedBy?: Maybe<User>;
   shopBundesland?: Maybe<ShopBundesland>;
   shopStatus?: Maybe<ShopStatus>;
-  shopTown?: Maybe<ShopShopTown>;
+  shopTown?: Maybe<ShopTown>;
   shopType: Array<ShopType>;
   shopcategories: Array<ShopCategory>;
   /** System stage field */
@@ -8945,7 +8945,7 @@ export type ShopCreateInput = {
   openinghours?: Maybe<Scalars['String']>;
   shopBundesland?: Maybe<ShopBundeslandCreateOneInlineInput>;
   shopStatus?: Maybe<ShopStatusCreateOneInlineInput>;
-  shopTown?: Maybe<ShopShopTownCreateOneInlineInput>;
+  shopTown?: Maybe<ShopTownCreateOneInlineInput>;
   shopType?: Maybe<ShopTypeCreateManyInlineInput>;
   shopcategories?: Maybe<ShopCategoryCreateManyInlineInput>;
   stickerBack?: Maybe<Scalars['Int']>;
@@ -9156,6 +9156,7 @@ export type ShopManyWhereInput = {
   publishedBy?: Maybe<UserWhereInput>;
   shopBundesland?: Maybe<ShopBundeslandWhereInput>;
   shopStatus?: Maybe<ShopStatusWhereInput>;
+  shopTown?: Maybe<ShopTownWhereInput>;
   shopType_every?: Maybe<ShopTypeWhereInput>;
   shopType_none?: Maybe<ShopTypeWhereInput>;
   shopType_some?: Maybe<ShopTypeWhereInput>;
@@ -9281,86 +9282,6 @@ export enum ShopOrderByInput {
   WebsiteAsc = 'website_ASC',
   WebsiteDesc = 'website_DESC'
 }
-
-export type ShopShopTown = ShopTown;
-
-export type ShopShopTownConnectInput = {
-  ShopTown?: Maybe<ShopTownConnectInput>;
-};
-
-export type ShopShopTownCreateInput = {
-  ShopTown?: Maybe<ShopTownCreateInput>;
-};
-
-export type ShopShopTownCreateManyInlineInput = {
-  /** Connect multiple existing ShopShopTown documents */
-  connect?: Maybe<Array<ShopShopTownWhereUniqueInput>>;
-  /** Create and connect multiple existing ShopShopTown documents */
-  create?: Maybe<Array<ShopShopTownCreateInput>>;
-};
-
-export type ShopShopTownCreateOneInlineInput = {
-  /** Connect one existing ShopShopTown document */
-  connect?: Maybe<ShopShopTownWhereUniqueInput>;
-  /** Create and connect one ShopShopTown document */
-  create?: Maybe<ShopShopTownCreateInput>;
-};
-
-export type ShopShopTownUpdateInput = {
-  ShopTown?: Maybe<ShopTownUpdateInput>;
-};
-
-export type ShopShopTownUpdateManyInlineInput = {
-  /** Connect multiple existing ShopShopTown documents */
-  connect?: Maybe<Array<ShopShopTownConnectInput>>;
-  /** Create and connect multiple ShopShopTown documents */
-  create?: Maybe<Array<ShopShopTownCreateInput>>;
-  /** Delete multiple ShopShopTown documents */
-  delete?: Maybe<Array<ShopShopTownWhereUniqueInput>>;
-  /** Disconnect multiple ShopShopTown documents */
-  disconnect?: Maybe<Array<ShopShopTownWhereUniqueInput>>;
-  /** Override currently-connected documents with multiple existing ShopShopTown documents */
-  set?: Maybe<Array<ShopShopTownWhereUniqueInput>>;
-  /** Update multiple ShopShopTown documents */
-  update?: Maybe<Array<ShopShopTownUpdateWithNestedWhereUniqueInput>>;
-  /** Upsert multiple ShopShopTown documents */
-  upsert?: Maybe<Array<ShopShopTownUpsertWithNestedWhereUniqueInput>>;
-};
-
-export type ShopShopTownUpdateManyWithNestedWhereInput = {
-  ShopTown?: Maybe<ShopTownUpdateManyWithNestedWhereInput>;
-};
-
-export type ShopShopTownUpdateOneInlineInput = {
-  /** Connect existing ShopShopTown document */
-  connect?: Maybe<ShopShopTownWhereUniqueInput>;
-  /** Create and connect one ShopShopTown document */
-  create?: Maybe<ShopShopTownCreateInput>;
-  /** Delete currently connected ShopShopTown document */
-  delete?: Maybe<Scalars['Boolean']>;
-  /** Disconnect currently connected ShopShopTown document */
-  disconnect?: Maybe<Scalars['Boolean']>;
-  /** Update single ShopShopTown document */
-  update?: Maybe<ShopShopTownUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single ShopShopTown document */
-  upsert?: Maybe<ShopShopTownUpsertWithNestedWhereUniqueInput>;
-};
-
-export type ShopShopTownUpdateWithNestedWhereUniqueInput = {
-  ShopTown?: Maybe<ShopTownUpdateWithNestedWhereUniqueInput>;
-};
-
-export type ShopShopTownUpsertWithNestedWhereUniqueInput = {
-  ShopTown?: Maybe<ShopTownUpsertWithNestedWhereUniqueInput>;
-};
-
-export type ShopShopTownWhereInput = {
-  ShopTown?: Maybe<ShopTownWhereInput>;
-};
-
-export type ShopShopTownWhereUniqueInput = {
-  ShopTown?: Maybe<ShopTownWhereUniqueInput>;
-};
 
 export type ShopStatus = Node & {
   __typename?: 'ShopStatus';
@@ -9783,7 +9704,7 @@ export type ShopTown = Node & {
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** User that last published this document */
   publishedBy?: Maybe<User>;
-  shops: Array<Shop>;
+  shop: Array<Shop>;
   /** System stage field */
   stage: Stage;
   /** The time the document was updated */
@@ -9817,13 +9738,15 @@ export type ShopTownPublishedByArgs = {
 };
 
 
-export type ShopTownShopsArgs = {
+export type ShopTownShopArgs = {
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
   first?: Maybe<Scalars['Int']>;
   last?: Maybe<Scalars['Int']>;
   locales?: Maybe<Array<Locale>>;
+  orderBy?: Maybe<ShopOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<ShopWhereInput>;
 };
 
 
@@ -9852,7 +9775,7 @@ export type ShopTownCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   location?: Maybe<LocationInput>;
   name?: Maybe<Scalars['String']>;
-  shops?: Maybe<ShopCreateManyInlineInput>;
+  shop?: Maybe<ShopCreateManyInlineInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
@@ -9959,9 +9882,9 @@ export type ShopTownManyWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
   publishedBy?: Maybe<UserWhereInput>;
-  shops_every?: Maybe<ShopWhereInput>;
-  shops_none?: Maybe<ShopWhereInput>;
-  shops_some?: Maybe<ShopWhereInput>;
+  shop_every?: Maybe<ShopWhereInput>;
+  shop_none?: Maybe<ShopWhereInput>;
+  shop_some?: Maybe<ShopWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
@@ -9996,7 +9919,7 @@ export enum ShopTownOrderByInput {
 export type ShopTownUpdateInput = {
   location?: Maybe<LocationInput>;
   name?: Maybe<Scalars['String']>;
-  shops?: Maybe<ShopUpdateManyInlineInput>;
+  shop?: Maybe<ShopUpdateManyInlineInput>;
 };
 
 export type ShopTownUpdateManyInlineInput = {
@@ -10144,9 +10067,9 @@ export type ShopTownWhereInput = {
   /** All values that are not contained in given list. */
   publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
   publishedBy?: Maybe<UserWhereInput>;
-  shops_every?: Maybe<ShopWhereInput>;
-  shops_none?: Maybe<ShopWhereInput>;
-  shops_some?: Maybe<ShopWhereInput>;
+  shop_every?: Maybe<ShopWhereInput>;
+  shop_none?: Maybe<ShopWhereInput>;
+  shop_some?: Maybe<ShopWhereInput>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: Maybe<Scalars['DateTime']>;
@@ -10585,7 +10508,7 @@ export type ShopUpdateInput = {
   openinghours?: Maybe<Scalars['String']>;
   shopBundesland?: Maybe<ShopBundeslandUpdateOneInlineInput>;
   shopStatus?: Maybe<ShopStatusUpdateOneInlineInput>;
-  shopTown?: Maybe<ShopShopTownUpdateOneInlineInput>;
+  shopTown?: Maybe<ShopTownUpdateOneInlineInput>;
   shopType?: Maybe<ShopTypeUpdateManyInlineInput>;
   shopcategories?: Maybe<ShopCategoryUpdateManyInlineInput>;
   stickerBack?: Maybe<Scalars['Int']>;
@@ -10848,6 +10771,7 @@ export type ShopWhereInput = {
   publishedBy?: Maybe<UserWhereInput>;
   shopBundesland?: Maybe<ShopBundeslandWhereInput>;
   shopStatus?: Maybe<ShopStatusWhereInput>;
+  shopTown?: Maybe<ShopTownWhereInput>;
   shopType_every?: Maybe<ShopTypeWhereInput>;
   shopType_none?: Maybe<ShopTypeWhereInput>;
   shopType_some?: Maybe<ShopTypeWhereInput>;

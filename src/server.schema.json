@@ -57027,8 +57027,8 @@
               }
             ],
             "type": {
-              "kind": "UNION",
-              "name": "ShopShopTown",
+              "kind": "OBJECT",
+              "name": "ShopTown",
               "ofType": null
             },
             "isDeprecated": false,
@@ -63520,7 +63520,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "ShopShopTownCreateOneInlineInput",
+              "name": "ShopTownCreateOneInlineInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -65072,6 +65072,18 @@
             "deprecationReason": null
           },
           {
+            "name": "shopTown",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ShopTownWhereInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "shopType_every",
             "description": null,
             "type": {
@@ -65969,526 +65981,6 @@
             "deprecationReason": null
           }
         ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "UNION",
-        "name": "ShopShopTown",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "ShopTown",
-            "ofType": null
-          }
-        ]
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownConnectInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "ShopTown",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopTownConnectInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownCreateInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "ShopTown",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopTownCreateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownCreateManyInlineInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "connect",
-            "description": "Connect multiple existing ShopShopTown documents",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ShopShopTownWhereUniqueInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "create",
-            "description": "Create and connect multiple existing ShopShopTown documents",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ShopShopTownCreateInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownCreateOneInlineInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "connect",
-            "description": "Connect one existing ShopShopTown document",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopShopTownWhereUniqueInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "create",
-            "description": "Create and connect one ShopShopTown document",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopShopTownCreateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownUpdateInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "ShopTown",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopTownUpdateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownUpdateManyInlineInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "connect",
-            "description": "Connect multiple existing ShopShopTown documents",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ShopShopTownConnectInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "create",
-            "description": "Create and connect multiple ShopShopTown documents",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ShopShopTownCreateInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "delete",
-            "description": "Delete multiple ShopShopTown documents",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ShopShopTownWhereUniqueInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "disconnect",
-            "description": "Disconnect multiple ShopShopTown documents",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ShopShopTownWhereUniqueInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "set",
-            "description": "Override currently-connected documents with multiple existing ShopShopTown documents",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ShopShopTownWhereUniqueInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "update",
-            "description": "Update multiple ShopShopTown documents",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ShopShopTownUpdateWithNestedWhereUniqueInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "upsert",
-            "description": "Upsert multiple ShopShopTown documents",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "ShopShopTownUpsertWithNestedWhereUniqueInput",
-                  "ofType": null
-                }
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownUpdateManyWithNestedWhereInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "ShopTown",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopTownUpdateManyWithNestedWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownUpdateOneInlineInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "connect",
-            "description": "Connect existing ShopShopTown document",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopShopTownWhereUniqueInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "create",
-            "description": "Create and connect one ShopShopTown document",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopShopTownCreateInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "delete",
-            "description": "Delete currently connected ShopShopTown document",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "disconnect",
-            "description": "Disconnect currently connected ShopShopTown document",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "update",
-            "description": "Update single ShopShopTown document",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopShopTownUpdateWithNestedWhereUniqueInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "upsert",
-            "description": "Upsert single ShopShopTown document",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopShopTownUpsertWithNestedWhereUniqueInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownUpdateWithNestedWhereUniqueInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "ShopTown",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopTownUpdateWithNestedWhereUniqueInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownUpsertWithNestedWhereUniqueInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "ShopTown",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopTownUpsertWithNestedWhereUniqueInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownWhereInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "ShopTown",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopTownWhereInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "ShopShopTownWhereUniqueInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "ShopTown",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "ShopTownWhereUniqueInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -69642,7 +69134,7 @@
             "deprecationReason": null
           },
           {
-            "name": "shops",
+            "name": "shop",
             "description": null,
             "args": [
               {
@@ -69695,7 +69187,7 @@
               },
               {
                 "name": "locales",
-                "description": "Allows to optionally override locale filtering behaviour in the query's subtree.\n\nNote that `shops` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.\nFor related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.\n\nThis argument will overwrite any existing locale filtering defined in the query's tree for the subtree.",
+                "description": "Allows to optionally override locale filtering behaviour in the query's subtree.\n\nNote that `shop` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.\nFor related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.\n\nThis argument will overwrite any existing locale filtering defined in the query's tree for the subtree.",
                 "type": {
                   "kind": "LIST",
                   "name": null,
@@ -69714,11 +69206,35 @@
                 "deprecationReason": null
               },
               {
+                "name": "orderBy",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "ShopOrderByInput",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
                 "name": "skip",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
                   "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "where",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "ShopWhereInput",
                   "ofType": null
                 },
                 "defaultValue": null,
@@ -69972,7 +69488,7 @@
             "deprecationReason": null
           },
           {
-            "name": "shops",
+            "name": "shop",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -70728,7 +70244,7 @@
             "deprecationReason": null
           },
           {
-            "name": "shops_every",
+            "name": "shop_every",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -70740,7 +70256,7 @@
             "deprecationReason": null
           },
           {
-            "name": "shops_none",
+            "name": "shop_none",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -70752,7 +70268,7 @@
             "deprecationReason": null
           },
           {
-            "name": "shops_some",
+            "name": "shop_some",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -70994,7 +70510,7 @@
             "deprecationReason": null
           },
           {
-            "name": "shops",
+            "name": "shop",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -72050,7 +71566,7 @@
             "deprecationReason": null
           },
           {
-            "name": "shops_every",
+            "name": "shop_every",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -72062,7 +71578,7 @@
             "deprecationReason": null
           },
           {
-            "name": "shops_none",
+            "name": "shop_none",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -72074,7 +71590,7 @@
             "deprecationReason": null
           },
           {
-            "name": "shops_some",
+            "name": "shop_some",
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
@@ -75241,7 +74757,7 @@
             "description": null,
             "type": {
               "kind": "INPUT_OBJECT",
-              "name": "ShopShopTownUpdateOneInlineInput",
+              "name": "ShopTownUpdateOneInlineInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -77218,6 +76734,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ShopStatusWhereInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shopTown",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "ShopTownWhereInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -88256,7 +87784,20 @@
           {
             "name": "args",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "includeDeprecated",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": "false",
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
             "type": {
               "kind": "NON_NULL",
               "name": null,
@@ -88804,7 +88345,7 @@
       {
         "kind": "OBJECT",
         "name": "__Type",
-        "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByUrl`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
+        "description": "The fundamental unit of any GraphQL Schema is the type. There are many kinds of types in GraphQL as represented by the `__TypeKind` enum.\n\nDepending on the kind of a type, certain fields describe information about that type. Scalar types provide no information beyond a name, description and optional `specifiedByURL`, while Enum types provide their values. Object and Interface types provide the fields they describe. Abstract types, Union and Interface, provide the Object types possible at runtime. List and NonNull types compose other types.",
         "fields": [
           {
             "name": "kind",
@@ -88847,7 +88388,7 @@
             "deprecationReason": null
           },
           {
-            "name": "specifiedByUrl",
+            "name": "specifiedByURL",
             "description": null,
             "args": [],
             "type": {
@@ -89077,6 +88618,41 @@
     ],
     "directives": [
       {
+        "name": "defaultOverride",
+        "description": null,
+        "isRepeatable": false,
+        "locations": [
+          "FIELD_DEFINITION",
+          "INPUT_FIELD_DEFINITION"
+        ],
+        "args": [
+          {
+            "name": "args",
+            "description": "List of arguments for which the defaults should be overridden. Currently only supports 'stage' and 'locales'.",
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ]
+      },
+      {
         "name": "deprecated",
         "description": "Marks an element of a GraphQL schema as no longer supported.",
         "isRepeatable": false,
@@ -89246,38 +88822,6 @@
               "kind": "SCALAR",
               "name": "Boolean",
               "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "fallback",
-            "description": "Marks if the locale is a part of the default fallback",
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "fallbackLocales",
-            "description": "Ordered list of fallback locales",
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              }
             },
             "defaultValue": null,
             "isDeprecated": false,
