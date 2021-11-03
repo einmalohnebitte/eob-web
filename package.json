@@ -46,7 +46,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
-    "@babel/core": "7.15.8",
+    "@babel/core": "7.16.0",
     "@graphql-codegen/cli": "2.2.2",
     "@graphql-codegen/fragment-matcher": "3.2.0",
     "@graphql-codegen/import-types-preset": "2.1.7",
@@ -80,7 +80,7 @@
     "@typescript-eslint/parser": "5.3.0",
     "autoprefixer": "10.3.7",
     "babel-jest": "27.3.1",
-    "babel-loader": "8.2.2",
+    "babel-loader": "8.2.3",
     "babel-plugin-styled-components": "1.13.3",
     "bufferutil": "4.0.5",
     "dotenv": "10.0.0",
