@@ -23,7 +23,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     locale: contextToLocale(ctx),
   });
 
-  console.log(data.pageSections);
   return {
     props: data,
   };

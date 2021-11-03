@@ -78,7 +78,7 @@ export const Card: React.FC<{
           <Link href={linkTo ?? ""}>
             <a
               css={[
-                tw` mt-2 inline-block hover:underline`,
+                tw`ml-2 mt-2 inline-block hover:underline`,
                 // eslint-disable-next-line no-nested-ternary
                 color === "blue"
                   ? tw`text-blue-500`
