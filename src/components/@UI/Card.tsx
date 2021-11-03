@@ -46,7 +46,7 @@ export const Card: React.FC<{
         }
       }}
       css={[
-        tw`flex-1 flex flex-col cursor-pointer transform scale-100 sm:hover:scale-105 sm:max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  mb-4 overflow-hidden sm:m-4   `,
+        tw`flex flex-col content-between cursor-pointer transform scale-100 sm:hover:scale-105 sm:max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  mb-4 overflow-hidden sm:m-4   `,
         // eslint-disable-next-line no-nested-ternary
         color === "blue"
           ? tw`border-blue-500`
@@ -63,20 +63,22 @@ export const Card: React.FC<{
           alt="Man looking at item at a store"
         />
       )}
-      <div css={tw`p-4`}>
+      <div css={tw`h-2/4 p-4`}>
         <H2 css={tw`p-4`}>{title}</H2>
-        {message && <p css={tw`mt-2 text-gray-500`}>{message}</p>}
+        {message && <p css={tw`mt-2 mb-8 text-gray-500`}>{message}</p>}
         {messageHtml && (
           <div
             css={tw`mt-2 text-gray-500`}
             dangerouslySetInnerHTML={{ __html: messageHtml }}
           />
         )}
+      </div>
+      <div>
         {linkTo && (
           <Link href={linkTo ?? ""}>
             <a
               css={[
-                tw`mt-2 inline-block hover:underline `,
+                tw`ml-2 mt-2 inline-block hover:underline`,
                 // eslint-disable-next-line no-nested-ternary
                 color === "blue"
                   ? tw`text-blue-500`
