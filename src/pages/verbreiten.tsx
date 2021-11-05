@@ -1,4 +1,5 @@
 import { BackgroundPinkWrapper } from "@/components/@UI/BackgroundWrapper";
+import { OL } from "@/components/@UI/List.css";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { SponsorCard } from "@/components/@UI/SponsorCard";
 import { H1, H2 } from "@/components/@UI/Texts";
@@ -65,15 +66,7 @@ const Home: React.FC<PageSectionsQuery & { cityPartners: CityPartnersQuery }> =
         <BackgroundPinkWrapper>
           <Section>
             <H2>{pageSections[1].title}</H2>
-            <div
-              css={`
-                ol {
-                  display: flex;
-                  flex-direction: row;
-                }
-
-                ${tw`py-4 pr-4`}
-              `}
+            <OL
               dangerouslySetInnerHTML={{
                 __html: pageSections[1].content.html ?? "",
               }}
