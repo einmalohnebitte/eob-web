@@ -6,6 +6,7 @@ import { AboutNav } from "@/components/AboutUs/AboutNav";
 import { AboutMembers } from "@/components/AboutUs/AboutMembers";
 import { AboutNetwork } from "@/components/AboutUs/AboutNetwork";
 import { AboutVisionMission } from "@/components/AboutUs/AboutVisionMission";
+import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import React from "react";
 import tw from "twin.macro";
 import Image from "next/image";
@@ -30,7 +31,7 @@ export const AboutUs: React.FC<MembersQuery> = ({
         />
       </Section>
 
-      <SplitSection.Section id="team">
+      <SplitSection.Section>
         <SplitSection.Side>
           <H1>{pageSections[0].title}</H1>
         </SplitSection.Side>
@@ -48,6 +49,7 @@ export const AboutUs: React.FC<MembersQuery> = ({
         vibrantColor={vibrantColor}
         pageSections={pageSections}
       />
+      <AnchorPointer id="team" />
       <AboutMembers members={members} vibrantColor={vibrantColor} />
 
       <AboutNetwork networks={networks} vibrantColor={vibrantColor} />

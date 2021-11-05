@@ -1,3 +1,4 @@
+import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import { SplitSection } from "@/components/@UI/Section";
 import { H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
@@ -14,7 +15,8 @@ export const AboutVisionMission: React.FC<{
         background-image: linear-gradient(${vibrantColor}, white);
       `}
     >
-      <SplitSection.Section id="vision">
+      <AnchorPointer id="vision" />
+      <SplitSection.Section>
         <SplitSection.Main>
           <H2>{pageSections[1].title}</H2>
           <div
@@ -36,6 +38,7 @@ export const AboutVisionMission: React.FC<{
         </SplitSection.Side>
       </SplitSection.Section>
 
+      <AnchorPointer id="mission" />
       <SplitSection.Section id="mission">
         <SplitSection.Side>
           <picture>
