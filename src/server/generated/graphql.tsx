@@ -58,6 +58,8 @@ export type Asset = Node & {
   logoNetwork: Array<Network>;
   /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']>;
+  photoPressPhoto: Array<PressPhoto>;
+  photoPressReport: Array<PressReport>;
   pictureMember: Array<Member>;
   picturePageSection: Array<PageSection>;
   pictureSupporter: Array<Supporter>;
@@ -151,6 +153,32 @@ export type AssetLogoNetworkArgs = {
   orderBy?: Maybe<NetworkOrderByInput>;
   skip?: Maybe<Scalars['Int']>;
   where?: Maybe<NetworkWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetPhotoPressPhotoArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  orderBy?: Maybe<PressPhotoOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PressPhotoWhereInput>;
+};
+
+
+/** Asset system model */
+export type AssetPhotoPressReportArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  orderBy?: Maybe<PressReportOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PressReportWhereInput>;
 };
 
 
@@ -251,6 +279,8 @@ export type AssetCreateInput = {
   logoCityPartner?: Maybe<CityPartnerCreateManyInlineInput>;
   logoNetwork?: Maybe<NetworkCreateManyInlineInput>;
   mimeType?: Maybe<Scalars['String']>;
+  photoPressPhoto?: Maybe<PressPhotoCreateManyInlineInput>;
+  photoPressReport?: Maybe<PressReportCreateManyInlineInput>;
   pictureMember?: Maybe<MemberCreateManyInlineInput>;
   picturePageSection?: Maybe<PageSectionCreateManyInlineInput>;
   pictureSupporter?: Maybe<SupporterCreateManyInlineInput>;
@@ -365,6 +395,12 @@ export type AssetManyWhereInput = {
   logoNetwork_every?: Maybe<NetworkWhereInput>;
   logoNetwork_none?: Maybe<NetworkWhereInput>;
   logoNetwork_some?: Maybe<NetworkWhereInput>;
+  photoPressPhoto_every?: Maybe<PressPhotoWhereInput>;
+  photoPressPhoto_none?: Maybe<PressPhotoWhereInput>;
+  photoPressPhoto_some?: Maybe<PressPhotoWhereInput>;
+  photoPressReport_every?: Maybe<PressReportWhereInput>;
+  photoPressReport_none?: Maybe<PressReportWhereInput>;
+  photoPressReport_some?: Maybe<PressReportWhereInput>;
   pictureMember_every?: Maybe<MemberWhereInput>;
   pictureMember_none?: Maybe<MemberWhereInput>;
   pictureMember_some?: Maybe<MemberWhereInput>;
@@ -452,6 +488,8 @@ export type AssetUpdateInput = {
   logoCityPartner?: Maybe<CityPartnerUpdateManyInlineInput>;
   logoNetwork?: Maybe<NetworkUpdateManyInlineInput>;
   mimeType?: Maybe<Scalars['String']>;
+  photoPressPhoto?: Maybe<PressPhotoUpdateManyInlineInput>;
+  photoPressReport?: Maybe<PressReportUpdateManyInlineInput>;
   pictureMember?: Maybe<MemberUpdateManyInlineInput>;
   picturePageSection?: Maybe<PageSectionUpdateManyInlineInput>;
   pictureSupporter?: Maybe<SupporterUpdateManyInlineInput>;
@@ -711,6 +749,12 @@ export type AssetWhereInput = {
   mimeType_not_starts_with?: Maybe<Scalars['String']>;
   /** All values starting with the given string. */
   mimeType_starts_with?: Maybe<Scalars['String']>;
+  photoPressPhoto_every?: Maybe<PressPhotoWhereInput>;
+  photoPressPhoto_none?: Maybe<PressPhotoWhereInput>;
+  photoPressPhoto_some?: Maybe<PressPhotoWhereInput>;
+  photoPressReport_every?: Maybe<PressReportWhereInput>;
+  photoPressReport_none?: Maybe<PressReportWhereInput>;
+  photoPressReport_some?: Maybe<PressReportWhereInput>;
   pictureMember_every?: Maybe<MemberWhereInput>;
   pictureMember_none?: Maybe<MemberWhereInput>;
   pictureMember_some?: Maybe<MemberWhereInput>;
@@ -1379,6 +1423,7 @@ export enum Category {
   Home = 'home',
   Map = 'map',
   Members = 'members',
+  Press = 'press',
   Uberuns = 'uberuns'
 }
 
@@ -3597,6 +3642,12 @@ export type Mutation = {
   createPage?: Maybe<Page>;
   /** Create one pageSection */
   createPageSection?: Maybe<PageSection>;
+  /** Create one pressArticle */
+  createPressArticle?: Maybe<PressArticle>;
+  /** Create one pressPhoto */
+  createPressPhoto?: Maybe<PressPhoto>;
+  /** Create one pressReport */
+  createPressReport?: Maybe<PressReport>;
   /** Create one shop */
   createShop?: Maybe<Shop>;
   /** Create one shopBundesland */
@@ -3687,6 +3738,27 @@ export type Mutation = {
   /** Delete many Page documents, return deleted documents */
   deleteManyPagesConnection: PageConnection;
   /**
+   * Delete many PressArticle documents
+   * @deprecated Please use the new paginated many mutation (deleteManyPressArticlesConnection)
+   */
+  deleteManyPressArticles: BatchPayload;
+  /** Delete many PressArticle documents, return deleted documents */
+  deleteManyPressArticlesConnection: PressArticleConnection;
+  /**
+   * Delete many PressPhoto documents
+   * @deprecated Please use the new paginated many mutation (deleteManyPressPhotosConnection)
+   */
+  deleteManyPressPhotos: BatchPayload;
+  /** Delete many PressPhoto documents, return deleted documents */
+  deleteManyPressPhotosConnection: PressPhotoConnection;
+  /**
+   * Delete many PressReport documents
+   * @deprecated Please use the new paginated many mutation (deleteManyPressReportsConnection)
+   */
+  deleteManyPressReports: BatchPayload;
+  /** Delete many PressReport documents, return deleted documents */
+  deleteManyPressReportsConnection: PressReportConnection;
+  /**
    * Delete many ShopBundesland documents
    * @deprecated Please use the new paginated many mutation (deleteManyShopBundeslandsConnection)
    */
@@ -3750,6 +3822,12 @@ export type Mutation = {
   deletePage?: Maybe<Page>;
   /** Delete one pageSection from _all_ existing stages. Returns deleted document. */
   deletePageSection?: Maybe<PageSection>;
+  /** Delete one pressArticle from _all_ existing stages. Returns deleted document. */
+  deletePressArticle?: Maybe<PressArticle>;
+  /** Delete one pressPhoto from _all_ existing stages. Returns deleted document. */
+  deletePressPhoto?: Maybe<PressPhoto>;
+  /** Delete one pressReport from _all_ existing stages. Returns deleted document. */
+  deletePressReport?: Maybe<PressReport>;
   /** Delete one shop from _all_ existing stages. Returns deleted document. */
   deleteShop?: Maybe<Shop>;
   /** Delete one shopBundesland from _all_ existing stages. Returns deleted document. */
@@ -3840,6 +3918,27 @@ export type Mutation = {
   /** Publish many Page documents */
   publishManyPagesConnection: PageConnection;
   /**
+   * Publish many PressArticle documents
+   * @deprecated Please use the new paginated many mutation (publishManyPressArticlesConnection)
+   */
+  publishManyPressArticles: BatchPayload;
+  /** Publish many PressArticle documents */
+  publishManyPressArticlesConnection: PressArticleConnection;
+  /**
+   * Publish many PressPhoto documents
+   * @deprecated Please use the new paginated many mutation (publishManyPressPhotosConnection)
+   */
+  publishManyPressPhotos: BatchPayload;
+  /** Publish many PressPhoto documents */
+  publishManyPressPhotosConnection: PressPhotoConnection;
+  /**
+   * Publish many PressReport documents
+   * @deprecated Please use the new paginated many mutation (publishManyPressReportsConnection)
+   */
+  publishManyPressReports: BatchPayload;
+  /** Publish many PressReport documents */
+  publishManyPressReportsConnection: PressReportConnection;
+  /**
    * Publish many ShopBundesland documents
    * @deprecated Please use the new paginated many mutation (publishManyShopBundeslandsConnection)
    */
@@ -3903,6 +4002,12 @@ export type Mutation = {
   publishPage?: Maybe<Page>;
   /** Publish one pageSection */
   publishPageSection?: Maybe<PageSection>;
+  /** Publish one pressArticle */
+  publishPressArticle?: Maybe<PressArticle>;
+  /** Publish one pressPhoto */
+  publishPressPhoto?: Maybe<PressPhoto>;
+  /** Publish one pressReport */
+  publishPressReport?: Maybe<PressReport>;
   /** Publish one shop */
   publishShop?: Maybe<Shop>;
   /** Publish one shopBundesland */
@@ -3993,6 +4098,27 @@ export type Mutation = {
   /** Find many Page documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyPagesConnection: PageConnection;
   /**
+   * Unpublish many PressArticle documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyPressArticlesConnection)
+   */
+  unpublishManyPressArticles: BatchPayload;
+  /** Find many PressArticle documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyPressArticlesConnection: PressArticleConnection;
+  /**
+   * Unpublish many PressPhoto documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyPressPhotosConnection)
+   */
+  unpublishManyPressPhotos: BatchPayload;
+  /** Find many PressPhoto documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyPressPhotosConnection: PressPhotoConnection;
+  /**
+   * Unpublish many PressReport documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyPressReportsConnection)
+   */
+  unpublishManyPressReports: BatchPayload;
+  /** Find many PressReport documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyPressReportsConnection: PressReportConnection;
+  /**
    * Unpublish many ShopBundesland documents
    * @deprecated Please use the new paginated many mutation (unpublishManyShopBundeslandsConnection)
    */
@@ -4056,6 +4182,12 @@ export type Mutation = {
   unpublishPage?: Maybe<Page>;
   /** Unpublish one pageSection from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishPageSection?: Maybe<PageSection>;
+  /** Unpublish one pressArticle from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishPressArticle?: Maybe<PressArticle>;
+  /** Unpublish one pressPhoto from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishPressPhoto?: Maybe<PressPhoto>;
+  /** Unpublish one pressReport from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishPressReport?: Maybe<PressReport>;
   /** Unpublish one shop from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishShop?: Maybe<Shop>;
   /** Unpublish one shopBundesland from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -4146,6 +4278,27 @@ export type Mutation = {
   /** Update many Page documents */
   updateManyPagesConnection: PageConnection;
   /**
+   * Update many pressArticles
+   * @deprecated Please use the new paginated many mutation (updateManyPressArticlesConnection)
+   */
+  updateManyPressArticles: BatchPayload;
+  /** Update many PressArticle documents */
+  updateManyPressArticlesConnection: PressArticleConnection;
+  /**
+   * Update many pressPhotos
+   * @deprecated Please use the new paginated many mutation (updateManyPressPhotosConnection)
+   */
+  updateManyPressPhotos: BatchPayload;
+  /** Update many PressPhoto documents */
+  updateManyPressPhotosConnection: PressPhotoConnection;
+  /**
+   * Update many pressReports
+   * @deprecated Please use the new paginated many mutation (updateManyPressReportsConnection)
+   */
+  updateManyPressReports: BatchPayload;
+  /** Update many PressReport documents */
+  updateManyPressReportsConnection: PressReportConnection;
+  /**
    * Update many shopBundeslands
    * @deprecated Please use the new paginated many mutation (updateManyShopBundeslandsConnection)
    */
@@ -4209,6 +4362,12 @@ export type Mutation = {
   updatePage?: Maybe<Page>;
   /** Update one pageSection */
   updatePageSection?: Maybe<PageSection>;
+  /** Update one pressArticle */
+  updatePressArticle?: Maybe<PressArticle>;
+  /** Update one pressPhoto */
+  updatePressPhoto?: Maybe<PressPhoto>;
+  /** Update one pressReport */
+  updatePressReport?: Maybe<PressReport>;
   /** Update one shop */
   updateShop?: Maybe<Shop>;
   /** Update one shopBundesland */
@@ -4243,6 +4402,12 @@ export type Mutation = {
   upsertPage?: Maybe<Page>;
   /** Upsert one pageSection */
   upsertPageSection?: Maybe<PageSection>;
+  /** Upsert one pressArticle */
+  upsertPressArticle?: Maybe<PressArticle>;
+  /** Upsert one pressPhoto */
+  upsertPressPhoto?: Maybe<PressPhoto>;
+  /** Upsert one pressReport */
+  upsertPressReport?: Maybe<PressReport>;
   /** Upsert one shop */
   upsertShop?: Maybe<Shop>;
   /** Upsert one shopBundesland */
@@ -4304,6 +4469,21 @@ export type MutationCreatePageArgs = {
 
 export type MutationCreatePageSectionArgs = {
   data: PageSectionCreateInput;
+};
+
+
+export type MutationCreatePressArticleArgs = {
+  data: PressArticleCreateInput;
+};
+
+
+export type MutationCreatePressPhotoArgs = {
+  data: PressPhotoCreateInput;
+};
+
+
+export type MutationCreatePressReportArgs = {
+  data: PressReportCreateInput;
 };
 
 
@@ -4507,6 +4687,51 @@ export type MutationDeleteManyPagesConnectionArgs = {
 };
 
 
+export type MutationDeleteManyPressArticlesArgs = {
+  where?: Maybe<PressArticleManyWhereInput>;
+};
+
+
+export type MutationDeleteManyPressArticlesConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PressArticleManyWhereInput>;
+};
+
+
+export type MutationDeleteManyPressPhotosArgs = {
+  where?: Maybe<PressPhotoManyWhereInput>;
+};
+
+
+export type MutationDeleteManyPressPhotosConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PressPhotoManyWhereInput>;
+};
+
+
+export type MutationDeleteManyPressReportsArgs = {
+  where?: Maybe<PressReportManyWhereInput>;
+};
+
+
+export type MutationDeleteManyPressReportsConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PressReportManyWhereInput>;
+};
+
+
 export type MutationDeleteManyShopBundeslandsArgs = {
   where?: Maybe<ShopBundeslandManyWhereInput>;
 };
@@ -4644,6 +4869,21 @@ export type MutationDeletePageArgs = {
 
 export type MutationDeletePageSectionArgs = {
   where: PageSectionWhereUniqueInput;
+};
+
+
+export type MutationDeletePressArticleArgs = {
+  where: PressArticleWhereUniqueInput;
+};
+
+
+export type MutationDeletePressPhotoArgs = {
+  where: PressPhotoWhereUniqueInput;
+};
+
+
+export type MutationDeletePressReportArgs = {
+  where: PressReportWhereUniqueInput;
 };
 
 
@@ -4948,6 +5188,72 @@ export type MutationPublishManyPagesConnectionArgs = {
 };
 
 
+export type MutationPublishManyPressArticlesArgs = {
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+  where?: Maybe<PressArticleManyWhereInput>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishManyPressArticlesConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Maybe<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  skip?: Maybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: Maybe<PressArticleManyWhereInput>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishManyPressPhotosArgs = {
+  to?: Array<Stage>;
+  where?: Maybe<PressPhotoManyWhereInput>;
+};
+
+
+export type MutationPublishManyPressPhotosConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Maybe<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: Maybe<PressPhotoManyWhereInput>;
+};
+
+
+export type MutationPublishManyPressReportsArgs = {
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+  where?: Maybe<PressReportManyWhereInput>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishManyPressReportsConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Maybe<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  skip?: Maybe<Scalars['Int']>;
+  to?: Array<Stage>;
+  where?: Maybe<PressReportManyWhereInput>;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
 export type MutationPublishManyShopBundeslandsArgs = {
   to?: Array<Stage>;
   where?: Maybe<ShopBundeslandManyWhereInput>;
@@ -5136,6 +5442,30 @@ export type MutationPublishPageSectionArgs = {
   publishBase?: Maybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where: PageSectionWhereUniqueInput;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishPressArticleArgs = {
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+  where: PressArticleWhereUniqueInput;
+  withDefaultLocale?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type MutationPublishPressPhotoArgs = {
+  to?: Array<Stage>;
+  where: PressPhotoWhereUniqueInput;
+};
+
+
+export type MutationPublishPressReportArgs = {
+  locales?: Maybe<Array<Locale>>;
+  publishBase?: Maybe<Scalars['Boolean']>;
+  to?: Array<Stage>;
+  where: PressReportWhereUniqueInput;
   withDefaultLocale?: Maybe<Scalars['Boolean']>;
 };
 
@@ -5432,6 +5762,68 @@ export type MutationUnpublishManyPagesConnectionArgs = {
 };
 
 
+export type MutationUnpublishManyPressArticlesArgs = {
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+  where?: Maybe<PressArticleManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyPressArticlesConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Maybe<Stage>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+  where?: Maybe<PressArticleManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyPressPhotosArgs = {
+  from?: Array<Stage>;
+  where?: Maybe<PressPhotoManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyPressPhotosConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Maybe<Stage>;
+  where?: Maybe<PressPhotoManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyPressReportsArgs = {
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+  where?: Maybe<PressReportManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyPressReportsConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  first?: Maybe<Scalars['Int']>;
+  from?: Array<Stage>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Maybe<Array<Locale>>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Maybe<Stage>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+  where?: Maybe<PressReportManyWhereInput>;
+};
+
+
 export type MutationUnpublishManyShopBundeslandsArgs = {
   from?: Array<Stage>;
   where?: Maybe<ShopBundeslandManyWhereInput>;
@@ -5613,6 +6005,28 @@ export type MutationUnpublishPageSectionArgs = {
   locales?: Maybe<Array<Locale>>;
   unpublishBase?: Maybe<Scalars['Boolean']>;
   where: PageSectionWhereUniqueInput;
+};
+
+
+export type MutationUnpublishPressArticleArgs = {
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+  where: PressArticleWhereUniqueInput;
+};
+
+
+export type MutationUnpublishPressPhotoArgs = {
+  from?: Array<Stage>;
+  where: PressPhotoWhereUniqueInput;
+};
+
+
+export type MutationUnpublishPressReportArgs = {
+  from?: Array<Stage>;
+  locales?: Maybe<Array<Locale>>;
+  unpublishBase?: Maybe<Scalars['Boolean']>;
+  where: PressReportWhereUniqueInput;
 };
 
 
@@ -5851,6 +6265,57 @@ export type MutationUpdateManyPagesConnectionArgs = {
 };
 
 
+export type MutationUpdateManyPressArticlesArgs = {
+  data: PressArticleUpdateManyInput;
+  where?: Maybe<PressArticleManyWhereInput>;
+};
+
+
+export type MutationUpdateManyPressArticlesConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  data: PressArticleUpdateManyInput;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PressArticleManyWhereInput>;
+};
+
+
+export type MutationUpdateManyPressPhotosArgs = {
+  data: PressPhotoUpdateManyInput;
+  where?: Maybe<PressPhotoManyWhereInput>;
+};
+
+
+export type MutationUpdateManyPressPhotosConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  data: PressPhotoUpdateManyInput;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PressPhotoManyWhereInput>;
+};
+
+
+export type MutationUpdateManyPressReportsArgs = {
+  data: PressReportUpdateManyInput;
+  where?: Maybe<PressReportManyWhereInput>;
+};
+
+
+export type MutationUpdateManyPressReportsConnectionArgs = {
+  after?: Maybe<Scalars['ID']>;
+  before?: Maybe<Scalars['ID']>;
+  data: PressReportUpdateManyInput;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  skip?: Maybe<Scalars['Int']>;
+  where?: Maybe<PressReportManyWhereInput>;
+};
+
+
 export type MutationUpdateManyShopBundeslandsArgs = {
   data: ShopBundeslandUpdateManyInput;
   where?: Maybe<ShopBundeslandManyWhereInput>;
@@ -6011,6 +6476,24 @@ export type MutationUpdatePageSectionArgs = {
 };
 
 
+export type MutationUpdatePressArticleArgs = {
+  data: PressArticleUpdateInput;
+  where: PressArticleWhereUniqueInput;
+};
+
+
+export type MutationUpdatePressPhotoArgs = {
+  data: PressPhotoUpdateInput;
+  where: PressPhotoWhereUniqueInput;
+};
+
+
+export type MutationUpdatePressReportArgs = {
+  data: PressReportUpdateInput;
+  where: PressReportWhereUniqueInput;
+};
+
+
 export type MutationUpdateShopArgs = {
   data: ShopUpdateInput;
   where: ShopWhereUniqueInput;
@@ -6110,6 +6593,24 @@ export type MutationUpsertPageArgs = {
 export type MutationUpsertPageSectionArgs = {
   upsert: PageSectionUpsertInput;
   where: PageSectionWhereUniqueInput;
+};
+
+
+export type MutationUpsertPressArticleArgs = {
+  upsert: PressArticleUpsertInput;
+  where: PressArticleWhereUniqueInput;
+};
+
+
+export type MutationUpsertPressPhotoArgs = {
+  upsert: PressPhotoUpsertInput;
+  where: PressPhotoWhereUniqueInput;
+};
+
+
+export type MutationUpsertPressReportArgs = {
+  upsert: PressReportUpsertInput;
+  where: PressReportWhereUniqueInput;
 };
 
 
@@ -7821,6 +8322,1484 @@ export type PageWhereUniqueInput = {
   slug?: Maybe<Scalars['String']>;
 };
 
+export type PressArticle = Node & {
+  __typename?: 'PressArticle';
+  abstract?: Maybe<RichText>;
+  content?: Maybe<PressArticleContentRichText>;
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  date?: Maybe<Scalars['Date']>;
+  /** Get the document in other stages */
+  documentInStages: Array<PressArticle>;
+  /** List of PressArticle versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<PressArticle>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  slug?: Maybe<Scalars['String']>;
+  /** System stage field */
+  stage: Stage;
+  title?: Maybe<Scalars['String']>;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type PressArticleCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type PressArticleCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type PressArticleDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type PressArticleHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+
+export type PressArticleLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  locales?: Array<Locale>;
+};
+
+
+export type PressArticlePublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type PressArticlePublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type PressArticleUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type PressArticleUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+export type PressArticleConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: PressArticleWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type PressArticleConnection = {
+  __typename?: 'PressArticleConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<PressArticleEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type PressArticleContentRichText = {
+  __typename?: 'PressArticleContentRichText';
+  /** Returns HTMl representation */
+  html: Scalars['String'];
+  json: Scalars['RichTextAST'];
+  /** Returns Markdown representation */
+  markdown: Scalars['String'];
+  /** @deprecated Please use the 'json' field */
+  raw: Scalars['RichTextAST'];
+  references: Array<PressArticleContentRichTextEmbeddedTypes>;
+  /** Returns plain-text contents of RichText */
+  text: Scalars['String'];
+};
+
+export type PressArticleContentRichTextEmbeddedTypes = Asset;
+
+export type PressArticleCreateInput = {
+  /** abstract input for default locale (de) */
+  abstract?: Maybe<Scalars['RichTextAST']>;
+  /** content input for default locale (de) */
+  content?: Maybe<Scalars['RichTextAST']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  date?: Maybe<Scalars['Date']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<PressArticleCreateLocalizationsInput>;
+  slug?: Maybe<Scalars['String']>;
+  /** title input for default locale (de) */
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PressArticleCreateLocalizationDataInput = {
+  abstract?: Maybe<Scalars['RichTextAST']>;
+  content?: Maybe<Scalars['RichTextAST']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PressArticleCreateLocalizationInput = {
+  /** Localization input */
+  data: PressArticleCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type PressArticleCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<PressArticleCreateLocalizationInput>>;
+};
+
+export type PressArticleCreateManyInlineInput = {
+  /** Connect multiple existing PressArticle documents */
+  connect?: Maybe<Array<PressArticleWhereUniqueInput>>;
+  /** Create and connect multiple existing PressArticle documents */
+  create?: Maybe<Array<PressArticleCreateInput>>;
+};
+
+export type PressArticleCreateOneInlineInput = {
+  /** Connect one existing PressArticle document */
+  connect?: Maybe<PressArticleWhereUniqueInput>;
+  /** Create and connect one PressArticle document */
+  create?: Maybe<PressArticleCreateInput>;
+};
+
+/** An edge in a connection. */
+export type PressArticleEdge = {
+  __typename?: 'PressArticleEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: PressArticle;
+};
+
+/** Identifies documents */
+export type PressArticleManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<PressArticleWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<PressArticleWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<PressArticleWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  date?: Maybe<Scalars['Date']>;
+  /** All values greater than the given value. */
+  date_gt?: Maybe<Scalars['Date']>;
+  /** All values greater than or equal the given value. */
+  date_gte?: Maybe<Scalars['Date']>;
+  /** All values that are contained in given list. */
+  date_in?: Maybe<Array<Scalars['Date']>>;
+  /** All values less than the given value. */
+  date_lt?: Maybe<Scalars['Date']>;
+  /** All values less than or equal the given value. */
+  date_lte?: Maybe<Scalars['Date']>;
+  /** All values that are not equal to given value. */
+  date_not?: Maybe<Scalars['Date']>;
+  /** All values that are not contained in given list. */
+  date_not_in?: Maybe<Array<Scalars['Date']>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  slug?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  slug_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  slug_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+export enum PressArticleOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DateAsc = 'date_ASC',
+  DateDesc = 'date_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type PressArticleUpdateInput = {
+  /** abstract input for default locale (de) */
+  abstract?: Maybe<Scalars['RichTextAST']>;
+  /** content input for default locale (de) */
+  content?: Maybe<Scalars['RichTextAST']>;
+  date?: Maybe<Scalars['Date']>;
+  /** Manage document localizations */
+  localizations?: Maybe<PressArticleUpdateLocalizationsInput>;
+  slug?: Maybe<Scalars['String']>;
+  /** title input for default locale (de) */
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PressArticleUpdateLocalizationDataInput = {
+  abstract?: Maybe<Scalars['RichTextAST']>;
+  content?: Maybe<Scalars['RichTextAST']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PressArticleUpdateLocalizationInput = {
+  data: PressArticleUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type PressArticleUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<PressArticleCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: Maybe<Array<PressArticleUpdateLocalizationInput>>;
+  upsert?: Maybe<Array<PressArticleUpsertLocalizationInput>>;
+};
+
+export type PressArticleUpdateManyInlineInput = {
+  /** Connect multiple existing PressArticle documents */
+  connect?: Maybe<Array<PressArticleConnectInput>>;
+  /** Create and connect multiple PressArticle documents */
+  create?: Maybe<Array<PressArticleCreateInput>>;
+  /** Delete multiple PressArticle documents */
+  delete?: Maybe<Array<PressArticleWhereUniqueInput>>;
+  /** Disconnect multiple PressArticle documents */
+  disconnect?: Maybe<Array<PressArticleWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing PressArticle documents */
+  set?: Maybe<Array<PressArticleWhereUniqueInput>>;
+  /** Update multiple PressArticle documents */
+  update?: Maybe<Array<PressArticleUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple PressArticle documents */
+  upsert?: Maybe<Array<PressArticleUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type PressArticleUpdateManyInput = {
+  /** abstract input for default locale (de) */
+  abstract?: Maybe<Scalars['RichTextAST']>;
+  /** content input for default locale (de) */
+  content?: Maybe<Scalars['RichTextAST']>;
+  date?: Maybe<Scalars['Date']>;
+  /** Optional updates to localizations */
+  localizations?: Maybe<PressArticleUpdateManyLocalizationsInput>;
+  slug?: Maybe<Scalars['String']>;
+  /** title input for default locale (de) */
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PressArticleUpdateManyLocalizationDataInput = {
+  abstract?: Maybe<Scalars['RichTextAST']>;
+  content?: Maybe<Scalars['RichTextAST']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PressArticleUpdateManyLocalizationInput = {
+  data: PressArticleUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type PressArticleUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: Maybe<Array<PressArticleUpdateManyLocalizationInput>>;
+};
+
+export type PressArticleUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: PressArticleUpdateManyInput;
+  /** Document search */
+  where: PressArticleWhereInput;
+};
+
+export type PressArticleUpdateOneInlineInput = {
+  /** Connect existing PressArticle document */
+  connect?: Maybe<PressArticleWhereUniqueInput>;
+  /** Create and connect one PressArticle document */
+  create?: Maybe<PressArticleCreateInput>;
+  /** Delete currently connected PressArticle document */
+  delete?: Maybe<Scalars['Boolean']>;
+  /** Disconnect currently connected PressArticle document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Update single PressArticle document */
+  update?: Maybe<PressArticleUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single PressArticle document */
+  upsert?: Maybe<PressArticleUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PressArticleUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: PressArticleUpdateInput;
+  /** Unique document search */
+  where: PressArticleWhereUniqueInput;
+};
+
+export type PressArticleUpsertInput = {
+  /** Create document if it didn't exist */
+  create: PressArticleCreateInput;
+  /** Update document if it exists */
+  update: PressArticleUpdateInput;
+};
+
+export type PressArticleUpsertLocalizationInput = {
+  create: PressArticleCreateLocalizationDataInput;
+  locale: Locale;
+  update: PressArticleUpdateLocalizationDataInput;
+};
+
+export type PressArticleUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: PressArticleUpsertInput;
+  /** Unique document search */
+  where: PressArticleWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type PressArticleWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<PressArticleWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<PressArticleWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<PressArticleWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  date?: Maybe<Scalars['Date']>;
+  /** All values greater than the given value. */
+  date_gt?: Maybe<Scalars['Date']>;
+  /** All values greater than or equal the given value. */
+  date_gte?: Maybe<Scalars['Date']>;
+  /** All values that are contained in given list. */
+  date_in?: Maybe<Array<Scalars['Date']>>;
+  /** All values less than the given value. */
+  date_lt?: Maybe<Scalars['Date']>;
+  /** All values less than or equal the given value. */
+  date_lte?: Maybe<Scalars['Date']>;
+  /** All values that are not equal to given value. */
+  date_not?: Maybe<Scalars['Date']>;
+  /** All values that are not contained in given list. */
+  date_not_in?: Maybe<Array<Scalars['Date']>>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  slug?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  slug_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  slug_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  title_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+/** References PressArticle record uniquely */
+export type PressArticleWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type PressPhoto = Node & {
+  __typename?: 'PressPhoto';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  description?: Maybe<Scalars['String']>;
+  /** Get the document in other stages */
+  documentInStages: Array<PressPhoto>;
+  /** List of PressPhoto versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  photo?: Maybe<Asset>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type PressPhotoCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type PressPhotoDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type PressPhotoHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+
+export type PressPhotoPhotoArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type PressPhotoPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type PressPhotoUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+export type PressPhotoConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: PressPhotoWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type PressPhotoConnection = {
+  __typename?: 'PressPhotoConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<PressPhotoEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type PressPhotoCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['String']>;
+  photo?: Maybe<AssetCreateOneInlineInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PressPhotoCreateManyInlineInput = {
+  /** Connect multiple existing PressPhoto documents */
+  connect?: Maybe<Array<PressPhotoWhereUniqueInput>>;
+  /** Create and connect multiple existing PressPhoto documents */
+  create?: Maybe<Array<PressPhotoCreateInput>>;
+};
+
+export type PressPhotoCreateOneInlineInput = {
+  /** Connect one existing PressPhoto document */
+  connect?: Maybe<PressPhotoWhereUniqueInput>;
+  /** Create and connect one PressPhoto document */
+  create?: Maybe<PressPhotoCreateInput>;
+};
+
+/** An edge in a connection. */
+export type PressPhotoEdge = {
+  __typename?: 'PressPhotoEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: PressPhoto;
+};
+
+/** Identifies documents */
+export type PressPhotoManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<PressPhotoWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<PressPhotoWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<PressPhotoWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  description?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  description_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  photo?: Maybe<AssetWhereInput>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+export enum PressPhotoOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type PressPhotoUpdateInput = {
+  description?: Maybe<Scalars['String']>;
+  photo?: Maybe<AssetUpdateOneInlineInput>;
+};
+
+export type PressPhotoUpdateManyInlineInput = {
+  /** Connect multiple existing PressPhoto documents */
+  connect?: Maybe<Array<PressPhotoConnectInput>>;
+  /** Create and connect multiple PressPhoto documents */
+  create?: Maybe<Array<PressPhotoCreateInput>>;
+  /** Delete multiple PressPhoto documents */
+  delete?: Maybe<Array<PressPhotoWhereUniqueInput>>;
+  /** Disconnect multiple PressPhoto documents */
+  disconnect?: Maybe<Array<PressPhotoWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing PressPhoto documents */
+  set?: Maybe<Array<PressPhotoWhereUniqueInput>>;
+  /** Update multiple PressPhoto documents */
+  update?: Maybe<Array<PressPhotoUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple PressPhoto documents */
+  upsert?: Maybe<Array<PressPhotoUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type PressPhotoUpdateManyInput = {
+  description?: Maybe<Scalars['String']>;
+};
+
+export type PressPhotoUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: PressPhotoUpdateManyInput;
+  /** Document search */
+  where: PressPhotoWhereInput;
+};
+
+export type PressPhotoUpdateOneInlineInput = {
+  /** Connect existing PressPhoto document */
+  connect?: Maybe<PressPhotoWhereUniqueInput>;
+  /** Create and connect one PressPhoto document */
+  create?: Maybe<PressPhotoCreateInput>;
+  /** Delete currently connected PressPhoto document */
+  delete?: Maybe<Scalars['Boolean']>;
+  /** Disconnect currently connected PressPhoto document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Update single PressPhoto document */
+  update?: Maybe<PressPhotoUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single PressPhoto document */
+  upsert?: Maybe<PressPhotoUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PressPhotoUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: PressPhotoUpdateInput;
+  /** Unique document search */
+  where: PressPhotoWhereUniqueInput;
+};
+
+export type PressPhotoUpsertInput = {
+  /** Create document if it didn't exist */
+  create: PressPhotoCreateInput;
+  /** Update document if it exists */
+  update: PressPhotoUpdateInput;
+};
+
+export type PressPhotoUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: PressPhotoUpsertInput;
+  /** Unique document search */
+  where: PressPhotoWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type PressPhotoWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<PressPhotoWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<PressPhotoWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<PressPhotoWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  description?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  description_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  photo?: Maybe<AssetWhereInput>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+/** References PressPhoto record uniquely */
+export type PressPhotoWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type PressReport = Node & {
+  __typename?: 'PressReport';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  description?: Maybe<RichText>;
+  /** Get the document in other stages */
+  documentInStages: Array<PressReport>;
+  /** List of PressReport versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID'];
+  link?: Maybe<Scalars['String']>;
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<PressReport>;
+  photo?: Maybe<Asset>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  /** System stage field */
+  stage: Stage;
+  title?: Maybe<Scalars['String']>;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type PressReportCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type PressReportCreatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type PressReportDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  inheritLocale?: Scalars['Boolean'];
+  stages?: Array<Stage>;
+};
+
+
+export type PressReportHistoryArgs = {
+  limit?: Scalars['Int'];
+  skip?: Scalars['Int'];
+  stageOverride?: Maybe<Stage>;
+};
+
+
+export type PressReportLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  locales?: Array<Locale>;
+};
+
+
+export type PressReportPhotoArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type PressReportPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type PressReportPublishedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+
+export type PressReportUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
+export type PressReportUpdatedByArgs = {
+  locales?: Maybe<Array<Locale>>;
+};
+
+export type PressReportConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: Maybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: PressReportWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type PressReportConnection = {
+  __typename?: 'PressReportConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<PressReportEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type PressReportCreateInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** description input for default locale (de) */
+  description?: Maybe<Scalars['RichTextAST']>;
+  link?: Maybe<Scalars['String']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: Maybe<PressReportCreateLocalizationsInput>;
+  photo?: Maybe<AssetCreateOneInlineInput>;
+  /** title input for default locale (de) */
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PressReportCreateLocalizationDataInput = {
+  createdAt?: Maybe<Scalars['DateTime']>;
+  description?: Maybe<Scalars['RichTextAST']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type PressReportCreateLocalizationInput = {
+  /** Localization input */
+  data: PressReportCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type PressReportCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: Maybe<Array<PressReportCreateLocalizationInput>>;
+};
+
+export type PressReportCreateManyInlineInput = {
+  /** Connect multiple existing PressReport documents */
+  connect?: Maybe<Array<PressReportWhereUniqueInput>>;
+  /** Create and connect multiple existing PressReport documents */
+  create?: Maybe<Array<PressReportCreateInput>>;
+};
+
+export type PressReportCreateOneInlineInput = {
+  /** Connect one existing PressReport document */
+  connect?: Maybe<PressReportWhereUniqueInput>;
+  /** Create and connect one PressReport document */
+  create?: Maybe<PressReportCreateInput>;
+};
+
+/** An edge in a connection. */
+export type PressReportEdge = {
+  __typename?: 'PressReportEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: PressReport;
+};
+
+/** Identifies documents */
+export type PressReportManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<PressReportWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<PressReportWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<PressReportWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  link?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  link_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  link_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  link_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  link_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  link_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  link_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  link_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  link_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  link_starts_with?: Maybe<Scalars['String']>;
+  photo?: Maybe<AssetWhereInput>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+export enum PressReportOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  LinkAsc = 'link_ASC',
+  LinkDesc = 'link_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type PressReportUpdateInput = {
+  /** description input for default locale (de) */
+  description?: Maybe<Scalars['RichTextAST']>;
+  link?: Maybe<Scalars['String']>;
+  /** Manage document localizations */
+  localizations?: Maybe<PressReportUpdateLocalizationsInput>;
+  photo?: Maybe<AssetUpdateOneInlineInput>;
+  /** title input for default locale (de) */
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PressReportUpdateLocalizationDataInput = {
+  description?: Maybe<Scalars['RichTextAST']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PressReportUpdateLocalizationInput = {
+  data: PressReportUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type PressReportUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: Maybe<Array<PressReportCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: Maybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: Maybe<Array<PressReportUpdateLocalizationInput>>;
+  upsert?: Maybe<Array<PressReportUpsertLocalizationInput>>;
+};
+
+export type PressReportUpdateManyInlineInput = {
+  /** Connect multiple existing PressReport documents */
+  connect?: Maybe<Array<PressReportConnectInput>>;
+  /** Create and connect multiple PressReport documents */
+  create?: Maybe<Array<PressReportCreateInput>>;
+  /** Delete multiple PressReport documents */
+  delete?: Maybe<Array<PressReportWhereUniqueInput>>;
+  /** Disconnect multiple PressReport documents */
+  disconnect?: Maybe<Array<PressReportWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing PressReport documents */
+  set?: Maybe<Array<PressReportWhereUniqueInput>>;
+  /** Update multiple PressReport documents */
+  update?: Maybe<Array<PressReportUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple PressReport documents */
+  upsert?: Maybe<Array<PressReportUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type PressReportUpdateManyInput = {
+  /** description input for default locale (de) */
+  description?: Maybe<Scalars['RichTextAST']>;
+  link?: Maybe<Scalars['String']>;
+  /** Optional updates to localizations */
+  localizations?: Maybe<PressReportUpdateManyLocalizationsInput>;
+  /** title input for default locale (de) */
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PressReportUpdateManyLocalizationDataInput = {
+  description?: Maybe<Scalars['RichTextAST']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type PressReportUpdateManyLocalizationInput = {
+  data: PressReportUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type PressReportUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: Maybe<Array<PressReportUpdateManyLocalizationInput>>;
+};
+
+export type PressReportUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: PressReportUpdateManyInput;
+  /** Document search */
+  where: PressReportWhereInput;
+};
+
+export type PressReportUpdateOneInlineInput = {
+  /** Connect existing PressReport document */
+  connect?: Maybe<PressReportWhereUniqueInput>;
+  /** Create and connect one PressReport document */
+  create?: Maybe<PressReportCreateInput>;
+  /** Delete currently connected PressReport document */
+  delete?: Maybe<Scalars['Boolean']>;
+  /** Disconnect currently connected PressReport document */
+  disconnect?: Maybe<Scalars['Boolean']>;
+  /** Update single PressReport document */
+  update?: Maybe<PressReportUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single PressReport document */
+  upsert?: Maybe<PressReportUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PressReportUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: PressReportUpdateInput;
+  /** Unique document search */
+  where: PressReportWhereUniqueInput;
+};
+
+export type PressReportUpsertInput = {
+  /** Create document if it didn't exist */
+  create: PressReportCreateInput;
+  /** Update document if it exists */
+  update: PressReportUpdateInput;
+};
+
+export type PressReportUpsertLocalizationInput = {
+  create: PressReportCreateLocalizationDataInput;
+  locale: Locale;
+  update: PressReportUpdateLocalizationDataInput;
+};
+
+export type PressReportUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: PressReportUpsertInput;
+  /** Unique document search */
+  where: PressReportWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type PressReportWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: Maybe<Array<PressReportWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: Maybe<Array<PressReportWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: Maybe<Array<PressReportWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  createdAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  createdAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  createdBy?: Maybe<UserWhereInput>;
+  id?: Maybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: Maybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values that are not equal to given value. */
+  id_not?: Maybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: Maybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: Maybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: Maybe<Array<Scalars['ID']>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: Maybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: Maybe<Scalars['ID']>;
+  link?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  link_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  link_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  link_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  link_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  link_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  link_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  link_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  link_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  link_starts_with?: Maybe<Scalars['String']>;
+  photo?: Maybe<AssetWhereInput>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  publishedBy?: Maybe<UserWhereInput>;
+  title?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  title_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: Maybe<Scalars['DateTime']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: Maybe<Scalars['DateTime']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: Maybe<Array<Scalars['DateTime']>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: Maybe<Scalars['DateTime']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: Maybe<Scalars['DateTime']>;
+  /** All values that are not equal to given value. */
+  updatedAt_not?: Maybe<Scalars['DateTime']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: Maybe<Array<Scalars['DateTime']>>;
+  updatedBy?: Maybe<UserWhereInput>;
+};
+
+/** References PressReport record uniquely */
+export type PressReportWhereUniqueInput = {
+  id?: Maybe<Scalars['ID']>;
+};
+
 export type PublishLocaleInput = {
   /** Locales to publish */
   locale: Locale;
@@ -7904,6 +9883,30 @@ export type Query = {
   pages: Array<Page>;
   /** Retrieve multiple pages using the Relay connection interface */
   pagesConnection: PageConnection;
+  /** Retrieve a single pressArticle */
+  pressArticle?: Maybe<PressArticle>;
+  /** Retrieve document version */
+  pressArticleVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple pressArticles */
+  pressArticles: Array<PressArticle>;
+  /** Retrieve multiple pressArticles using the Relay connection interface */
+  pressArticlesConnection: PressArticleConnection;
+  /** Retrieve a single pressPhoto */
+  pressPhoto?: Maybe<PressPhoto>;
+  /** Retrieve document version */
+  pressPhotoVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple pressPhotos */
+  pressPhotos: Array<PressPhoto>;
+  /** Retrieve multiple pressPhotos using the Relay connection interface */
+  pressPhotosConnection: PressPhotoConnection;
+  /** Retrieve a single pressReport */
+  pressReport?: Maybe<PressReport>;
+  /** Retrieve document version */
+  pressReportVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple pressReports */
+  pressReports: Array<PressReport>;
+  /** Retrieve multiple pressReports using the Relay connection interface */
+  pressReportsConnection: PressReportConnection;
   /** Retrieve a single shop */
   shop?: Maybe<Shop>;
   /** Retrieve a single shopBundesland */
@@ -8323,6 +10326,120 @@ export type QueryPagesConnectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   stage?: Stage;
   where?: Maybe<PageWhereInput>;
+};
+
+
+export type QueryPressArticleArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: PressArticleWhereUniqueInput;
+};
+
+
+export type QueryPressArticleVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryPressArticlesArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<PressArticleOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<PressArticleWhereInput>;
+};
+
+
+export type QueryPressArticlesConnectionArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<PressArticleOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<PressArticleWhereInput>;
+};
+
+
+export type QueryPressPhotoArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: PressPhotoWhereUniqueInput;
+};
+
+
+export type QueryPressPhotoVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryPressPhotosArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<PressPhotoOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<PressPhotoWhereInput>;
+};
+
+
+export type QueryPressPhotosConnectionArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<PressPhotoOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<PressPhotoWhereInput>;
+};
+
+
+export type QueryPressReportArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: PressReportWhereUniqueInput;
+};
+
+
+export type QueryPressReportVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryPressReportsArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<PressReportOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<PressReportWhereInput>;
+};
+
+
+export type QueryPressReportsConnectionArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  locales?: Array<Locale>;
+  orderBy?: Maybe<PressReportOrderByInput>;
+  skip?: Maybe<Scalars['Int']>;
+  stage?: Stage;
+  where?: Maybe<PressReportWhereInput>;
 };
 
 

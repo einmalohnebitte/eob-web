@@ -1,0 +1,42 @@
+query Press($locale: [Locale!]!) {
+  pages(where: { slug: "press" }, locales: $locale) {
+    title
+    content {
+      html
+    }
+    metaDescription
+    metaKeywords
+    slug
+  }
+  pressPhotos(locales: $locale) {
+    photo {
+      width
+      height
+      url
+    }
+    description
+  }
+  pressReports(locales: $locale) {
+    photo {
+      width
+      height
+      url
+    }
+
+    title
+    description {
+      html
+    }
+    link
+  }
+  pressArticles(locales: $locale) {
+    title
+    abstract {
+      html
+    }
+    slug
+  }
+  translations(locales: $locale) {
+    ...Translations
+  }
+}

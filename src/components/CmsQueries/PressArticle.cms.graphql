@@ -1,0 +1,11 @@
+query PressArticle($slug: String, $locale: [Locale!]!) {
+  pressArticles(where: { slug: $slug }, locales: $locale) {
+    title
+    content {
+      html
+    }
+  }
+  translations(locales: $locale) {
+    ...Translations
+  }
+}
