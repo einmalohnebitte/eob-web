@@ -10,6 +10,8 @@ query PageSections($page: String! = "home", $locale: [Locale!]!) {
     }
     picture {
       url
+      width
+      height
     }
     locale
     code

@@ -4,11 +4,15 @@ import { H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import React from "react";
 import tw from "twin.macro";
+import Image from "next/image";
 
 export const AboutVisionMission: React.FC<{
   vibrantColor: string;
   pageSections: MembersQuery["pageSections"];
 }> = ({ vibrantColor, pageSections }) => {
+  const firstPic = pageSections[1].picture[0];
+  const secondPic = pageSections[2].picture[0];
+
   return (
     <div
       css={`
@@ -32,9 +36,12 @@ export const AboutVisionMission: React.FC<{
           />
         </SplitSection.Main>
         <SplitSection.Side>
-          <picture>
-            <img src={pageSections[1].picture[0].url} alt="uber-uns" />
-          </picture>
+          <Image
+            width={firstPic.width / 10}
+            height={firstPic.height / 10}
+            src={firstPic.url}
+            alt="uber-uns"
+          />
         </SplitSection.Side>
       </SplitSection.Section>
 
@@ -42,7 +49,12 @@ export const AboutVisionMission: React.FC<{
       <SplitSection.Section id="mission">
         <SplitSection.Side>
           <picture>
-            <img src={pageSections[2].picture[0].url} alt="uber-uns" />
+            <Image
+              width={secondPic.width / 10}
+              height={secondPic.height / 10}
+              src={secondPic.url}
+              alt="uber-uns"
+            />
           </picture>
         </SplitSection.Side>
         <SplitSection.Main>

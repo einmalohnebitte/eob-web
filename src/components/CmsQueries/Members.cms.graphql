@@ -6,6 +6,8 @@ query Members($locale: [Locale!]!) {
     }
     picture {
       url
+      width
+      height
     }
     locale
     code
@@ -26,6 +28,8 @@ query Members($locale: [Locale!]!) {
     slug
     picture {
       url
+      width
+      height
     }
     order
   }
