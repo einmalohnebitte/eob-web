@@ -2,6 +2,7 @@ import React from "react";
 import { GrFacebook, GrInstagram } from "react-icons/gr";
 import tw from "twin.macro";
 
+import Image from "next/image";
 import { Section } from "../@UI/Section";
 import { H2 } from "../@UI/Texts";
 
@@ -15,7 +16,7 @@ export const Social: React.FC = () => (
       <H2>FOLGE EINMAL OHNE, BITTE AUF INSTAGRAM ODER FACEBOOK</H2>
 
       <picture css={tw`p-4`}>
-        <img src="/images/social.png" alt="social" />
+        <Image width="960" height="225" src="/images/social.png" alt="social" />
       </picture>
       <div>
         <a rel="noopener" href="https://www.facebook.com/einmalohnebitte/">

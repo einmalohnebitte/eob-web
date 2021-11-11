@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React from "react";
 import tw from "twin.macro";
 
+import Image from "next/image";
 import { Section } from "../@UI/Section";
 import { H1, H2 } from "../@UI/Texts";
 
@@ -38,7 +39,7 @@ export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
         onClick={() => push("/geschaefte")}
         role="presentation"
       >
-        <picture
+        <div
           css={`
             @media (min-width: 768px) {
               position: relative;
@@ -48,8 +49,13 @@ export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
             padding-bottom: 20px;
           `}
         >
-          <img src="/images/map.png" alt="Unser Map" />
-        </picture>
+          <Image
+            width={742}
+            height={418}
+            src="/images/map.png"
+            alt="Unser Map"
+          />
+        </div>
       </div>
     </>
   );
