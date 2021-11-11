@@ -108,7 +108,7 @@ export const AppFooter = () => {
             </Link>
           </p>
           <p>
-            <Link href="/press">
+            <Link href="/presse">
               <a>{intl("FOOTER_PRESS")}</a>
             </Link>
           </p>
