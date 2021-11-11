@@ -51,21 +51,21 @@ const Page: React.FC<PressQuery> = (props) => {
             }}
             title={intl("PRESS_ANNOUNCEMENTS")}
             color={"yellow"}
-          ></Card>
+          />
           <Card
             onClick={() => {
               window.location.hash = "#photos";
             }}
             title={intl("PRESS_PHOTOS")}
             color={"pink"}
-          ></Card>
+          />
           <Card
             onClick={() => {
               window.location.hash = "#report";
             }}
             title={intl("PRESS_REPORT")}
             color={"blue"}
-          ></Card>
+          />
         </div>
       </Section>
       <Section>

@@ -3,14 +3,21 @@ import { useRouter } from "next/router";
 import React from "react";
 import tw, { TwStyle } from "twin.macro";
 import Image from "next/image";
-
 import { H2, H3 } from "./Texts";
+
 const getBorderColor = (color?: "pink" | "blue" | "yellow"): TwStyle =>
   color === "blue"
     ? tw`border-blue-500`
     : color === "pink"
     ? tw`border-pink-500`
     : tw`border-yellow-600`;
+
+const getTextColor = (color?: "pink" | "blue" | "yellow"): TwStyle =>
+  color === "blue"
+    ? tw`text-blue-500`
+    : color === "pink"
+    ? tw`text-pink-500`
+    : tw`text-yellow-600`;
 
 export const Card: React.FC<{
   img?: string;
@@ -65,8 +72,8 @@ export const Card: React.FC<{
           alt="Man looking at item at a store"
         />
       )}
-      <div css={tw`h-2/4 p-4`}>
-        <H2 css={tw`p-4`}>{title}</H2>
+      <div css={tw`p-4`}>
+        <H2>{title}</H2>
         {message && <p css={tw`mt-2 mb-8 text-gray-500`}>{message}</p>}
         {messageHtml && (
           <div
@@ -75,39 +82,15 @@ export const Card: React.FC<{
           />
         )}
       </div>
-      <div>
+      <div
+        css={[getTextColor(color), tw`flex-grow flex justify-end flex-col m-2`]}
+      >
         {linkTo && (
           <Link href={linkTo ?? ""}>
-            <a
-              css={[
-                tw`ml-2 mt-2 inline-block hover:underline`,
-                // eslint-disable-next-line no-nested-ternary
-                color === "blue"
-                  ? tw`text-blue-500`
-                  : color === "pink"
-                  ? tw`text-pink-500`
-                  : tw`text-yellow-600`,
-              ]}
-            >
-              {linkTitle}
-            </a>
+            <a css={tw`hover:underline`}>{linkTitle}</a>
           </Link>
         )}
-        {subtitle && (
-          <i
-            css={[
-              tw`mt-2  inline-block   `,
-              // eslint-disable-next-line no-nested-ternary
-              color === "blue"
-                ? tw`text-blue-500`
-                : color === "pink"
-                ? tw`text-pink-500`
-                : tw`text-yellow-600`,
-            ]}
-          >
-            {subtitle}
-          </i>
-        )}
+        {subtitle && <i>{subtitle}</i>}
       </div>
     </div>
   );

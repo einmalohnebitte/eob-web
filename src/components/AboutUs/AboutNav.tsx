@@ -15,21 +15,21 @@ export const AboutNav: React.FC = () => {
           }}
           title={intl("ABOUT_VISION")}
           color={"yellow"}
-        ></Card>
+        />
         <Card
           onClick={() => {
             window.location.hash = "#mission";
           }}
           title={intl("ABOUT_MISSION")}
           color={"pink"}
-        ></Card>
+        />
         <Card
           onClick={() => {
             window.location.hash = "#team";
           }}
           title={intl("ABOUT_TEAM")}
           color={"blue"}
-        ></Card>
+        />
 
         <Card
           onClick={() => {
@@ -37,7 +37,7 @@ export const AboutNav: React.FC = () => {
           }}
           title={intl("ABOUT_NETWORK")}
           color={"yellow"}
-        ></Card>
+        />
       </div>
     </Section>
   );
