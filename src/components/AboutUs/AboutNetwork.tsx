@@ -13,16 +13,16 @@ export const AboutNetwork: React.FC<{
 }> = ({ networks, vibrantColor }) => {
   const intl = useTranslations();
   const letters: any = {};
-  networks = [
-    ...networks,
-    ...networks,
-    ...networks,
-    ...networks,
-    ...networks,
-    ...networks,
-    ...networks,
-    ...networks,
-  ];
+  // networks = [
+  //   ...networks,
+  //   ...networks,
+  //   ...networks,
+  //   ...networks,
+  //   ...networks,
+  //   ...networks,
+  //   ...networks,
+  //   ...networks,
+  // ];
   networks.sort((a, b) => {
     if ((a?.title ?? "") < (b?.title ?? "")) {
       return -1;

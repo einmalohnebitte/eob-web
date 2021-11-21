@@ -22,7 +22,7 @@ export const Social: React.FC = () => (
         <a rel="noopener" href="https://www.facebook.com/einmalohnebitte/">
           <GrFacebook style={{ display: "inline-block" }} /> Facebook
         </a>{" "}
-        <a rel="noopener" href="https://www.facebook.com/einmalohnebitte/">
+        <a rel="noopener" href="https://www.instagram.com/einmal.ohne.bitte/">
           <GrInstagram style={{ display: "inline-block" }} /> Instagram
         </a>
       </div>

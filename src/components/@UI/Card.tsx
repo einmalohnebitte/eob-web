@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import tw, { TwStyle } from "twin.macro";
-import Image from "next/image";
 import { H2, H3 } from "./Texts";
 
 const getBorderColor = (color?: "pink" | "blue" | "yellow"): TwStyle =>
@@ -118,18 +117,9 @@ export const CardHorizontal: React.FC<{
         <div
           css={`
             min-width: 128px;
-            ${tw`flex`}
           `}
         >
-          {img && (
-            <Image
-              objectFit="cover"
-              width="128"
-              height="128"
-              alt="Card"
-              src={img}
-            />
-          )}
+          {img && <img alt="Card" src={img} />}
         </div>
         <div css={tw`p-4`}>
           <H3>{title}</H3>
