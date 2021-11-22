@@ -97,7 +97,7 @@
     "jest": "27.3.1",
     "jest-fetch-mock": "3.0.3",
     "jest-transform-graphql": "2.1.0",
-    "lint-staged": "11.2.6",
+    "lint-staged": "12.1.2",
     "lodash": "4.17.21",
     "postcss": "8.3.11",
     "prettier": "2.4.1",
