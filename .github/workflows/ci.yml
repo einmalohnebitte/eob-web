@@ -1,17 +1,56 @@
 name: CI
-on: push
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - '!chore/*'   # excludes master
 jobs:
-  test:
+  install:
+      uses: ${{github.repository}}/.github/workflows/install.yml@main
+     
+  lint:
     runs-on: ubuntu-latest
+    needs: install
+    steps:    
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - run: yarn lint
+    
+  codegen:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn codegen  
+      
+  typescript:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - run: yarn tsc 
+
+    
+  unit-tests:
+    runs-on: ubuntu-latest
+    needs: install
     steps:
     - uses: actions/checkout@v2
-    - name: Install modules
-      run: npm install 
-    - name: Run Codegen
-      run: npm run codegen 
-    - name: Run lint
-      run: npm run lint && npm run prettify    
-    - name: Run typescript
-      run: npx tsc   
-    - name: Run Tests
-      run: npm test
+    - uses: actions/cache@v2
+      with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+    - run: yarn test
