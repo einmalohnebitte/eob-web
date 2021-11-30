@@ -23,6 +23,7 @@ const HeroImg: React.FC<{
   >
     {src && (
       <Image
+        alt="hero"
         css={tw`rounded-lg`}
         src={src}
         layout="responsive"

@@ -58,7 +58,6 @@ interface Props<T> {
   isError: boolean;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
 export const FormBase = <T extends {}>({
   children,
   onSubmit,
@@ -69,7 +68,6 @@ export const FormBase = <T extends {}>({
   isSuccess,
   isError,
 }: Props<T>): React.ReactElement<any, any> | null => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [captcha, setCaptcha] = useState(false);
   const intl = useTranslations();
 
