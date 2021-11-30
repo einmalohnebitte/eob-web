@@ -8,7 +8,7 @@ on:
       - '!chore/*'   # excludes master
 jobs:
   install:
-      uses: ${{github.repository}}/.github/workflows/install.yml@main
+      uses: einmalohnebitte/eob-web/.github/workflows/install.yml@main
      
   lint:
     runs-on: ubuntu-latest
