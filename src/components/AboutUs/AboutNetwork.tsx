@@ -79,6 +79,7 @@ export const AboutNetwork: React.FC<{
                   img={network.logo?.url}
                   message={network.description?.html ?? ""}
                   color={k % 3 === 0 ? "pink" : k % 3 === 1 ? "blue" : "yellow"}
+                  link={network.link ?? ""}
                 ></CardHorizontal>
               </div>
             );

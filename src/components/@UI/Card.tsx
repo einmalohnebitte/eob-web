@@ -100,8 +100,9 @@ export const CardHorizontal: React.FC<{
   title: string;
   message?: string;
   color?: "pink" | "blue" | "yellow";
+  link: string;
   onClick?: (event: any) => void;
-}> = ({ img, onClick, title, message, color }) => {
+}> = ({ img, onClick, title, message, color, link }) => {
   return (
     <div
       role="presentation"
@@ -122,7 +123,9 @@ export const CardHorizontal: React.FC<{
           {img && <img alt="Card" src={img} />}
         </div>
         <div css={tw`p-4`}>
-          <H3>{title}</H3>
+          <H3>
+            <a href={link}>{title}</a>
+          </H3>
           {message && (
             <div
               css={tw`mt-2 text-gray-500`}

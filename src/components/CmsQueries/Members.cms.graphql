@@ -43,6 +43,7 @@ query Members($locale: [Locale!]!) {
       height
       url
     }
+    link
   }
 
   translations(locales: $locale) {

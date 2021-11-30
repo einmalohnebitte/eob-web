@@ -7277,6 +7277,7 @@ export type Network = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
+  link?: Maybe<Scalars['String']>;
   /** System Locale field */
   locale: Locale;
   /** Get the other localizations for this document */
@@ -7383,6 +7384,7 @@ export type NetworkCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
   /** description input for default locale (de) */
   description?: Maybe<Scalars['RichTextAST']>;
+  link?: Maybe<Scalars['String']>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: Maybe<NetworkCreateLocalizationsInput>;
   logo?: Maybe<AssetCreateOneInlineInput>;
@@ -7475,6 +7477,25 @@ export type NetworkManyWhereInput = {
   id_not_starts_with?: Maybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: Maybe<Scalars['ID']>;
+  link?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  link_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  link_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  link_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  link_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  link_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  link_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  link_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  link_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  link_starts_with?: Maybe<Scalars['String']>;
   logo?: Maybe<AssetWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
@@ -7537,6 +7558,8 @@ export enum NetworkOrderByInput {
   CreatedAtDesc = 'createdAt_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
+  LinkAsc = 'link_ASC',
+  LinkDesc = 'link_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   TitleAsc = 'title_ASC',
@@ -7548,6 +7571,7 @@ export enum NetworkOrderByInput {
 export type NetworkUpdateInput = {
   /** description input for default locale (de) */
   description?: Maybe<Scalars['RichTextAST']>;
+  link?: Maybe<Scalars['String']>;
   /** Manage document localizations */
   localizations?: Maybe<NetworkUpdateLocalizationsInput>;
   logo?: Maybe<AssetUpdateOneInlineInput>;
@@ -7593,6 +7617,7 @@ export type NetworkUpdateManyInlineInput = {
 export type NetworkUpdateManyInput = {
   /** description input for default locale (de) */
   description?: Maybe<Scalars['RichTextAST']>;
+  link?: Maybe<Scalars['String']>;
   /** Optional updates to localizations */
   localizations?: Maybe<NetworkUpdateManyLocalizationsInput>;
   title?: Maybe<Scalars['String']>;
@@ -7706,6 +7731,25 @@ export type NetworkWhereInput = {
   id_not_starts_with?: Maybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: Maybe<Scalars['ID']>;
+  link?: Maybe<Scalars['String']>;
+  /** All values containing the given string. */
+  link_contains?: Maybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  link_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  link_in?: Maybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  link_not?: Maybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  link_not_contains?: Maybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  link_not_ends_with?: Maybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  link_not_in?: Maybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  link_not_starts_with?: Maybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  link_starts_with?: Maybe<Scalars['String']>;
   logo?: Maybe<AssetWhereInput>;
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
