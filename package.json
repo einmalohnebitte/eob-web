@@ -93,11 +93,9 @@
     "eslint-plugin-prettier": "4.0.0",
     "graphql-codegen-apollo-cache": "0.1.10",
     "graphql-codegen-apollo-next-ssr": "1.7.1",
-    "husky": "4.3.8",
     "jest": "27.3.1",
     "jest-fetch-mock": "3.0.3",
     "jest-transform-graphql": "2.1.0",
-    "lint-staged": "11.2.6",
     "lodash": "4.17.21",
     "postcss": "8.3.11",
     "prettier": "2.5.0",
@@ -117,18 +115,6 @@
   },
   "repository": {
     "url": "https://github.com/einmalohnebitte/eob-web"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "npm run prettify",
-      "npm run lint -- --fix",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "importSort": {
     ".js, .jsx, .ts, .tsx": {
