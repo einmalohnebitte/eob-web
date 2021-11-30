@@ -42,7 +42,6 @@ export const FormNewsletter: React.FC = () => {
       }}
       validationSchema={validationSchema}
       onSubmit={(values) => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { consent, ...rest } = values;
         sendMail.mutate({ user: rest });
       }}
