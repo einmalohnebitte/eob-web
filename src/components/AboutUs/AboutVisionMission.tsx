@@ -37,8 +37,8 @@ export const AboutVisionMission: React.FC<{
         </SplitSection.Main>
         <SplitSection.Side>
           <Image
-            width={firstPic.width / 10}
-            height={firstPic.height / 10}
+            width={firstPic?.width ?? 0 / 10}
+            height={firstPic?.height ?? 0 / 10}
             src={firstPic.url}
             alt="uber-uns"
           />
@@ -50,8 +50,8 @@ export const AboutVisionMission: React.FC<{
         <SplitSection.Side>
           <picture>
             <Image
-              width={secondPic.width / 10}
-              height={secondPic.height / 10}
+              width={secondPic?.width ?? 0 / 10}
+              height={secondPic?.height ?? 0 / 10}
               src={secondPic.url}
               alt="uber-uns"
             />
