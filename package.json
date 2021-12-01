@@ -92,7 +92,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "graphql-codegen-apollo-cache": "0.1.10",
     "graphql-codegen-apollo-next-ssr": "1.7.1",
-    "jest": "27.4.2",
+    "jest": "27.4.3",
     "jest-fetch-mock": "3.0.3",
     "jest-transform-graphql": "2.1.0",
     "lodash": "4.17.21",
