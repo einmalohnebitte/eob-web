@@ -30,7 +30,11 @@ jobs:
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - run: yarn codegen  
+      - name: codegen
+        env: # Or as an environment variable
+          GQL_CMS_TOKEN: ${{ secrets.GQL_CMS_TOKEN }}
+          GQL_CMS_ID: ${{ secrets.GQL_CMS_ID }}
+        run: yarn codegen  
       
   typescript:
     runs-on: ubuntu-latest
