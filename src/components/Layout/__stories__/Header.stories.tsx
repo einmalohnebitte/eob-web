@@ -14,10 +14,6 @@ export default {
   title: "Header",
 } as Meta;
 
-const A = styled.a`
-  ${tw`m-4`}
-`;
-
 const Layout = styled.div`
   ${tw`pt-16 md:pt-20`}
   min-height: calc(100vh - ${FOOTER_HEIGHT}px);

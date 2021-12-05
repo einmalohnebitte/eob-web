@@ -30,6 +30,7 @@ if (L.Icon) {
 const StyledMap = styled.div`
   .map {
     min-height: 300px;
+
     @media ${MQ_DESKTOP} {
       min-height: 400px !important;
     }

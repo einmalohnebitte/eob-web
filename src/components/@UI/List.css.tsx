@@ -11,7 +11,7 @@ export const OL = styled.div`
       font-weight: bold;
       font-size: 3rem;
       margin-right: 1rem;
-      font-family: "Lemonism-Regular", serif;
+      font-family: Lemonism-Regular, serif;
       line-height: 1.5;
     }
     li {

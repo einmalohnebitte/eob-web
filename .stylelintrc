@@ -1,0 +1,16 @@
+{
+  "processors": ["stylelint-processor-styled-components"],
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-styled-components"
+  ],
+  "syntax": "postcss-styled",
+  "rules": {
+    "indentation": null,
+    "declaration-empty-line-before": null,
+    "rule-empty-line-before": null,
+    "value-keyword-case": null,
+    "declaration-colon-newline-after": null,
+    "function-whitespace-after": null
+  }
+}

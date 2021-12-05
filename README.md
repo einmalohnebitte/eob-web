@@ -4,7 +4,7 @@ Nextjs graphcms project.
 
 ## Install
 
-`npm install`
+`yarn`
 
 ## Develop
 
@@ -18,16 +18,16 @@ MAILGUN_API=...
 NEXT_PUBLIC_MATOMO_URL=...
 ```
 
-- run `npm run dev`
+- run `yarn dev`
 
 ## Graphql Codegen
 
-- run `npm run codegen`
+- run `yarn codegen`
 
 ## Build
 
-- run `npm run build`
+- run `yarn build`
 
 ## Tests
 
-- run `npm run test`.
+- run `yarn test`.

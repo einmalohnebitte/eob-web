@@ -42,7 +42,7 @@ const OpenButton = styled(Button)<{ isVisible: boolean }>`
   position: absolute;
   z-index: 999999;
   background: white;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 1px 5px rgba(0 0 0 / 65%);
   border-radius: 4px;
   margin-top: 100px;
   visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};

@@ -9,14 +9,15 @@ export const GlobalStyle = createGlobalStyle`
         font-style: normal;
         font-family: Lemonism-Regular;
         font-display: fallback;
-        src: local('Lemonism-Regular'), url(${lemonism})  format('woff');
+        src: local("Lemonism-Regular"), url(${lemonism})  format("woff");
     }
+
     @font-face {
         font-weight: normal;
         font-style: normal;
         font-family: GT;
         font-display: fallback;
-        src: local('GT'), url(${GT})  format('woff');
+        src: local("GT"), url(${GT})  format("woff");
     }
 
     body {
@@ -25,25 +26,21 @@ export const GlobalStyle = createGlobalStyle`
         font-display: swap;
     }
 
-    a{
+    a {
       box-sizing: border-box;
       font-size: inherit;
       line-height: inherit;
       color: #000;
       font-weight: 600;
-      -webkit-text-decoration: none;
       text-decoration: none;
       cursor: pointer;
       outline: none;
-      :hover{
+      :hover {
         text-decoration: underline;
       }
     }
-    
+
     p {
       ${tw`text-xl leading-8 font-gt`}
     }
-
-  
-   
 `;

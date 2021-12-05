@@ -13,8 +13,8 @@ export const SliderContainer = styled.div`
     position: absolute;
     background-image: linear-gradient(
       to right,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0) 100%
+      rgba(255 255 255 / 100%) 0%,
+      rgba(255 255 255 / 0%) 100%
     );
     content: "";
     height: 100%;
@@ -38,9 +38,10 @@ export const SlideTrack = styled.div`
   display: flex;
   animation: scroll 20s linear infinite;
   justify-content: space-around;
+
   @keyframes scroll {
     0% {
-      transform: translateX(0px);
+      transform: translateX(0);
     }
     100% {
       transform: translateX(calc(-100px * 10));

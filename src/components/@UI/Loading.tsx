@@ -17,6 +17,7 @@ const Spinner = styled.div`
   div:nth-child(2) {
     animation-delay: -0.5s;
   }
+
   @keyframes lds-ripple {
     0% {
       top: 36px;
@@ -26,8 +27,8 @@ const Spinner = styled.div`
       opacity: 1;
     }
     100% {
-      top: 0px;
-      left: 0px;
+      top: 0;
+      left: 0;
       width: 72px;
       height: 72px;
       opacity: 0;
