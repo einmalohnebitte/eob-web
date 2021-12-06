@@ -106,10 +106,10 @@ const Page: React.FC<PressQuery> = (props) => {
       <Section>
         <AnchorPointer id="report" />
         <H2 css={tw`pb-4`}>{intl("PRESS_REPORT")}</H2>
-        <div css={tw`grid grid-cols-2 md:grid-cols-3 col-gap-2`}>
+        <div css={tw`grid grid-cols-2 md:grid-cols-3 col-gap-3`}>
           {props.pressReports.map((report, k) => (
             <div key={`ar${k}`} css={tw`py-4`}>
-              <H3 css={tw`pb-2`}>{report.title}</H3>
+              <H3 css={tw`pb-2 h-16`}>{report.title}</H3>
               <Image
                 src={report.photo?.url ?? ""}
                 width={report.photo?.width ?? 0}
