@@ -109,7 +109,17 @@ const Page: React.FC<PressQuery> = (props) => {
         <div css={tw`grid grid-cols-2 md:grid-cols-3 col-gap-3`}>
           {props.pressReports.map((report, k) => (
             <div key={`ar${k}`} css={tw`py-4`}>
-              <H3 css={tw`pb-2 h-16`}>{report.title}</H3>
+              <H3
+                css={`
+                  ${tw`pb-2 h-20`} display: -webkit-box;
+                  -webkit-line-clamp: 2;
+                  -webkit-box-orient: vertical;
+                  overflow: hidden;
+                  white-space: normal;
+                `}
+              >
+                {report.title}
+              </H3>
               <Image
                 src={report.photo?.url ?? ""}
                 width={report.photo?.width ?? 0}
