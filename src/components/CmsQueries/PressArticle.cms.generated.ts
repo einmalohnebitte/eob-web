@@ -3,7 +3,7 @@ import * as Types from '../../server/generated/graphql';
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 import { TranslationsFragmentDoc } from '../../hooks/useTranslations/Translations.cms.generated';
 export type PressArticleQueryVariables = Types.Exact<{
-  slug?: Types.Maybe<Types.Scalars['String']>;
+  slug?: Types.InputMaybe<Types.Scalars['String']>;
   locale: Array<Types.Locale> | Types.Locale;
 }>;
 

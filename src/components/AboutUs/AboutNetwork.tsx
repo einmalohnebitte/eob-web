@@ -1,11 +1,13 @@
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
-import { CardHorizontal } from "@/components/@UI/Card";
+import { Card, getBorderColor, getTextColor } from "@/components/@UI/Card";
+import { Grid } from "@/components/@UI/Grid";
 import { Section } from "@/components/@UI/Section";
 import { H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
-import React from "react";
+import React, { useState } from "react";
 import tw from "twin.macro";
+import Link from "next/link";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
@@ -13,16 +15,7 @@ export const AboutNetwork: React.FC<{
 }> = ({ networks, vibrantColor }) => {
   const intl = useTranslations();
   const letters: any = {};
-  // networks = [
-  //   ...networks,
-  //   ...networks,
-  //   ...networks,
-  //   ...networks,
-  //   ...networks,
-  //   ...networks,
-  //   ...networks,
-  //   ...networks,
-  // ];
+
   networks.sort((a, b) => {
     if ((a?.title ?? "") < (b?.title ?? "")) {
       return -1;
@@ -32,7 +25,6 @@ export const AboutNetwork: React.FC<{
     }
     return 0;
   });
-  console.log(networks);
 
   networks.forEach((n) => {
     const letter: string = n.title?.substr(0, 1) ?? "";
@@ -40,6 +32,8 @@ export const AboutNetwork: React.FC<{
       letters[letter] = letter;
     }
   });
+
+  const [filter, setFilter] = useState<string | null>(null);
 
   return (
     <div
@@ -50,41 +44,95 @@ export const AboutNetwork: React.FC<{
       <AnchorPointer id="network" />
       <Section>
         <H2 css={tw`m-4`}>{intl("ABOUT_NETWORK")}</H2>
+        <span
+          role="presentation"
+          css={[
+            tw`m-4 font-lemonism text-3xl cursor-pointer`,
+            filter === null ? tw`text-black` : tw`text-gray-500`,
+          ]}
+          onClick={() => setFilter(null)}
+        >
+          Alles
+        </span>
         {Object.keys(letters).map((l, i) => (
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events
           <span
             role="presentation"
-            css={tw`font-lemonism text-3xl cursor-pointer`}
-            onClick={() => {
-              window.location.hash = `${l}`;
-            }}
+            css={[tw`m-4 font-lemonism text-3xl cursor-pointer `]}
+            onClick={() => setFilter(l)}
             key={l}
           >
-            {i > 0 && " - "}
-            {l}
+            {" - "}
+            <span css={filter === l ? tw`text-black` : tw`text-gray-500`}>
+              {l}
+            </span>
           </span>
         ))}
-        <div
-          css={`
-            height: 300px;
-            overflow: scroll;
-          `}
-        >
-          {networks.map((network, k) => {
+        <Grid>
+          {networks.map((item, k) => {
+            if (filter !== null && item.title?.[0] !== filter) {
+              return null;
+            }
+            const color =
+              k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink";
             return (
-              <div key={`nw${k}`}>
-                <AnchorPointer id={network.title?.substr(0, 1) ?? ""} />
-                <CardHorizontal
-                  title={network.title ?? ""}
-                  img={network.logo?.url}
-                  message={network.description?.html ?? ""}
-                  color={k % 3 === 0 ? "pink" : k % 3 === 1 ? "blue" : "yellow"}
-                  link={network.link ?? ""}
-                ></CardHorizontal>
-              </div>
+              <Link
+                key={`mem${k}`}
+                href={`/network/${item.slug}`}
+                passHref={false}
+              >
+                <div
+                  key={k}
+                  role="presentation"
+                  css={[
+                    tw`flex flex-col content-between cursor-pointer transform scale-100 sm:hover:scale-105 sm:max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  mb-4 overflow-hidden sm:m-4   `,
+                    getBorderColor(color),
+                  ]}
+                >
+                  {item.logo?.url && (
+                    <img
+                      alt={item.title ?? ""}
+                      src={item.logo?.url ?? ""}
+                      height={208}
+                      css={tw`object-cover`}
+                    />
+                  )}
+
+                  <div css={tw`p-4`}>
+                    <H2>{item.title}</H2>
+
+                    {item.description?.html && (
+                      <div
+                        css={`
+                          ${tw`mt-2 text-gray-500`}
+                          display: -webkit-box;
+                          -webkit-line-clamp: 2;
+                          -webkit-box-orient: vertical;
+                          overflow: hidden;
+                          white-space: normal;
+                        `}
+                        dangerouslySetInnerHTML={{
+                          __html: item.description?.html,
+                        }}
+                      />
+                    )}
+                    <div
+                      css={[
+                        getTextColor(color),
+                        tw`flex-grow flex justify-end flex-col m-2`,
+                      ]}
+                    >
+                      <Link href={`/network/${item.slug}` ?? ""}>
+                        <a
+                          css={tw`hover:underline`}
+                        >{`Lerne ${item.title} kennen...`}</a>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             );
           })}
-        </div>
+        </Grid>
       </Section>
     </div>
   );

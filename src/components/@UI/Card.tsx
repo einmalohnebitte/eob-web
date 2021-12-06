@@ -2,16 +2,16 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import tw, { TwStyle } from "twin.macro";
-import { H2, H3 } from "./Texts";
+import { H2 } from "./Texts";
 
-const getBorderColor = (color?: "pink" | "blue" | "yellow"): TwStyle =>
+export const getBorderColor = (color?: "pink" | "blue" | "yellow"): TwStyle =>
   color === "blue"
     ? tw`border-blue-500`
     : color === "pink"
     ? tw`border-pink-500`
     : tw`border-yellow-600`;
 
-const getTextColor = (color?: "pink" | "blue" | "yellow"): TwStyle =>
+export const getTextColor = (color?: "pink" | "blue" | "yellow"): TwStyle =>
   color === "blue"
     ? tw`text-blue-500`
     : color === "pink"
@@ -90,49 +90,6 @@ export const Card: React.FC<{
           </Link>
         )}
         {subtitle && <i>{subtitle}</i>}
-      </div>
-    </div>
-  );
-};
-
-export const CardHorizontal: React.FC<{
-  img?: string;
-  title: string;
-  message?: string;
-  color?: "pink" | "blue" | "yellow";
-  link: string;
-  onClick?: (event: any) => void;
-}> = ({ img, onClick, title, message, color, link }) => {
-  return (
-    <div
-      role="presentation"
-      onClick={onClick}
-      data-cy="card"
-      css={[
-        tw`max-w-3xl bg-white my-4  shadow-md overflow-hidden  border-l-4  border-b-8 border-r-4 border-t-2`,
-        getBorderColor(color),
-        onClick && tw`cursor-pointer`,
-      ]}
-    >
-      <div css={tw`flex`}>
-        <div
-          css={`
-            min-width: 128px;
-          `}
-        >
-          {img && <img alt="Card" src={img} />}
-        </div>
-        <div css={tw`p-4`}>
-          <H3>
-            <a href={link}>{title}</a>
-          </H3>
-          {message && (
-            <div
-              css={tw`mt-2 text-gray-500`}
-              dangerouslySetInnerHTML={{ __html: message }}
-            />
-          )}
-        </div>
       </div>
     </div>
   );

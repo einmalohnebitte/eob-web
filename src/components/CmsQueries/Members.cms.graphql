@@ -44,6 +44,7 @@ query Members($locale: [Locale!]!) {
       url
     }
     link
+    slug
   }
 
   translations(locales: $locale) {
@@ -61,6 +62,25 @@ query Member($slug: String!, $locale: [Locale!]!) {
       url
     }
     order
+  }
+  translations(locales: $locale) {
+    ...Translations
+  }
+}
+
+query Network($slug: String!, $locale: [Locale!]!) {
+  networks(where: { slug: $slug }) {
+    title
+    description {
+      html
+    }
+    logo {
+      width
+      height
+      url
+    }
+    link
+    slug
   }
   translations(locales: $locale) {
     ...Translations
