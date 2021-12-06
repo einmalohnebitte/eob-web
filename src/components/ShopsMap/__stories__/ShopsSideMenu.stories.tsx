@@ -811,11 +811,9 @@ const Template: Story = (args) => (
   <>
     <ShopsSideMenu
       onClose={() => console.log("close")}
-      onSearch={(e) => console.log(e)}
       onSelectCategory={(e) => console.log(e)}
       onSelectTown={(e) => console.log(e)}
       data={data.data as any}
-      search={null}
       isOpen={true}
       isOpenMobile={true}
       selectedCategory={null}

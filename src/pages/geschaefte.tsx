@@ -88,11 +88,11 @@ const Shops: React.FC = () => {
         });
       }
     }
-  }, [data?.pages?.length]);
+  }, [data?.pages, data?.pages.length, fetchNextPage]);
 
-  const [search, setSearch] = useState<string | null>(null);
   const [showSidebar, setShowSidebar] = useState(true);
   const [isOpenMobile, setIsOpenMobile] = useState(false);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const [center, setCenter] = useState<[number, number]>([51.1657, 10.2336]);
 
@@ -128,10 +128,7 @@ const Shops: React.FC = () => {
       (s) => (s.shopType ?? []).filter((t) => type.name === t.name).length > 0
     );
   }
-  if (search) {
-    const regexp = new RegExp(`${search}`, "i");
-    shops = shops?.filter((s) => regexp.test(s.name ?? ""));
-  }
+
   return (
     <>
       <HeadMeta />
@@ -142,14 +139,18 @@ const Shops: React.FC = () => {
         >
           <GrNext />
         </OpenButton>
-        <div
-          css={tw`p-2 w-full md:hidden`}
-          role="presentation"
-          onClick={() => setIsOpenMobile(true)}
-        >
-          <Search search={search ?? ""} disabled={true} />
-        </div>
-        <ShopsMap center={center} shops={shops} height="100vh" />
+        {isUpdating ? (
+          <Section
+            css={`
+              height: 70vh;
+              ${tw`flex justify-center items-center`}
+            `}
+          >
+            <Loading />
+          </Section>
+        ) : (
+          <ShopsMap center={center} shops={shops} height="100vh" />
+        )}
       </div>
 
       <ShopsSideMenu
@@ -157,12 +158,14 @@ const Shops: React.FC = () => {
           setShowSidebar(false);
           setIsOpenMobile(false);
         }}
-        onSearch={setSearch}
         isOpen={showSidebar}
         isOpenMobile={isOpenMobile}
-        search={search}
         onSelectCategory={(c) => {
-          setCategory(category === c ? null : c);
+          setIsUpdating(true);
+          setTimeout(() => {
+            setIsUpdating(false);
+            setCategory(category === c ? null : c);
+          }, 300);
         }}
         selectedCategory={category}
         data={firstData}
@@ -170,7 +173,13 @@ const Shops: React.FC = () => {
           setCenter([c?.location?.latitude ?? 0, c?.location?.longitude ?? 0])
         }
         selectedType={type}
-        onSelectType={(c) => setType(type === c ? null : c)}
+        onSelectType={(c) => {
+          setIsUpdating(true);
+          setTimeout(() => {
+            setIsUpdating(false);
+            setType(type === c ? null : c);
+          }, 300);
+        }}
       />
     </>
   );
