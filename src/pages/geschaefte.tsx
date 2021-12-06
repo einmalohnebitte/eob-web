@@ -128,7 +128,6 @@ const Shops: React.FC = () => {
       (s) => (s.shopType ?? []).filter((t) => type.name === t.name).length > 0
     );
   }
-
   return (
     <>
       <HeadMeta />
@@ -139,18 +138,11 @@ const Shops: React.FC = () => {
         >
           <GrNext />
         </OpenButton>
-        {isUpdating ? (
-          <Section
-            css={`
-              height: 70vh;
-              ${tw`flex justify-center items-center`}
-            `}
-          >
-            <Loading />
-          </Section>
-        ) : (
-          <ShopsMap center={center} shops={shops} height="100vh" />
-        )}
+        <ShopsMap
+          center={center}
+          shops={isUpdating ? null : shops}
+          height="100vh"
+        />
       </div>
 
       <ShopsSideMenu
@@ -162,10 +154,10 @@ const Shops: React.FC = () => {
         isOpenMobile={isOpenMobile}
         onSelectCategory={(c) => {
           setIsUpdating(true);
+          setCategory(category === c ? null : c);
           setTimeout(() => {
             setIsUpdating(false);
-            setCategory(category === c ? null : c);
-          }, 300);
+          }, 100);
         }}
         selectedCategory={category}
         data={firstData}
@@ -175,10 +167,10 @@ const Shops: React.FC = () => {
         selectedType={type}
         onSelectType={(c) => {
           setIsUpdating(true);
+          setType(type === c ? null : c);
           setTimeout(() => {
             setIsUpdating(false);
-            setType(type === c ? null : c);
-          }, 300);
+          }, 100);
         }}
       />
     </>

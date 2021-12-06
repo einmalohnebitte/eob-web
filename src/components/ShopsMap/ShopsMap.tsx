@@ -40,7 +40,7 @@ const CENTER: [number, number] = [51.1657, 10.4515];
 
 const MapItem: React.FC<{
   center?: [number, number] | null;
-  shops: ShopsQuery["shops"];
+  shops: ShopsQuery["shops"] | null;
 }> = ({ center, shops }) => {
   const map = useMap();
   const centerRef = useRef(center ?? CENTER);
@@ -55,35 +55,37 @@ const MapItem: React.FC<{
         url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
       />
       <GeoJSON data={{ type: "FeatureCollection", features: [] } as any} />
-      <MarkerClusterGroup>
-        {(shops ?? []).map((item, k) => {
-          return (
-            item.location && (
-              <Marker
-                key={k}
-                position={{
-                  lat: item.location.latitude,
-                  lng: item.location.longitude,
-                }}
-              >
-                <Popup>
-                  <b>{item.name}</b>
-                  <p>{item.openinghours}</p>
-                  <p>{/* {item.strasse} - {item?.stadt?.name} */}</p>
-                  <p>{(item.shopcategories ?? []).join(" - ")}</p>
-                </Popup>
-              </Marker>
-            )
-          );
-        })}
-      </MarkerClusterGroup>
+      {shops ? (
+        <MarkerClusterGroup>
+          {shops.map((item, k) => {
+            return (
+              item.location && (
+                <Marker
+                  key={k}
+                  position={{
+                    lat: item.location.latitude,
+                    lng: item.location.longitude,
+                  }}
+                >
+                  <Popup>
+                    <b>{item.name}</b>
+                    <p>{item.openinghours}</p>
+                    <p>{/* {item.strasse} - {item?.stadt?.name} */}</p>
+                    <p>{(item.shopcategories ?? []).join(" - ")}</p>
+                  </Popup>
+                </Marker>
+              )
+            );
+          })}
+        </MarkerClusterGroup>
+      ) : null}
     </>
   );
 };
 
 export const ShopsMap: React.FC<{
   center?: [number, number] | null;
-  shops: ShopsQuery["shops"];
+  shops: ShopsQuery["shops"] | null;
   width?: string;
   height?: string;
 }> = ({ center, shops, width = "100%", height = "100%" }) => {
