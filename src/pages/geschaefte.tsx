@@ -101,6 +101,7 @@ const Shops: React.FC = () => {
   >(null);
 
   const [type, setType] = useState<ShopsQuery["shopTypes"][0] | null>(null);
+  const [search, setSearch] = useState<string | null>(null);
 
   if (isLoading || !data?.pages[0].shops) {
     return (
@@ -128,6 +129,15 @@ const Shops: React.FC = () => {
       (s) => (s.shopType ?? []).filter((t) => type.name === t.name).length > 0
     );
   }
+  if (search) {
+    const regexp = new RegExp(`${search}`, "i");
+    shops = shops?.filter(
+      (s) =>
+        regexp.test(s.name ?? "") ||
+        regexp.test(s.shopcategories.join(", ")) ||
+        regexp.test(s.shopTown?.name ?? "")
+    );
+  }
   return (
     <>
       <HeadMeta />
@@ -137,7 +147,24 @@ const Shops: React.FC = () => {
           onClick={() => setShowSidebar(!showSidebar)}
         >
           <GrNext />
-        </OpenButton>
+        </OpenButton>{" "}
+        <div
+          css={tw`p-2 w-full md:hidden`}
+          role="presentation"
+          onClick={() => setIsOpenMobile(true)}
+        >
+          <Search
+            onSearch={(search) => {
+              setIsUpdating(true);
+              setSearch(search);
+              setTimeout(() => {
+                setIsUpdating(false);
+              }, 100);
+            }}
+            search={search ?? ""}
+            disabled={true}
+          />
+        </div>
         <ShopsMap
           center={center}
           shops={isUpdating ? null : shops}
@@ -150,6 +177,14 @@ const Shops: React.FC = () => {
           setShowSidebar(false);
           setIsOpenMobile(false);
         }}
+        onSearch={(search) => {
+          setIsUpdating(true);
+          setSearch(search);
+          setTimeout(() => {
+            setIsUpdating(false);
+          }, 100);
+        }}
+        search={search}
         isOpen={showSidebar}
         isOpenMobile={isOpenMobile}
         onSelectCategory={(c) => {
