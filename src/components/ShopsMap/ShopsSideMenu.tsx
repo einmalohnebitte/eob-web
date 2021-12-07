@@ -33,21 +33,25 @@ const Sidebar = styled.div<{ isOpen: boolean; isOpenMobile: boolean }>`
 
 export const ShopsSideMenu: React.FC<{
   onClose: () => void;
+  onSearch: (key: string) => void;
   onSelectCategory: (category: ShopsQuery["shopCategories"][0]) => void;
   onSelectTown: (town: ShopsQuery["shopTowns"][0] | null) => void;
   onSelectType: (type: ShopsQuery["shopTypes"][0] | null) => void;
   isOpen: boolean;
   isOpenMobile: boolean;
+  search: string | null;
   data: ShopsQuery;
   selectedCategory: ShopsQuery["shopCategories"][0] | null;
   selectedType: ShopsQuery["shopTypes"][0] | null;
 }> = ({
   onClose,
+  onSearch,
   onSelectCategory,
   onSelectTown,
   onSelectType,
   isOpenMobile,
   isOpen,
+  search,
   selectedCategory,
   selectedType,
   data,
@@ -59,7 +63,11 @@ export const ShopsSideMenu: React.FC<{
   if (!data?.shops || !data?.shopTowns || !data?.shopCategories) {
     return null;
   }
-  const { shopTowns, shopCategories, shopTypes } = data;
+  const { shops, shopTowns, shopCategories, shopTypes } = data;
+  const suggestions = shops
+    .slice(0, 6)
+    .filter((s) => s.name)
+    .map((s) => s.name);
 
   return (
     <Sidebar isOpen={isOpen} isOpenMobile={isOpenMobile}>
@@ -67,6 +75,13 @@ export const ShopsSideMenu: React.FC<{
         <MdClose size={25} />
       </div>
 
+      <div css={tw`p-4`}>
+        <Search
+          suggestions={suggestions}
+          onSearch={onSearch}
+          search={search ?? ""}
+        />
+      </div>
       <div>
         <div css={tw`flex justify-center`}>
           <ButtonNoColor
