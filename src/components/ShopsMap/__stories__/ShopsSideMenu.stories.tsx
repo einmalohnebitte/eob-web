@@ -810,6 +810,8 @@ const data = {
 const Template: Story = (args) => (
   <>
     <ShopsSideMenu
+      search={null}
+      onSearch={() => {}}
       onClose={() => console.log("close")}
       onSelectCategory={(e) => console.log(e)}
       onSelectTown={(e) => console.log(e)}
