@@ -15,5 +15,6 @@ module.exports = {
       },
     ],
     "jsx-a11y/anchor-is-valid": "off",
+    "jest/no-mocks-import": "off",
   },
 };

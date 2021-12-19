@@ -57,7 +57,7 @@ export const filterActions = {
   }),
 };
 
-const applyShopFilter = (state: FilterStateType) => {
+export const applyShopFilter = (state: FilterStateType) => {
   const { filters, data } = state;
   let shops: ShopsQuery["shops"] | null = [...(data?.shops ?? [])];
   if (filters.category) {
@@ -91,7 +91,7 @@ const applyShopFilter = (state: FilterStateType) => {
   return shops;
 };
 
-const reducer = (state: FilterStateType, action: FilterActionType) => {
+export const reducer = (state: FilterStateType, action: FilterActionType) => {
   switch (action.type) {
     case "SET_CATEGORY": {
       if (state.filters.category === action.payload) {
