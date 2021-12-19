@@ -2,7 +2,6 @@
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
 import styled from "styled-components";
-import tw from "twin.macro";
 
 import { FOOTER_HEIGHT } from "../../../constants/MediaQueries";
 import { Section } from "../../@UI/Section";
@@ -12,12 +11,7 @@ export default {
   title: "Footer",
 } as Meta;
 
-const A = styled.a`
-  ${tw`m-4`}
-`;
-
 const Layout = styled.div`
-  ${tw`pt-16 md:pt-20`}
   min-height: calc(100vh - ${FOOTER_HEIGHT}px);
 `;
 
@@ -32,7 +26,7 @@ const SampleText = `Lorem Ipsum is simply dummy text of the printing and typeset
 
 const Template: Story = (args) => (
   <>
-    <Layout>
+    <Layout className="pt-16 md:pt-20">
       <Section>{SampleText}</Section>
     </Layout>
     <AppFooter />

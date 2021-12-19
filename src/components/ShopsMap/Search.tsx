@@ -3,7 +3,6 @@ import { useTranslations } from "@/hooks/useTranslations";
 import type { Maybe } from "@/server/generated/graphql";
 import React from "react";
 import { MdSearch } from "react-icons/md";
-import tw from "twin.macro";
 
 export const Search: React.FC<{
   suggestions?: (Maybe<string> | undefined)[];
@@ -14,14 +13,14 @@ export const Search: React.FC<{
   const intl = useTranslations();
   return (
     <div
-      css={tw`w-full inline-flex flex-col justify-center relative text-gray-500 `}
+      className={`w-full inline-flex flex-col justify-center relative text-gray-500 `}
     >
-      <div css={tw`relative`}>
+      <div className={`relative`}>
         <input
           type="text"
+          className="pl-8"
           css={`
             ${TwInput}
-            ${tw` pl-8`}
           `}
           name="search"
           placeholder={intl("SEARCH")}
@@ -29,7 +28,7 @@ export const Search: React.FC<{
           onChange={(e) => onSearch?.(e.target?.value)}
           value={search ?? ""}
         />
-        <MdSearch css={tw`w-4 h-4 absolute left-2.5 top-5 `} />
+        <MdSearch className="w-4 h-4 absolute left-2.5 top-5" />
       </div>
       {/* <ul css={tw`bg-white border border-gray-100 w-full mt-2`}>
         {suggestions?.map((s) => (

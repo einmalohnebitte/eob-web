@@ -10,7 +10,6 @@ import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
-import tw from "twin.macro";
 
 import { Section } from "../components/@UI/Section";
 
@@ -29,12 +28,7 @@ const BlogPage: React.FC<BlogsQuery> = ({ blogs }) => {
     <Section>
       <Grid>
         {blogs.map((item, k) => (
-          <Link
-            css={tw`m-4`}
-            key={k}
-            href={`/blog/${item.date}`}
-            passHref={true}
-          >
+          <Link key={k} href={`/blog/${item.date}`} passHref={true}>
             <Card
               title={item.title}
               subtitle={item.date}

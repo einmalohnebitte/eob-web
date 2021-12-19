@@ -2,7 +2,6 @@ import { Card } from "@/components/@UI/Card";
 import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
-import tw from "twin.macro";
 
 import { Section } from "../@UI/Section";
 
@@ -18,7 +17,7 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
         background-image: linear-gradient(#dddddd, white);
       `}
     >
-      <Section css={tw` sm:flex `}>
+      <Section className="sm:flex ">
         <Card
           color="blue"
           title={intl("BUY")}
