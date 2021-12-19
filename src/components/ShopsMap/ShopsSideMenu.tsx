@@ -8,6 +8,10 @@ import {
   YellowInverted,
 } from "@/components/@UI/Buttons";
 import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
+import {
+  FilterActionType,
+  FilterStateType,
+} from "@/components/ShopsMap/useFetchMap";
 import { MQ_MOBILE } from "@/constants/MediaQueries";
 import { useTranslations } from "@/hooks/useTranslations";
 import React, { useState } from "react";
@@ -33,32 +37,14 @@ const Sidebar = styled.div<{ isOpen: boolean; isOpenMobile: boolean }>`
 
 export const ShopsSideMenu: React.FC<{
   onClose: () => void;
-  onSearch: (key: string) => void;
-  onSelectCategory: (category: ShopsQuery["shopCategories"][0]) => void;
-  onSelectTown: (town: ShopsQuery["shopTowns"][0] | null) => void;
-  onSelectType: (type: ShopsQuery["shopTypes"][0] | null) => void;
   isOpen: boolean;
   isOpenMobile: boolean;
-  search: string | null;
   data: ShopsQuery;
-  selectedCategory: ShopsQuery["shopCategories"][0] | null;
-  selectedType: ShopsQuery["shopTypes"][0] | null;
-}> = ({
-  onClose,
-  onSearch,
-  onSelectCategory,
-  onSelectTown,
-  onSelectType,
-  isOpenMobile,
-  isOpen,
-  search,
-  selectedCategory,
-  selectedType,
-  data,
-}) => {
+  filters: FilterStateType["filters"];
+  dispatchAction: (action: FilterActionType) => void;
+}> = ({ onClose, isOpenMobile, isOpen, filters, dispatchAction, data }) => {
   const intl = useTranslations();
   const [activeTab, setActiveTab] = useState<number>(0);
-  const [town, setTown] = useState<ShopsQuery["shopTowns"][0] | null>(null);
 
   if (!data?.shops || !data?.shopTowns || !data?.shopCategories) {
     return null;
@@ -78,8 +64,10 @@ export const ShopsSideMenu: React.FC<{
       <div css={tw`p-4`}>
         <Search
           suggestions={suggestions}
-          onSearch={onSearch}
-          search={search ?? ""}
+          onSearch={(search) =>
+            dispatchAction({ type: "SET_SEARCH", payload: search })
+          }
+          search={filters.search ?? ""}
         />
       </div>
       <div>
@@ -119,44 +107,55 @@ export const ShopsSideMenu: React.FC<{
           // eslint-disable-next-line no-nested-ternary
           activeTab === 0 ? (
             <div>
-              {shopCategories.map((c) => (
+              {shopCategories.map((category) => (
                 <ButtonNoColor
-                  key={c.id}
+                  key={category.id}
                   onClick={() => {
-                    onSelectCategory(c);
+                    dispatchAction({
+                      type: "SET_CATEGORY",
+                      payload: category.name,
+                    });
                   }}
-                  css={[tw`m-2`, c === selectedCategory ? Pink : PinkInverted]}
+                  css={[
+                    tw`m-2`,
+                    category.name === filters.category ? Pink : PinkInverted,
+                  ]}
                 >
-                  {c.name}
+                  {category.name}
                 </ButtonNoColor>
               ))}
             </div>
           ) : activeTab === 1 ? (
             <div>
-              {shopTowns.map((c) => (
+              {shopTowns.map((town) => (
                 <ButtonNoColor
                   onClick={() => {
-                    setTown(c);
-                    onSelectTown(c);
+                    dispatchAction({ type: "SET_TOWN", payload: town });
                   }}
-                  css={[tw`m-2`, c === town ? Yellow : YellowInverted]}
-                  key={c.id}
+                  css={[
+                    tw`m-2`,
+                    town.name === filters.town ? Yellow : YellowInverted,
+                  ]}
+                  key={town.id}
                 >
-                  {c.name}
+                  {town.name}
                 </ButtonNoColor>
               ))}
             </div>
           ) : (
             <div>
-              {shopTypes.map((c) => (
+              {shopTypes.map((type) => (
                 <ButtonNoColor
                   onClick={() => {
-                    onSelectType?.(c);
+                    dispatchAction({ type: "SET_TYPE", payload: type.name });
                   }}
-                  css={[tw`m-2`, c === selectedType ? Blue : BlueInverted]}
-                  key={c.id}
+                  css={[
+                    tw`m-2`,
+                    type.name === filters.type ? Blue : BlueInverted,
+                  ]}
+                  key={type.id}
                 >
-                  {c.name}
+                  {type.name}
                 </ButtonNoColor>
               ))}
             </div>
