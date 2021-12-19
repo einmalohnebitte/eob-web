@@ -1,4 +1,5 @@
 // also exported from '@storybook/react' if you can deal with breaking changes in 6.1
+import { initialState } from "@/components/ShopsMap/useFetchMap";
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
 
@@ -810,17 +811,12 @@ const data = {
 const Template: Story = (args) => (
   <>
     <ShopsSideMenu
-      search={null}
-      onSearch={() => {}}
       onClose={() => console.log("close")}
-      onSelectCategory={(e) => console.log(e)}
-      onSelectTown={(e) => console.log(e)}
       data={data.data as any}
       isOpen={true}
       isOpenMobile={true}
-      selectedCategory={null}
-      onSelectType={(e) => console.log(e)}
-      selectedType={null}
+      dispatchAction={() => {}}
+      filters={initialState.filters}
     />
   </>
 );
