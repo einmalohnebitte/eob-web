@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import tw from "twin.macro";
 
 const Spinner = styled.div`
   display: inline-block;
@@ -37,7 +36,7 @@ const Spinner = styled.div`
 
 export const Loading: React.FC = () => {
   return (
-    <Spinner css={tw`my-8`}>
+    <Spinner className="my-8">
       <div></div>
       <div></div>
     </Spinner>

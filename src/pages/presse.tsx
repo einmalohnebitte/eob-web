@@ -15,7 +15,6 @@ import Image from "next/image";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
-import tw from "twin.macro";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PressDocument, {
@@ -44,7 +43,7 @@ const Page: React.FC<PressQuery> = (props) => {
         />
       </Section>
       <Section>
-        <div css={tw`grid grid-cols-2 md:grid-cols-3 text-center`}>
+        <div className={`grid grid-cols-2 md:grid-cols-3 text-center`}>
           <Card
             onClick={() => {
               window.location.hash = "#announcements";
@@ -70,10 +69,10 @@ const Page: React.FC<PressQuery> = (props) => {
       </Section>
       <Section>
         <AnchorPointer id="announcements" />
-        <H2 css={tw`pb-4`}>{intl("PRESS_ANNOUNCEMENTS")}</H2>
-        <div css={tw`grid grid-cols-2 md:grid-cols-3 col-gap-2`}>
+        <H2 className={`pb-4`}>{intl("PRESS_ANNOUNCEMENTS")}</H2>
+        <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-2`}>
           {props.pressArticles.map((article, k) => (
-            <div key={`ar${k}`} css={tw`py-4`}>
+            <div key={`ar${k}`} className={`py-4`}>
               <H3>{article.title}</H3>
               <div
                 dangerouslySetInnerHTML={{
@@ -89,10 +88,10 @@ const Page: React.FC<PressQuery> = (props) => {
       </Section>
       <Section>
         <AnchorPointer id="photos" />
-        <H2 css={tw`pb-4`}>{intl("PRESS_PHOTOS")}</H2>
-        <div css={tw`grid grid-cols-2 md:grid-cols-3 col-gap-2`}>
+        <H2 className={`pb-4`}>{intl("PRESS_PHOTOS")}</H2>
+        <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-2`}>
           {props.pressPhotos.map((pic, k) => (
-            <div key={`ar${k}`} css={tw`py-4`}>
+            <div key={`ar${k}`} className={`py-4`}>
               <Image
                 src={pic.photo?.url ?? ""}
                 width={pic.photo?.width ?? 0}
@@ -105,13 +104,14 @@ const Page: React.FC<PressQuery> = (props) => {
       </Section>
       <Section>
         <AnchorPointer id="report" />
-        <H2 css={tw`pb-4`}>{intl("PRESS_REPORT")}</H2>
-        <div css={tw`grid grid-cols-2 md:grid-cols-3 col-gap-3`}>
+        <H2 className={`pb-4`}>{intl("PRESS_REPORT")}</H2>
+        <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-3`}>
           {props.pressReports.map((report, k) => (
-            <div key={`ar${k}`} css={tw`py-4`}>
+            <div key={`ar${k}`} className={`py-4`}>
               <H3
+                className="pb-2 h-20"
                 css={`
-                  ${tw`pb-2 h-20`} display: -webkit-box;
+                  display: -webkit-box;
                   -webkit-line-clamp: 2;
                   -webkit-box-orient: vertical;
                   overflow: hidden;

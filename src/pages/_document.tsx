@@ -49,6 +49,10 @@ export default class MyDocument extends Document<{
   })(); `,
             }}
           />
+          <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.css"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import tw from "twin.macro";
 
 export const SponsorCard: React.FC<{
   src: string;
@@ -8,10 +7,10 @@ export const SponsorCard: React.FC<{
 }> = ({ src, alt }) =>
   src ? (
     <div
+      className="shadow-xl rounded-lg p-2 m-2 flex-shrink-0"
       css={`
         width: 10rem;
         height: 10rem;
-        ${tw`shadow-xl rounded-lg p-2 m-2 flex-shrink-0`}
         div {
           top: 50%;
           transform: translateY(-50%);

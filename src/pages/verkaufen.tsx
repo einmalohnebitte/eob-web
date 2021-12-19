@@ -14,7 +14,6 @@ import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
 import Image from "next/image";
 import React from "react";
-import tw from "twin.macro";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageSectionsDocument, {
@@ -45,7 +44,7 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         <SplitSection.Main>
           <H1>{pageSections[0].title}</H1>
           <div
-            css={tw`py-4`}
+            className="py-4"
             dangerouslySetInnerHTML={{
               __html: pageSections[0].content.html ?? "",
             }}
