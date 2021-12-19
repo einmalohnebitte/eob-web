@@ -11,7 +11,6 @@ import { Locale } from "@/server/generated/graphql";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
-import tw from "twin.macro";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await graphCmsRequest(MembersDocument, { locale: [Locale.De] });
@@ -36,7 +35,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 const TeamPage: React.FC<NetworkQuery> = ({ networks }) => (
   <Section>
-    <div css={tw`max-w-sm float-left m-4`}>
+    <div className="max-w-sm float-left m-4">
       <Card
         img={networks[0]?.logo?.url}
         title={networks[0]?.title ?? ""}

@@ -1,4 +1,3 @@
-import { Button } from "@/components/@UI/Buttons";
 import { Loading } from "@/components/@UI/Loading";
 import { Section } from "@/components/@UI/Section";
 import { withLayout } from "@/components/Layout";
@@ -13,10 +12,8 @@ import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { GrNext } from "react-icons/gr";
-import styled from "styled-components";
-import tw from "twin.macro";
-
-import { MQ_MOBILE } from "../constants/MediaQueries";
+import styles from "@/components/ShopsMap/Shops.module.scss";
+import classnames from "classnames";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(TranslationsDocument, {
@@ -33,20 +30,6 @@ const ShopsMap = dynamic(
   { ssr: false }
 );
 
-const OpenButton = styled(Button)<{ isVisible: boolean }>`
-  position: absolute;
-  z-index: 999999;
-  background: white;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
-  border-radius: 4px;
-  margin-top: 100px;
-  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
-
-  @media ${MQ_MOBILE} {
-    display: none;
-  }
-`;
-
 const Shops: React.FC = () => {
   const { isLoading, state, dispatchAction } = useFetchMap();
 
@@ -56,9 +39,9 @@ const Shops: React.FC = () => {
   if (isLoading || !state.data) {
     return (
       <Section
+        className="flex justify-center items-center"
         css={`
           height: 70vh;
-          ${tw`flex justify-center items-center`}
         `}
       >
         <Loading />
@@ -70,14 +53,20 @@ const Shops: React.FC = () => {
     <>
       <HeadMeta />
       <div>
-        <OpenButton
-          isVisible={!showSidebar}
+        <button
+          className={classnames(
+            styles.OpenButton,
+            "text-xl  font-lemonism tracking-wider py-2 px-6 rounded focus:outline-none",
+            {
+              [styles["OpenButton--is-visible"]]: !showSidebar,
+            }
+          )}
           onClick={() => setShowSidebar(!showSidebar)}
         >
           <GrNext />
-        </OpenButton>{" "}
+        </button>{" "}
         <div
-          css={tw`p-2 w-full md:hidden`}
+          className="p-2 w-full md:hidden"
           role="presentation"
           onClick={() => setIsOpenMobile(true)}
         >
