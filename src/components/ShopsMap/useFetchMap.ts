@@ -229,7 +229,7 @@ export const useFetchMap = () => {
         const firstData = data.pages[0];
         dispatch({ type: "SET_DATA", payload: firstData });
       },
-      staleTime: 60000,
+      staleTime: 36_000,
     }
   );
 
