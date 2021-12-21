@@ -1,41 +1,39 @@
 import { ShopsNumberQuery } from "@/components/CmsQueries/ShopsNumber.cms.generated";
 import { useRouter } from "next/router";
 import React from "react";
-import tw from "twin.macro";
 
 import Image from "next/image";
 import { Section } from "../@UI/Section";
 import { H1, H2 } from "../@UI/Texts";
+import classNames from "classnames";
 
 export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
   const { push } = useRouter();
   return (
     <>
-      <div css={tw`bg-gray-200`}>
-        <Section css={tw` text-center`}>
+      <div className="bg-gray-200">
+        <Section className=" text-center">
           <H2>DAS HABEN WIR SCHON ERREICHT</H2>
-          <div
-            css={tw`flex flex-col md:flex-row justify-between items-center md:items-start mx-10 py-4`}
-          >
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-start py-4 mx-10">
             {kpis.map((kpi, i) => (
               <div
-                css={[
-                  tw`w-40`,
-                  i % 3 === 0 && tw`text-pink-600`,
-                  i % 3 === 1 && tw`text-blue-600`,
-                  i % 3 === 2 && tw`text-yellow-600`,
-                ]}
+                css={classNames(
+                  `w-40`,
+                  i % 3 === 0 && `text-pink-600`,
+                  i % 3 === 1 && `text-blue-600`,
+                  i % 3 === 2 && `text-yellow-600`
+                )}
                 key={`kpi${i}`}
               >
                 <H1>{kpi.value}</H1>
-                <p css={tw`text-sm`}>{kpi.text}</p>
+                <p className="text-sm"> {kpi.text}</p>
               </div>
             ))}
           </div>
         </Section>
       </div>
       <div
-        css={tw`md:w-3/5 flex cursor-pointer`}
+        className="flex md:w-3/5 cursor-pointer"
         onClick={() => push("/geschaefte")}
         role="presentation"
       >

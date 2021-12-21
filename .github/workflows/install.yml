@@ -9,5 +9,5 @@ jobs:
     - uses: actions/cache@v2
       with:
           path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock') }}
     - run: yarn

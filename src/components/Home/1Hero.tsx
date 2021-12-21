@@ -1,7 +1,7 @@
 import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.generated";
+import classNames from "classnames";
 import Image from "next/image";
 import React from "react";
-import tw from "twin.macro";
 
 import { Section } from "../@UI/Section";
 import { H1 } from "../@UI/Texts";
@@ -12,19 +12,18 @@ const HeroImg: React.FC<{
   src: string;
 }> = ({ src, is2Row, is2Col }) => (
   <div
+    className={classNames(is2Row && `row-span-2`, is2Col && `col-span-2`)}
     css={`
       /* position: relative; */
       div {
         height: 100%;
       }
-      ${is2Row && tw`row-span-2`}
-      ${is2Col && tw`col-span-2`}
     `}
   >
     {src && (
       <Image
         alt="hero"
-        css={tw`rounded-lg`}
+        className="rounded-lg"
         src={src}
         layout="responsive"
         width={is2Row ? 200 : 100}
@@ -42,11 +41,11 @@ export const Hero: React.FC<
       <Section>
         <H1>{title}</H1>
         <div
+          className="py-4"
           css={`
-            ${tw`py-4 `}
             strong {
               font-size: 1.8rem;
-              ${tw`text-pink-600`}
+              color: rgba(219, 39, 119, 1);
             }
           `}
           dangerouslySetInnerHTML={{
@@ -54,11 +53,11 @@ export const Hero: React.FC<
           }}
         />
       </Section>
-      <div css={tw`overflow-x-scroll`}>
+      <div className="overflow-x-scroll">
         <div
+          className="grid grid-cols-7 grid-rows-2 grid-flow-col gap-4 px-10"
           css={`
             min-width: 1020px;
-            ${tw`gap-4 grid grid-flow-col grid-cols-7 grid-rows-2 px-10`}
           `}
         >
           <HeroImg src={"/images/hero/Bild6 - Berlin.jpg"} />
