@@ -1,6 +1,5 @@
 import React from "react";
-import { GrFacebook, GrInstagram } from "react-icons/gr";
-import tw from "twin.macro";
+import { GrFacebook, GrInstagram } from "react-icons/gr"; 
 
 import Image from "next/image";
 import { Section } from "../@UI/Section";
@@ -12,10 +11,10 @@ export const Social: React.FC = () => (
       background-color: #f9f8fd;
     `}
   >
-    <Section css={tw` text-blue-500 text-center`}>
+    <Section className="text-center text-blue-500">
       <H2>FOLGE EINMAL OHNE, BITTE AUF INSTAGRAM ODER FACEBOOK</H2>
 
-      <picture css={tw`p-4`}>
+      <picture className="p-4">
         <Image width="960" height="225" src="/images/social.png" alt="social" />
       </picture>
       <div>
