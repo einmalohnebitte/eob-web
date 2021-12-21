@@ -52,8 +52,8 @@ const TemplateSplitRight: Story = (args) => (
     <SplitSection.Section>
       <SplitSection.Main>
         <H2>Test Title</H2>
-        <P
-          className="py-4"
+        <p
+          className={`py-4 ${PFont}`}
           dangerouslySetInnerHTML={{
             __html: SampleText,
           }}
