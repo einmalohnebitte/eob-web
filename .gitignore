@@ -15,3 +15,4 @@ public/workbox-*
 cypress/videos
 coverage
 .env
+tsconfig.tsbuildinfo
