@@ -1,7 +1,6 @@
 import { TwInput } from "@/components/Forms/FieldInput";
 import { ErrorMessage, useField } from "formik";
 import React from "react";
-import tw from "twin.macro";
 
 type PropType = {
   field: string;
@@ -16,16 +15,16 @@ export const FieldArea: React.FC<PropType> = ({
 }) => {
   const [formikProps] = useField(field);
   return (
-    <div css={tw`m-2`}>
+    <div className={`m-2`}>
       <ErrorMessage
-        render={(msg) => <p className={`text-red-500 text-xs italic`}>{msg}</p>}
+        render={(msg) => <p className="text-xs italic text-red-500">{msg}</p>}
         name={field}
       />
-      <label css={tw`block text-gray-700 font-gt   mb-2`} htmlFor={field}>
+      <label className="block mb-2 font-gt text-gray-700" htmlFor={field}>
         {label}
       </label>
       <textarea
-        css={TwInput}
+        className={TwInput}
         {...formikProps}
         rows={6}
         cols={50}

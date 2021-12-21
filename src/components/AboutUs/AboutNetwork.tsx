@@ -6,8 +6,8 @@ import { H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
 import React, { useState } from "react";
-import tw from "twin.macro";
 import Link from "next/link";
+import classNames from "classnames";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
@@ -43,13 +43,13 @@ export const AboutNetwork: React.FC<{
     >
       <AnchorPointer id="network" />
       <Section>
-        <H2 css={tw`m-4`}>{intl("ABOUT_NETWORK")}</H2>
+        <H2 className="m-4">{intl("ABOUT_NETWORK")}</H2>
         <span
           role="presentation"
-          css={[
-            tw`m-4 font-lemonism text-3xl cursor-pointer`,
-            filter === null ? tw`text-black` : tw`text-gray-500`,
-          ]}
+          className={classNames([
+            "m-4 font-lemonism text-3xl cursor-pointer",
+            filter === null ? `text-black` : `text-gray-500`,
+          ])}
           onClick={() => setFilter(null)}
         >
           Alles
@@ -57,12 +57,12 @@ export const AboutNetwork: React.FC<{
         {Object.keys(letters).map((l, i) => (
           <span
             role="presentation"
-            css={[tw`m-4 font-lemonism text-3xl cursor-pointer `]}
+            className="m-4 font-lemonism text-3xl cursor-pointer"
             onClick={() => setFilter(l)}
             key={l}
           >
             {" - "}
-            <span css={filter === l ? tw`text-black` : tw`text-gray-500`}>
+            <span className={filter === l ? `text-black` : `text-gray-500`}>
               {l}
             </span>
           </span>
@@ -83,27 +83,27 @@ export const AboutNetwork: React.FC<{
                 <div
                   key={k}
                   role="presentation"
-                  css={[
-                    tw`flex flex-col content-between cursor-pointer transform scale-100 sm:hover:scale-105 sm:max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  mb-4 overflow-hidden sm:m-4   `,
-                    getBorderColor(color),
-                  ]}
+                  className={classNames(
+                    "flex flex-col content-between cursor-pointer transform scale-100 sm:hover:scale-105 sm:max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  mb-4 overflow-hidden sm:m-4   ",
+                    getBorderColor(color)
+                  )}
                 >
                   {item.logo?.url && (
                     <img
                       alt={item.title ?? ""}
                       src={item.logo?.url ?? ""}
                       height={208}
-                      css={tw`object-cover`}
+                      className="object-cover"
                     />
                   )}
 
-                  <div css={tw`p-4`}>
+                  <div className="p-4">
                     <H2>{item.title}</H2>
 
                     {item.description?.html && (
                       <div
+                        className="mt-2 text-gray-500"
                         css={`
-                          ${tw`mt-2 text-gray-500`}
                           display: -webkit-box;
                           -webkit-line-clamp: 2;
                           -webkit-box-orient: vertical;
@@ -116,15 +116,13 @@ export const AboutNetwork: React.FC<{
                       />
                     )}
                     <div
-                      css={[
+                      css={classNames([
                         getTextColor(color),
-                        tw`flex-grow flex justify-end flex-col m-2`,
-                      ]}
+                        "flex-grow flex justify-end flex-col m-2",
+                      ])}
                     >
                       <Link href={`/network/${item.slug}` ?? ""}>
-                        <a
-                          css={tw`hover:underline`}
-                        >{`Lerne ${item.title} kennen...`}</a>
+                        <a className="hover:underline">{`Lerne ${item.title} kennen...`}</a>
                       </Link>
                     </div>
                   </div>

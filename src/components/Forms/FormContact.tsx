@@ -3,7 +3,6 @@ import { SendEmailDocument } from "@/components/Forms/sendEmail.local.generated"
 import { useTranslations } from "@/hooks/useTranslations";
 import { useReactMutation } from "@correttojs/next-utils/useReactQuery";
 import React from "react";
-import tw from "twin.macro";
 import * as Yup from "yup";
 
 import { FieldArea } from "./FieldArea";
@@ -59,7 +58,7 @@ export const FormContact: React.FC = () => {
         });
       }}
     >
-      <div css={tw`flex`}>
+      <div className="flex">
         <FieldInput label={intl("FORM_NAME")} field="firstName" />
         <FieldInput label={intl("FORM_SURNAME")} field="lastName" />
       </div>

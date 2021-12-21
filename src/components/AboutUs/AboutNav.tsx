@@ -2,13 +2,12 @@ import { Card } from "@/components/@UI/Card";
 import { Section } from "@/components/@UI/Section";
 import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
-import tw from "twin.macro";
 
 export const AboutNav: React.FC = () => {
   const intl = useTranslations();
   return (
-    <Section css={tw`pb-0`}>
-      <div css={tw`grid grid-cols-2 md:grid-cols-4 text-center`}>
+    <Section className="pb-0">
+      <div className="grid grid-cols-2 md:grid-cols-4 text-center">
         <Card
           onClick={() => {
             window.location.hash = "#vision";

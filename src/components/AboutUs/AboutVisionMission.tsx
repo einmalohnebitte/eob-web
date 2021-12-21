@@ -3,7 +3,6 @@ import { SplitSection } from "@/components/@UI/Section";
 import { H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import React from "react";
-import tw from "twin.macro";
 import Image from "next/image";
 
 export const AboutVisionMission: React.FC<{
@@ -24,8 +23,8 @@ export const AboutVisionMission: React.FC<{
         <SplitSection.Main>
           <H2>{pageSections[1].title}</H2>
           <div
+            className="py-4 font-gt text-xl leading-8"
             css={`
-              ${tw`py-4 text-xl leading-8 font-gt`}
               ul {
                 list-style: disc;
               }
@@ -60,8 +59,8 @@ export const AboutVisionMission: React.FC<{
         <SplitSection.Main>
           <H2>{pageSections[2].title}</H2>
           <div
+            className="py-4 font-gt text-xl leading-8"
             css={`
-              ${tw`py-4 text-xl leading-8 font-gt`}
               ul {
                 list-style: disc inside;
                 div {

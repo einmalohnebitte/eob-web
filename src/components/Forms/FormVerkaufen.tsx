@@ -4,7 +4,6 @@ import { useTranslations } from "@/hooks/useTranslations";
 import { useReactMutation } from "@correttojs/next-utils/useReactQuery";
 import { ErrorMessage, Field } from "formik";
 import React from "react";
-import tw from "twin.macro";
 import * as Yup from "yup";
 
 import { H2 } from "../@UI/Texts";
@@ -91,11 +90,11 @@ export const FormVerkaufen: React.FC = () => {
         });
       }}
     >
-      <H2 css={tw`mb-4`}>{intl("FORM_CONTACT_TITLE")}</H2>
-      <div css={tw`flex`}>
+      <H2 className="mb-4">{intl("FORM_CONTACT_TITLE")}</H2>
+      <div className="flex">
         <FieldInput label={intl("FORM_SHOP")} field="shop" />
       </div>
-      <div css={tw`flex`}>
+      <div className="flex">
         <FieldInput label={intl("FORM_NAME")} field="firstName" />
         <FieldInput label={intl("FORM_SURNAME")} field="lastName" />
       </div>
@@ -106,7 +105,7 @@ export const FormVerkaufen: React.FC = () => {
         field="address"
         placeholder={intl("FORM_ADDRESS_PLACEHOLDER")}
       />
-      <div css={tw`flex`}>
+      <div className="flex">
         <FieldInput
           label={intl("FORM_POSTCODE")}
           field="postCode"
@@ -115,23 +114,23 @@ export const FormVerkaufen: React.FC = () => {
         <FieldInput label={intl("FORM_TOWN")} field="town" />
       </div>
 
-      <div css={tw`m-2`}>
+      <div className="m-2">
         <ErrorMessage
-          render={(msg) => (
-            <p className={`text-red-500 text-xs italic`}>{msg}</p>
-          )}
+          render={(msg) => <p className="text-xs italic text-red-500">{msg}</p>}
           name={"sticker"}
         />
-        <span css={tw`text-gray-700 mt-6 font-gt`}>{intl("FORM_STICKER")}</span>
-        <div css={tw`flex `}>
-          <label css={tw`flex items-center`} htmlFor={"sticker"}>
+        <span className="mt-6 font-gt text-gray-700">
+          {intl("FORM_STICKER")}
+        </span>
+        <div className="flex ">
+          <label className="flex items-center" htmlFor={"sticker"}>
             <Field type="radio" name={"sticker"} id={"sticker"} value="yes" />
             <span
-              css={tw`text-gray-700 ml-2 font-gt`}
+              className="ml-2 font-gt text-gray-700"
               dangerouslySetInnerHTML={{ __html: intl("FORM_YES") }}
             />
           </label>
-          <label css={tw`flex items-center ml-2 `} htmlFor={"sticker"}>
+          <label className="flex items-center ml-2 " htmlFor={"sticker"}>
             <Field
               data-testid="STICKER-NO"
               type="radio"
@@ -140,7 +139,7 @@ export const FormVerkaufen: React.FC = () => {
               value="no"
             />
             <span
-              css={tw`text-gray-700 ml-2 font-gt`}
+              className="ml-2 font-gt text-gray-700"
               dangerouslySetInnerHTML={{ __html: intl("FORM_NO") }}
             />
           </label>

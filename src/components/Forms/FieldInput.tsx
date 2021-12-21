@@ -1,6 +1,5 @@
 import { ErrorMessage, Field } from "formik";
 import React from "react";
-import tw from "twin.macro";
 
 type PropType = {
   field: string;
@@ -9,7 +8,7 @@ type PropType = {
   placeholder?: string;
 };
 
-export const TwInput = tw`text-lg font-gt border border-solid border-gray-400 leading-6 p-3 rounded mt-1 block w-full focus:border-blue-800`;
+export const TwInput = `text-lg font-gt border border-solid border-gray-400 leading-6 p-3 rounded mt-1 block w-full focus:border-blue-800`;
 
 export const FieldInput: React.FC<PropType> = ({
   field,
@@ -18,15 +17,15 @@ export const FieldInput: React.FC<PropType> = ({
   placeholder,
 }) => {
   return (
-    <div css={tw`m-2`}>
+    <div className="m-2">
       <ErrorMessage
-        render={(msg) => <p className={`text-red-500 text-xs italic`}>{msg}</p>}
+        render={(msg) => <p className="text-xs italic text-red-500">{msg}</p>}
         name={field}
       />
-      <label css={tw`block`} htmlFor={field}>
-        <span css={tw`text-gray-700 font-gt`}> {label}</span>
+      <label className="block" htmlFor={field}>
+        <span className="font-gt text-gray-700"> {label}</span>
         <Field
-          css={TwInput}
+          className={TwInput}
           name={field}
           id={field}
           placeholder={placeholder ?? ""}
