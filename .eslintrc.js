@@ -5,7 +5,9 @@ module.exports = {
     "prettier",
     "plugin:jsx-a11y/recommended", // Accessibility rules
     "plugin:jest/recommended",
+    "plugin:tailwindcss/recommended",
   ],
+  plugins: ["tailwindcss", "testing-library"],
 
   rules: {
     "no-console": [
