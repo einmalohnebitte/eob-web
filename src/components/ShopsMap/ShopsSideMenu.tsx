@@ -17,12 +17,10 @@ import { useTranslations } from "@/hooks/useTranslations";
 import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
 import styled from "styled-components";
-import tw from "twin.macro";
 
 import { Search } from "./Search";
 
 const Sidebar = styled.div<{ isOpen: boolean; isOpenMobile: boolean }>`
-  ${tw`pb-28 h-full fixed bg-white flex left-0 overflow-x-hidden flex-col rounded-md shadow-lg duration-500`}
   width: ${({ isOpen }) => (isOpen ? "25%" : "0")};
   min-width: ${({ isOpen }) => (isOpen ? "400px" : "0")};
   z-index: 99999;
@@ -55,12 +53,20 @@ export const ShopsSideMenu: React.FC<{
     .map((s) => s.name);
 
   return (
-    <Sidebar isOpen={isOpen} isOpenMobile={isOpenMobile}>
-      <div role="presentation" onClick={onClose} css={tw`p-2 flex justify-end`}>
+    <Sidebar
+      className="flex overflow-x-hidden fixed left-0 flex-col pb-28 h-full bg-white rounded-md shadow-lg duration-500"
+      isOpen={isOpen}
+      isOpenMobile={isOpenMobile}
+    >
+      <div
+        role="presentation"
+        onClick={onClose}
+        className={`p-2 flex justify-end`}
+      >
         <MdClose size={25} />
       </div>
 
-      <div css={tw`p-4`}>
+      <div className={`p-4`}>
         <Search
           suggestions={suggestions}
           onSearch={(search) =>
@@ -70,33 +76,27 @@ export const ShopsSideMenu: React.FC<{
         />
       </div>
       <div>
-        <div css={tw`flex justify-center`}>
+        <div className={`flex justify-center`}>
           <ButtonNoColor
             onClick={() => setActiveTab(0)}
-            css={[
-              tw`text-2xl  border-solid  border-2 m-2 px-4`,
-              activeTab === 0 ? Pink : PinkInverted,
-            ]}
+            className="m-2 text-2xl border-2 border-solid px-4"
+            css={[activeTab === 0 ? Pink : PinkInverted]}
           >
             {intl("CATEGORIES")}
           </ButtonNoColor>
 
           <ButtonNoColor
             onClick={() => setActiveTab(2)}
-            css={[
-              tw`text-2xl  border-solid  border-2 m-2 px-4`,
-              activeTab === 2 ? Blue : BlueInverted,
-            ]}
+            className="m-2 text-2xl border-2 border-solid px-4"
+            css={[activeTab === 2 ? Blue : BlueInverted]}
           >
             {intl("Types")}
           </ButtonNoColor>
 
           <ButtonNoColor
             onClick={() => setActiveTab(1)}
-            css={[
-              tw`text-2xl  border-solid  border-2 m-2 px-4`,
-              activeTab === 1 ? Yellow : YellowInverted,
-            ]}
+            className="m-2 text-2xl border-2 border-solid px-4"
+            css={[activeTab === 1 ? Yellow : YellowInverted]}
           >
             {intl("COUNTRY")}
           </ButtonNoColor>
@@ -115,8 +115,8 @@ export const ShopsSideMenu: React.FC<{
                       payload: category.name,
                     });
                   }}
+                  className="m-2"
                   css={[
-                    tw`m-2`,
                     category.name === filters.category ? Pink : PinkInverted,
                   ]}
                 >
@@ -131,10 +131,8 @@ export const ShopsSideMenu: React.FC<{
                   onClick={() => {
                     dispatchAction({ type: "SET_STATE", payload: town });
                   }}
-                  css={[
-                    tw`m-2`,
-                    town.name === filters.state ? Yellow : YellowInverted,
-                  ]}
+                  className="m-2"
+                  css={[town.name === filters.state ? Yellow : YellowInverted]}
                   key={town.id}
                 >
                   {town.name}
@@ -148,10 +146,8 @@ export const ShopsSideMenu: React.FC<{
                   onClick={() => {
                     dispatchAction({ type: "SET_TYPE", payload: type.name });
                   }}
-                  css={[
-                    tw`m-2`,
-                    type.name === filters.type ? Blue : BlueInverted,
-                  ]}
+                  className="m-2"
+                  css={[type.name === filters.type ? Blue : BlueInverted]}
                   key={type.id}
                 >
                   {type.name}
