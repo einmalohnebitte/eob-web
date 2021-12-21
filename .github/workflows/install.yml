@@ -10,4 +10,4 @@ jobs:
       with:
           path: '**/node_modules'
           key: ${{ runner.os }}-modules-${{ hashFiles('**/package-lock') }}
-    - run: yarn
+    - run: npm install
