@@ -5,7 +5,6 @@ import React from "react";
 import CookieConsent from "react-cookie-consent";
 import { FaQuestion } from "react-icons/fa";
 import { QueryClient, QueryClientProvider } from "react-query";
-import tw from "twin.macro";
 
 import styled from "styled-components";
 import { FOOTER_HEIGHT } from "../../constants/MediaQueries";
@@ -15,7 +14,6 @@ import { GlobalStyle } from "./GlobalStyle.css";
 import { Header } from "./Header";
 
 const Layout = styled.div`
-  ${tw`pt-16 md:pt-20`}
   min-height: calc(100vh - ${FOOTER_HEIGHT}px);
 `;
 
@@ -39,7 +37,7 @@ export const withLayout =
           {/* <SEO /> */}
           <Header />
 
-          <Layout>
+          <Layout className="pt-16 md:pt-20">
             <Comp {...props} />
           </Layout>
           <AppFooter />
@@ -54,7 +52,7 @@ export const withLayout =
           </CookieConsent>
           <FaQuestion
             onClick={() => router.push("/faq")}
-            css={tw`w-8 h-8 fixed text-pink-500 bottom-2.5 right-2.5 cursor-pointer hover:w-10 hover:h-10`}
+            className="fixed right-2.5 bottom-2.5 w-8 hover:w-10 h-8 hover:h-10 text-pink-500 cursor-pointer"
           />
         </QueryClientProvider>
       </>

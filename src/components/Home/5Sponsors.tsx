@@ -1,7 +1,6 @@
 import { SponsorCard } from "@/components/@UI/SponsorCard";
 import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
-import tw from "twin.macro";
 
 import { Section } from "../@UI/Section";
 import { Slide, SlideTrack, SliderContainer } from "../@UI/Slider";
@@ -11,7 +10,7 @@ export const Sponsors: React.FC = () => {
   const intl = useTranslations();
   return (
     <div>
-      <Section css={tw`text-blue-500 text-center`}>
+      <Section className="text-center text-blue-500">
         <H2>{intl("SPONSORS")}</H2>
         <SliderContainer>
           <SlideTrack>
