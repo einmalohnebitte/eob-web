@@ -3,7 +3,7 @@ import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
 
 import { Section, SplitSection } from "../Section";
-import { H2, P } from "../Texts";
+import { H2, PFont } from "../Texts";
 
 const bread = require("./bread.png");
 
@@ -34,8 +34,8 @@ const TemplateSplit: Story = (args) => (
       </SplitSection.Side>
       <SplitSection.Main>
         <H2>Test Title</H2>
-        <P
-          className="py-4"
+        <p
+          className={` ${PFont} py-4`}
           dangerouslySetInnerHTML={{
             __html: SampleText,
           }}

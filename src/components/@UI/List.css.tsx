@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import tw from "twin.macro";
 
 export const OL = styled.div`
   ol {
@@ -24,12 +23,9 @@ export const OL = styled.div`
       display: flex;
     }
   }
-
-  ${tw`py-4 pr-4`}
 `;
 
 export const UL = styled.div`
-  ${tw`py-4 `}
   ul {
     padding: 2rem;
     text-indent: 10px;

@@ -67,6 +67,7 @@ const Home: React.FC<
         <Section>
           <H2>{pageSections[1].title}</H2>
           <OL
+            className="py-4 pr-4"
             dangerouslySetInnerHTML={{
               __html: pageSections[1].content.html ?? "",
             }}
