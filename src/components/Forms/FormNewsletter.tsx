@@ -4,7 +4,6 @@ import { SubscribeNewsletterDocument } from "@/components/Forms/newsletter.local
 import { useTranslations } from "@/hooks/useTranslations";
 import { useReactMutation } from "@correttojs/next-utils/useReactQuery";
 import React from "react";
-import tw from "twin.macro";
 import * as Yup from "yup";
 
 export const FormNewsletter: React.FC = () => {
@@ -46,7 +45,7 @@ export const FormNewsletter: React.FC = () => {
         sendMail.mutate({ user: rest });
       }}
     >
-      <div css={tw`flex`}>
+      <div className="flex">
         <FieldInput label={intl("FORM_NAME")} field="firstName" />
         <FieldInput label={intl("FORM_SURNAME")} field="lastName" />
       </div>

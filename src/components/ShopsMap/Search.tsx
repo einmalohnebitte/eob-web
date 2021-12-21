@@ -18,17 +18,14 @@ export const Search: React.FC<{
       <div className={`relative`}>
         <input
           type="text"
-          className="pl-8"
-          css={`
-            ${TwInput}
-          `}
+          className={`pl-8 ${TwInput}`}
           name="search"
           placeholder={intl("SEARCH")}
           disabled={disabled}
           onChange={(e) => onSearch?.(e.target?.value)}
           value={search ?? ""}
         />
-        <MdSearch className="w-4 h-4 absolute left-2.5 top-5" />
+        <MdSearch className="absolute top-5 left-2.5 w-4 h-4" />
       </div>
       {/* <ul css={tw`bg-white border border-gray-100 w-full mt-2`}>
         {suggestions?.map((s) => (

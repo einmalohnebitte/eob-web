@@ -6,7 +6,6 @@ import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
 import Link from "next/link";
 import React from "react";
-import tw from "twin.macro";
 
 export const AboutMembers: React.FC<{
   members: MembersQuery["members"];
@@ -20,7 +19,7 @@ export const AboutMembers: React.FC<{
       `}
     >
       <Section>
-        <H2 css={tw`m-4`}>{intl("TEAM")}</H2>
+        <H2 className="m-4">{intl("TEAM")}</H2>
         <Grid>
           {members.map((item, k) => (
             <Link key={`mem${k}`} href={`/team/${item.slug}`} passHref={true}>
@@ -42,7 +41,7 @@ export const AboutMembers: React.FC<{
                     alt={item.name ?? ""}
                     src={item?.picture?.url ?? ""}
                     height={208}
-                    css={tw`object-cover`}
+                    className="object-cover"
                   />
                 )}
               </Card>

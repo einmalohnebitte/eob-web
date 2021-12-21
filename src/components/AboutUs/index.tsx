@@ -8,7 +8,6 @@ import { AboutNetwork } from "@/components/AboutUs/AboutNetwork";
 import { AboutVisionMission } from "@/components/AboutUs/AboutVisionMission";
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import React from "react";
-import tw from "twin.macro";
 import Image from "next/image";
 
 export const AboutUs: React.FC<MembersQuery> = ({
@@ -37,7 +36,7 @@ export const AboutUs: React.FC<MembersQuery> = ({
         </SplitSection.Side>
         <SplitSection.Main>
           <div
-            css={tw`py-4`}
+            className={`py-4`}
             dangerouslySetInnerHTML={{
               __html: pageSections[0].content.html ?? "",
             }}

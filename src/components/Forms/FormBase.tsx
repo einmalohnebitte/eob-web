@@ -1,8 +1,8 @@
 import { useTranslations } from "@/hooks/useTranslations";
+import classNames from "classnames";
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import tw from "twin.macro";
 import * as Yup from "yup";
 
 import { ButtonColor, Colors } from "../@UI/Buttons";
@@ -15,16 +15,16 @@ export const FormError: React.FC<{
   const intl = useTranslations();
   return (
     <div
-      css={[
-        tw`flex flex-col items-center justify-center border border-solid p-4`,
-        color === "blue" && tw`border-blue-400`,
-        color === "yellow" && tw`border-yellow-400`,
-        color === "pink" && tw`border-pink-400`,
-      ]}
+      className={classNames(
+        `flex flex-col items-center justify-center border border-solid p-4`,
+        color === "blue" && `border-blue-400`,
+        color === "yellow" && `border-yellow-400`,
+        color === "pink" && `border-pink-400`
+      )}
     >
       {intl("FORM_CONTACT_ERROR")}
 
-      <ButtonColor css={tw`mt-4`} color={color} onClick={onReset}>
+      <ButtonColor className="mt-4" color={color} onClick={onReset}>
         {intl("FORM_OK")}
       </ButtonColor>
     </div>
@@ -35,12 +35,12 @@ export const FormSuccess: React.FC<{ color: Colors }> = ({ color }) => {
   const intl = useTranslations();
   return (
     <div
-      css={[
-        tw`flex flex-col items-center justify-center border border-solid p-4`,
-        color === "blue" && tw`border-blue-400`,
-        color === "yellow" && tw`border-yellow-400`,
-        color === "pink" && tw`border-pink-400`,
-      ]}
+      className={classNames(
+        "flex flex-col items-center justify-center border border-solid p-4",
+        color === "blue" && `border-blue-400`,
+        color === "yellow" && `border-yellow-400`,
+        color === "pink" && `border-pink-400`
+      )}
     >
       {intl("FORM_CONTACT_SUCCESS")}
     </div>
@@ -79,7 +79,7 @@ export const FormBase = <T extends {}>({
   }
 
   return (
-    <div css={tw`w-full max-w-sm`}>
+    <div className="w-full max-w-sm">
       <Formik<T>
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -90,10 +90,10 @@ export const FormBase = <T extends {}>({
         }}
       >
         {() => (
-          <Form css={tw`bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4`}>
+          <Form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             {children}
 
-            <div css={tw`flex m-2`}>
+            <div className="flex m-2">
               <ReCAPTCHA
                 sitekey="6Ld2iaMUAAAAAKuO6s305VLDpf-iTimNcKH1FS-8"
                 onChange={() => setCaptcha(true)}
