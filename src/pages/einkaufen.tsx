@@ -12,7 +12,6 @@ import { GetStaticProps } from "next";
 import Image from "next/image";
 import React from "react";
 import { useInView } from "react-intersection-observer";
-import tw from "twin.macro";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageSectionsDocument, {
@@ -37,7 +36,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           <SplitSection.Main>
             <H1>{pageSections[0].title}</H1>
             <div
-              css={tw`py-4`}
+              className="py-4"
               dangerouslySetInnerHTML={{
                 __html: pageSections[0].content.html ?? "",
               }}
@@ -56,18 +55,18 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
       <BackgroundBlueWrapper>
         <SplitSection.Section>
           <SplitSection.Main
+            className="py-4 pr-4"
             css={`
               h2 {
-                ${tw`font-lemonism`}
+                font-family: Lemonism-Regular, sans-serif;
                 font-size: 2.25rem;
                 line-height: 2rem;
+                margin: 1rem 0;
               }
               p {
                 font-size: 1.25rem;
                 line-height: 2rem;
               }
-
-              ${tw`py-4 pr-4`}
             `}
             dangerouslySetInnerHTML={{
               __html: pageSections[1].content.html ?? "",
@@ -98,7 +97,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           <SplitSection.Main>
             <H2>{pageSections[2].title}</H2>
             <div
-              css={tw`py-4`}
+              className="py-4"
               dangerouslySetInnerHTML={{
                 __html: pageSections[2].content.html ?? "",
               }}
@@ -114,8 +113,8 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           >
             <H2>{pageSections[3].title}</H2>
             <div
+              className="py-4"
               css={`
-                ${tw`py-4 `}
                 ol {
                   list-style: decimal;
                 }
@@ -137,7 +136,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                 display: flex;
               `}
             >
-              <div css={tw`content-between m-4`}>
+              <div className="content-between m-4">
                 <Image
                   src={pageSections[3].picture[0].url}
                   alt="side"
@@ -182,8 +181,8 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
         <Section>
           <H2>{pageSections[4].title}</H2>
           <div
+            className="py-4"
             css={`
-              ${tw`py-4 `}
               ol {
                 list-style: decimal;
               }
@@ -196,10 +195,10 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
       </BackgroundBlueWrapper>
       <BackgroundBlueWrapper
         ref={ref}
-        css={tw`flex justify-center p-10 md:p-0`}
+        className={`flex justify-center p-10 md:p-0`}
       >
         {inView && (
-          <div css={tw`flex justify-center py-20 md:w-3/5`}>
+          <div className={`flex justify-center py-20 md:w-3/5`}>
             <iframe
               width="560"
               height="315"
@@ -208,7 +207,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
               title="video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen={true}
-              css={tw`max-w-full`}
+              className={`max-w-full`}
             ></iframe>
           </div>
         )}{" "}
