@@ -56,6 +56,7 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         <Section>
           <H2>{pageSections[1].title}</H2>
           <OL
+            className="py-4 pr-4"
             dangerouslySetInnerHTML={{
               __html: pageSections[1].content.html ?? "",
             }}
@@ -64,6 +65,7 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         <Section>
           <H2>{pageSections[2].title}</H2>
           <UL
+            className="py-4"
             dangerouslySetInnerHTML={{
               __html: pageSections[2].content.html ?? "",
             }}

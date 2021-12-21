@@ -17,5 +17,3 @@ export const SplitSection = {
     flex: 1;
   `,
 };
-
-export const SmallSection = tw.section`p-4 max-w-screen-sm mx-auto p-10`;

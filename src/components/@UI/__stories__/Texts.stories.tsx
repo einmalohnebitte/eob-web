@@ -2,7 +2,7 @@
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
 
-import { H1, H2, P } from "../Texts";
+import { H1, H2, PFont } from "../Texts";
 
 export default {
   title: "UI/Text",
@@ -13,7 +13,7 @@ const Template: Story<React.ButtonHTMLAttributes<any>> = (args) => {
     <div>
       <H1>FORM_PRIVACY</H1>
       <H2>Test Title H2</H2>
-      <P>
+      <p className={PFont}>
         {`Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
         since the 1500s, when an unknown printer took a galley of type and
@@ -23,7 +23,7 @@ const Template: Story<React.ButtonHTMLAttributes<any>> = (args) => {
         of Letraset sheets containing Lorem Ipsum passages, and more recently
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.`}
-      </P>
+      </p>
     </div>
   );
 };
