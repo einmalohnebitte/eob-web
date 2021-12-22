@@ -1,4 +1,4 @@
-import { ButtonPink } from "@/components/@UI/Buttons";
+import { ButtonColor } from "@/components/@UI/Buttons";
 import { DropDown, DropDownItem } from "@/components/@UI/DropDown";
 import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
@@ -40,11 +40,18 @@ export const Header: React.FC = () => {
             "w-full px-4 md:px-0 flex-grow   md:items-center md:w-auto md:flex pt-6 md:pt-0 max-h-screen md:max-h-full h-screen md:h-full",
             !isOpen && `hidden`
           )}
-          css={[`-webkit-overflow-scrolling:touch;`]}
+          css={`
+            -webkit-overflow-scrolling: touch;
+          `}
         >
           {items.map((item, k) => (
             <Link key={k} href={item.href}>
-              <a css={classNames(`m-4`, asPath === item.href && `underline`)}>
+              <a
+                className={classNames(
+                  `m-4`,
+                  asPath === item.href && `underline`
+                )}
+              >
                 <p className="sm:p-0 py-1 my-2 mx-0 sm:mx-2 font-lemonism text-2xl border-b-2 border-transparent">
                   {intl(item.label)}
                 </p>
@@ -61,14 +68,15 @@ export const Header: React.FC = () => {
           >
             <MdMenu size={"1.6em"} />
           </div>
-          <ButtonPink
+          <ButtonColor
+            color="pink"
             className="mx-2"
             onClick={() => {
               push("/spenden");
             }}
           >
             {intl("Donate")}
-          </ButtonPink>
+          </ButtonColor>
           <DropDown>
             <DropDownItem
               text="Deutsch"

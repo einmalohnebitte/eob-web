@@ -1,4 +1,5 @@
-import "tailwindcss/dist/base.min.css";
+import "../styles/globals.css";
+import "tailwindcss/tailwind.css";
 
 import Head from "next/head";
 
