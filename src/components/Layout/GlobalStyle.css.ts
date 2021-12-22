@@ -1,7 +1,6 @@
 import lemonism from "@/fonts/font.woff";
 import GT from "@/fonts/GT-Cinetype-Light.woff";
 import { createGlobalStyle } from "styled-components";
-import tw from "twin.macro";
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -21,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body {
         margin: 0;
-        ${tw`font-gt`}
+        font-family: GT, sans-serif;
         font-display: swap;
     }
 
@@ -40,8 +39,10 @@ export const GlobalStyle = createGlobalStyle`
       }
     }
     
-    p {
-      ${tw`text-xl leading-8 font-gt`}
+    p,a { 
+        font-size: 1.25rem;
+        line-height: 2rem;
+        font-family: GT, sans-serif;
     }
 
   

@@ -1,16 +1,13 @@
 import React from "react";
-import styled from "styled-components";
 
 export const H1: React.FC<
   React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLHeadingElement>,
     HTMLHeadingElement
   >
-> = ({ children, ...props }) => (
+> = ({ children, className, ...props }) => (
   <h1
-    className={`font-lemonism text-5xl leading-10 pt-2  ${
-      props.className ?? ""
-    }`}
+    className={`font-lemonism text-5xl leading-10 pt-2  ${className ?? ""}`}
     {...props}
   >
     {children}
@@ -22,13 +19,13 @@ export const H2: React.FC<
     React.HTMLAttributes<HTMLHeadingElement>,
     HTMLHeadingElement
   >
-> = ({ children, ...props }) => (
+> = ({ children, className, ...props }) => (
   <h2
     css={`
       font-size: 3rem;
       line-height: 3rem;
     `}
-    className={`font-lemonism  ${props.className ?? ""}`}
+    className={`font-lemonism  ${className ?? ""}`}
     {...props}
   >
     {children}
@@ -39,9 +36,9 @@ export const H3: React.FC<
     React.HTMLAttributes<HTMLHeadingElement>,
     HTMLHeadingElement
   >
-> = ({ children, ...props }) => (
+> = ({ children, className, ...props }) => (
   <h3
-    className={`font-lemonism text-4xl leading-10 ${props.className ?? ""}`}
+    className={`font-lemonism text-4xl leading-10 ${className ?? ""}`}
     {...props}
   >
     {children}

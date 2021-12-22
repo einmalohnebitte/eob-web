@@ -17,7 +17,7 @@ export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start py-4 mx-10">
             {kpis.map((kpi, i) => (
               <div
-                css={classNames(
+                className={classNames(
                   `w-40`,
                   i % 3 === 0 && `text-pink-600`,
                   i % 3 === 1 && `text-blue-600`,
