@@ -48,4 +48,13 @@ query Shops($endCursor: String) {
     id
     name
   }
+
+  shopBundeslands {
+    id
+    name
+    location {
+      latitude
+      longitude
+    }
+  }
 }
