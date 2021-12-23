@@ -17,6 +17,7 @@ export type FilterStateType = {
   };
   shops: ShopsQuery["shops"] | null;
   data: ShopsQuery | null;
+  zoom: number | null;
 };
 export const initialState: FilterStateType = {
   filters: {
@@ -28,6 +29,7 @@ export const initialState: FilterStateType = {
   },
   shops: null,
   data: null,
+  zoom: 10,
 };
 
 export type FilterActionType =
@@ -126,6 +128,8 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
           shops: null,
         } as FilterStateType;
       }
+      console.log("print state")
+      console.log(state)
       return {
         ...state,
 
@@ -136,7 +140,9 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
             action.payload?.location?.latitude ?? 0,
             action.payload?.location?.longitude ?? 0,
           ],
+          // zoom: action.payload?.location?.latitude,
         },
+        zoom: 10,
         shops: null,
       } as FilterStateType;
     }
@@ -197,6 +203,8 @@ export const useFetchMap = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const dispatchAction = (action: FilterActionType) => {
     dispatch(action);
+    console.log("action");
+    console.log(action);
     setTimeout(() => {
       dispatch({ type: "APPLY_FILTERS" });
     }, 100);
