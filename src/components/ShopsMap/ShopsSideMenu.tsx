@@ -49,7 +49,7 @@ export const ShopsSideMenu: React.FC<{
   if (!data?.shops || !data?.shopTowns || !data?.shopCategories) {
     return null;
   }
-  const { shops, shopTowns, shopCategories, shopTypes } = data;
+  const { shops, shopTowns, shopCategories, shopTypes, shopBundeslands } = data;
   const suggestions = shops
     .slice(0, 6)
     .filter((s) => s.name)
@@ -99,7 +99,7 @@ export const ShopsSideMenu: React.FC<{
               activeTab === 1 ? Yellow : YellowInverted,
             ]}
           >
-            {intl("TOWNS")}
+            {intl("COUNTRY")}
           </ButtonNoColor>
         </div>
 
@@ -127,7 +127,7 @@ export const ShopsSideMenu: React.FC<{
             </div>
           ) : activeTab === 1 ? (
             <div>
-              {shopTowns.map((town) => (
+              {shopBundeslands.map((town) => (
                 <ButtonNoColor
                   onClick={() => {
                     dispatchAction({ type: "SET_TOWN", payload: town });

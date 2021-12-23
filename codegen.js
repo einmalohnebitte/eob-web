@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require("dotenv").config({ path: ".env.local" });
+require("dotenv").config({ path: ".env" });
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { generate } = require("@graphql-codegen/cli");
 

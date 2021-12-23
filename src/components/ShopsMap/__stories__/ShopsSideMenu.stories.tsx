@@ -10,6 +10,7 @@ export default {
   title: "ShopsSideMenu",
 } as Meta;
 
+
 const Template: Story = (args) => (
   <>
     <ShopsSideMenu
