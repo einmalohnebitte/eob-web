@@ -12815,6 +12815,7 @@ export type ShopBundesland = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
+  location?: Maybe<Location>;
   name?: Maybe<Scalars['String']>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -12901,6 +12902,7 @@ export type ShopBundeslandConnection = {
 
 export type ShopBundeslandCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  location?: InputMaybe<LocationInput>;
   name?: InputMaybe<Scalars['String']>;
   shops?: InputMaybe<ShopCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -13047,6 +13049,7 @@ export enum ShopBundeslandOrderByInput {
 }
 
 export type ShopBundeslandUpdateInput = {
+  location?: InputMaybe<LocationInput>;
   name?: InputMaybe<Scalars['String']>;
   shops?: InputMaybe<ShopUpdateManyInlineInput>;
 };
@@ -13069,6 +13072,7 @@ export type ShopBundeslandUpdateManyInlineInput = {
 };
 
 export type ShopBundeslandUpdateManyInput = {
+  location?: InputMaybe<LocationInput>;
   name?: InputMaybe<Scalars['String']>;
 };
 
