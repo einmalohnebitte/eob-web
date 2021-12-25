@@ -14,3 +14,4 @@ public/workbox-*
 .vercel
 cypress/videos
 coverage
+.env
