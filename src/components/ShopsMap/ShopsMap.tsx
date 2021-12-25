@@ -38,14 +38,16 @@ const StyledMap = styled.div`
 `;
 
 const CENTER: [number, number] = [51.1657, 10.4515];
+const ZOOM: number = 6;
 
 const MapItem: React.FC<{
   center: [number, number];
-  zoom: number;
-  shops: ShopsQuery["shops"] | null;
+  zoom: number | null;
+  shops?: ShopsQuery["shops"] | null;
 }> = ({ center, shops, zoom }) => {
   const map = useMap();
-  map.setView(center, zoom);
+  // TODO: fix zoom and center
+  // map.setView(center, zoom);
   return (
     <>
       <TileLayer
@@ -87,8 +89,8 @@ const MapItem: React.FC<{
 
 export const ShopsMap: React.FC<{
   center: [number, number];
-  zoom: number;
-  shops: ShopsQuery["shops"] | null;
+  zoom: number | null;
+  shops?: ShopsQuery["shops"] | null;
   width?: string;
   height?: string;
 }> = ({ center, zoom, shops, width = "100%", height = "100%" }) => {
@@ -97,14 +99,14 @@ export const ShopsMap: React.FC<{
       <MapContainer
         className={"map"}
         center={center ?? CENTER}
-        zoom={zoom}
+        zoom={zoom ?? ZOOM}
         maxZoom={15}
         style={{
           height,
           width,
         }}
       >
-        <MapItem shops={shops} center={center} zoom={zoom} />
+        <MapItem shops={shops} center={center} zoom={zoom ?? ZOOM} />
       </MapContainer>
     </StyledMap>
   );

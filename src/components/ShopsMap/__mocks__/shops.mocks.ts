@@ -8620,5 +8620,151 @@ export const shopsData = {
       { id: "ckl5gh7tkts0h0b46f432hiwa", name: "Bäckerei" },
       { id: "cksxk6w3s0y480b56b7fqnvop", name: "Frischetheke" },
     ],
+    shopBundeslands: [
+          {
+            id: "ckn46t8fkgzil0b072coulj5a",
+            name: "Hessen",
+            location: {
+              latitude: 50.6520515,
+              longitude: 9.162437599999999
+            },
+            zoom: 8
+          },
+          {
+            id: "ckn46tgx4h4300c48t99qom60",
+            name: "Sachsen-Anhalt",
+            location: {
+              latitude: 51.95703576014777,
+              longitude: 11.653821251562517
+            },
+            zoom: 10
+          },
+          {
+            id: "ckn46tvkwgfdj0a11sa87x89m",
+            name: "Baden-Württemberg",
+            location: {
+              latitude: 48.6616037,
+              longitude: 9.3501336
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46u3aogzjw0b07rgtds8yy",
+            name: "Nordrhein-Westfalen",
+            location: {
+              latitude: 51.43323669999999,
+              longitude: 7.661593799999999
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46u7xcgltu0a44gnnvxk8u",
+            name: "Berlin",
+            location: {
+              latitude: 52.52000659999999,
+              longitude: 13.404954
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46ufn4h44c0c4835715ot6",
+            name: "Hamburg",
+            location: {
+              latitude: 53.5510846,
+              longitude: 9.9936819
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46uji0gluy0a443uvgdc9n",
+            name: "Bremen",
+            location: {
+              latitude: 53.07929619999999,
+              longitude: 8.8016936
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46v6ncgffb0a110vefd7qr",
+            name: "Mecklenburg-Vorpommern",
+            location: {
+              latitude: 53.6126505,
+              longitude: 12.4295953
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46vizsghgz0c11ji03443d",
+            name: "Bayern",
+            location: {
+              latitude: 48.7904472,
+              longitude: 11.4978895
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46voe8ghh90c11w9oxxddx",
+            name: "Rheinland-Pfalz",
+            location: {
+              latitude: 50.118346,
+              longitude: 7.3089527
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46vwvsgfgg0a119o0unuju",
+            name: "Sachsen",
+            location: {
+              latitude: 51.1045407,
+              longitude: 13.2017384
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46w320gznj0b07czgx0ehk",
+            name: "Niedersachsen",
+            location: {
+              latitude: 52.6367036,
+              longitude: 9.8450766
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46wnw0h48c0c48iz973xoj",
+            name: "Saarland",
+            location: {
+              latitude: 49.3964234,
+              longitude: 7.0229607
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46xjiw8hxe0b63f52cmc5z",
+            name: "Brandenburg",
+            location: {
+              latitude: 52.4125287,
+              longitude: 12.5316444
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46xoxcgzqe0b07rykaytjg",
+            name: "Thüringen",
+            location: {
+              latitude: 51.0109892,
+              longitude: 10.845346
+            },
+            zoom: null
+          },
+          {
+            id: "ckn46zu34h4f50c48vrj9ieqm",
+            name: "Schleswig-Holstein",
+            location: {
+              latitude: 54.21936720000001,
+              longitude: 9.696116700000001
+            },
+            zoom: null
+          }
+        ]
   },
 } as { data: ShopsQuery };
