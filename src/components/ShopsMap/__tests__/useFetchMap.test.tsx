@@ -76,6 +76,7 @@ describe("useFetchMap", () => {
       search: null,
       town: null,
       type: null,
+      zoom: 6,
     });
     expect(stateUpdate.shops).toBeNull();
     stateUpdate = reducer(stateUpdate, { type: "APPLY_FILTERS" });
@@ -95,6 +96,7 @@ describe("useFetchMap", () => {
       search: null,
       town: "Wurzen",
       type: null,
+      zoom: 6,
     });
     stateUpdate = reducer(stateUpdate, {
       type: "SET_TOWN",
@@ -119,6 +121,7 @@ describe("useFetchMap", () => {
       search: null,
       town: null,
       type: null,
+      zoom: 6,
     });
   });
 
@@ -136,6 +139,7 @@ describe("useFetchMap", () => {
       search: null,
       town: null,
       type: "Eis",
+      zoom: 6,
     });
     expect(stateUpdate.shops).toBeNull();
     stateUpdate = reducer(stateUpdate, { type: "APPLY_FILTERS" });
@@ -155,6 +159,7 @@ describe("useFetchMap", () => {
       search: "Tölzer",
       town: null,
       type: "Eis",
+      zoom: 6,
     });
 
     stateUpdate = reducer(stateUpdate, {
@@ -181,6 +186,7 @@ describe("useFetchMap", () => {
       search: null,
       town: null,
       type: null,
+      zoom: 6,
     });
   });
 });

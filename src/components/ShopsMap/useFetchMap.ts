@@ -43,7 +43,7 @@ export type FilterActionType =
     }
   | {
       type: "SET_TOWN";
-      payload?: ShopsQuery["shopTowns"][0] | null;
+      payload?: ShopsQuery["shopBundeslands"][0] | null;
     }
   | {
       type: "SET_TYPE";
@@ -140,7 +140,7 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
             action.payload?.location?.latitude ?? 0,
             action.payload?.location?.longitude ?? 0,
           ],
-          zoom: 8,
+          zoom: action.payload?.zoom ?? 6,
           // zoom: action.payload?.location?.latitude,
         },
         shops: null,

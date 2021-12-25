@@ -40,18 +40,12 @@ const StyledMap = styled.div`
 const CENTER: [number, number] = [51.1657, 10.4515];
 
 const MapItem: React.FC<{
-  center?: [number, number] | null;
-  zoom?: number;
+  center: [number, number];
+  zoom: number;
   shops: ShopsQuery["shops"] | null;
 }> = ({ center, shops, zoom }) => {
   const map = useMap();
-  const centerRef = useRef(center ?? CENTER);
-  // const zoomREF = useRef(zoom ?? ZOOM);
-  console.log("Zoom level", zoom)
-  if (center !== centerRef.current) {
-    centerRef.current = null ?? CENTER;
-    map.setView(centerRef.current, zoom);
-  }
+  map.setView(center, zoom);
   return (
     <>
       <TileLayer
@@ -92,9 +86,9 @@ const MapItem: React.FC<{
 };
 
 export const ShopsMap: React.FC<{
-  center?: [number, number] | null;
-  zoom?: number;
-  shops: ShopsQuery["shops"] | null;
+  center: [number, number];
+  zoom: number;
+  shops: ShopsQuery["shops"];
   width?: string;
   height?: string;
 }> = ({ center, zoom, shops, width = "100%", height = "100%" }) => {
