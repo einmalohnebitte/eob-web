@@ -24,6 +24,9 @@ query Shops($endCursor: String) {
         name
       }
     }
+    shopBundesland {
+        name
+    }
     shopType {
       name
     }

@@ -62,7 +62,7 @@ describe("useFetchMap", () => {
     ).toHaveLength(80);
   });
 
-  it("should reduce SET_CATEGORY SET_TOWN", () => {
+  it("should reduce SET_CATEGORY SET_COUNTRY", () => {
     let stateUpdate = reducer(
       {
         ...initialState,
@@ -83,7 +83,7 @@ describe("useFetchMap", () => {
 
     expect(stateUpdate.shops).toHaveLength(57);
     stateUpdate = reducer(stateUpdate, {
-      type: "SET_TOWN",
+      type: "SET_COUNTRY",
       payload: { name: "Wurzen" } as any,
     });
     expect(stateUpdate.shops).toBeNull();
@@ -99,7 +99,7 @@ describe("useFetchMap", () => {
       zoom: 6,
     });
     stateUpdate = reducer(stateUpdate, {
-      type: "SET_TOWN",
+      type: "SET_COUNTRY",
       payload: { name: "Wurzen" } as any,
     });
     expect(stateUpdate.shops).toBeNull();

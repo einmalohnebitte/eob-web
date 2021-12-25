@@ -12,6 +12,7 @@ export type FilterStateType = {
     type?: string | null;
     category?: string | null;
     town?: string | null;
+    country?: string | null,
     search?: string | null;
     center: [number, number];
     zoom: number | null;
@@ -24,6 +25,7 @@ export const initialState: FilterStateType = {
     type: null,
     category: null,
     town: null,
+    country: null,
     search: null,
     center: [51.1657, 10.2336],
     zoom: 6,
@@ -42,7 +44,7 @@ export type FilterActionType =
       payload?: string | null;
     }
   | {
-      type: "SET_TOWN";
+      type: "SET_COUNTRY";
       payload?: ShopsQuery["shopBundeslands"][0] | null;
     }
   | {
@@ -77,8 +79,8 @@ export const applyShopFilter = (state: FilterStateType) => {
           (s.shopType ?? []).filter((t) => filters.type === t.name).length > 0
       ) ?? null;
   }
-  if (filters.town) {
-    shops = shops?.filter((s) => s.shopTown?.name === filters.town) ?? null;
+  if (filters.country) {
+    shops = shops?.filter((s) => s.shopBundesland?.name === filters.country) ?? null;
   }
   if (filters.search) {
     const regexp = new RegExp(`${filters.search}`, "i");
@@ -116,8 +118,8 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
       } as FilterStateType;
     }
 
-    case "SET_TOWN": {
-      if (action.payload?.name === state.filters.town) {
+    case "SET_COUNTRY": {
+      if (action.payload?.name === state.filters.country) {
         return {
           ...state,
 
@@ -128,20 +130,17 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
           shops: null,
         } as FilterStateType;
       }
-      console.log("print state")
-      console.log(state)
       return {
         ...state,
 
         filters: {
           ...state.filters,
-          town: action.payload?.name,
+          country: action.payload?.name,
           center: [
             action.payload?.location?.latitude ?? 0,
             action.payload?.location?.longitude ?? 0,
           ],
           zoom: action.payload?.zoom ?? 6,
-          // zoom: action.payload?.location?.latitude,
         },
         shops: null,
       } as FilterStateType;
