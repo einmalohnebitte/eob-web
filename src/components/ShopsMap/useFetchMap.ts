@@ -14,10 +14,10 @@ export type FilterStateType = {
     town?: string | null;
     search?: string | null;
     center: [number, number];
+    zoom: number;
   };
   shops: ShopsQuery["shops"] | null;
   data: ShopsQuery | null;
-  zoom: number | null;
 };
 export const initialState: FilterStateType = {
   filters: {
@@ -26,10 +26,10 @@ export const initialState: FilterStateType = {
     town: null,
     search: null,
     center: [51.1657, 10.2336],
+    zoom: 6,
   },
   shops: null,
   data: null,
-  zoom: 10,
 };
 
 export type FilterActionType =
@@ -142,7 +142,6 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
           ],
           // zoom: action.payload?.location?.latitude,
         },
-        zoom: 10,
         shops: null,
       } as FilterStateType;
     }
