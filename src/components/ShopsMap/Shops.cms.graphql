@@ -56,5 +56,6 @@ query Shops($endCursor: String) {
       latitude
       longitude
     }
+    zoom
   }
 }

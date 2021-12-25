@@ -45,7 +45,6 @@ export const ShopsSideMenu: React.FC<{
 }> = ({ onClose, isOpenMobile, isOpen, filters, dispatchAction, data }) => {
   const intl = useTranslations();
   const [activeTab, setActiveTab] = useState<number>(0);
-  console.log(shopBundeslands)
   if (!data?.shops || !data?.shopTowns || !data?.shopCategories) {
     return null;
   }

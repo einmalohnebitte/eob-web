@@ -12829,6 +12829,7 @@ export type ShopBundesland = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+  zoom?: Maybe<Scalars['Int']>;
 };
 
 
@@ -12906,6 +12907,7 @@ export type ShopBundeslandCreateInput = {
   name?: InputMaybe<Scalars['String']>;
   shops?: InputMaybe<ShopCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+  zoom?: InputMaybe<Scalars['Int']>;
 };
 
 export type ShopBundeslandCreateManyInlineInput = {
@@ -13033,6 +13035,21 @@ export type ShopBundeslandManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  zoom?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  zoom_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  zoom_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  zoom_in?: InputMaybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  zoom_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  zoom_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  zoom_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  zoom_not_in?: InputMaybe<Array<Scalars['Int']>>;
 };
 
 export enum ShopBundeslandOrderByInput {
@@ -13045,13 +13062,16 @@ export enum ShopBundeslandOrderByInput {
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
+  ZoomAsc = 'zoom_ASC',
+  ZoomDesc = 'zoom_DESC'
 }
 
 export type ShopBundeslandUpdateInput = {
   location?: InputMaybe<LocationInput>;
   name?: InputMaybe<Scalars['String']>;
   shops?: InputMaybe<ShopUpdateManyInlineInput>;
+  zoom?: InputMaybe<Scalars['Int']>;
 };
 
 export type ShopBundeslandUpdateManyInlineInput = {
@@ -13074,6 +13094,7 @@ export type ShopBundeslandUpdateManyInlineInput = {
 export type ShopBundeslandUpdateManyInput = {
   location?: InputMaybe<LocationInput>;
   name?: InputMaybe<Scalars['String']>;
+  zoom?: InputMaybe<Scalars['Int']>;
 };
 
 export type ShopBundeslandUpdateManyWithNestedWhereInput = {
@@ -13221,6 +13242,21 @@ export type ShopBundeslandWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<Scalars['DateTime']>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  zoom?: InputMaybe<Scalars['Int']>;
+  /** All values greater than the given value. */
+  zoom_gt?: InputMaybe<Scalars['Int']>;
+  /** All values greater than or equal the given value. */
+  zoom_gte?: InputMaybe<Scalars['Int']>;
+  /** All values that are contained in given list. */
+  zoom_in?: InputMaybe<Array<Scalars['Int']>>;
+  /** All values less than the given value. */
+  zoom_lt?: InputMaybe<Scalars['Int']>;
+  /** All values less than or equal the given value. */
+  zoom_lte?: InputMaybe<Scalars['Int']>;
+  /** All values that are not equal to given value. */
+  zoom_not?: InputMaybe<Scalars['Int']>;
+  /** All values that are not contained in given list. */
+  zoom_not_in?: InputMaybe<Array<Scalars['Int']>>;
 };
 
 /** References ShopBundesland record uniquely */
