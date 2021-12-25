@@ -14,7 +14,7 @@ export type FilterStateType = {
     town?: string | null;
     search?: string | null;
     center: [number, number];
-    zoom: number;
+    zoom: number | null;
   };
   shops: ShopsQuery["shops"] | null;
   data: ShopsQuery | null;
