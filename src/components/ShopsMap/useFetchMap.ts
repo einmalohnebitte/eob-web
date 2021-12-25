@@ -7,6 +7,19 @@ import {
 import { gqlRequest } from "@correttojs/next-utils/useReactQuery";
 import { useEffect, useReducer } from "react";
 
+function alphabetically(ascending: boolean) {
+  return function (a: any, b: any) {
+      if (a.name != null && b.name != null) {
+        if(!a.name || a.name < b.name){
+        return -1
+        }else if (!b.name || a.name > b.name){
+          return 1
+        }
+        return 0
+      }
+  };
+}
+
 export type FilterStateType = {
   filters: {
     type?: string | null;
@@ -188,6 +201,32 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
     case "APPLY_FILTERS":
       return { ...state, shops: applyShopFilter(state) } as FilterStateType;
     case "SET_DATA":
+      let states = action.payload?.shopBundeslands
+      let categories = action.payload?.shopCategories
+      if (states != null) {
+          states.sort((a, b) =>{
+            if (a.name != null && b.name != null) {
+              if(!a.name || a.name < b.name){
+              return -1
+              }else if (!b.name || a.name > b.name){
+                return 1
+              }
+              return 0
+            }
+        })
+      }
+      if (categories != null) {
+          categories.sort((a, b) =>{
+            if (a.name != null && b.name != null) {
+              if(!a.name || a.name < b.name){
+              return -1
+              }else if (!b.name || a.name > b.name){
+                return 1
+              }
+              return 0
+            }
+        })
+      }
       return {
         ...state,
         data: action.payload,
