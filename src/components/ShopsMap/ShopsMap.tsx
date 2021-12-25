@@ -88,7 +88,7 @@ const MapItem: React.FC<{
 export const ShopsMap: React.FC<{
   center: [number, number];
   zoom: number;
-  shops: ShopsQuery["shops"];
+  shops: ShopsQuery["shops"] | null;
   width?: string;
   height?: string;
 }> = ({ center, zoom, shops, width = "100%", height = "100%" }) => {
