@@ -140,6 +140,7 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
             action.payload?.location?.latitude ?? 0,
             action.payload?.location?.longitude ?? 0,
           ],
+          zoom: 8,
           // zoom: action.payload?.location?.latitude,
         },
         shops: null,

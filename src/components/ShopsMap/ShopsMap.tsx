@@ -50,9 +50,8 @@ const MapItem: React.FC<{
   console.log("Zoom level", zoom)
   if (center !== centerRef.current) {
     centerRef.current = null ?? CENTER;
-    map.setView(centerRef.current);
+    map.setView(centerRef.current, zoom);
   }
-  // map.setView(centerRef.current, zoomREF.current);
   return (
     <>
       <TileLayer
