@@ -25,7 +25,7 @@ export type FilterStateType = {
     type?: string | null;
     category?: string | null;
     town?: string | null;
-    country?: string | null,
+    state?: string | null,
     search?: string | null;
     center: [number, number];
     zoom: number | null;
@@ -38,7 +38,7 @@ export const initialState: FilterStateType = {
     type: null,
     category: null,
     town: null,
-    country: null,
+    state: null,
     search: null,
     center: [51.1657, 10.2336],
     zoom: 6,
@@ -57,7 +57,7 @@ export type FilterActionType =
       payload?: string | null;
     }
   | {
-      type: "SET_COUNTRY";
+      type: "SET_STATE";
       payload?: ShopsQuery["shopBundeslands"][0] | null;
     }
   | {
@@ -92,8 +92,8 @@ export const applyShopFilter = (state: FilterStateType) => {
           (s.shopType ?? []).filter((t) => filters.type === t.name).length > 0
       ) ?? null;
   }
-  if (filters.country) {
-    shops = shops?.filter((s) => s.shopBundesland?.name === filters.country) ?? null;
+  if (filters.state) {
+    shops = shops?.filter((s) => s.shopBundesland?.name === filters.state) ?? null;
   }
   if (filters.search) {
     const regexp = new RegExp(`${filters.search}`, "i");
@@ -131,8 +131,8 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
       } as FilterStateType;
     }
 
-    case "SET_COUNTRY": {
-      if (action.payload?.name === state.filters.country) {
+    case "SET_STATE": {
+      if (action.payload?.name === state.filters.state) {
         return {
           ...state,
 
@@ -148,7 +148,7 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
 
         filters: {
           ...state.filters,
-          country: action.payload?.name,
+          state: action.payload?.name,
           center: [
             action.payload?.location?.latitude ?? 0,
             action.payload?.location?.longitude ?? 0,
