@@ -46,8 +46,11 @@ const MapItem: React.FC<{
   shops?: ShopsQuery["shops"] | null;
 }> = ({ center, shops, zoom }) => {
   const map = useMap();
-  // TODO: fix zoom and center
-  // map.setView(center, zoom);
+  if (zoom != null) {
+    map.setView(center, zoom);
+  } else {
+    map.setView(center);
+  }
   return (
     <>
       <TileLayer
