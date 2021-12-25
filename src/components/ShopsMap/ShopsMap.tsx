@@ -15,6 +15,7 @@ import MarkerClusterGroup from "react-leaflet-markercluster";
 import styled from "styled-components";
 
 import { MQ_DESKTOP } from "../../constants/MediaQueries";
+import { number } from "yup";
 
 require("react-leaflet-markercluster/dist/styles.min.css");
 
@@ -37,18 +38,16 @@ const StyledMap = styled.div`
 `;
 
 const CENTER: [number, number] = [51.1657, 10.4515];
-const ZOOM: [number] = 6;
 
 const MapItem: React.FC<{
   center?: [number, number] | null;
-  zoom?: number | null;
+  zoom?: number;
   shops: ShopsQuery["shops"] | null;
 }> = ({ center, shops, zoom }) => {
   const map = useMap();
   const centerRef = useRef(center ?? CENTER);
   // const zoomREF = useRef(zoom ?? ZOOM);
-  // console.log(zoomREF.current, zoom)
-  console.log("Zoom", zoom)
+  console.log("Zoom level", zoom)
   if (center !== centerRef.current) {
     centerRef.current = null ?? CENTER;
     map.setView(centerRef.current);
@@ -95,7 +94,7 @@ const MapItem: React.FC<{
 
 export const ShopsMap: React.FC<{
   center?: [number, number] | null;
-  zoom?: number | null;
+  zoom?: number;
   shops: ShopsQuery["shops"] | null;
   width?: string;
   height?: string;
@@ -105,14 +104,14 @@ export const ShopsMap: React.FC<{
       <MapContainer
         className={"map"}
         center={center ?? CENTER}
-        zoom={zoom ?? ZOOM}
+        zoom={zoom}
         maxZoom={15}
         style={{
           height,
           width,
         }}
       >
-        <MapItem shops={shops} center={center} zoom={zoom ?? ZOOM} />
+        <MapItem shops={shops} center={center} zoom={zoom} />
       </MapContainer>
     </StyledMap>
   );

@@ -91,6 +91,7 @@ const Shops: React.FC = () => {
         </div>
         <ShopsMap
           center={state.filters.center}
+          zoom={state.filters.zoom}
           shops={state.shops}
           height="100vh"
         />
