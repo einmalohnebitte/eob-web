@@ -7,17 +7,17 @@ import {
 import { gqlRequest } from "@correttojs/next-utils/useReactQuery";
 import { useEffect, useReducer } from "react";
 
-function alphabetically(ascending: boolean) {
-  return function (a: any, b: any) {
-      if (a.name != null && b.name != null) {
-        if(!a.name || a.name < b.name){
-        return -1
-        }else if (!b.name || a.name > b.name){
-          return 1
-        }
-        return 0
-      }
-  };
+function sortArray(a: any, b: any) {
+  if (a.name != null && b.name != null) {
+    if(!a.name || a.name < b.name){
+    return -1
+    } else if (!b.name || a.name > b.name){
+      return 1
+    }
+    return 0
+  } else {
+    return 0
+  }
 }
 
 export type FilterStateType = {
@@ -203,29 +203,15 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
     case "SET_DATA":
       let states = action.payload?.shopBundeslands
       let categories = action.payload?.shopCategories
+      let types = action.payload?.shopTypes
       if (states != null) {
-          states.sort((a, b) =>{
-            if (a.name != null && b.name != null) {
-              if(!a.name || a.name < b.name){
-              return -1
-              }else if (!b.name || a.name > b.name){
-                return 1
-              }
-              return 0
-            }
-        })
+          states.sort(sortArray)
       }
       if (categories != null) {
-          categories.sort((a, b) =>{
-            if (a.name != null && b.name != null) {
-              if(!a.name || a.name < b.name){
-              return -1
-              }else if (!b.name || a.name > b.name){
-                return 1
-              }
-              return 0
-            }
-        })
+          categories.sort(sortArray)
+      }
+      if (types != null) {
+        types.sort(sortArray)
       }
       return {
         ...state,
