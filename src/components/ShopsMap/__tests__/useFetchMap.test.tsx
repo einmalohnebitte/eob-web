@@ -62,7 +62,7 @@ describe("useFetchMap", () => {
     ).toHaveLength(80);
   });
 
-  it("should reduce SET_CATEGORY SET_COUNTRY", () => {
+  it("should reduce SET_CATEGORY SET_STATE", () => {
     let stateUpdate = reducer(
       {
         ...initialState,
@@ -75,7 +75,7 @@ describe("useFetchMap", () => {
       center: [51.1657, 10.2336],
       search: null,
       town: null,
-      country: null,
+      state: null,
       type: null,
       zoom: 6,
     });
@@ -84,7 +84,7 @@ describe("useFetchMap", () => {
 
     expect(stateUpdate.shops).toHaveLength(57);
     stateUpdate = reducer(stateUpdate, {
-      type: "SET_COUNTRY",
+      type: "SET_STATE",
       payload: { name: "Bayern" } as any,
     });
     expect(stateUpdate.shops).toBeNull();
@@ -95,13 +95,13 @@ describe("useFetchMap", () => {
       category: "Süßwaren, Nüsse, Trockenfrüchte",
       center: [0, 0],
       search: null,
-      country: "Bayern",
+      state: "Bayern",
       town: null,
       type: null,
       zoom: 6,
     });
     stateUpdate = reducer(stateUpdate, {
-      type: "SET_COUNTRY",
+      type: "SET_STATE",
       payload: { name: "Bayern" } as any,
     });
     expect(stateUpdate.shops).toBeNull();
@@ -121,7 +121,7 @@ describe("useFetchMap", () => {
       category: null,
       center: [0, 0],
       search: null,
-      country: "Bayern",
+      state: "Bayern",
       town: null,
       type: null,
       zoom: 6,
@@ -140,7 +140,7 @@ describe("useFetchMap", () => {
       category: null,
       center: [51.1657, 10.2336],
       search: null,
-      country: null,
+      state: null,
       town: null,
       type: "Eis",
       zoom: 6,
@@ -162,7 +162,7 @@ describe("useFetchMap", () => {
       center: [51.1657, 10.2336],
       search: "Tölzer",
       town: null,
-      country: null,
+      state: null,
       type: "Eis",
       zoom: 6,
     });
@@ -189,7 +189,7 @@ describe("useFetchMap", () => {
       category: null,
       center: [51.1657, 10.2336],
       search: null,
-      country: null,
+      state: null,
       town: null,
       type: null,
       zoom: 6,

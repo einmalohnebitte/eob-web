@@ -129,7 +129,7 @@ export const ShopsSideMenu: React.FC<{
               {shopBundeslands.map((town) => (
                 <ButtonNoColor
                   onClick={() => {
-                    dispatchAction({ type: "SET_COUNTRY", payload: town });
+                    dispatchAction({ type: "SET_STATE", payload: town });
                   }}
                   css={[
                     tw`m-2`,
