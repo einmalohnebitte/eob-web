@@ -30,6 +30,9 @@ export const shopsData = {
           },
         ],
         shopTown: null,
+        shopBundesland: {
+          name: "Bayern",
+        },
         shopType: [],
       },
       {
@@ -55,6 +58,9 @@ export const shopsData = {
             isMain: true,
           },
         ],
+        shopBundesland: {
+          name: "Bayern",
+        },
         shopTown: null,
         shopType: [],
       },
@@ -569,6 +575,9 @@ export const shopsData = {
         ],
         shopTown: null,
         shopType: [],
+        shopBundesland: {
+          name: "Bayern",
+        },
       },
       {
         id: "ckvdi0wmoa86m0b544iv7irn5",
@@ -690,6 +699,9 @@ export const shopsData = {
         ],
         shopTown: null,
         shopType: [],
+        shopBundesland: {
+          name: "Bayern",
+        },
       },
       {
         id: "ckvdi1baga8cg0b54msy64w6k",
@@ -948,6 +960,9 @@ export const shopsData = {
         ],
         shopTown: null,
         shopType: [],
+        shopBundesland: {
+          name: "Bayern",
+        },
       },
       {
         id: "ckvdi3o609x6v0e11tdu8uk3o",
@@ -4893,6 +4908,9 @@ export const shopsData = {
         ],
         shopTown: null,
         shopType: [],
+        shopBundesland: {
+          name: "Bayern",
+        },
       },
       {
         id: "ckve3inkgny170b126m1b85kt",
