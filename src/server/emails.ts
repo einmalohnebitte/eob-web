@@ -2,6 +2,9 @@ import { MutationResolvers } from "@/server/generated/resolvers-types";
 import type { ResolverContext } from "@/server/resolvers";
 import mailgun, { messages } from "mailgun-js";
 
+console.log(process.env.MAILGUN_API)
+console.log(process.env.MAPBOX_TOKEN)
+
 const mg = mailgun({
   apiKey: process.env.MAILGUN_API ?? "",
   domain: `mailg.einmalohnebitte.de`,

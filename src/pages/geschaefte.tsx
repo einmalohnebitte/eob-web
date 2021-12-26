@@ -33,6 +33,12 @@ const ShopsMap = dynamic(
   { ssr: false }
 );
 
+const Map = dynamic(
+  async () => (await import("../components/ShopsMap")).Map,
+  { ssr: false }
+);
+
+
 const OpenButton = styled(Button)<{ isVisible: boolean }>`
   position: absolute;
   z-index: 999999;
@@ -89,14 +95,15 @@ const Shops: React.FC = () => {
             disabled={true}
           />
         </div>
-        <ShopsMap
+        {/* <ShopsMap
           center={state.filters.center}
           shops={state.shops}
           height="100vh"
-        />
+        /> */}
+        <Map />
       </div>
 
-      <ShopsSideMenu
+      {/* <ShopsSideMenu
         filters={state.filters}
         dispatchAction={dispatchAction}
         onClose={() => {
@@ -106,7 +113,7 @@ const Shops: React.FC = () => {
         isOpen={showSidebar}
         isOpenMobile={isOpenMobile}
         data={state.data}
-      />
+      /> */}
     </>
   );
 };

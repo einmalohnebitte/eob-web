@@ -17,6 +17,7 @@ const EobApp = ({ Component, pageProps }: any) => {
     <>
       <Head>
         <title>Einmal Ohne, Bitte</title>
+        <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
       </Head>
       <Component {...pageProps} />
     </>

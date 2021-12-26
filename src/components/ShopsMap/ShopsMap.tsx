@@ -2,7 +2,7 @@ import "leaflet/dist/leaflet.css";
 
 import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
 import L from "leaflet";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
   GeoJSON,
   MapContainer,
@@ -13,6 +13,7 @@ import {
 } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import styled from "styled-components";
+import ReactMapGL from "react-map-gl";
 
 import { MQ_DESKTOP } from "../../constants/MediaQueries";
 

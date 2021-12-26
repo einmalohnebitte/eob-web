@@ -10,6 +10,7 @@ module.exports = compose(plugins)({
   target: "serverless",
   env: {
     GQL_CMS_ID: process.env.GQL_CMS_ID,
+    MAPBOX_TOKEN: process.env.MAPBOX_TOKEN,
   },
   pwa: {
     disable: process.env.NODE_ENV === "development",
