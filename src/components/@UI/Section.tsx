@@ -3,10 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 export const Section: React.FC<
-  React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLHeadingElement>,
-    HTMLHeadingElement
-  >
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 > = ({ children, className, ...props }) => (
   <section
     css={`
@@ -26,10 +23,7 @@ export const Section: React.FC<
 );
 
 const SectionMain: React.FC<
-  React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLHeadingElement>,
-    HTMLHeadingElement
-  >
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 > = ({ children, ...props }) => (
   <Section
     className={classNames(

@@ -4,7 +4,7 @@ import {
   FilterActionType,
   FilterStateType,
 } from "@/components/ShopsMap/useFetchMap";
-import { MQ_MOBILE } from "@/constants/MediaQueries";
+import { MQ_MD } from "@/constants/MediaQueries";
 import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
 import React, { useState } from "react";
@@ -19,7 +19,7 @@ const Sidebar = styled.div<{ isOpen: boolean; isOpenMobile: boolean }>`
   z-index: 99999;
   top: ${90}px;
 
-  @media ${MQ_MOBILE} {
+  @media ${MQ_MD} {
     top: ${70}px;
     width: ${({ isOpenMobile }) => (isOpenMobile ? "100%" : "0")};
     min-width: ${({ isOpenMobile }) => (isOpenMobile ? "100%" : "0")};
