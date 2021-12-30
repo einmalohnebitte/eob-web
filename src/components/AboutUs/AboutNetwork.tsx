@@ -116,7 +116,7 @@ export const AboutNetwork: React.FC<{
                       />
                     )}
                     <div
-                      css={classNames([
+                      className={classNames([
                         getTextColor(color),
                         "flex-grow flex justify-end flex-col m-2",
                       ])}
