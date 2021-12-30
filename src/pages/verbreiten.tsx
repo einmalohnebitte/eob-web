@@ -1,4 +1,4 @@
-import { BackgroundPinkWrapper } from "@/components/@UI/BackgroundWrapper";
+import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
 import { OL } from "@/components/@UI/List.css";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { SponsorCard } from "@/components/@UI/SponsorCard";
@@ -63,7 +63,7 @@ const Home: React.FC<
         </SplitSection.Main>
       </SplitSection.Section>
 
-      <BackgroundPinkWrapper>
+      <BackgroundWrapper color="pink">
         <Section>
           <H2>{pageSections[1].title}</H2>
           <OL
@@ -86,7 +86,7 @@ const Home: React.FC<
             ))}
           </div>
         </Section>
-      </BackgroundPinkWrapper>
+      </BackgroundWrapper>
     </>
   );
 };

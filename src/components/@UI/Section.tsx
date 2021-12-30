@@ -12,6 +12,11 @@ export const Section: React.FC<
     css={`
       font-size: 3rem;
       line-height: 3rem;
+      div:first-child {
+        @media (min-width: 768px) {
+          margin-right: 2rem;
+        }
+      }
     `}
     className={classNames("p-1 mt-5 md:p-8 max-w-screen-lg mx-auto", className)}
     {...props}
