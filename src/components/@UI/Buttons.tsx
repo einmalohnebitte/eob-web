@@ -1,10 +1,16 @@
 /* eslint-disable no-nested-ternary */
 import classNames from "classnames";
 
-export type Colors = "pink" | "yellow" | "blue";
+export type Colors =
+  | "pink"
+  | "yellow"
+  | "blue"
+  | "pink-inverted"
+  | "yellow-inverted"
+  | "blue-inverted";
 
-export const ButtonNoColor =
-  "text-xl  font-lemonism tracking-wider py-2 px-6 rounded focus:outline-none";
+const ButtonNoColor =
+  "text-xl font-lemonism tracking-wider py-2 rounded focus:outline-none";
 
 export const Pink = `text-white bg-pink-600 hover:bg-pink-700`;
 export const PinkInverted = `bg-white text-pink-600 border-solid  border-2 border-pink-600 hover:text-pink-700`;
@@ -19,16 +25,20 @@ export const ButtonColor: React.FC<
   React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
-  > & { color: Colors }
-> = ({ color, className, children, ...props }) => (
+  > & { color: Colors; padding?: "s" | "m" }
+> = ({ color, className, children, padding = "m", ...props }) => (
   <button
     className={classNames(
       "text-white",
-      ButtonNoColor,
       color === "blue" && Blue,
       color === "pink" && Pink,
       color === "yellow" && Yellow,
-      className
+      color === "blue-inverted" && BlueInverted,
+      color === "pink-inverted" && PinkInverted,
+      color === "yellow-inverted" && YellowInverted,
+      className,
+      padding === "m" ? "px-6" : "px-4",
+      ButtonNoColor
     )}
     {...props}
   >
