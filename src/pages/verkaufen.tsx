@@ -1,5 +1,5 @@
 import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
-import { OL, UL } from "@/components/@UI/List.css";
+import styles from "@/components/@UI/List.module.scss";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { H1, H2 } from "@/components/@UI/Texts";
 import {
@@ -55,8 +55,8 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
       <BackgroundWrapper color="yellow">
         <Section>
           <H2>{pageSections[1].title}</H2>
-          <OL
-            className="py-4 pr-4"
+          <div
+            className={`${styles.OLWrapper} py-4 pr-4`}
             dangerouslySetInnerHTML={{
               __html: pageSections[1].content.html ?? "",
             }}
@@ -64,8 +64,8 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         </Section>
         <Section>
           <H2>{pageSections[2].title}</H2>
-          <UL
-            className="py-4"
+          <div
+            className={`${styles.ULWrapper} py-4 `}
             dangerouslySetInnerHTML={{
               __html: pageSections[2].content.html ?? "",
             }}
