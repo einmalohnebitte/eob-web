@@ -21,7 +21,7 @@ const YellowInverted = `bg-white text-yellow-600 border-solid  border-2 border-y
 const Blue = `text-white bg-blue-500 hover:bg-blue-700`;
 const BlueInverted = `bg-white text-blue-600 border-solid  border-2 border-blue-600 hover:text-blue-700`;
 
-export const ButtonColor: React.FC<
+export const Button: React.FC<
   React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement

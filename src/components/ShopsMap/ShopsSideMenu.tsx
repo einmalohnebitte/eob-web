@@ -1,4 +1,4 @@
-import { ButtonColor } from "@/components/@UI/Buttons";
+import { Button } from "@/components/@UI/Buttons";
 import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
 import {
   FilterActionType,
@@ -70,32 +70,32 @@ export const ShopsSideMenu: React.FC<{
       </div>
       <div>
         <div className={`flex justify-center`}>
-          <ButtonColor
+          <Button
             onClick={() => setActiveTab(0)}
             color={activeTab === 0 ? "pink" : "pink-inverted"}
             padding="s"
             className={classNames("m-2 text-2xl border-2 border-solid px-4")}
           >
             {intl("CATEGORIES")}
-          </ButtonColor>
+          </Button>
 
-          <ButtonColor
+          <Button
             onClick={() => setActiveTab(2)}
             color={activeTab === 2 ? "blue" : "blue-inverted"}
             padding="s"
             className={classNames("m-2 text-2xl border-2 border-solid px-4")}
           >
             {intl("Types")}
-          </ButtonColor>
+          </Button>
 
-          <ButtonColor
+          <Button
             onClick={() => setActiveTab(1)}
             color={activeTab === 1 ? "yellow" : "yellow-inverted"}
             padding="s"
             className={classNames("m-2 text-2xl border-2 border-solid px-4")}
           >
             {intl("COUNTRY")}
-          </ButtonColor>
+          </Button>
         </div>
 
         {
@@ -103,7 +103,7 @@ export const ShopsSideMenu: React.FC<{
           activeTab === 0 ? (
             <div>
               {shopCategories.map((category) => (
-                <ButtonColor
+                <Button
                   key={category.id}
                   color={
                     category.name === filters.category
@@ -119,13 +119,13 @@ export const ShopsSideMenu: React.FC<{
                   className={classNames("m-2")}
                 >
                   {category.name}
-                </ButtonColor>
+                </Button>
               ))}
             </div>
           ) : activeTab === 1 ? (
             <div>
               {shopBundeslands.map((state) => (
-                <ButtonColor
+                <Button
                   color={
                     state.name === filters.state ? "yellow" : "yellow-inverted"
                   }
@@ -136,13 +136,13 @@ export const ShopsSideMenu: React.FC<{
                   key={state.id}
                 >
                   {state.name}
-                </ButtonColor>
+                </Button>
               ))}
             </div>
           ) : (
             <div>
               {shopTypes.map((type) => (
-                <ButtonColor
+                <Button
                   color={type.name === filters.type ? "blue" : "blue-inverted"}
                   onClick={() => {
                     dispatchAction({ type: "SET_TYPE", payload: type.name });
@@ -151,7 +151,7 @@ export const ShopsSideMenu: React.FC<{
                   key={type.id}
                 >
                   {type.name}
-                </ButtonColor>
+                </Button>
               ))}
             </div>
           )
