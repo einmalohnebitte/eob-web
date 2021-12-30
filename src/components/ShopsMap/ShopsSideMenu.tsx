@@ -1,12 +1,4 @@
-import {
-  Blue,
-  BlueInverted,
-  ButtonNoColor,
-  Pink,
-  PinkInverted,
-  Yellow,
-  YellowInverted,
-} from "@/components/@UI/Buttons";
+import { ButtonColor } from "@/components/@UI/Buttons";
 import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
 import {
   FilterActionType,
@@ -78,38 +70,32 @@ export const ShopsSideMenu: React.FC<{
       </div>
       <div>
         <div className={`flex justify-center`}>
-          <button
+          <ButtonColor
             onClick={() => setActiveTab(0)}
-            className={classNames(
-              "m-2 text-2xl border-2 border-solid px-4",
-              ButtonNoColor,
-              activeTab === 0 ? Pink : PinkInverted
-            )}
+            color={activeTab === 0 ? "pink" : "pink-inverted"}
+            padding="s"
+            className={classNames("m-2 text-2xl border-2 border-solid px-4")}
           >
             {intl("CATEGORIES")}
-          </button>
+          </ButtonColor>
 
-          <button
+          <ButtonColor
             onClick={() => setActiveTab(2)}
-            className={classNames(
-              "m-2 text-2xl border-2 border-solid px-4",
-              ButtonNoColor,
-              activeTab === 2 ? Blue : BlueInverted
-            )}
+            color={activeTab === 2 ? "blue" : "blue-inverted"}
+            padding="s"
+            className={classNames("m-2 text-2xl border-2 border-solid px-4")}
           >
             {intl("Types")}
-          </button>
+          </ButtonColor>
 
-          <button
+          <ButtonColor
             onClick={() => setActiveTab(1)}
-            className={classNames(
-              "m-2 text-2xl border-2 border-solid px-4",
-              ButtonNoColor,
-              activeTab === 1 ? Yellow : YellowInverted
-            )}
+            color={activeTab === 1 ? "yellow" : "yellow-inverted"}
+            padding="s"
+            className={classNames("m-2 text-2xl border-2 border-solid px-4")}
           >
-            {intl("TOWNS")}
-          </button>
+            {intl("COUNTRY")}
+          </ButtonColor>
         </div>
 
         {
@@ -117,58 +103,55 @@ export const ShopsSideMenu: React.FC<{
           activeTab === 0 ? (
             <div>
               {shopCategories.map((category) => (
-                <button
+                <ButtonColor
                   key={category.id}
+                  color={
+                    category.name === filters.category
+                      ? "pink"
+                      : "pink-inverted"
+                  }
                   onClick={() => {
                     dispatchAction({
                       type: "SET_CATEGORY",
                       payload: category.name,
                     });
                   }}
-                  className={classNames(
-                    ButtonNoColor,
-                    "m-2",
-                    category.name === filters.category ? Pink : PinkInverted
-                  )}
+                  className={classNames("m-2")}
                 >
                   {category.name}
-                </button>
+                </ButtonColor>
               ))}
             </div>
           ) : activeTab === 1 ? (
             <div>
-              {shopBundeslands.map((town) => (
-                <button
+              {shopBundeslands.map((state) => (
+                <ButtonColor
+                  color={
+                    state.name === filters.state ? "yellow" : "yellow-inverted"
+                  }
                   onClick={() => {
-                    dispatchAction({ type: "SET_STATE", payload: town });
+                    dispatchAction({ type: "SET_STATE", payload: state });
                   }}
-                  className={classNames(
-                    ButtonNoColor,
-                    "m-2",
-                    town.name === filters.state ? Yellow : YellowInverted
-                  )}
-                  key={town.id}
+                  className={classNames("m-2")}
+                  key={state.id}
                 >
-                  {town.name}
-                </button>
+                  {state.name}
+                </ButtonColor>
               ))}
             </div>
           ) : (
             <div>
               {shopTypes.map((type) => (
-                <button
+                <ButtonColor
+                  color={type.name === filters.type ? "blue" : "blue-inverted"}
                   onClick={() => {
                     dispatchAction({ type: "SET_TYPE", payload: type.name });
                   }}
-                  className={classNames(
-                    ButtonNoColor,
-                    "m-2",
-                    type.name === filters.type ? Blue : BlueInverted
-                  )}
+                  className={classNames("m-2")}
                   key={type.id}
                 >
                   {type.name}
-                </button>
+                </ButtonColor>
               ))}
             </div>
           )
