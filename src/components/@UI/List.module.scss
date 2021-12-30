@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-export const OL = styled.div`
+.OLWrapper {
   ol {
     padding: 2rem;
     list-style: none;
@@ -23,9 +21,9 @@ export const OL = styled.div`
       display: flex;
     }
   }
-`;
+}
 
-export const UL = styled.div`
+.ULWrapper {
   ul {
     padding: 2rem;
     text-indent: 10px;
@@ -34,4 +32,4 @@ export const UL = styled.div`
       display: inline;
     }
   }
-`;
+}

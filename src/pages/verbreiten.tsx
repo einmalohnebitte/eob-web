@@ -1,5 +1,5 @@
 import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
-import { OL } from "@/components/@UI/List.css";
+import styles from "@/components/@UI/List.module.scss";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { SponsorCard } from "@/components/@UI/SponsorCard";
 import { H1, H2 } from "@/components/@UI/Texts";
@@ -66,8 +66,8 @@ const Home: React.FC<
       <BackgroundWrapper color="pink">
         <Section>
           <H2>{pageSections[1].title}</H2>
-          <OL
-            className="py-4 pr-4"
+          <div
+            className={`${styles.OLWrapper} py-4 pr-4`}
             dangerouslySetInnerHTML={{
               __html: pageSections[1].content.html ?? "",
             }}
@@ -78,9 +78,9 @@ const Home: React.FC<
         </Section>
         <Section className="text-center">
           <H2>{intl("CITY_PARTNERS")}</H2>
-          <div className="flex px-2 py-6 overflow-x-auto">
+          <div className="flex overflow-x-auto py-6 px-2">
             {cityPartners.cityPartners.map((c) => (
-              <Link key={c.name} href={c.link ?? ""}>
+              <Link key={c.name} href={c.link ?? ""} passHref={true}>
                 <SponsorCard src={c.logo?.url ?? ""} alt={c.name ?? ""} />
               </Link>
             ))}
