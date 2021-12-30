@@ -1,21 +1,16 @@
 import classNames from "classnames";
 import React from "react";
-import styled from "styled-components";
+import styles from "./Section.module.scss";
 
 export const Section: React.FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 > = ({ children, className, ...props }) => (
   <section
-    css={`
-      font-size: 3rem;
-      line-height: 3rem;
-      div:first-child {
-        @media (min-width: 768px) {
-          margin-right: 2rem;
-        }
-      }
-    `}
-    className={classNames("p-1 mt-5 md:p-8 max-w-screen-lg mx-auto", className)}
+    className={classNames(
+      styles.Section,
+      "p-1 mt-5 md:p-8 max-w-screen-lg mx-auto",
+      className
+    )}
     {...props}
   >
     {children}
@@ -35,12 +30,22 @@ const SectionMain: React.FC<
   </Section>
 );
 
+const Div: (
+  className: string
+) => React.FC<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+> =
+  (className: string) =>
+  // eslint-disable-next-line react/display-name
+  ({ children, className: _, ...props }) =>
+    (
+      <div className={classNames(className)} {...props}>
+        {children}
+      </div>
+    );
+
 export const SplitSection = {
   Section: SectionMain,
-  Main: styled.div`
-    flex: 2;
-  `,
-  Side: styled.div`
-    flex: 1;
-  `,
+  Main: Div(styles.Main),
+  Side: Div(styles.Side),
 };
