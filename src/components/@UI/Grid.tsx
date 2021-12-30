@@ -1,19 +1,10 @@
-import { MQ_DESKTOP, MQ_MOBILE } from "@/constants/MediaQueries";
-import styled from "styled-components";
+import classNames from "classnames";
+import styles from "./Grid.module.scss";
 
-export const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  @media ${MQ_MOBILE} {
-    grid-template-columns: 1fr;
-  }
-  @media ${MQ_DESKTOP} {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  a {
-    font-weight: normal;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-`;
+export const Grid: React.FC<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+> = ({ children, className, ...props }) => (
+  <div className={classNames(styles.Grid, className)} {...props}>
+    {children}
+  </div>
+);

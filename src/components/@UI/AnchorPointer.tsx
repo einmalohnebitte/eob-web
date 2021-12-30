@@ -1,13 +1,5 @@
-import React from "react";
+import styles from "./AnchorPointer.module.scss";
 
 export const AnchorPointer: React.FC<{ id: string }> = ({ id }) => (
-  <div
-    id={id}
-    css={`
-      display: block;
-      position: relative;
-      top: -100px;
-      visibility: hidden;
-    `}
-  />
+  <span id={id} className={styles.anchorPointer} />
 );

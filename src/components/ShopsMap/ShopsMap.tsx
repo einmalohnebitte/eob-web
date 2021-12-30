@@ -14,7 +14,7 @@ import {
 import MarkerClusterGroup from "react-leaflet-markercluster";
 import styled from "styled-components";
 
-import { MQ_DESKTOP } from "../../constants/MediaQueries";
+import { MQ_LG } from "../../constants/MediaQueries";
 import { number } from "yup";
 
 require("react-leaflet-markercluster/dist/styles.min.css");
@@ -31,7 +31,7 @@ if (L.Icon) {
 const StyledMap = styled.div`
   .map {
     min-height: 300px;
-    @media ${MQ_DESKTOP} {
+    @media ${MQ_LG} {
       min-height: 400px !important;
     }
   }

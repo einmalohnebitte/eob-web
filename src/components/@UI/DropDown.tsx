@@ -1,15 +1,6 @@
 import React from "react";
 import { MdLanguage } from "react-icons/md";
-import styled from "styled-components";
-
-const UL = styled.ul`
-  right: 0;
-`;
-const Control = styled.div`
-  &:hover ${UL} {
-    display: block;
-  }
-`;
+import styles from "./DropDown.module.scss";
 
 export const DropDownItem: React.FC<{
   text: string;
@@ -25,10 +16,12 @@ export const DropDownItem: React.FC<{
 );
 
 export const DropDown: React.FC = ({ children }) => (
-  <Control className={` inline-block relative `}>
+  <div className={`${styles.Control} inline-block relative `}>
     <button className={`py-2 px-2 rounded inline-flex items-center`}>
       <MdLanguage size={"1.6em"} />
     </button>
-    <UL className={`absolute hidden text-gray-700 pt-1`}>{children}</UL>
-  </Control>
+    <ul className={`${styles.Ul} absolute hidden text-gray-700 pt-1`}>
+      {children}
+    </ul>
+  </div>
 );
