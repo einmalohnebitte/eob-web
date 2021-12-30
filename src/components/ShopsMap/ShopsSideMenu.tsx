@@ -74,7 +74,7 @@ export const ShopsSideMenu: React.FC<{
           <ButtonNoColor
             onClick={() => setActiveTab(0)}
             css={[
-              tw`text-2xl  border-solid  border-2 m-2`,
+              tw`text-2xl  border-solid  border-2 m-2 px-4`,
               activeTab === 0 ? Pink : PinkInverted,
             ]}
           >
@@ -84,7 +84,7 @@ export const ShopsSideMenu: React.FC<{
           <ButtonNoColor
             onClick={() => setActiveTab(2)}
             css={[
-              tw`text-2xl  border-solid  border-2 m-2`,
+              tw`text-2xl  border-solid  border-2 m-2 px-4`,
               activeTab === 2 ? Blue : BlueInverted,
             ]}
           >
@@ -94,7 +94,7 @@ export const ShopsSideMenu: React.FC<{
           <ButtonNoColor
             onClick={() => setActiveTab(1)}
             css={[
-              tw`text-2xl  border-solid  border-2 m-2`,
+              tw`text-2xl  border-solid  border-2 m-2 px-4`,
               activeTab === 1 ? Yellow : YellowInverted,
             ]}
           >
@@ -133,7 +133,7 @@ export const ShopsSideMenu: React.FC<{
                   }}
                   css={[
                     tw`m-2`,
-                    town.name === filters.town ? Yellow : YellowInverted,
+                    town.name === filters.state ? Yellow : YellowInverted,
                   ]}
                   key={town.id}
                 >

@@ -36,17 +36,17 @@ describe("useFetchMap", () => {
       })
     ).toHaveLength(2);
   });
-  it("should applyShopFilter to shops filtered by town", () => {
+  it("should applyShopFilter to shops filtered by state", () => {
     expect(
       applyShopFilter({
         ...initialState,
         data: shopsData.data,
         filters: {
           ...initialState.filters,
-          town: "München",
+          state: "Bayern",
         },
       })
-    ).toHaveLength(500);
+    ).toHaveLength(6);
   });
 
   it("should applyShopFilter to shops filtered by search", () => {
@@ -74,7 +74,6 @@ describe("useFetchMap", () => {
       category: "Süßwaren, Nüsse, Trockenfrüchte",
       center: [51.1657, 10.2336],
       search: null,
-      town: null,
       state: null,
       type: null,
       zoom: 6,
@@ -96,7 +95,6 @@ describe("useFetchMap", () => {
       center: [0, 0],
       search: null,
       state: "Bayern",
-      town: null,
       type: null,
       zoom: 6,
     });
@@ -105,8 +103,18 @@ describe("useFetchMap", () => {
       payload: { name: "Bayern" } as any,
     });
     expect(stateUpdate.shops).toBeNull();
+
     stateUpdate = reducer(stateUpdate, { type: "APPLY_FILTERS" });
-    expect(stateUpdate.shops).toHaveLength(4);
+    expect(stateUpdate.shops).toHaveLength(57);
+    expect(stateUpdate.filters).toEqual({
+      category: "Süßwaren, Nüsse, Trockenfrüchte",
+      center: [0, 0],
+      search: null,
+      state: null,
+      type: null,
+      zoom: 6,
+    });
+
     stateUpdate = reducer(
       {
         ...stateUpdate,
@@ -116,13 +124,12 @@ describe("useFetchMap", () => {
     );
     expect(stateUpdate.shops).toBeNull();
     stateUpdate = reducer(stateUpdate, { type: "APPLY_FILTERS" });
-    expect(stateUpdate.shops).toHaveLength(6);
+    expect(stateUpdate.shops).toHaveLength(500);
     expect(stateUpdate.filters).toEqual({
       category: null,
       center: [0, 0],
       search: null,
-      state: "Bayern",
-      town: null,
+      state: null,
       type: null,
       zoom: 6,
     });
@@ -141,7 +148,6 @@ describe("useFetchMap", () => {
       center: [51.1657, 10.2336],
       search: null,
       state: null,
-      town: null,
       type: "Eis",
       zoom: 6,
     });
@@ -161,7 +167,6 @@ describe("useFetchMap", () => {
       category: null,
       center: [51.1657, 10.2336],
       search: "Tölzer",
-      town: null,
       state: null,
       type: "Eis",
       zoom: 6,
@@ -190,7 +195,6 @@ describe("useFetchMap", () => {
       center: [51.1657, 10.2336],
       search: null,
       state: null,
-      town: null,
       type: null,
       zoom: 6,
     });
