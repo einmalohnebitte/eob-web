@@ -39,7 +39,7 @@ export const GlobalStyle = createGlobalStyle`
       }
     }
     
-    p,a { 
+    p,a,div { 
         font-size: 1.25rem;
         line-height: 2rem;
         font-family: GT, sans-serif;

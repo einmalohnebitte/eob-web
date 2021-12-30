@@ -1,4 +1,4 @@
-import { BackgroundBlueWrapper } from "@/components/@UI/BackgroundWrapper";
+import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { H1, H2 } from "@/components/@UI/Texts";
 import {
@@ -52,7 +52,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           </SplitSection.Side>
         </SplitSection.Section>
       </div>
-      <BackgroundBlueWrapper>
+      <BackgroundWrapper color="blue">
         <SplitSection.Section>
           <SplitSection.Main
             className="py-4 pr-4"
@@ -192,10 +192,11 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
             }}
           />
         </Section>
-      </BackgroundBlueWrapper>
-      <BackgroundBlueWrapper
+      </BackgroundWrapper>
+      <BackgroundWrapper
         ref={ref}
         className={`flex justify-center p-10 md:p-0`}
+        color="blue"
       >
         {inView && (
           <div className={`flex justify-center py-20 md:w-3/5`}>
@@ -210,8 +211,8 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
               className={`max-w-full`}
             ></iframe>
           </div>
-        )}{" "}
-      </BackgroundBlueWrapper>
+        )}
+      </BackgroundWrapper>
     </>
   );
 };

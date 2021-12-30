@@ -2,11 +2,7 @@
 import { Meta, Story } from "@storybook/react/types-6-0";
 import React from "react";
 
-import {
-  BackgroundBlueWrapper,
-  BackgroundPinkWrapper,
-  BackgroundYellowWrapper,
-} from "../BackgroundWrapper";
+import { BackgroundWrapper } from "../BackgroundWrapper";
 import { Section } from "../Section";
 
 export default {
@@ -23,25 +19,25 @@ const SampleText = `Lorem Ipsum is simply dummy text of the printing and typeset
     like Aldus PageMaker including versions of Lorem Ipsum.`;
 
 const Template: Story = (args) => (
-  <BackgroundBlueWrapper {...args}>
+  <BackgroundWrapper color="blue" {...args}>
     <Section>{SampleText}</Section>
-  </BackgroundBlueWrapper>
+  </BackgroundWrapper>
 );
 
 export const Blue = Template.bind({});
 
 const TemplateP: Story = (args) => (
-  <BackgroundPinkWrapper {...args}>
+  <BackgroundWrapper color="pink" {...args}>
     <Section>{SampleText}</Section>
-  </BackgroundPinkWrapper>
+  </BackgroundWrapper>
 );
 
 export const Pink = TemplateP.bind({});
 
 const TemplateY: Story = (args) => (
-  <BackgroundYellowWrapper {...args}>
+  <BackgroundWrapper color="yellow" {...args}>
     <Section>{SampleText}</Section>
-  </BackgroundYellowWrapper>
+  </BackgroundWrapper>
 );
 
 export const Yellow = TemplateY.bind({});
