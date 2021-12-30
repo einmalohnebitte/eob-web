@@ -9,14 +9,14 @@ import { useEffect, useReducer } from "react";
 
 function sortArray(a: any, b: any) {
   if (a.name != null && b.name != null) {
-    if(!a.name || a.name < b.name){
-    return -1
-    } else if (!b.name || a.name > b.name){
-      return 1
+    if (!a.name || a.name < b.name) {
+      return -1;
+    } else if (!b.name || a.name > b.name) {
+      return 1;
     }
-    return 0
+    return 0;
   } else {
-    return 0
+    return 0;
   }
 }
 
@@ -24,8 +24,7 @@ export type FilterStateType = {
   filters: {
     type?: string | null;
     category?: string | null;
-    town?: string | null;
-    state?: string | null,
+    state?: string | null;
     search?: string | null;
     center: [number, number];
     zoom: number | null;
@@ -37,7 +36,6 @@ export const initialState: FilterStateType = {
   filters: {
     type: null,
     category: null,
-    town: null,
     state: null,
     search: null,
     center: [51.1657, 10.2336],
@@ -93,7 +91,8 @@ export const applyShopFilter = (state: FilterStateType) => {
       ) ?? null;
   }
   if (filters.state) {
-    shops = shops?.filter((s) => s.shopBundesland?.name === filters.state) ?? null;
+    shops =
+      shops?.filter((s) => s.shopBundesland?.name === filters.state) ?? null;
   }
   if (filters.search) {
     const regexp = new RegExp(`${filters.search}`, "i");
@@ -138,7 +137,7 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
 
           filters: {
             ...state.filters,
-            town: null,
+            state: null,
           },
           shops: null,
         } as FilterStateType;
@@ -201,17 +200,17 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
     case "APPLY_FILTERS":
       return { ...state, shops: applyShopFilter(state) } as FilterStateType;
     case "SET_DATA":
-      let states = action.payload?.shopBundeslands
-      let categories = action.payload?.shopCategories
-      let types = action.payload?.shopTypes
+      let states = action.payload?.shopBundeslands;
+      let categories = action.payload?.shopCategories;
+      let types = action.payload?.shopTypes;
       if (states != null) {
-          states.sort(sortArray)
+        states.sort(sortArray);
       }
       if (categories != null) {
-          categories.sort(sortArray)
+        categories.sort(sortArray);
       }
       if (types != null) {
-        types.sort(sortArray)
+        types.sort(sortArray);
       }
       return {
         ...state,
