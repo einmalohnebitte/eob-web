@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import * as Yup from "yup";
 
-import { ButtonColor, Colors } from "../@UI/Buttons";
+import { Button, Colors } from "../@UI/Buttons";
 import { FieldCheckbox } from "./FieldCheckbox";
 
 export const FormError: React.FC<{
@@ -24,9 +24,9 @@ export const FormError: React.FC<{
     >
       {intl("FORM_CONTACT_ERROR")}
 
-      <ButtonColor className="mt-4" color={color} onClick={onReset}>
+      <Button className="mt-4" color={color} onClick={onReset}>
         {intl("FORM_OK")}
-      </ButtonColor>
+      </Button>
     </div>
   );
 };
@@ -106,9 +106,9 @@ export const FormBase = <T extends {}>({
               label={intl("FORM_DATA_POLICY_MESSAGE")}
             />
 
-            <ButtonColor color={color} type="submit">
+            <Button color={color} type="submit">
               {intl("FORM_SEND")}
-            </ButtonColor>
+            </Button>
           </Form>
         )}
       </Formik>

@@ -1,6 +1,4 @@
-import styled from "styled-components";
-
-export const SliderContainer = styled.div`
+.SliderContainer {
   height: 250px;
   position: relative;
   width: 100%;
@@ -31,9 +29,9 @@ export const SliderContainer = styled.div`
     top: 0;
     transform: rotateZ(180deg);
   }
-`;
+}
 
-export const SlideTrack = styled.div`
+.SliderTrack {
   width: calc(80px * 20);
   display: flex;
   animation: scroll 20s linear infinite;
@@ -46,9 +44,9 @@ export const SlideTrack = styled.div`
       transform: translateX(calc(-100px * 10));
     }
   }
-`;
+}
 
-export const Slide = styled.div`
+.Slide {
   width: 100px;
   height: 150px;
 
@@ -56,4 +54,4 @@ export const Slide = styled.div`
   place-items: center; */
   transition: 0.5s;
   cursor: pointer;
-`;
+}

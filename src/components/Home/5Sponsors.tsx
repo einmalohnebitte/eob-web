@@ -3,7 +3,7 @@ import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
 
 import { Section } from "../@UI/Section";
-import { Slide, SlideTrack, SliderContainer } from "../@UI/Slider";
+import styles from "./5Sponsors.module.scss";
 import { H2 } from "../@UI/Texts";
 
 export const Sponsors: React.FC = () => {
@@ -12,33 +12,33 @@ export const Sponsors: React.FC = () => {
     <div>
       <Section className="text-center text-blue-500">
         <H2>{intl("SPONSORS")}</H2>
-        <SliderContainer>
-          <SlideTrack>
-            <Slide>
+        <div className={styles.SliderContainer}>
+          <div className={styles.SliderTrack}>
+            <div className={styles.Slide}>
               <SponsorCard src={"/images/sponsors/dpl.png"} />
-            </Slide>
-            <Slide>
+            </div>
+            <div className={styles.Slide}>
               <SponsorCard src={"/images/sponsors/lush.png"} />
-            </Slide>
-            <Slide>
+            </div>
+            <div className={styles.Slide}>
               <SponsorCard src={"/images/sponsors/patagonia.jpg"} />
-            </Slide>
-            <Slide>
+            </div>
+            <div className={styles.Slide}>
               <SponsorCard src={"/images/sponsors/rgu.png"} />
-            </Slide>
-            <Slide>
+            </div>
+            <div className={styles.Slide}>
               <SponsorCard src={"/images/sponsors/soul.jpg"} />
-            </Slide>
-            <Slide>
+            </div>
+            <div className={styles.Slide}>
               <SponsorCard src={"/images/sponsors/stiftung-veolia.png"} />
-            </Slide>
-            <Slide>
+            </div>
+            <div className={styles.Slide}>
               <SponsorCard
                 src={"/images/sponsors/zukunftsstiftungehrenamt.jpg"}
               />
-            </Slide>
-          </SlideTrack>
-        </SliderContainer>
+            </div>
+          </div>
+        </div>
       </Section>
     </div>
   );

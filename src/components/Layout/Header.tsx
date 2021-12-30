@@ -1,4 +1,4 @@
-import { ButtonColor } from "@/components/@UI/Buttons";
+import { Button } from "@/components/@UI/Buttons";
 import { DropDown, DropDownItem } from "@/components/@UI/DropDown";
 import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
@@ -68,7 +68,7 @@ export const Header: React.FC = () => {
           >
             <MdMenu size={"1.6em"} />
           </div>
-          <ButtonColor
+          <Button
             color="pink"
             className="mx-2"
             onClick={() => {
@@ -76,7 +76,7 @@ export const Header: React.FC = () => {
             }}
           >
             {intl("Donate")}
-          </ButtonColor>
+          </Button>
           <DropDown>
             <DropDownItem
               text="Deutsch"
