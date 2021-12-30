@@ -11,4 +11,4 @@ jobs:
           path: ~/.npm
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
-    - run: npm ci  --ignore-scripts
+    - run: npm install
