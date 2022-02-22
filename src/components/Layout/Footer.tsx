@@ -49,7 +49,7 @@ export const AppFooter = () => {
             <a
               rel="noreferrer"
               target="_blank"
-              href="https://www.facebook.com/einmalohnebitte/"
+              href="https://www.instagram.com/einmal.ohne.bitte/"
               className="ml-4"
             >
               <GrInstagram style={{ display: "inline-block" }} size={30} />
