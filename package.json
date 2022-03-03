@@ -93,7 +93,7 @@
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-tailwindcss": "1.17.2",
-    "eslint-plugin-testing-library": "5.0.5",
+    "eslint-plugin-testing-library": "5.0.6",
     "graphql-codegen-apollo-cache": "0.1.10",
     "graphql-codegen-apollo-next-ssr": "1.7.1",
     "jest": "27.5.1",
