@@ -5486,8 +5486,11 @@ export type MutationPublishManyShopBundeslandsConnectionArgs = {
 
 
 export type MutationPublishManyShopCategoriesArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where?: InputMaybe<ShopCategoryManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5497,15 +5500,21 @@ export type MutationPublishManyShopCategoriesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<ShopCategoryManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationPublishManyShopStatusesArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where?: InputMaybe<ShopStatusManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5515,15 +5524,21 @@ export type MutationPublishManyShopStatusesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<ShopStatusManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationPublishManyShopTownsArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where?: InputMaybe<ShopTownManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5533,15 +5548,21 @@ export type MutationPublishManyShopTownsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<ShopTownManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationPublishManyShopTypesArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where?: InputMaybe<ShopTypeManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5551,9 +5572,12 @@ export type MutationPublishManyShopTypesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<ShopTypeManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5696,26 +5720,38 @@ export type MutationPublishShopBundeslandArgs = {
 
 
 export type MutationPublishShopCategoryArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where: ShopCategoryWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationPublishShopStatusArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where: ShopStatusWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationPublishShopTownArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where: ShopTownWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationPublishShopTypeArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where: ShopTypeWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5883,34 +5919,46 @@ export type MutationSchedulePublishShopBundeslandArgs = {
 
 
 export type MutationSchedulePublishShopCategoryArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
   where: ShopCategoryWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationSchedulePublishShopStatusArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
   where: ShopStatusWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationSchedulePublishShopTownArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
   where: ShopTownWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationSchedulePublishShopTypeArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars['Boolean']>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
   where: ShopTypeWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -6072,32 +6120,40 @@ export type MutationScheduleUnpublishShopBundeslandArgs = {
 
 export type MutationScheduleUnpublishShopCategoryArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ShopCategoryWhereUniqueInput;
 };
 
 
 export type MutationScheduleUnpublishShopStatusArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ShopStatusWhereUniqueInput;
 };
 
 
 export type MutationScheduleUnpublishShopTownArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ShopTownWhereUniqueInput;
 };
 
 
 export type MutationScheduleUnpublishShopTypeArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ShopTypeWhereUniqueInput;
 };
 
@@ -6442,6 +6498,8 @@ export type MutationUnpublishManyShopBundeslandsConnectionArgs = {
 
 export type MutationUnpublishManyShopCategoriesArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ShopCategoryManyWhereInput>;
 };
 
@@ -6452,14 +6510,18 @@ export type MutationUnpublishManyShopCategoriesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ShopCategoryManyWhereInput>;
 };
 
 
 export type MutationUnpublishManyShopStatusesArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ShopStatusManyWhereInput>;
 };
 
@@ -6470,14 +6532,18 @@ export type MutationUnpublishManyShopStatusesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ShopStatusManyWhereInput>;
 };
 
 
 export type MutationUnpublishManyShopTownsArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ShopTownManyWhereInput>;
 };
 
@@ -6488,14 +6554,18 @@ export type MutationUnpublishManyShopTownsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ShopTownManyWhereInput>;
 };
 
 
 export type MutationUnpublishManyShopTypesArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ShopTypeManyWhereInput>;
 };
 
@@ -6506,8 +6576,10 @@ export type MutationUnpublishManyShopTypesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ShopTypeManyWhereInput>;
 };
 
@@ -6642,24 +6714,32 @@ export type MutationUnpublishShopBundeslandArgs = {
 
 export type MutationUnpublishShopCategoryArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ShopCategoryWhereUniqueInput;
 };
 
 
 export type MutationUnpublishShopStatusArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ShopStatusWhereUniqueInput;
 };
 
 
 export type MutationUnpublishShopTownArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ShopTownWhereUniqueInput;
 };
 
 
 export type MutationUnpublishShopTypeArgs = {
   from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ShopTypeWhereUniqueInput;
 };
 
@@ -7992,6 +8072,7 @@ export type PageConnection = {
 };
 
 export type PageCreateInput = {
+  /** content input for default locale (de) */
   content?: InputMaybe<Scalars['RichTextAST']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   /** Inline mutations for managing document localizations excluding the default locale */
@@ -8007,6 +8088,7 @@ export type PageCreateInput = {
 };
 
 export type PageCreateLocalizationDataInput = {
+  content?: InputMaybe<Scalars['RichTextAST']>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   title?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -8779,6 +8861,7 @@ export type PageSectionWhereUniqueInput = {
 };
 
 export type PageUpdateInput = {
+  /** content input for default locale (de) */
   content?: InputMaybe<Scalars['RichTextAST']>;
   /** Manage document localizations */
   localizations?: InputMaybe<PageUpdateLocalizationsInput>;
@@ -8792,6 +8875,7 @@ export type PageUpdateInput = {
 };
 
 export type PageUpdateLocalizationDataInput = {
+  content?: InputMaybe<Scalars['RichTextAST']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -8828,6 +8912,7 @@ export type PageUpdateManyInlineInput = {
 };
 
 export type PageUpdateManyInput = {
+  /** content input for default locale (de) */
   content?: InputMaybe<Scalars['RichTextAST']>;
   /** Optional updates to localizations */
   localizations?: InputMaybe<PageUpdateManyLocalizationsInput>;
@@ -8839,6 +8924,7 @@ export type PageUpdateManyInput = {
 };
 
 export type PageUpdateManyLocalizationDataInput = {
+  content?: InputMaybe<Scalars['RichTextAST']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
@@ -12686,7 +12772,6 @@ export type Shop = Node & {
   /** Get the document in other stages */
   documentInStages: Array<Shop>;
   email?: Maybe<Scalars['String']>;
-  furtherInformation?: Maybe<Scalars['String']>;
   /** List of Shop versions */
   history: Array<Version>;
   /** The unique identifier */
@@ -12695,6 +12780,8 @@ export type Shop = Node & {
   location?: Maybe<Location>;
   name?: Maybe<Scalars['String']>;
   newsletter?: Maybe<Scalars['Boolean']>;
+  /** This private and just for internal notes. */
+  notes?: Maybe<Scalars['String']>;
   openinghours?: Maybe<Scalars['String']>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -12709,9 +12796,7 @@ export type Shop = Node & {
   /** System stage field */
   stage: Stage;
   stickerBack?: Maybe<Scalars['Int']>;
-  stickerDelivery?: Maybe<Scalars['Boolean']>;
   stickerFront?: Maybe<Scalars['Int']>;
-  trayinformation?: Maybe<Scalars['Int']>;
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
@@ -13277,6 +13362,10 @@ export type ShopCategory = Node & {
   /** The unique identifier */
   id: Scalars['ID'];
   isMain?: Maybe<Scalars['Boolean']>;
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<ShopCategory>;
   name?: Maybe<Scalars['String']>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -13290,6 +13379,11 @@ export type ShopCategory = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+};
+
+
+export type ShopCategoryCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -13309,6 +13403,17 @@ export type ShopCategoryHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ShopCategoryLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  locales?: Array<Locale>;
+};
+
+
+export type ShopCategoryPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -13340,6 +13445,11 @@ export type ShopCategoryShopArgs = {
 };
 
 
+export type ShopCategoryUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
 export type ShopCategoryUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
@@ -13364,9 +13474,29 @@ export type ShopCategoryConnection = {
 export type ShopCategoryCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   isMain?: InputMaybe<Scalars['Boolean']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<ShopCategoryCreateLocalizationsInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
   shop?: InputMaybe<ShopCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ShopCategoryCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ShopCategoryCreateLocalizationInput = {
+  /** Localization input */
+  data: ShopCategoryCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopCategoryCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<ShopCategoryCreateLocalizationInput>>;
 };
 
 export type ShopCategoryCreateManyInlineInput = {
@@ -13440,25 +13570,6 @@ export type ShopCategoryManyWhereInput = {
   isMain?: InputMaybe<Scalars['Boolean']>;
   /** All values that are not equal to given value. */
   isMain_not?: InputMaybe<Scalars['Boolean']>;
-  name?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  name_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  name_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  name_starts_with?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -13516,8 +13627,30 @@ export enum ShopCategoryOrderByInput {
 
 export type ShopCategoryUpdateInput = {
   isMain?: InputMaybe<Scalars['Boolean']>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<ShopCategoryUpdateLocalizationsInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
   shop?: InputMaybe<ShopUpdateManyInlineInput>;
+};
+
+export type ShopCategoryUpdateLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopCategoryUpdateLocalizationInput = {
+  data: ShopCategoryUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopCategoryUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<ShopCategoryCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<ShopCategoryUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<ShopCategoryUpsertLocalizationInput>>;
 };
 
 export type ShopCategoryUpdateManyInlineInput = {
@@ -13539,7 +13672,24 @@ export type ShopCategoryUpdateManyInlineInput = {
 
 export type ShopCategoryUpdateManyInput = {
   isMain?: InputMaybe<Scalars['Boolean']>;
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<ShopCategoryUpdateManyLocalizationsInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopCategoryUpdateManyLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopCategoryUpdateManyLocalizationInput = {
+  data: ShopCategoryUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopCategoryUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<ShopCategoryUpdateManyLocalizationInput>>;
 };
 
 export type ShopCategoryUpdateManyWithNestedWhereInput = {
@@ -13576,6 +13726,12 @@ export type ShopCategoryUpsertInput = {
   create: ShopCategoryCreateInput;
   /** Update document if it exists */
   update: ShopCategoryUpdateInput;
+};
+
+export type ShopCategoryUpsertLocalizationInput = {
+  create: ShopCategoryCreateLocalizationDataInput;
+  locale: Locale;
+  update: ShopCategoryUpdateLocalizationDataInput;
 };
 
 export type ShopCategoryUpsertWithNestedWhereUniqueInput = {
@@ -13719,11 +13875,11 @@ export type ShopCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   dataProtectionForm?: InputMaybe<AssetCreateOneInlineInput>;
   email?: InputMaybe<Scalars['String']>;
-  furtherInformation?: InputMaybe<Scalars['String']>;
   infoflyer?: InputMaybe<Scalars['Int']>;
   location?: InputMaybe<LocationInput>;
   name?: InputMaybe<Scalars['String']>;
   newsletter?: InputMaybe<Scalars['Boolean']>;
+  notes?: InputMaybe<Scalars['String']>;
   openinghours?: InputMaybe<Scalars['String']>;
   shopBundesland?: InputMaybe<ShopBundeslandCreateOneInlineInput>;
   shopStatus?: InputMaybe<ShopStatusCreateOneInlineInput>;
@@ -13731,9 +13887,7 @@ export type ShopCreateInput = {
   shopType?: InputMaybe<ShopTypeCreateManyInlineInput>;
   shopcategories?: InputMaybe<ShopCategoryCreateManyInlineInput>;
   stickerBack?: InputMaybe<Scalars['Int']>;
-  stickerDelivery?: InputMaybe<Scalars['Boolean']>;
   stickerFront?: InputMaybe<Scalars['Int']>;
-  trayinformation?: InputMaybe<Scalars['Int']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   website?: InputMaybe<Scalars['String']>;
 };
@@ -13826,25 +13980,6 @@ export type ShopManyWhereInput = {
   email_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   email_starts_with?: InputMaybe<Scalars['String']>;
-  furtherInformation?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  furtherInformation_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  furtherInformation_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  furtherInformation_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  furtherInformation_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  furtherInformation_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  furtherInformation_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  furtherInformation_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  furtherInformation_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  furtherInformation_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -13901,6 +14036,25 @@ export type ShopManyWhereInput = {
   newsletter?: InputMaybe<Scalars['Boolean']>;
   /** All values that are not equal to given value. */
   newsletter_not?: InputMaybe<Scalars['Boolean']>;
+  notes?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  notes_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  notes_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  notes_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  notes_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  notes_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  notes_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  notes_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  notes_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  notes_starts_with?: InputMaybe<Scalars['String']>;
   openinghours?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   openinghours_contains?: InputMaybe<Scalars['String']>;
@@ -13963,9 +14117,6 @@ export type ShopManyWhereInput = {
   stickerBack_not?: InputMaybe<Scalars['Int']>;
   /** All values that are not contained in given list. */
   stickerBack_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  stickerDelivery?: InputMaybe<Scalars['Boolean']>;
-  /** All values that are not equal to given value. */
-  stickerDelivery_not?: InputMaybe<Scalars['Boolean']>;
   stickerFront?: InputMaybe<Scalars['Int']>;
   /** All values greater than the given value. */
   stickerFront_gt?: InputMaybe<Scalars['Int']>;
@@ -13981,21 +14132,6 @@ export type ShopManyWhereInput = {
   stickerFront_not?: InputMaybe<Scalars['Int']>;
   /** All values that are not contained in given list. */
   stickerFront_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  trayinformation?: InputMaybe<Scalars['Int']>;
-  /** All values greater than the given value. */
-  trayinformation_gt?: InputMaybe<Scalars['Int']>;
-  /** All values greater than or equal the given value. */
-  trayinformation_gte?: InputMaybe<Scalars['Int']>;
-  /** All values that are contained in given list. */
-  trayinformation_in?: InputMaybe<Array<Scalars['Int']>>;
-  /** All values less than the given value. */
-  trayinformation_lt?: InputMaybe<Scalars['Int']>;
-  /** All values less than or equal the given value. */
-  trayinformation_lte?: InputMaybe<Scalars['Int']>;
-  /** All values that are not equal to given value. */
-  trayinformation_not?: InputMaybe<Scalars['Int']>;
-  /** All values that are not contained in given list. */
-  trayinformation_not_in?: InputMaybe<Array<Scalars['Int']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -14040,8 +14176,6 @@ export enum ShopOrderByInput {
   CreatedAtDesc = 'createdAt_DESC',
   EmailAsc = 'email_ASC',
   EmailDesc = 'email_DESC',
-  FurtherInformationAsc = 'furtherInformation_ASC',
-  FurtherInformationDesc = 'furtherInformation_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   InfoflyerAsc = 'infoflyer_ASC',
@@ -14050,18 +14184,16 @@ export enum ShopOrderByInput {
   NameDesc = 'name_DESC',
   NewsletterAsc = 'newsletter_ASC',
   NewsletterDesc = 'newsletter_DESC',
+  NotesAsc = 'notes_ASC',
+  NotesDesc = 'notes_DESC',
   OpeninghoursAsc = 'openinghours_ASC',
   OpeninghoursDesc = 'openinghours_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   StickerBackAsc = 'stickerBack_ASC',
   StickerBackDesc = 'stickerBack_DESC',
-  StickerDeliveryAsc = 'stickerDelivery_ASC',
-  StickerDeliveryDesc = 'stickerDelivery_DESC',
   StickerFrontAsc = 'stickerFront_ASC',
   StickerFrontDesc = 'stickerFront_DESC',
-  TrayinformationAsc = 'trayinformation_ASC',
-  TrayinformationDesc = 'trayinformation_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC',
   WebsiteAsc = 'website_ASC',
@@ -14080,6 +14212,10 @@ export type ShopStatus = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<ShopStatus>;
   name?: Maybe<Scalars['String']>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -14093,6 +14229,11 @@ export type ShopStatus = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+};
+
+
+export type ShopStatusCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -14112,6 +14253,17 @@ export type ShopStatusHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ShopStatusLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  locales?: Array<Locale>;
+};
+
+
+export type ShopStatusPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -14143,6 +14295,11 @@ export type ShopStatusShopsArgs = {
 };
 
 
+export type ShopStatusUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
 export type ShopStatusUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
@@ -14166,9 +14323,29 @@ export type ShopStatusConnection = {
 
 export type ShopStatusCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<ShopStatusCreateLocalizationsInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
   shops?: InputMaybe<ShopCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ShopStatusCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ShopStatusCreateLocalizationInput = {
+  /** Localization input */
+  data: ShopStatusCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopStatusCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<ShopStatusCreateLocalizationInput>>;
 };
 
 export type ShopStatusCreateManyInlineInput = {
@@ -14239,25 +14416,6 @@ export type ShopStatusManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
-  name?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  name_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  name_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  name_starts_with?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -14312,8 +14470,30 @@ export enum ShopStatusOrderByInput {
 }
 
 export type ShopStatusUpdateInput = {
+  /** Manage document localizations */
+  localizations?: InputMaybe<ShopStatusUpdateLocalizationsInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
   shops?: InputMaybe<ShopUpdateManyInlineInput>;
+};
+
+export type ShopStatusUpdateLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopStatusUpdateLocalizationInput = {
+  data: ShopStatusUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopStatusUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<ShopStatusCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<ShopStatusUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<ShopStatusUpsertLocalizationInput>>;
 };
 
 export type ShopStatusUpdateManyInlineInput = {
@@ -14334,7 +14514,24 @@ export type ShopStatusUpdateManyInlineInput = {
 };
 
 export type ShopStatusUpdateManyInput = {
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<ShopStatusUpdateManyLocalizationsInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopStatusUpdateManyLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopStatusUpdateManyLocalizationInput = {
+  data: ShopStatusUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopStatusUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<ShopStatusUpdateManyLocalizationInput>>;
 };
 
 export type ShopStatusUpdateManyWithNestedWhereInput = {
@@ -14371,6 +14568,12 @@ export type ShopStatusUpsertInput = {
   create: ShopStatusCreateInput;
   /** Update document if it exists */
   update: ShopStatusUpdateInput;
+};
+
+export type ShopStatusUpsertLocalizationInput = {
+  create: ShopStatusCreateLocalizationDataInput;
+  locale: Locale;
+  update: ShopStatusUpdateLocalizationDataInput;
 };
 
 export type ShopStatusUpsertWithNestedWhereUniqueInput = {
@@ -14501,6 +14704,10 @@ export type ShopTown = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<ShopTown>;
   location?: Maybe<Location>;
   name?: Maybe<Scalars['String']>;
   /** The time the document was published. Null on documents in draft stage. */
@@ -14515,6 +14722,11 @@ export type ShopTown = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+};
+
+
+export type ShopTownCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -14534,6 +14746,17 @@ export type ShopTownHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ShopTownLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  locales?: Array<Locale>;
+};
+
+
+export type ShopTownPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -14565,6 +14788,11 @@ export type ShopTownShopArgs = {
 };
 
 
+export type ShopTownUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
 export type ShopTownUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
@@ -14588,10 +14816,30 @@ export type ShopTownConnection = {
 
 export type ShopTownCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<ShopTownCreateLocalizationsInput>;
   location?: InputMaybe<LocationInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
   shop?: InputMaybe<ShopCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ShopTownCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ShopTownCreateLocalizationInput = {
+  /** Localization input */
+  data: ShopTownCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopTownCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<ShopTownCreateLocalizationInput>>;
 };
 
 export type ShopTownCreateManyInlineInput = {
@@ -14662,25 +14910,6 @@ export type ShopTownManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
-  name?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  name_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  name_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  name_starts_with?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -14735,9 +14964,31 @@ export enum ShopTownOrderByInput {
 }
 
 export type ShopTownUpdateInput = {
+  /** Manage document localizations */
+  localizations?: InputMaybe<ShopTownUpdateLocalizationsInput>;
   location?: InputMaybe<LocationInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
   shop?: InputMaybe<ShopUpdateManyInlineInput>;
+};
+
+export type ShopTownUpdateLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopTownUpdateLocalizationInput = {
+  data: ShopTownUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopTownUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<ShopTownCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<ShopTownUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<ShopTownUpsertLocalizationInput>>;
 };
 
 export type ShopTownUpdateManyInlineInput = {
@@ -14758,8 +15009,25 @@ export type ShopTownUpdateManyInlineInput = {
 };
 
 export type ShopTownUpdateManyInput = {
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<ShopTownUpdateManyLocalizationsInput>;
   location?: InputMaybe<LocationInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopTownUpdateManyLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopTownUpdateManyLocalizationInput = {
+  data: ShopTownUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopTownUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<ShopTownUpdateManyLocalizationInput>>;
 };
 
 export type ShopTownUpdateManyWithNestedWhereInput = {
@@ -14796,6 +15064,12 @@ export type ShopTownUpsertInput = {
   create: ShopTownCreateInput;
   /** Update document if it exists */
   update: ShopTownUpdateInput;
+};
+
+export type ShopTownUpsertLocalizationInput = {
+  create: ShopTownCreateLocalizationDataInput;
+  locale: Locale;
+  update: ShopTownUpdateLocalizationDataInput;
 };
 
 export type ShopTownUpsertWithNestedWhereUniqueInput = {
@@ -14926,6 +15200,10 @@ export type ShopType = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<ShopType>;
   name?: Maybe<Scalars['String']>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -14939,6 +15217,11 @@ export type ShopType = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+};
+
+
+export type ShopTypeCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -14958,6 +15241,17 @@ export type ShopTypeHistoryArgs = {
   limit?: Scalars['Int'];
   skip?: Scalars['Int'];
   stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ShopTypeLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  locales?: Array<Locale>;
+};
+
+
+export type ShopTypePublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -14989,6 +15283,11 @@ export type ShopTypeShopsArgs = {
 };
 
 
+export type ShopTypeUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+
 export type ShopTypeUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
@@ -15012,9 +15311,29 @@ export type ShopTypeConnection = {
 
 export type ShopTypeCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<ShopTypeCreateLocalizationsInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
   shops?: InputMaybe<ShopCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ShopTypeCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  name?: InputMaybe<Scalars['String']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type ShopTypeCreateLocalizationInput = {
+  /** Localization input */
+  data: ShopTypeCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopTypeCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<ShopTypeCreateLocalizationInput>>;
 };
 
 export type ShopTypeCreateManyInlineInput = {
@@ -15085,25 +15404,6 @@ export type ShopTypeManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
-  name?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  name_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  name_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  name_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  name_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  name_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  name_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  name_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  name_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  name_starts_with?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -15158,8 +15458,30 @@ export enum ShopTypeOrderByInput {
 }
 
 export type ShopTypeUpdateInput = {
+  /** Manage document localizations */
+  localizations?: InputMaybe<ShopTypeUpdateLocalizationsInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
   shops?: InputMaybe<ShopUpdateManyInlineInput>;
+};
+
+export type ShopTypeUpdateLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopTypeUpdateLocalizationInput = {
+  data: ShopTypeUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopTypeUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<ShopTypeCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<ShopTypeUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<ShopTypeUpsertLocalizationInput>>;
 };
 
 export type ShopTypeUpdateManyInlineInput = {
@@ -15180,7 +15502,24 @@ export type ShopTypeUpdateManyInlineInput = {
 };
 
 export type ShopTypeUpdateManyInput = {
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<ShopTypeUpdateManyLocalizationsInput>;
+  /** name input for default locale (de) */
   name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopTypeUpdateManyLocalizationDataInput = {
+  name?: InputMaybe<Scalars['String']>;
+};
+
+export type ShopTypeUpdateManyLocalizationInput = {
+  data: ShopTypeUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type ShopTypeUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<ShopTypeUpdateManyLocalizationInput>>;
 };
 
 export type ShopTypeUpdateManyWithNestedWhereInput = {
@@ -15217,6 +15556,12 @@ export type ShopTypeUpsertInput = {
   create: ShopTypeCreateInput;
   /** Update document if it exists */
   update: ShopTypeUpdateInput;
+};
+
+export type ShopTypeUpsertLocalizationInput = {
+  create: ShopTypeCreateLocalizationDataInput;
+  locale: Locale;
+  update: ShopTypeUpdateLocalizationDataInput;
 };
 
 export type ShopTypeUpsertWithNestedWhereUniqueInput = {
@@ -15339,11 +15684,11 @@ export type ShopUpdateInput = {
   address?: InputMaybe<Scalars['String']>;
   dataProtectionForm?: InputMaybe<AssetUpdateOneInlineInput>;
   email?: InputMaybe<Scalars['String']>;
-  furtherInformation?: InputMaybe<Scalars['String']>;
   infoflyer?: InputMaybe<Scalars['Int']>;
   location?: InputMaybe<LocationInput>;
   name?: InputMaybe<Scalars['String']>;
   newsletter?: InputMaybe<Scalars['Boolean']>;
+  notes?: InputMaybe<Scalars['String']>;
   openinghours?: InputMaybe<Scalars['String']>;
   shopBundesland?: InputMaybe<ShopBundeslandUpdateOneInlineInput>;
   shopStatus?: InputMaybe<ShopStatusUpdateOneInlineInput>;
@@ -15351,9 +15696,7 @@ export type ShopUpdateInput = {
   shopType?: InputMaybe<ShopTypeUpdateManyInlineInput>;
   shopcategories?: InputMaybe<ShopCategoryUpdateManyInlineInput>;
   stickerBack?: InputMaybe<Scalars['Int']>;
-  stickerDelivery?: InputMaybe<Scalars['Boolean']>;
   stickerFront?: InputMaybe<Scalars['Int']>;
-  trayinformation?: InputMaybe<Scalars['Int']>;
   website?: InputMaybe<Scalars['String']>;
 };
 
@@ -15377,16 +15720,14 @@ export type ShopUpdateManyInlineInput = {
 export type ShopUpdateManyInput = {
   address?: InputMaybe<Scalars['String']>;
   email?: InputMaybe<Scalars['String']>;
-  furtherInformation?: InputMaybe<Scalars['String']>;
   infoflyer?: InputMaybe<Scalars['Int']>;
   location?: InputMaybe<LocationInput>;
   name?: InputMaybe<Scalars['String']>;
   newsletter?: InputMaybe<Scalars['Boolean']>;
+  notes?: InputMaybe<Scalars['String']>;
   openinghours?: InputMaybe<Scalars['String']>;
   stickerBack?: InputMaybe<Scalars['Int']>;
-  stickerDelivery?: InputMaybe<Scalars['Boolean']>;
   stickerFront?: InputMaybe<Scalars['Int']>;
-  trayinformation?: InputMaybe<Scalars['Int']>;
   website?: InputMaybe<Scalars['String']>;
 };
 
@@ -15498,25 +15839,6 @@ export type ShopWhereInput = {
   email_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   email_starts_with?: InputMaybe<Scalars['String']>;
-  furtherInformation?: InputMaybe<Scalars['String']>;
-  /** All values containing the given string. */
-  furtherInformation_contains?: InputMaybe<Scalars['String']>;
-  /** All values ending with the given string. */
-  furtherInformation_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are contained in given list. */
-  furtherInformation_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values that are not equal to given value. */
-  furtherInformation_not?: InputMaybe<Scalars['String']>;
-  /** All values not containing the given string. */
-  furtherInformation_not_contains?: InputMaybe<Scalars['String']>;
-  /** All values not ending with the given string */
-  furtherInformation_not_ends_with?: InputMaybe<Scalars['String']>;
-  /** All values that are not contained in given list. */
-  furtherInformation_not_in?: InputMaybe<Array<Scalars['String']>>;
-  /** All values not starting with the given string. */
-  furtherInformation_not_starts_with?: InputMaybe<Scalars['String']>;
-  /** All values starting with the given string. */
-  furtherInformation_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -15573,6 +15895,25 @@ export type ShopWhereInput = {
   newsletter?: InputMaybe<Scalars['Boolean']>;
   /** All values that are not equal to given value. */
   newsletter_not?: InputMaybe<Scalars['Boolean']>;
+  notes?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  notes_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  notes_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  notes_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values that are not equal to given value. */
+  notes_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  notes_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  notes_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  notes_not_in?: InputMaybe<Array<Scalars['String']>>;
+  /** All values not starting with the given string. */
+  notes_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  notes_starts_with?: InputMaybe<Scalars['String']>;
   openinghours?: InputMaybe<Scalars['String']>;
   /** All values containing the given string. */
   openinghours_contains?: InputMaybe<Scalars['String']>;
@@ -15635,9 +15976,6 @@ export type ShopWhereInput = {
   stickerBack_not?: InputMaybe<Scalars['Int']>;
   /** All values that are not contained in given list. */
   stickerBack_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  stickerDelivery?: InputMaybe<Scalars['Boolean']>;
-  /** All values that are not equal to given value. */
-  stickerDelivery_not?: InputMaybe<Scalars['Boolean']>;
   stickerFront?: InputMaybe<Scalars['Int']>;
   /** All values greater than the given value. */
   stickerFront_gt?: InputMaybe<Scalars['Int']>;
@@ -15653,21 +15991,6 @@ export type ShopWhereInput = {
   stickerFront_not?: InputMaybe<Scalars['Int']>;
   /** All values that are not contained in given list. */
   stickerFront_not_in?: InputMaybe<Array<Scalars['Int']>>;
-  trayinformation?: InputMaybe<Scalars['Int']>;
-  /** All values greater than the given value. */
-  trayinformation_gt?: InputMaybe<Scalars['Int']>;
-  /** All values greater than or equal the given value. */
-  trayinformation_gte?: InputMaybe<Scalars['Int']>;
-  /** All values that are contained in given list. */
-  trayinformation_in?: InputMaybe<Array<Scalars['Int']>>;
-  /** All values less than the given value. */
-  trayinformation_lt?: InputMaybe<Scalars['Int']>;
-  /** All values less than or equal the given value. */
-  trayinformation_lte?: InputMaybe<Scalars['Int']>;
-  /** All values that are not equal to given value. */
-  trayinformation_not?: InputMaybe<Scalars['Int']>;
-  /** All values that are not contained in given list. */
-  trayinformation_not_in?: InputMaybe<Array<Scalars['Int']>>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
