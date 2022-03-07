@@ -44,13 +44,15 @@ const Page: React.FC<PressQuery> = (props) => {
       </Section>
       <Section>
         <div className={`grid grid-cols-2 md:grid-cols-3 text-center`}>
-          <Card
-            onClick={() => {
-              window.location.hash = "#announcements";
-            }}
-            title={intl("PRESS_ANNOUNCEMENTS")}
-            color={"yellow"}
-          />
+          {props.pressArticles?.length !== 0 && (
+            <Card
+              onClick={() => {
+                window.location.hash = "#announcements";
+              }}
+              title={intl("PRESS_ANNOUNCEMENTS")}
+              color={"yellow"}
+            />
+          )}
           <Card
             onClick={() => {
               window.location.hash = "#photos";
@@ -67,7 +69,7 @@ const Page: React.FC<PressQuery> = (props) => {
           />
         </div>
       </Section>
-      {props.pressArticles && (
+      {props.pressArticles?.length && (
         <Section>
           <AnchorPointer id="announcements" />
           <H2 className={`pb-4`}>{intl("PRESS_ANNOUNCEMENTS")}</H2>
