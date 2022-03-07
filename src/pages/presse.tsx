@@ -67,25 +67,28 @@ const Page: React.FC<PressQuery> = (props) => {
           />
         </div>
       </Section>
-      <Section>
-        <AnchorPointer id="announcements" />
-        <H2 className={`pb-4`}>{intl("PRESS_ANNOUNCEMENTS")}</H2>
-        <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-2`}>
-          {props.pressArticles.map((article, k) => (
-            <div key={`ar${k}`} className={`py-4`}>
-              <H3>{article.title}</H3>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: article.abstract?.html ?? "",
-                }}
-              />
-              <Link href={`/presse/${article.slug}`} passHref={true}>
-                <a>{intl("READ_MORE")}</a>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </Section>
+      {props.pressArticles && (
+        <Section>
+          <AnchorPointer id="announcements" />
+          <H2 className={`pb-4`}>{intl("PRESS_ANNOUNCEMENTS")}</H2>
+          <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-2`}>
+            {props.pressArticles.map((article, k) => (
+              <div key={`ar${k}`} className={`py-4`}>
+                <H3>{article.title}</H3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: article.abstract?.html ?? "",
+                  }}
+                />
+                <Link href={`/presse/${article.slug}`} passHref={true}>
+                  <a>{intl("READ_MORE")}</a>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
       <Section>
         <AnchorPointer id="photos" />
         <H2 className={`pb-4`}>{intl("PRESS_PHOTOS")}</H2>
