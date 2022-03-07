@@ -69,7 +69,7 @@ const Page: React.FC<PressQuery> = (props) => {
           />
         </div>
       </Section>
-      {props.pressArticles?.length && (
+      {props.pressArticles?.length !== 0 && (
         <Section>
           <AnchorPointer id="announcements" />
           <H2 className={`pb-4`}>{intl("PRESS_ANNOUNCEMENTS")}</H2>

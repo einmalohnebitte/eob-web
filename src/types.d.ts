@@ -3,3 +3,4 @@ declare module "react-leaflet-markercluster" {
 
   export default class MarkerClusterGroup extends Component {}
 }
+declare module "*.scss";
