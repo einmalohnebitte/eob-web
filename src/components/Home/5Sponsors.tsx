@@ -24,7 +24,7 @@ export const Sponsors: React.FC = () => {
               <SponsorCard src={"/images/sponsors/patagonia.jpg"} />
             </div>
             <div className={styles.Slide}>
-              <SponsorCard src={"/images/sponsors/rgu.png"} />
+              <SponsorCard src={"/images/sponsors/rku.jpeg"} />
             </div>
             <div className={styles.Slide}>
               <SponsorCard src={"/images/sponsors/soul.jpg"} />
@@ -36,6 +36,12 @@ export const Sponsors: React.FC = () => {
               <SponsorCard
                 src={"/images/sponsors/zukunftsstiftungehrenamt.jpg"}
               />
+            </div>
+            <div className={styles.Slide}>
+              <SponsorCard src={"/images/sponsors/bingo.png"} />
+            </div>
+            <div className={styles.Slide}>
+              <SponsorCard src={"/images/sponsors/FoerderLogo.jpeg"} />
             </div>
           </div>
         </div>

@@ -44,13 +44,15 @@ const Page: React.FC<PressQuery> = (props) => {
       </Section>
       <Section>
         <div className={`grid grid-cols-2 md:grid-cols-3 text-center`}>
-          <Card
-            onClick={() => {
-              window.location.hash = "#announcements";
-            }}
-            title={intl("PRESS_ANNOUNCEMENTS")}
-            color={"yellow"}
-          />
+          {props.pressArticles?.length !== 0 && (
+            <Card
+              onClick={() => {
+                window.location.hash = "#announcements";
+              }}
+              title={intl("PRESS_ANNOUNCEMENTS")}
+              color={"yellow"}
+            />
+          )}
           <Card
             onClick={() => {
               window.location.hash = "#photos";
@@ -67,25 +69,28 @@ const Page: React.FC<PressQuery> = (props) => {
           />
         </div>
       </Section>
-      <Section>
-        <AnchorPointer id="announcements" />
-        <H2 className={`pb-4`}>{intl("PRESS_ANNOUNCEMENTS")}</H2>
-        <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-2`}>
-          {props.pressArticles.map((article, k) => (
-            <div key={`ar${k}`} className={`py-4`}>
-              <H3>{article.title}</H3>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: article.abstract?.html ?? "",
-                }}
-              />
-              <Link href={`/presse/${article.slug}`} passHref={true}>
-                <a>{intl("READ_MORE")}</a>
-              </Link>
-            </div>
-          ))}
-        </div>
-      </Section>
+      {props.pressArticles?.length !== 0 && (
+        <Section>
+          <AnchorPointer id="announcements" />
+          <H2 className={`pb-4`}>{intl("PRESS_ANNOUNCEMENTS")}</H2>
+          <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-2`}>
+            {props.pressArticles.map((article, k) => (
+              <div key={`ar${k}`} className={`py-4`}>
+                <H3>{article.title}</H3>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: article.abstract?.html ?? "",
+                  }}
+                />
+                <Link href={`/presse/${article.slug}`} passHref={true}>
+                  <a>{intl("READ_MORE")}</a>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </Section>
+      )}
+
       <Section>
         <AnchorPointer id="photos" />
         <H2 className={`pb-4`}>{intl("PRESS_PHOTOS")}</H2>
