@@ -1534,14 +1534,14 @@
     "@graphql-codegen/plugin-helpers" "^2.3.2"
     tslib "~2.3.0"
 
-"@graphql-codegen/import-types-preset@2.1.14":
-  version "2.1.14"
-  resolved "https://registry.npmjs.org/@graphql-codegen/import-types-preset/-/import-types-preset-2.1.14.tgz"
-  integrity sha512-xy8CrZF5yFqnO/jodQizd1ejU38Y0NvxHA7eeKnlUzEKB28whVLxQO3d5rFYneAzrdG2O1IyZ1FyJ7W9HF7q/g==
+"@graphql-codegen/import-types-preset@2.1.15":
+  version "2.1.15"
+  resolved "https://registry.npmjs.org/@graphql-codegen/import-types-preset/-/import-types-preset-2.1.15.tgz"
+  integrity sha512-e1fuwKVoTiOoCJj7O21CiHQ57A++sUOSzubdygBmzoDLlRvb5i9dXkltS17CrTyVCTOLhQBqS0RuADR5ByX2LQ==
   dependencies:
     "@graphql-codegen/add" "^3.1.1"
     "@graphql-codegen/plugin-helpers" "^2.4.0"
-    "@graphql-codegen/visitor-plugin-common" "2.7.3"
+    "@graphql-codegen/visitor-plugin-common" "2.7.4"
     tslib "~2.3.0"
 
 "@graphql-codegen/introspection@2.1.1":
@@ -1552,14 +1552,14 @@
     "@graphql-codegen/plugin-helpers" "^2.3.2"
     tslib "~2.3.0"
 
-"@graphql-codegen/near-operation-file-preset@2.2.8":
-  version "2.2.8"
-  resolved "https://registry.npmjs.org/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-2.2.8.tgz"
-  integrity sha512-IOLB8jBBeNUywq9tA6MbKZPblzLQ1AuQsES5l59cKG3kGWRvz831YbcHOx86B3Xs4a48GIah8PlOEjYz9uvXcw==
+"@graphql-codegen/near-operation-file-preset@2.2.9":
+  version "2.2.9"
+  resolved "https://registry.npmjs.org/@graphql-codegen/near-operation-file-preset/-/near-operation-file-preset-2.2.9.tgz"
+  integrity sha512-ytvI5wDq+92sGp+h+HEi4+biDNWsgKdRJVm5P1wzzFuc67qTPB1EipbJF4oUqSqtV6kaTu3mdHPf5yU0SWusSw==
   dependencies:
     "@graphql-codegen/add" "^3.1.1"
     "@graphql-codegen/plugin-helpers" "^2.4.0"
-    "@graphql-codegen/visitor-plugin-common" "2.7.3"
+    "@graphql-codegen/visitor-plugin-common" "2.7.4"
     "@graphql-tools/utils" "^8.5.2"
     parse-filepath "^1.0.2"
     tslib "~2.3.0"
@@ -1596,43 +1596,43 @@
     "@graphql-tools/utils" "^8.1.1"
     tslib "~2.3.0"
 
-"@graphql-codegen/typed-document-node@2.2.7":
-  version "2.2.7"
-  resolved "https://registry.npmjs.org/@graphql-codegen/typed-document-node/-/typed-document-node-2.2.7.tgz"
-  integrity sha512-l/+fWv7gNzQHKdk+ahuJzsUkZrVkUuBtbkXf65S/y76oL9U3AHJjCX5OfScisjA3ahqj3EALcxNjPq3IPQJpOQ==
+"@graphql-codegen/typed-document-node@2.2.8":
+  version "2.2.8"
+  resolved "https://registry.npmjs.org/@graphql-codegen/typed-document-node/-/typed-document-node-2.2.8.tgz"
+  integrity sha512-72qTGNOMVnT51Fenk1MvavOwdyJewCZlrEp0miiTjtOSiTPzAm1acOck7cx8smNWyxNaDh3g4Jf60MkS8VCySw==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.4.0"
-    "@graphql-codegen/visitor-plugin-common" "2.7.3"
+    "@graphql-codegen/visitor-plugin-common" "2.7.4"
     auto-bind "~4.0.0"
     change-case-all "1.0.14"
     tslib "~2.3.0"
 
-"@graphql-codegen/typescript-operations@2.3.4":
-  version "2.3.4"
-  resolved "https://registry.npmjs.org/@graphql-codegen/typescript-operations/-/typescript-operations-2.3.4.tgz"
-  integrity sha512-Jnsx+YTCqwq8F0ebyZAJGVtt+PQNuB/0uv9mEMbgcUbo/7w6EX6NZ8JArRuuz8MUb/gbpeO+GkfuNX+F6A8ikw==
+"@graphql-codegen/typescript-operations@2.3.5":
+  version "2.3.5"
+  resolved "https://registry.npmjs.org/@graphql-codegen/typescript-operations/-/typescript-operations-2.3.5.tgz"
+  integrity sha512-GCZQW+O+cIF62ioPkQMoSJGzjJhtr7ttZGJOAoN/Q/oolG8ph9jNFePKO67tSQ/POAs5HLqfat4kAlCK8OPV3Q==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.4.0"
-    "@graphql-codegen/typescript" "^2.4.7"
-    "@graphql-codegen/visitor-plugin-common" "2.7.3"
+    "@graphql-codegen/typescript" "^2.4.8"
+    "@graphql-codegen/visitor-plugin-common" "2.7.4"
     auto-bind "~4.0.0"
     tslib "~2.3.0"
 
-"@graphql-codegen/typescript@2.4.7", "@graphql-codegen/typescript@^2.4.7":
-  version "2.4.7"
-  resolved "https://registry.npmjs.org/@graphql-codegen/typescript/-/typescript-2.4.7.tgz"
-  integrity sha512-1YAK+m9SZRS1Uy8hdXVQAaAG/WF2jdFD76wbMRQ8Lf5e9YbmtJuy1RpI13nZJTZbhFopd9zqoWFJHsU/oy4i7g==
+"@graphql-codegen/typescript@2.4.8", "@graphql-codegen/typescript@^2.4.8":
+  version "2.4.8"
+  resolved "https://registry.npmjs.org/@graphql-codegen/typescript/-/typescript-2.4.8.tgz"
+  integrity sha512-tVsHIkuyenBany7c5IMU1yi4S1er2hgyXJGNY7PcyhpJMx0eChmbqz1VTiZxDEwi8mDBS2mn3TaSJMh6xuJM5g==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.4.0"
     "@graphql-codegen/schema-ast" "^2.4.1"
-    "@graphql-codegen/visitor-plugin-common" "2.7.3"
+    "@graphql-codegen/visitor-plugin-common" "2.7.4"
     auto-bind "~4.0.0"
     tslib "~2.3.0"
 
-"@graphql-codegen/visitor-plugin-common@2.7.3", "@graphql-codegen/visitor-plugin-common@^2.0.0":
-  version "2.7.3"
-  resolved "https://registry.npmjs.org/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.3.tgz"
-  integrity sha512-rODPGkrHEf9aHD8SgVWS0xie8VmJoYXLWgQR8PFKrwCUFjf7nvDuATAL2lTFiHATlVBWg1meXVPdUlkKeJj/0Q==
+"@graphql-codegen/visitor-plugin-common@2.7.4", "@graphql-codegen/visitor-plugin-common@^2.0.0":
+  version "2.7.4"
+  resolved "https://registry.npmjs.org/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.4.tgz"
+  integrity sha512-aaDoEudDD+B7DK/UwDSL2Fzej75N9hNJ3N8FQuTIeDyw6FNGWUxmkjVBLQGlzfnYfK8IYkdfYkrPn3Skq0pVxA==
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.4.0"
     "@graphql-tools/optimize" "^1.0.1"
