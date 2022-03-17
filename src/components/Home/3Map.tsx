@@ -41,7 +41,7 @@ export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
           css={`
             @media (min-width: 768px) {
               position: relative;
-              left: 32%;
+              left: 50%;
               top: -20px;
             }
             padding-bottom: 20px;
