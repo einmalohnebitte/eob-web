@@ -22,5 +22,6 @@ export const HeadMeta: React.FC<{
       }
     />
     <meta name="keywords" content={metaKeywords ?? "müllfreies, Karte"} />
+    <script async defer data-domain="einmalohnebitte.de" src="https://plausible.einmalohnebitte.de/js/plausible.js"></script>
   </Head>
 );
