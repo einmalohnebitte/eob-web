@@ -21,7 +21,7 @@ module.exports = compose(plugins)({
     localeDetection: false,
   },
   images: {
-    domains: ["media.graphcms.com"],
+    domains: ["media.graphassets.com"],
   },
   webpack5: true,
 });
