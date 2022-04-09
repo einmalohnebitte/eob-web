@@ -13,6 +13,7 @@ query Shops($endCursor: String) {
       latitude
       longitude
     }
+    address
     website
     shopcategories {
       id

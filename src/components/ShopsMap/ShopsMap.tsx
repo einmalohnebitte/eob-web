@@ -73,7 +73,7 @@ const MapItem: React.FC<{
                   <Popup>
                     <b>{item.name}</b>
                     <p>{item.openinghours}</p>
-                    <p>{/* {item.strasse} - {item?.stadt?.name} */}</p>
+                    <p>{item.address}</p>
                     <p>
                       {(item.shopcategories ?? [])
                         .map((c) => c.name)
