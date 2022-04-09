@@ -33,7 +33,7 @@ export default class MyDocument extends Document<{
 
           <link rel="icon" href="/favicon.ico" type="image/ico" />
           {this.props.styleTags}
-          <script defer data-domain="einmalohnebitte.de" src="https://plausible-new.einmalohnebitte.de/js/plausible.js"></script>
+          <script defer data-domain="einmalohnebitte.de" src="https://plausible.rehab-republic.de/js/plausible.js"></script>
         </Head>
         <body>
           <Main />
