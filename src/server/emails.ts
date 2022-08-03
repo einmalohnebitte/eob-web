@@ -20,9 +20,16 @@ export const sendMessage = (data: messages.SendData) => {
 };
 
 export const sendEmail: MutationResolvers<ResolverContext>["sendEmail"] =
-  async (_: any, { email: { subject, html } }) => {
+  async (_: any, { email: { subject, html, email } }) => {
     await sendMessage({
       to: process.env.EMAIL ?? "",
+      from: `website@einmalohnebitte.de`, // sender address
+      subject,
+      html,
+    });
+
+    await sendMessage({
+      to: email ?? "",
       from: `website@einmalohnebitte.de`, // sender address
       subject,
       html,

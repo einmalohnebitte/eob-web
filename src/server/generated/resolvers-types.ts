@@ -16,6 +16,7 @@ export type Scalars = {
 export type EmailReq = {
   html: Scalars['String'];
   subject: Scalars['String'];
+  email: Scalars['String'];
 };
 
 export type Mutation = {
