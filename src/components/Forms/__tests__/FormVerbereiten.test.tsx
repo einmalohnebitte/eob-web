@@ -36,6 +36,7 @@ test("FormVerbreiten Should call send", async () => {
   await waitFor(() =>
     expect(mutate).toHaveBeenCalledWith({
       email: {
+        email:"test@email.com",
         html: ` <h1> John Dee</h1><p>Email: test@email.com </p><p>Location:  123456, Munich </p><p>Message: message... </p>`,
         subject: "[Verbreiten] John Dee",
       },
