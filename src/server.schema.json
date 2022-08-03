@@ -128821,6 +128821,18 @@
             "deprecationReason": null
           },
           {
+            "name": "unionFieldDetailsForVirtualMemberSide",
+            "description": "main side details of union field on component",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "unionType",
             "description": "Specifies union type name",
             "type": {

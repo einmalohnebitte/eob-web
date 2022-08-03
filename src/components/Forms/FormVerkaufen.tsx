@@ -84,6 +84,7 @@ export const FormVerkaufen: React.FC = () => {
         } = values;
         sendMail.mutate({
           email: {
+            email,
             subject: `[Verkaufen] ${shop} ${firstName} ${lastName}`, // Subject line
             html: `<h1>${shop} (${firstName} ${lastName})</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Stickers: ${sticker} </p><p>Message: ${message} </p>`,
           },

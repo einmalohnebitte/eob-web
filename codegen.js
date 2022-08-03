@@ -4,33 +4,33 @@ require("dotenv").config({ path: ".env" });
 const { generate } = require("@graphql-codegen/cli");
 
 async function run() {
-  // await generate(
-  //   {
-  //     schema: "./src/server/typeDefs.graphql",
-  //     documents: "src/components/**/*.local.graphql",
-  //     generates: {
-  //       [process.cwd() + "/src/server/generated/local.tsx"]: {
-  //         plugins: ["typescript"],
-  //       },
-  //       ["src/"]: {
-  //         preset: "near-operation-file",
-  //         presetConfig: {
-  //           extension: ".generated.ts",
-  //           baseTypesPath: "/server/generated/local.tsx",
-  //         },
-  //         plugins: [
-  //           "typescript",
-  //           "typescript-operations",
-  //           "typed-document-node",
-  //         ],
-  //       },
-  //       [process.cwd() + "/src/server.schema.json"]: {
-  //         plugins: ["introspection"],
-  //       },
-  //     },
-  //   },
-  //   true
-  // );
+  await generate(
+    {
+      schema: "./src/server/typeDefs.graphql",
+      documents: "src/components/**/*.local.graphql",
+      generates: {
+        [process.cwd() + "/src/server/generated/local.tsx"]: {
+          plugins: ["typescript"],
+        },
+        ["src/"]: {
+          preset: "near-operation-file",
+          presetConfig: {
+            extension: ".generated.ts",
+            baseTypesPath: "/server/generated/local.tsx",
+          },
+          plugins: [
+            "typescript",
+            "typescript-operations",
+            "typed-document-node",
+          ],
+        },
+        [process.cwd() + "/src/server.schema.json"]: {
+          plugins: ["introspection"],
+        },
+      },
+    },
+    true
+  );
   await generate(
     {
       schema: {
