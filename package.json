@@ -100,7 +100,7 @@
     "jest-fetch-mock": "3.0.3",
     "jest-transform-graphql": "2.1.0",
     "lodash": "4.17.21",
-    "node-sass": "6.0.1",
+    "node-sass": "7.0.3",
     "postcss": "8.4.12",
     "prettier": "2.6.1",
     "react-is": "17.0.2",
