@@ -55,7 +55,7 @@ const Page: React.FC<PageContentQuery> = (props) => {
             __html:
               props.pages[0]?.content?.html.replace(
                 /<h3/g,
-                "<h3 class='font-lemonism text-4xl leading-10'"
+                "<h3 class='font-lemonism text-4xl leading-10 py-4'"
               ) ?? "",
           }}
         />
