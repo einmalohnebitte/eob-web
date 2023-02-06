@@ -52,7 +52,11 @@ const Page: React.FC<PageContentQuery> = (props) => {
         <H1>{props.pages[0]?.title}</H1>
         <div
           dangerouslySetInnerHTML={{
-            __html: props.pages[0]?.content?.html ?? "",
+            __html:
+              props.pages[0]?.content?.html.replace(
+                /<h3/g,
+                "<h3 class='font-lemonism text-4xl leading-10'"
+              ) ?? "",
           }}
         />
         {props.pages[0]?.slug === "kontakt" && <FormContact />}
