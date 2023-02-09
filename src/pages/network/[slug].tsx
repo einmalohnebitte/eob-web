@@ -1,5 +1,6 @@
 import { Card } from "@/components/@UI/Card";
 import { Section } from "@/components/@UI/Section";
+import { dangerouslySetFormattedInnerHTML } from "@/components/@UI/Texts";
 import {
   MembersDocument,
   NetworkDocument,
@@ -35,7 +36,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 const TeamPage: React.FC<NetworkQuery> = ({ networks }) => (
   <Section>
-    <div className="max-w-sm float-left m-4">
+    <div className="float-left m-4 max-w-sm">
       <Card
         img={networks[0]?.logo?.url}
         title={networks[0]?.title ?? ""}
@@ -49,9 +50,9 @@ const TeamPage: React.FC<NetworkQuery> = ({ networks }) => (
           padding-bottom: 1rem !important;
         }
       `}
-      dangerouslySetInnerHTML={{
-        __html: networks[0]?.description?.html ?? "",
-      }}
+      dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+        networks[0]?.description?.html ?? ""
+      )}
     />
   </Section>
 );
