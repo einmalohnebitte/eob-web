@@ -1,5 +1,5 @@
 import { Section } from "@/components/@UI/Section";
-import { H2 } from "@/components/@UI/Texts";
+import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
 
 import { PressDocument } from "@/components/CmsQueries/Press.cms.generated";
 import {
@@ -53,9 +53,9 @@ const BlogPage: React.FC<PressArticleQuery> = ({ pressArticles }) => (
             padding-bottom: 1rem !important;
           }
         `}
-        dangerouslySetInnerHTML={{
-          __html: pressArticles[0]?.content?.html ?? "",
-        }}
+        dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+          pressArticles[0]?.content?.html ?? ""
+        )}
       />
     </Section>
   </>
