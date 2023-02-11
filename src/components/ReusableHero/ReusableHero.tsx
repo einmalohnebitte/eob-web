@@ -43,14 +43,6 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
       <Section>
         <H2>{pageSections[0].title}</H2>
         <SplitSection.Section>
-          <SplitSection.Main>
-            <div
-              className="py-4 font-gt text-xl leading-8"
-              dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
-                pageSections[0].content.html ?? ""
-              )}
-            />
-          </SplitSection.Main>
           <SplitSection.Side>
             <Image
               width={firstPic?.width ?? 0 / 10}
@@ -59,6 +51,14 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
               alt="seimehrwegheldin"
             />
           </SplitSection.Side>
+          <SplitSection.Main>
+            <div
+              className="py-4 font-gt text-xl leading-8"
+              dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                pageSections[0].content.html ?? ""
+              )}
+            />
+          </SplitSection.Main>
         </SplitSection.Section>
       </Section>
       <Section>
