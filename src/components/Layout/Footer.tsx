@@ -110,6 +110,11 @@ export const AppFooter = () => {
               <a>{intl("FOOTER_PRESS")}</a>
             </Link>
           </p>
+          <p>
+            <Link href="/seimehrwegheldin">
+              <a>{intl("FOOTER_REUSABLE_HERO")}</a>
+            </Link>
+          </p>
         </FooterSecion>
         <FooterSecion
           className="my-4 md:my-0"
