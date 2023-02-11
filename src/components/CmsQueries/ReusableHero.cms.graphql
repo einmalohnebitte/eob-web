@@ -1,0 +1,63 @@
+query ReusableHero($locale: [Locale!]!) {
+  pageSections(
+    where: { page: { slug: "seimehrwegheldin" } }
+    locales: $locale
+  ) {
+    title
+    content {
+      html
+    }
+    picture {
+      url
+      width
+      height
+    }
+    locale
+    code
+  }
+
+  pages(where: { slug: "seimehrwegheldin" }, locales: $locale) {
+    vibrantColor {
+      hex
+    }
+    title
+    content {
+      html
+    }
+  }
+
+  reusableHeros(orderBy: order_ASC, locales: $locale) {
+    name
+    bio {
+      html
+    }
+    abstract
+    slug
+    picture {
+      url
+      width
+      height
+    }
+    order
+  }
+
+  translations(locales: $locale) {
+    ...Translations
+  }
+}
+
+query Hero($slug: String!, $locale: [Locale!]!) {
+  reusableHeros(where: { slug: $slug }) {
+    name
+    bio {
+      html
+    }
+    picture {
+      url
+    }
+    order
+  }
+  translations(locales: $locale) {
+    ...Translations
+  }
+}
