@@ -5,6 +5,8 @@ import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import React from "react";
 import Image from "next/image";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
+import classnames from "classnames";
+import styles from "./AboutVisionMission.module.scss";
 
 export const AboutVisionMission: React.FC<{
   vibrantColor: string;
@@ -21,11 +23,6 @@ export const AboutVisionMission: React.FC<{
           <H2>{pageSections[1].title}</H2>
           <div
             className="py-4 font-gt text-xl leading-8"
-            css={`
-              ul {
-                list-style: disc;
-              }
-            `}
             dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
               pageSections[1].content.html ?? ""
             )}
@@ -56,15 +53,10 @@ export const AboutVisionMission: React.FC<{
         <SplitSection.Main>
           <H2>{pageSections[2].title}</H2>
           <div
-            className="py-4 font-gt text-xl leading-8"
-            css={`
-              ul {
-                list-style: disc inside;
-                div {
-                  display: inline;
-                }
-              }
-            `}
+            className={classnames(
+              "py-4 font-gt text-xl leading-8",
+              styles.mission
+            )}
             dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
               pageSections[2].content.html ?? ""
             )}
