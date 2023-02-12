@@ -9,10 +9,6 @@ module.exports = compose(plugins)({
   env: {
     GQL_CMS_ID: process.env.GQL_CMS_ID,
   },
-  pwa: {
-    disable: process.env.NODE_ENV === "development",
-    dest: "public",
-  },
   i18n: {
     locales: ["de", "en"],
     defaultLocale: "de",
@@ -21,5 +17,4 @@ module.exports = compose(plugins)({
   images: {
     domains: ["media.graphassets.com"],
   },
-  webpack5: true,
 });

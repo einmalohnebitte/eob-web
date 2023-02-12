@@ -1,24 +1,27 @@
 /* eslint-disable */
-process.env.WEBPACK_TOGGLE = {};
-module.exports = {
-  automock: false,
-  setupFiles: ["./setupJest.js"],
 
+const nextJest = require("next/jest");
+const createJestConfig = nextJest({ dir: "./" });
+const customJestConfig = {
   moduleNameMapper: {
     "^@/(.*)": "<rootDir>/src/$1",
   },
-  moduleFileExtensions: ["js", "jsx", "ts", "tsx", "json", "graphql"],
   modulePathIgnorePatterns: [
     "<rootDir>/.next",
     "<rootDir>/coverage/",
-    "<rootDir>/cypress",
     "<rootDir>/cache",
     "<rootDir>/build",
   ],
-  transform: {
-    "\\.(gql|graphql)$": "jest-transform-graphql",
-    "\\.tsx?$": "babel-jest",
+  setupFiles: ["./setupJest.js"],
+  globals: {
+    __VERSION__: "test",
   },
-  globals: {},
   testEnvironment: "jsdom",
 };
+const f = async () => {
+  const c = await createJestConfig(customJestConfig)();
+  delete c["moduleNameMapper"]["^.+\\.(css|sass|scss)$"];
+  return c;
+};
+
+module.exports = f();
