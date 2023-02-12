@@ -65,6 +65,7 @@ export const Card: React.FC<{
     >
       {children}
       {img && (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
           className={classNames("h-52", !resize && "w-full object-cover")}
           src={img}

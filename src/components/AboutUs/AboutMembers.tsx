@@ -34,6 +34,7 @@ export const AboutMembers: React.FC<{
                 linkTo={`/team/${item.slug}`}
               >
                 {item?.picture?.url && (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     alt={item.name ?? ""}
                     src={item?.picture?.url ?? ""}

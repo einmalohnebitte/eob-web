@@ -226,8 +226,6 @@ export const useFetchMap = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const dispatchAction = (action: FilterActionType) => {
     dispatch(action);
-    console.log("action");
-    console.log(action);
     setTimeout(() => {
       dispatch({ type: "APPLY_FILTERS" });
     }, 100);
