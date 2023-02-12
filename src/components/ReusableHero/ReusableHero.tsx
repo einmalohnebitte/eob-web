@@ -11,6 +11,7 @@ import Image from "next/image";
 import { ReusableHeroQuery } from "../CmsQueries/ReusableHero.cms.generated";
 import { Heros } from "./Heros";
 import { SponsorCard } from "../@UI/SponsorCard";
+import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 
 export const ReusableHero: React.FC<ReusableHeroQuery> = ({
   reusableHeros,
@@ -23,11 +24,7 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
   return (
     <>
       <HeadMeta />
-      <div
-        css={`
-          background-image: linear-gradient(${vibrantColor}, white);
-        `}
-      >
+      <BackgroundWrapper vibrantColor={vibrantColor}>
         <Section>
           <H1>{pages[0]?.title}</H1>
           <div
@@ -36,7 +33,7 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
             )}
           />
         </Section>
-      </div>
+      </BackgroundWrapper>
 
       <AnchorPointer id="heros" />
       <Heros reusableHeros={reusableHeros} />
