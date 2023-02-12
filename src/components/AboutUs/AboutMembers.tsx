@@ -1,4 +1,3 @@
-/// <reference types="styled-components/cssprop" />
 import { Card } from "@/components/@UI/Card";
 import { Grid } from "@/components/@UI/Grid";
 import { Section } from "@/components/@UI/Section";
