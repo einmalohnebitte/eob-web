@@ -9,8 +9,8 @@ export const BackgroundWrapper = React.forwardRef<
       React.HTMLAttributes<HTMLDivElement>,
       HTMLDivElement
     >
-  > & { color: "blue" | "pink" | "yellow" }
->(({ children, className, color, ...props }, ref) => (
+  > & { color?: "blue" | "pink" | "yellow"; vibrantColor?: string }
+>(({ children, className, color, vibrantColor, ...props }, ref) => (
   <div
     ref={ref}
     className={classNames(
@@ -20,6 +20,11 @@ export const BackgroundWrapper = React.forwardRef<
       color === "yellow" && "bg-gradient-to-b from-yellow-200 to-white"
     )}
     {...props}
+    style={
+      vibrantColor
+        ? { backgroundImage: `linear-gradient(${vibrantColor}, white)` }
+        : {}
+    }
   >
     {children}
   </div>

@@ -8,6 +8,7 @@ import { useTranslations } from "@/hooks/useTranslations";
 import React, { useState } from "react";
 import Link from "next/link";
 import classNames from "classnames";
+import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
@@ -36,11 +37,7 @@ export const AboutNetwork: React.FC<{
   const [filter, setFilter] = useState<string | null>(null);
 
   return (
-    <div
-      css={`
-        background-image: linear-gradient(${vibrantColor}, white);
-      `}
-    >
+    <BackgroundWrapper vibrantColor={vibrantColor}>
       <AnchorPointer id="network" />
       <Section>
         <H2 className="m-4">{intl("ABOUT_NETWORK")}</H2>
@@ -132,6 +129,6 @@ export const AboutNetwork: React.FC<{
           })}
         </Grid>
       </Section>
-    </div>
+    </BackgroundWrapper>
   );
 };

@@ -4,6 +4,7 @@ import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import React from "react";
 import Image from "next/image";
+import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 
 export const AboutVisionMission: React.FC<{
   vibrantColor: string;
@@ -13,11 +14,7 @@ export const AboutVisionMission: React.FC<{
   const secondPic = pageSections[2].picture[0];
 
   return (
-    <div
-      css={`
-        background-image: linear-gradient(${vibrantColor}, white);
-      `}
-    >
+    <BackgroundWrapper vibrantColor={vibrantColor}>
       <AnchorPointer id="vision" />
       <SplitSection.Section>
         <SplitSection.Main>
@@ -74,6 +71,6 @@ export const AboutVisionMission: React.FC<{
           />
         </SplitSection.Main>
       </SplitSection.Section>
-    </div>
+    </BackgroundWrapper>
   );
 };
