@@ -1,6 +1,9 @@
 import { Card } from "@/components/@UI/Card";
 import { Section } from "@/components/@UI/Section";
-import { dangerouslySetFormattedInnerHTML } from "@/components/@UI/Texts";
+import {
+  dangerouslySetFormattedInnerHTML,
+  ExtraClass,
+} from "@/components/@UI/Texts";
 import {
   MembersDocument,
   NetworkDocument,
@@ -45,13 +48,11 @@ const TeamPage: React.FC<NetworkQuery> = ({ networks }) => (
     </div>
 
     <div
-      css={`
-        p {
-          padding-bottom: 1rem !important;
-        }
-      `}
       dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
-        networks[0]?.description?.html ?? ""
+        networks[0]?.description?.html ?? "",
+        {
+          p: "pb-4",
+        } as ExtraClass
       )}
     />
   </Section>
