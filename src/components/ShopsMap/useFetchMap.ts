@@ -4,7 +4,7 @@ import {
   ShopsDocument,
   ShopsQuery,
 } from "@/components/ShopsMap/Shops.cms.generated";
-import { gqlRequest } from "@correttojs/next-utils/useReactQuery";
+import { gqlRequest } from "@/hooks/useReactQuery";
 import { useEffect, useReducer } from "react";
 
 function sortArray(a: any, b: any) {
