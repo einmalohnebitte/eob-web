@@ -16,6 +16,7 @@ import { GetStaticProps } from "next";
 import Image from "next/image";
 import React from "react";
 import { useInView } from "react-intersection-observer";
+import styles from "@/components/Layout/Einkaufen.module.css";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageSectionsDocument, {
@@ -30,7 +31,6 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
 const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    // rootMargin: "300px 0px 300px 0px",
   });
 
   return (
@@ -60,18 +60,6 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
         <SplitSection.Section>
           <SplitSection.Main
             className="py-4 pr-4"
-            css={`
-              h2 {
-                font-family: Lemonism-Regular, sans-serif;
-                font-size: 2.25rem;
-                line-height: 2rem;
-                margin: 1rem 0;
-              }
-              p {
-                font-size: 1.25rem;
-                line-height: 2rem;
-              }
-            `}
             dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
               pageSections[1].content.html ?? ""
             )}
@@ -93,9 +81,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
               alt="side"
               width={350}
               height={350}
-              css={`
-                border-radius: 13px;
-              `}
+              className={styles.imgRounded}
             />
           </SplitSection.Side>
           <SplitSection.Main>
@@ -110,73 +96,41 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
         </SplitSection.Section>
 
         <SplitSection.Section>
-          <SplitSection.Main
-            css={`
-              flex: 1 !important;
-            `}
-          >
+          <SplitSection.Main className={styles.forceFlex}>
             <H2>{pageSections[3].title}</H2>
             <div
               className="py-4"
-              css={`
-                ol {
-                  list-style: decimal;
-                }
-              `}
               dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
                 pageSections[3].content.html ?? ""
               )}
             />
           </SplitSection.Main>
-          <SplitSection.Side
-            css={`
-              flex: 1 !important;
-            `}
-          >
-            <div
-              css={`
-                bottom: -50px;
-                position: relative;
-                display: flex;
-              `}
-            >
+          <SplitSection.Side className={styles.forceFlex}>
+            <div className={styles.imgTwoWrapper}>
               <div className="content-between m-4">
                 <Image
                   src={pageSections[3].picture[0].url}
                   alt="side"
                   width={250}
                   height={200}
-                  css={`
-                    border-radius: 13px;
-                  `}
+                  className={styles.imgRounded}
                 />
                 <Image
                   src={pageSections[3].picture[2].url}
                   alt="side"
                   width={250}
                   height={200}
-                  css={`
-                    border-radius: 13px;
-                  `}
+                  className={styles.imgRounded}
                 />
               </div>
             </div>
-            <div
-              css={`
-                left: 350px;
-                bottom: 300px;
-                position: relative;
-                display: flex;
-              `}
-            >
+            <div className={styles.imgWrapper}>
               <Image
                 src={pageSections[3].picture[1].url}
                 alt="side"
                 width={250}
                 height={200}
-                css={`
-                  border-radius: 13px;
-                `}
+                className={styles.imgRounded}
               />
             </div>
           </SplitSection.Side>
@@ -186,11 +140,6 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           <H2>{pageSections[4].title}</H2>
           <div
             className="py-4"
-            css={`
-              ol {
-                list-style: decimal;
-              }
-            `}
             dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
               pageSections[4].content.html ?? ""
             )}
