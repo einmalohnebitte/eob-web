@@ -1,6 +1,9 @@
 import { Card } from "@/components/@UI/Card";
 import { Section } from "@/components/@UI/Section";
-import { dangerouslySetFormattedInnerHTML } from "@/components/@UI/Texts";
+import {
+  dangerouslySetFormattedInnerHTML,
+  ExtraClass,
+} from "@/components/@UI/Texts";
 import {
   HeroQuery,
   HeroDocument,
@@ -47,13 +50,11 @@ const TeamPage: React.FC<HeroQuery> = ({ reusableHeros }) => (
     </div>
 
     <div
-      css={`
-        p {
-          padding-bottom: 1rem !important;
-        }
-      `}
       dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
-        reusableHeros[0]?.bio?.html ?? ""
+        reusableHeros[0]?.bio?.html ?? "",
+        {
+          p: "pb-4",
+        } as ExtraClass
       )}
     />
   </Section>

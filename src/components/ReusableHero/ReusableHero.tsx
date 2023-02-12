@@ -37,11 +37,7 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
 
       <AnchorPointer id="heros" />
       <Heros reusableHeros={reusableHeros} />
-      <div
-        css={`
-          background-image: linear-gradient(${vibrantColor}, white);
-        `}
-      >
+      <BackgroundWrapper vibrantColor={vibrantColor}>
         <Section>
           <H2>{pageSections[0].title}</H2>
           <SplitSection.Section>
@@ -63,7 +59,7 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
             </SplitSection.Main>
           </SplitSection.Section>
         </Section>
-      </div>
+      </BackgroundWrapper>
       <Section>
         <H2>{pageSections[1].title}</H2>
         <div className="flex">
