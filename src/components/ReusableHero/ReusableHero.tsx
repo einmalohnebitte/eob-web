@@ -40,27 +40,33 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
 
       <AnchorPointer id="heros" />
       <Heros reusableHeros={reusableHeros} />
-      <Section>
-        <H2>{pageSections[0].title}</H2>
-        <SplitSection.Section>
-          <SplitSection.Side>
-            <Image
-              width={firstPic?.width ?? 0 / 10}
-              height={firstPic?.height ?? 0 / 10}
-              src={firstPic.url}
-              alt="seimehrwegheldin"
-            />
-          </SplitSection.Side>
-          <SplitSection.Main>
-            <div
-              className="py-4 font-gt text-xl leading-8"
-              dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
-                pageSections[0].content.html ?? ""
-              )}
-            />
-          </SplitSection.Main>
-        </SplitSection.Section>
-      </Section>
+      <div
+        css={`
+          background-image: linear-gradient(${vibrantColor}, white);
+        `}
+      >
+        <Section>
+          <H2>{pageSections[0].title}</H2>
+          <SplitSection.Section>
+            <SplitSection.Side>
+              <Image
+                width={firstPic?.width ?? 0 / 10}
+                height={firstPic?.height ?? 0 / 10}
+                src={firstPic.url}
+                alt="seimehrwegheldin"
+              />
+            </SplitSection.Side>
+            <SplitSection.Main>
+              <div
+                className="py-4 font-gt text-xl leading-8"
+                dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                  pageSections[0].content.html ?? ""
+                )}
+              />
+            </SplitSection.Main>
+          </SplitSection.Section>
+        </Section>
+      </div>
       <Section>
         <H2>{pageSections[1].title}</H2>
         <div className="flex">
