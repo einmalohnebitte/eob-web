@@ -1,6 +1,5 @@
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
-import {} from "styled-components/cssprop";
 
 import Head from "next/head";
 
