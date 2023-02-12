@@ -39,10 +39,10 @@ const Shops: React.FC = () => {
   if (isLoading || !state.data) {
     return (
       <Section
-        className="flex justify-center items-center"
-        css={`
-          height: 70vh;
-        `}
+        className={classnames(
+          "flex justify-center items-center",
+          styles.loadingMap
+        )}
       >
         <Loading />
       </Section>
@@ -56,7 +56,7 @@ const Shops: React.FC = () => {
         <button
           className={classnames(
             styles.OpenButton,
-            "text-xl  font-lemonism tracking-wider py-2 px-6 rounded focus:outline-none",
+            "py-2 px-6 font-lemonism text-xl tracking-wider rounded focus:outline-none",
             {
               [styles["OpenButton--is-visible"]]: !showSidebar,
             }
@@ -66,7 +66,7 @@ const Shops: React.FC = () => {
           <GrNext />
         </button>{" "}
         <div
-          className="p-2 w-full md:hidden"
+          className="md:hidden p-2 w-full"
           role="presentation"
           onClick={() => setIsOpenMobile(true)}
         >
