@@ -5,8 +5,24 @@ import React from "react";
 
 import { FormBase } from "../FormBase";
 
+const mutateFn = jest.fn();
+jest.mock("@/hooks/useReactQuery", () => {
+  return {
+    useReactMutation: () => ({
+      mutate: (args: any) => mutateFn(args),
+    }),
+  };
+});
+jest.mock("@/hooks/useTranslations/useTranslations", () => {
+  return {
+    useTranslations: () => (k: string) => k,
+  };
+});
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 test("FormBase Should call handleSubmit", async () => {
-  jest.spyOn(TR, "useTranslations").mockImplementation(() => (k: string) => k);
   const handleSubmit = jest.fn();
   const handleReset = jest.fn();
   render(
@@ -32,7 +48,6 @@ test("FormBase Should call handleSubmit", async () => {
 });
 
 test("FormBase Should render success", async () => {
-  jest.spyOn(TR, "useTranslations").mockImplementation(() => (k: string) => k);
   const handleSubmit = jest.fn();
   const handleReset = jest.fn();
   render(
@@ -53,7 +68,6 @@ test("FormBase Should render success", async () => {
 });
 
 test("FormBase Should render error", async () => {
-  jest.spyOn(TR, "useTranslations").mockImplementation(() => (k: string) => k);
   const handleSubmit = jest.fn();
   const handleReset = jest.fn();
   render(

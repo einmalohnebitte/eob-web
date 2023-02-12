@@ -1,26 +1,29 @@
 import * as TR from "@/hooks/useTranslations/useTranslations";
-import * as RQ from "@correttojs/next-utils/useReactQuery";
+import * as RQ from "@/hooks/useReactQuery";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 
 import { FormContact } from "../FormContact";
 
-jest.mock("@correttojs/next-utils/useReactQuery", () => {
+const mutateFn = jest.fn();
+jest.mock("@/hooks/useReactQuery", () => {
   return {
-    useReactMutation: jest.fn(),
+    useReactMutation: () => ({
+      mutate: (args: any) => mutateFn(args),
+    }),
   };
 });
-test("FormContact Should call contact", async () => {
-  const mutate = jest.fn();
-  jest.spyOn(RQ, "useReactMutation").mockImplementation(
-    () =>
-      ({
-        mutate,
-      } as any)
-  );
-  jest.spyOn(TR, "useTranslations").mockImplementation(() => (k: string) => k);
+jest.mock("@/hooks/useTranslations/useTranslations", () => {
+  return {
+    useTranslations: () => (k: string) => k,
+  };
+});
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+test("FormContact Should call contact", async () => {
   render(<FormContact />);
 
   userEvent.type(screen.getByLabelText(/FORM_NAME/i), "John");
@@ -32,9 +35,9 @@ test("FormContact Should call contact", async () => {
   userEvent.click(screen.getByRole("button", { name: /FORM_SEND/i }));
 
   await waitFor(() =>
-    expect(mutate).toHaveBeenCalledWith({
+    expect(mutateFn).toHaveBeenCalledWith({
       email: {
-        email:"test@email.com",
+        email: "test@email.com",
         html: `<p>John Dee - test@email.com</p><p>message...</p>`,
         subject: "[Kontakt]: John",
       },

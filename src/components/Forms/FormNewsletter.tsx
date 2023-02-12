@@ -2,7 +2,7 @@ import { FieldInput } from "@/components/Forms/FieldInput";
 import { FormBase } from "@/components/Forms/FormBase";
 import { SubscribeNewsletterDocument } from "@/components/Forms/newsletter.local.generated";
 import { useTranslations } from "@/hooks/useTranslations";
-import { useReactMutation } from "@correttojs/next-utils/useReactQuery";
+import { useReactMutation } from "@/hooks/useReactQuery";
 import React from "react";
 import * as Yup from "yup";
 

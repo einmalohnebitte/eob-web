@@ -1,5 +1,5 @@
 import { Section } from "@/components/@UI/Section";
-import { H1 } from "@/components/@UI/Texts";
+import { dangerouslySetFormattedInnerHTML, H1 } from "@/components/@UI/Texts";
 import {
   PageContentDocument,
   PageContentQuery,
@@ -33,9 +33,9 @@ const Page: React.FC<PageContentQuery> = (props) => {
         <H1>{props.pages[0].title}</H1>
 
         <div
-          dangerouslySetInnerHTML={{
-            __html: props.pages[0]?.content?.html ?? "",
-          }}
+          dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+            props.pages[0]?.content?.html ?? ""
+          )}
         />
         <FormNewsletter />
       </Section>

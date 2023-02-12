@@ -90,7 +90,7 @@ export const FormBase = <T extends {}>({
         }}
       >
         {() => (
-          <Form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+          <Form className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
             {children}
 
             <div className="flex m-2">

@@ -2,7 +2,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { H2 } from "./Texts";
+import { dangerouslySetFormattedInnerHTML, H2 } from "./Texts";
 
 export const getBorderColor = (color?: "pink" | "blue" | "yellow"): string =>
   color === "blue"
@@ -65,6 +65,7 @@ export const Card: React.FC<{
     >
       {children}
       {img && (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
           className={classNames("h-52", !resize && "w-full object-cover")}
           src={img}
@@ -77,7 +78,9 @@ export const Card: React.FC<{
         {messageHtml && (
           <div
             className="mt-2 text-gray-500"
-            dangerouslySetInnerHTML={{ __html: messageHtml }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              messageHtml
+            )}
           />
         )}
       </div>

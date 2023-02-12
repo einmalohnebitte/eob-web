@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Section } from "../@UI/Section";
 import { H1, H2 } from "../@UI/Texts";
 import classNames from "classnames";
+import styles from "./3Map.module.scss";
 
 export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
   const { push } = useRouter();
@@ -37,16 +38,7 @@ export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
         onClick={() => push("/geschaefte")}
         role="presentation"
       >
-        <div
-          css={`
-            @media (min-width: 768px) {
-              position: relative;
-              left: 50%;
-              top: -20px;
-            }
-            padding-bottom: 20px;
-          `}
-        >
+        <div className={styles.map}>
           <Image
             width={742}
             height={418}

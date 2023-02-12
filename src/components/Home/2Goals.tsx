@@ -2,6 +2,7 @@ import { Card } from "@/components/@UI/Card";
 import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
+import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 
 import { Section } from "../@UI/Section";
 
@@ -12,11 +13,7 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   const spread = pageSections.find((s) => s.code === "verbreiten");
 
   return (
-    <div
-      css={`
-        background-image: linear-gradient(#dddddd, white);
-      `}
-    >
+    <BackgroundWrapper vibrantColor="#dddddd">
       <Section className="sm:flex ">
         <Card
           color="blue"
@@ -46,6 +43,6 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           linkTo={"/verbreiten"}
         />
       </Section>
-    </div>
+    </BackgroundWrapper>
   );
 };

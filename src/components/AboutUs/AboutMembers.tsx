@@ -6,6 +6,7 @@ import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
 import Link from "next/link";
 import React from "react";
+import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 
 export const AboutMembers: React.FC<{
   members: MembersQuery["members"];
@@ -13,11 +14,7 @@ export const AboutMembers: React.FC<{
 }> = ({ members, vibrantColor }) => {
   const intl = useTranslations();
   return (
-    <div
-      css={`
-        background-image: linear-gradient(${vibrantColor}, white);
-      `}
-    >
+    <BackgroundWrapper vibrantColor={vibrantColor}>
       <Section>
         <H2 className="m-4">{intl("TEAM")}</H2>
         <Grid>
@@ -37,6 +34,7 @@ export const AboutMembers: React.FC<{
                 linkTo={`/team/${item.slug}`}
               >
                 {item?.picture?.url && (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     alt={item.name ?? ""}
                     src={item?.picture?.url ?? ""}
@@ -49,6 +47,6 @@ export const AboutMembers: React.FC<{
           ))}
         </Grid>
       </Section>
-    </div>
+    </BackgroundWrapper>
   );
 };

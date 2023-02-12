@@ -1,7 +1,12 @@
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import { Card } from "@/components/@UI/Card";
 import { Section } from "@/components/@UI/Section";
-import { H1, H2, H3 } from "@/components/@UI/Texts";
+import {
+  dangerouslySetFormattedInnerHTML,
+  H1,
+  H2,
+  H3,
+} from "@/components/@UI/Texts";
 import {
   PressDocument,
   PressQuery,
@@ -15,6 +20,8 @@ import Image from "next/image";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
+import styles from "@/components/Layout/Blog.module.scss";
+import classNames from "classnames";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PressDocument, {
@@ -37,9 +44,9 @@ const Page: React.FC<PressQuery> = (props) => {
         <H1>{props.pages[0].title}</H1>
 
         <div
-          dangerouslySetInnerHTML={{
-            __html: props.pages[0]?.content?.html ?? "",
-          }}
+          dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+            props.pages[0]?.content?.html ?? ""
+          )}
         />
       </Section>
       <Section>
@@ -78,9 +85,9 @@ const Page: React.FC<PressQuery> = (props) => {
               <div key={`ar${k}`} className={`py-4`}>
                 <H3>{article.title}</H3>
                 <div
-                  dangerouslySetInnerHTML={{
-                    __html: article.abstract?.html ?? "",
-                  }}
+                  dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                    article.abstract?.html ?? ""
+                  )}
                 />
                 <Link href={`/presse/${article.slug}`} passHref={true}>
                   <a>{intl("READ_MORE")}</a>
@@ -113,16 +120,7 @@ const Page: React.FC<PressQuery> = (props) => {
         <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-3`}>
           {props.pressReports.map((report, k) => (
             <div key={`ar${k}`} className={`py-4`}>
-              <H3
-                className="pb-2 h-20"
-                css={`
-                  display: -webkit-box;
-                  -webkit-line-clamp: 2;
-                  -webkit-box-orient: vertical;
-                  overflow: hidden;
-                  white-space: normal;
-                `}
-              >
+              <H3 className={classNames("pb-2 h-20", styles.description)}>
                 {report.title}
               </H3>
               <Image
@@ -132,9 +130,9 @@ const Page: React.FC<PressQuery> = (props) => {
                 alt={"report"}
               />
               <div
-                dangerouslySetInnerHTML={{
-                  __html: report.description?.html ?? "",
-                }}
+                dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                  report.description?.html ?? ""
+                )}
               />
               <a href={report.link ?? ""} target="_blank" rel="noreferrer">
                 {intl("READ_MORE")}

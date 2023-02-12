@@ -4,27 +4,13 @@ import {
   FilterActionType,
   FilterStateType,
 } from "@/components/ShopsMap/useFetchMap";
-import { MQ_MD } from "@/constants/MediaQueries";
 import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
 import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
-import styled from "styled-components";
+import styles from "@/components/ShopsMap/Shops.module.scss";
 
 import { Search } from "./Search";
-
-const Sidebar = styled.div<{ isOpen: boolean; isOpenMobile: boolean }>`
-  width: ${({ isOpen }) => (isOpen ? "25%" : "0")};
-  min-width: ${({ isOpen }) => (isOpen ? "400px" : "0")};
-  z-index: 99999;
-  top: ${90}px;
-
-  @media ${MQ_MD} {
-    top: ${70}px;
-    width: ${({ isOpenMobile }) => (isOpenMobile ? "100%" : "0")};
-    min-width: ${({ isOpenMobile }) => (isOpenMobile ? "100%" : "0")};
-  }
-`;
 
 export const ShopsSideMenu: React.FC<{
   onClose: () => void;
@@ -44,12 +30,14 @@ export const ShopsSideMenu: React.FC<{
     .slice(0, 6)
     .filter((s) => s.name)
     .map((s) => s.name);
-
   return (
-    <Sidebar
-      className="flex overflow-x-hidden fixed left-0 flex-col pb-28 h-full bg-white rounded-md shadow-lg duration-500"
-      isOpen={isOpen}
-      isOpenMobile={isOpenMobile}
+    <div
+      className={classNames(
+        "flex overflow-x-hidden fixed left-0 flex-col pb-28 h-full bg-white rounded-md shadow-lg duration-500",
+        styles.sidebar,
+        isOpenMobile && styles.isOpenMobile,
+        isOpen && styles.isOpen
+      )}
     >
       <div
         role="presentation"
@@ -157,6 +145,6 @@ export const ShopsSideMenu: React.FC<{
           )
         }
       </div>
-    </Sidebar>
+    </div>
   );
 };
