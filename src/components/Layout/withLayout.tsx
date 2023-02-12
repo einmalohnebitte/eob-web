@@ -6,7 +6,7 @@ import { FaQuestion } from "react-icons/fa";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import { AppFooter } from "./Footer";
-import { GlobalStyle } from "./GlobalStyle.css";
+// import { GlobalStyle } from "./GlobalStyle.css";
 import { Header } from "./Header";
 import styles from "./Layout.module.css";
 
@@ -22,8 +22,7 @@ export const withLayout =
     return (
       <>
         <QueryClientProvider client={queryClient}>
-          <GlobalStyle />
-          {/* <SEO /> */}
+          {/* <GlobalStyle /> */}
           <Header />
 
           <div className={classNames("pt-16 md:pt-20", styles.layout)}>
