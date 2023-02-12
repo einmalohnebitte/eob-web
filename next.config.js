@@ -7,7 +7,6 @@ const withGraphql = require("next-plugin-graphql");
 const plugins = [withFonts, withImages, withGraphql, withPWA];
 
 module.exports = compose(plugins)({
-  target: "serverless",
   env: {
     GQL_CMS_ID: process.env.GQL_CMS_ID,
   },

@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import classNames from "classnames";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
+import styles from "./AboutNetwork.module.css";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
@@ -99,14 +100,10 @@ export const AboutNetwork: React.FC<{
 
                     {item.description?.html && (
                       <div
-                        className="mt-2 text-gray-500"
-                        css={`
-                          display: -webkit-box;
-                          -webkit-line-clamp: 2;
-                          -webkit-box-orient: vertical;
-                          overflow: hidden;
-                          white-space: normal;
-                        `}
+                        className={classNames(
+                          "mt-2 text-gray-500",
+                          styles.networkDescription
+                        )}
                         dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
                           item.description?.html
                         )}
