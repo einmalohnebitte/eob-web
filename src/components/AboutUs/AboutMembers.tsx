@@ -19,7 +19,12 @@ export const AboutMembers: React.FC<{
         <H2 className="m-4">{intl("TEAM")}</H2>
         <Grid>
           {members.map((item, k) => (
-            <Link key={`mem${k}`} href={`/team/${item.slug}`} passHref={true}>
+            <Link
+              legacyBehavior
+              key={`mem${k}`}
+              href={`/team/${item.slug}`}
+              passHref={true}
+            >
               <Card
                 key={k}
                 title={item.name ?? ""}

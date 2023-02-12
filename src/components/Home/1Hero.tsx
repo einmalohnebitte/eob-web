@@ -1,6 +1,6 @@
 import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.generated";
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 
 import { Section } from "../@UI/Section";

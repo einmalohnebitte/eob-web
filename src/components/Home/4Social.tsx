@@ -1,7 +1,7 @@
 import React from "react";
 import { GrFacebook, GrInstagram } from "react-icons/gr";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Section } from "../@UI/Section";
 import { H2 } from "../@UI/Texts";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";

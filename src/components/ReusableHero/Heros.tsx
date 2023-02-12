@@ -13,6 +13,7 @@ export const Heros: React.FC<{
       <Grid>
         {reusableHeros.map((item, k) => (
           <Link
+            legacyBehavior
             key={`mem${k}`}
             href={`/seimehrwegheldin/${item.slug}`}
             passHref={true}

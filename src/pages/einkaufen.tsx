@@ -13,7 +13,7 @@ import { withLayout } from "@/components/Layout";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import styles from "@/components/Layout/Einkaufen.module.css";

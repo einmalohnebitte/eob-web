@@ -22,7 +22,7 @@ import { useTranslations } from "@/hooks/useTranslations";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import React from "react";
 
@@ -84,7 +84,12 @@ const Home: React.FC<
           <H2>{intl("CITY_PARTNERS")}</H2>
           <div className="flex overflow-x-auto py-6 px-2">
             {cityPartners.cityPartners.map((c) => (
-              <Link key={c.name} href={c.link ?? ""} passHref={true}>
+              <Link
+                legacyBehavior
+                key={c.name}
+                href={c.link ?? ""}
+                passHref={true}
+              >
                 <SponsorCard src={c.logo?.url ?? ""} alt={c.name ?? ""} />
               </Link>
             ))}
