@@ -20,6 +20,8 @@ import Image from "next/image";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
+import styles from "@/components/Layout/Blog.module.scss";
+import classNames from "classnames";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PressDocument, {
@@ -118,16 +120,7 @@ const Page: React.FC<PressQuery> = (props) => {
         <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-3`}>
           {props.pressReports.map((report, k) => (
             <div key={`ar${k}`} className={`py-4`}>
-              <H3
-                className="pb-2 h-20"
-                css={`
-                  display: -webkit-box;
-                  -webkit-line-clamp: 2;
-                  -webkit-box-orient: vertical;
-                  overflow: hidden;
-                  white-space: normal;
-                `}
-              >
+              <H3 className={classNames("pb-2 h-20", styles.description)}>
                 {report.title}
               </H3>
               <Image

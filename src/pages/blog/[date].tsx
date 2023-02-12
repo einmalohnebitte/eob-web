@@ -12,6 +12,7 @@ import { Locale } from "@/server/generated/graphql";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
+import styles from "@/components/Layout/Blog.module.scss";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await graphCmsRequest(BlogsDocument, { locale: [Locale.De] });
@@ -36,20 +37,9 @@ const BlogPage: React.FC<BlogQuery> = ({ blogs }) => (
   <>
     <HeadMeta />
     <Section>
-      <H2
-        css={`
-          line-height: 3rem !important;
-        `}
-      >
-        {blogs[0]?.title}
-      </H2>
+      <H2 className={styles.title}>{blogs[0]?.title}</H2>
       <div
-        css={`
-          p {
-            margin: 10px 0;
-            padding-bottom: 1rem !important;
-          }
-        `}
+        className={styles.content}
         dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
           blogs[0]?.content?.html ?? ""
         )}

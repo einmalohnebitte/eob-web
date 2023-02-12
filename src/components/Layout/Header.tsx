@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { MdMenu } from "react-icons/md";
+import styles from "./Header.module.css";
 
 import { items } from "./MenuItems";
 
@@ -22,6 +23,7 @@ export const Header: React.FC = () => {
     >
       <div className="flex justify-between items-start md:items-center mx-auto max-w-screen-lg bg-white">
         {!isOpen && (
+          // eslint-disable-next-line @next/next/link-passhref
           <Link href={"/"}>
             <picture>
               <Image
@@ -38,11 +40,9 @@ export const Header: React.FC = () => {
         <nav
           className={classNames(
             "w-full px-4 md:px-0 flex-grow   md:items-center md:w-auto md:flex pt-6 md:pt-0 max-h-screen md:max-h-full h-screen md:h-full",
-            !isOpen && `hidden`
+            !isOpen && `hidden`,
+            styles.headerNav
           )}
-          css={`
-            -webkit-overflow-scrolling: touch;
-          `}
         >
           {items.map((item, k) => (
             <Link key={k} href={item.href}>

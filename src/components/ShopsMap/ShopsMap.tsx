@@ -12,10 +12,7 @@ import {
   useMap,
 } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-markercluster";
-import styled from "styled-components";
-
-import { MQ_LG } from "../../constants/MediaQueries";
-import { number } from "yup";
+import styles from "@/components/ShopsMap/Shops.module.scss";
 
 require("react-leaflet-markercluster/dist/styles.min.css");
 
@@ -28,14 +25,6 @@ if (L.Icon) {
     shadowUrl: "/images/leaflet/marker-shadow.png",
   });
 }
-const StyledMap = styled.div`
-  .map {
-    min-height: 300px;
-    @media ${MQ_LG} {
-      min-height: 400px !important;
-    }
-  }
-`;
 
 const CENTER: [number, number] = [51.1657, 10.4515];
 const ZOOM: number = 6;
@@ -98,9 +87,9 @@ export const ShopsMap: React.FC<{
   height?: string;
 }> = ({ center, zoom, shops, width = "100%", height = "100%" }) => {
   return (
-    <StyledMap>
+    <div>
       <MapContainer
-        className={"map"}
+        className={styles.map}
         center={center ?? CENTER}
         zoom={zoom ?? ZOOM}
         maxZoom={15}
@@ -111,6 +100,6 @@ export const ShopsMap: React.FC<{
       >
         <MapItem shops={shops} center={center} zoom={zoom ?? ZOOM} />
       </MapContainer>
-    </StyledMap>
+    </div>
   );
 };

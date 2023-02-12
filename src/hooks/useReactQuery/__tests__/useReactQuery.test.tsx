@@ -8,11 +8,13 @@ import { QueryClient, QueryClientProvider } from "react-query";
 const flushPromises = () =>
   new Promise<void>((resolve) => setTimeout(resolve, 0));
 
+jest.mock("../gqlRequest", () => ({
+  gqlRequest: jest
+    .fn()
+    .mockImplementation(() => Promise.resolve({ price: 130.5 })),
+}));
 describe("useReactQuery", () => {
   it("should return query", async () => {
-    jest
-      .spyOn(GQL, "gqlRequest")
-      .mockImplementation(() => Promise.resolve({ price: 130.5 }));
     const Mock = ({ children }: any) => (
       <QueryClientProvider client={new QueryClient()}>
         {children}
@@ -26,9 +28,6 @@ describe("useReactQuery", () => {
   });
 
   it("should return mutation", async () => {
-    jest
-      .spyOn(GQL, "gqlRequest")
-      .mockImplementation(() => Promise.resolve({ price: 130.5 }));
     const Mock = ({ children }: any) => (
       <QueryClientProvider client={new QueryClient()}>
         {children}

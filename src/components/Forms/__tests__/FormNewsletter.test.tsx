@@ -6,21 +6,24 @@ import React from "react";
 
 import { FormNewsletter } from "../FormNewsletter";
 
+const mutateFn = jest.fn();
 jest.mock("@/hooks/useReactQuery", () => {
   return {
-    useReactMutation: jest.fn(),
+    useReactMutation: () => ({
+      mutate: (args: any) => mutateFn(args),
+    }),
   };
 });
-test("FormNewsletter Should call send", async () => {
-  const mutate = jest.fn();
-  jest.spyOn(RQ, "useReactMutation").mockImplementation(
-    () =>
-      ({
-        mutate,
-      } as any)
-  );
-  jest.spyOn(TR, "useTranslations").mockImplementation(() => (k: string) => k);
+jest.mock("@/hooks/useTranslations/useTranslations", () => {
+  return {
+    useTranslations: () => (k: string) => k,
+  };
+});
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+test("FormNewsletter Should call send", async () => {
   render(<FormNewsletter />);
 
   userEvent.type(screen.getByLabelText(/FORM_NAME/i), "John");
@@ -31,7 +34,7 @@ test("FormNewsletter Should call send", async () => {
   userEvent.click(screen.getByRole("button", { name: /FORM_SEND/i }));
 
   await waitFor(() =>
-    expect(mutate).toHaveBeenCalledWith({
+    expect(mutateFn).toHaveBeenCalledWith({
       user: {
         email: "test@email.com",
         firstName: "John",

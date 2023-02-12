@@ -6,21 +6,24 @@ import React from "react";
 
 import { FormVerkaufen } from "../FormVerkaufen";
 
+const mutateFn = jest.fn();
 jest.mock("@/hooks/useReactQuery", () => {
   return {
-    useReactMutation: jest.fn(),
+    useReactMutation: () => ({
+      mutate: (args: any) => mutateFn(args),
+    }),
   };
 });
-test("Verkaufen Form Should call send", async () => {
-  const mutate = jest.fn();
-  jest.spyOn(RQ, "useReactMutation").mockImplementation(
-    () =>
-      ({
-        mutate,
-      } as any)
-  );
-  jest.spyOn(TR, "useTranslations").mockImplementation(() => (k: string) => k);
+jest.mock("@/hooks/useTranslations/useTranslations", () => {
+  return {
+    useTranslations: () => (k: string) => k,
+  };
+});
 
+beforeEach(() => {
+  jest.clearAllMocks();
+});
+test("Verkaufen Form Should call send", async () => {
   render(<FormVerkaufen />);
 
   userEvent.type(screen.getByLabelText(/FORM_SHOP/i), "John");
@@ -37,7 +40,7 @@ test("Verkaufen Form Should call send", async () => {
   userEvent.click(screen.getByRole("button", { name: /FORM_SEND/i }));
 
   await waitFor(() =>
-    expect(mutate).toHaveBeenCalledWith({
+    expect(mutateFn).toHaveBeenCalledWith({
       email: {
         email: "test@email.com",
         html: `<h1>John (John Dee)</h1><p>Email: test@email.com </p><p>Address: street abc, 123456, Munich </p><p>Stickers: no </p><p>Message: street abc </p>`,

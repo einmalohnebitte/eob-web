@@ -10,6 +10,7 @@ declare global {
 }
 
 export function reportWebVitals(metric: any) {
+  // eslint-disable-next-line no-console
   console.log(metric);
 }
 

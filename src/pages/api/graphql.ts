@@ -21,6 +21,6 @@ export const config = {
 
 const graphqlHandler = apolloServer.createHandler({ path: "/api/graphql" });
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function gql(req: NextApiRequest, res: NextApiResponse) {
   return graphqlHandler(req, res);
-};
+}

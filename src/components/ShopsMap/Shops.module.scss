@@ -18,3 +18,46 @@
     visibility: visible;
   }
 }
+
+.map {
+  min-height: 300px;
+  @media screen and (min-width: 1025px) {
+    min-height: 400px !important;
+  }
+}
+
+.loadingMap{
+ height: 70vh;
+}
+
+
+.sidebar{
+  width: 0;
+  min-width: 0;
+  z-index: 99999;
+  top: 90px;
+
+  &.isOpen{
+      width: 25%;
+      min-width: 400px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    top: 70px;
+    width: 0;
+    min-width: 0; 
+    &.isOpen{
+      width: 0;
+      min-width: 0; 
+    }
+  }
+
+
+
+  @media screen and (max-width: 768px) {
+      &.isOpenMobile{
+        width: 100%;
+        min-width: 100%;
+      }
+    }
+} 
