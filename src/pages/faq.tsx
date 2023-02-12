@@ -12,7 +12,11 @@ import React, { useState } from "react";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 
 import { Section } from "../components/@UI/Section";
-import { H1, H2 } from "../components/@UI/Texts";
+import {
+  dangerouslySetFormattedInnerHTML,
+  H1,
+  H2,
+} from "../components/@UI/Texts";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(FaqsDocument, {
@@ -61,9 +65,9 @@ const FaqPage: React.FC<FaqsQuery> = ({ faqs }) => {
               className={classNames(
                 !openFaq[k] && `hidden transition-all duration-1000`
               )}
-              dangerouslySetInnerHTML={{
-                __html: item.answer?.html ?? "",
-              }}
+              dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                item.answer?.html ?? ""
+              )}
             />
           </div>
         ))}

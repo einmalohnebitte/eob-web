@@ -1,5 +1,5 @@
 import { Section, SplitSection } from "@/components/@UI/Section";
-import { H1 } from "@/components/@UI/Texts";
+import { dangerouslySetFormattedInnerHTML, H1 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { AboutNav } from "@/components/AboutUs/AboutNav";
@@ -37,9 +37,9 @@ export const AboutUs: React.FC<MembersQuery> = ({
         <SplitSection.Main>
           <div
             className={`py-4`}
-            dangerouslySetInnerHTML={{
-              __html: pageSections[0].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[0].content.html ?? ""
+            )}
           />
         </SplitSection.Main>
       </SplitSection.Section>

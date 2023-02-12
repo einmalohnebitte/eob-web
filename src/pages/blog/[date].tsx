@@ -1,5 +1,5 @@
 import { Section } from "@/components/@UI/Section";
-import { H2 } from "@/components/@UI/Texts";
+import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
 import {
   BlogDocument,
   BlogQuery,
@@ -50,9 +50,9 @@ const BlogPage: React.FC<BlogQuery> = ({ blogs }) => (
             padding-bottom: 1rem !important;
           }
         `}
-        dangerouslySetInnerHTML={{
-          __html: blogs[0]?.content?.html ?? "",
-        }}
+        dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+          blogs[0]?.content?.html ?? ""
+        )}
       />
     </Section>
   </>

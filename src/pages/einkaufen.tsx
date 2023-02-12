@@ -1,6 +1,10 @@
 import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Section, SplitSection } from "@/components/@UI/Section";
-import { H1, H2 } from "@/components/@UI/Texts";
+import {
+  dangerouslySetFormattedInnerHTML,
+  H1,
+  H2,
+} from "@/components/@UI/Texts";
 import {
   PageSectionsDocument,
   PageSectionsQuery,
@@ -37,9 +41,9 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
             <H1>{pageSections[0].title}</H1>
             <div
               className="py-4"
-              dangerouslySetInnerHTML={{
-                __html: pageSections[0].content.html ?? "",
-              }}
+              dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                pageSections[0].content.html ?? ""
+              )}
             />
           </SplitSection.Main>
           <SplitSection.Side>
@@ -68,9 +72,9 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                 line-height: 2rem;
               }
             `}
-            dangerouslySetInnerHTML={{
-              __html: pageSections[1].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[1].content.html ?? ""
+            )}
           />
           <SplitSection.Side>
             <Image
@@ -98,9 +102,9 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
             <H2>{pageSections[2].title}</H2>
             <div
               className="py-4"
-              dangerouslySetInnerHTML={{
-                __html: pageSections[2].content.html ?? "",
-              }}
+              dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                pageSections[2].content.html ?? ""
+              )}
             />
           </SplitSection.Main>
         </SplitSection.Section>
@@ -119,9 +123,9 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                   list-style: decimal;
                 }
               `}
-              dangerouslySetInnerHTML={{
-                __html: pageSections[3].content.html ?? "",
-              }}
+              dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                pageSections[3].content.html ?? ""
+              )}
             />
           </SplitSection.Main>
           <SplitSection.Side
@@ -187,9 +191,9 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                 list-style: decimal;
               }
             `}
-            dangerouslySetInnerHTML={{
-              __html: pageSections[4].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[4].content.html ?? ""
+            )}
           />
         </Section>
       </BackgroundWrapper>

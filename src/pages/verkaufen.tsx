@@ -1,7 +1,11 @@
 import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
 import styles from "@/components/@UI/List.module.scss";
 import { Section, SplitSection } from "@/components/@UI/Section";
-import { H1, H2 } from "@/components/@UI/Texts";
+import {
+  dangerouslySetFormattedInnerHTML,
+  H1,
+  H2,
+} from "@/components/@UI/Texts";
 import {
   PageSectionsDocument,
   PageSectionsQuery,
@@ -45,9 +49,9 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
           <H1>{pageSections[0].title}</H1>
           <div
             className="py-4"
-            dangerouslySetInnerHTML={{
-              __html: pageSections[0].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[0].content.html ?? ""
+            )}
           />
         </SplitSection.Main>
       </SplitSection.Section>
@@ -57,18 +61,18 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
           <H2>{pageSections[1].title}</H2>
           <div
             className={`${styles.OLWrapper} py-4 pr-4`}
-            dangerouslySetInnerHTML={{
-              __html: pageSections[1].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[1].content.html ?? ""
+            )}
           />
         </Section>
         <Section>
           <H2>{pageSections[2].title}</H2>
           <div
             className={`${styles.ULWrapper} py-4 `}
-            dangerouslySetInnerHTML={{
-              __html: pageSections[2].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[2].content.html ?? ""
+            )}
           />
         </Section>
         <Section>

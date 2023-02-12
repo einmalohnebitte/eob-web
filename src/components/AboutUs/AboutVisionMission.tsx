@@ -1,6 +1,6 @@
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import { SplitSection } from "@/components/@UI/Section";
-import { H2 } from "@/components/@UI/Texts";
+import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import React from "react";
 import Image from "next/image";
@@ -29,9 +29,9 @@ export const AboutVisionMission: React.FC<{
                 list-style: disc;
               }
             `}
-            dangerouslySetInnerHTML={{
-              __html: pageSections[1].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[1].content.html ?? ""
+            )}
           />
         </SplitSection.Main>
         <SplitSection.Side>
@@ -68,9 +68,9 @@ export const AboutVisionMission: React.FC<{
                 }
               }
             `}
-            dangerouslySetInnerHTML={{
-              __html: pageSections[2].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[2].content.html ?? ""
+            )}
           />
         </SplitSection.Main>
       </SplitSection.Section>

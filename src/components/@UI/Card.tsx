@@ -2,7 +2,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { H2 } from "./Texts";
+import { dangerouslySetFormattedInnerHTML, H2 } from "./Texts";
 
 export const getBorderColor = (color?: "pink" | "blue" | "yellow"): string =>
   color === "blue"
@@ -77,7 +77,9 @@ export const Card: React.FC<{
         {messageHtml && (
           <div
             className="mt-2 text-gray-500"
-            dangerouslySetInnerHTML={{ __html: messageHtml }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              messageHtml
+            )}
           />
         )}
       </div>

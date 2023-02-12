@@ -2,7 +2,7 @@ import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import { Card, getBorderColor, getTextColor } from "@/components/@UI/Card";
 import { Grid } from "@/components/@UI/Grid";
 import { Section } from "@/components/@UI/Section";
-import { H2 } from "@/components/@UI/Texts";
+import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
 import React, { useState } from "react";
@@ -110,9 +110,9 @@ export const AboutNetwork: React.FC<{
                           overflow: hidden;
                           white-space: normal;
                         `}
-                        dangerouslySetInnerHTML={{
-                          __html: item.description?.html,
-                        }}
+                        dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                          item.description?.html
+                        )}
                       />
                     )}
                     <div
