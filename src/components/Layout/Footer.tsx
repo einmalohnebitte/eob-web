@@ -111,12 +111,7 @@ export const AppFooter = () => {
             </Link>
           </p>
         </FooterSecion>
-        <FooterSecion
-          className="my-4 md:my-0"
-          css={`
-            flex: 1 1 0px;
-          `}
-        >
+        <FooterSecion className="flex-1 my-4 md:my-0">
           <H3 className="pb-2">{intl("FOOTER_PARTNER")}</H3>
           <p>
             <Link href="/verkaufen">
@@ -136,12 +131,7 @@ export const AppFooter = () => {
         </FooterSecion>
       </Section>
 
-      <hr
-        className="m-4"
-        css={`
-          border: rgba(209, 213, 219) solid 1px;
-        `}
-      />
+      <hr className="m-4 border-gray-300 border-solid" />
       <div className="flex flex-col md:flex-row justify-between">
         <p className="text-lg">
           <Link href="/impressum">
