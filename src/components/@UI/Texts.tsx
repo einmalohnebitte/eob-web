@@ -39,14 +39,19 @@ export const H3: React.FC<
 
 export const PFont = `text-xl leading-8 font-gt`;
 
-export const dangerouslySetFormattedInnerHTML = (html: string) => {
+export type ExtraClass = Record<"h1" | "h2" | "h3" | "p" | "ul" | "ol", string>;
+
+export const dangerouslySetFormattedInnerHTML = (
+  html: string,
+  extraClasses?: ExtraClass
+) => {
   return {
     __html: html
-      .replace(/<h1/g, `<h1 class='${H1Class}'`)
-      .replace(/<h2/g, `<h2 class='${H2Class}'`)
-      .replace(/<h3/g, `<h3 class='${H3Class}'`)
-      .replace(/<p/g, `<p class='${PFont}'`)
-      .replace(/<ul/g, `<ul class='list-disc'`)
-      .replace(/<ol/g, `<ol class='list-decimal'`),
+      .replace(/<h1/g, `<h1 class='${H1Class} ${extraClasses?.h1 ?? ""}'`)
+      .replace(/<h2/g, `<h2 class='${H2Class} ${extraClasses?.h2 ?? ""}'`)
+      .replace(/<h3/g, `<h3 class='${H3Class} ${extraClasses?.h3 ?? ""}'`)
+      .replace(/<p/g, `<p class='${PFont} ${extraClasses?.p ?? ""}'`)
+      .replace(/<ul/g, `<ul class='list-disc ${extraClasses?.ul ?? ""}'`)
+      .replace(/<ol/g, `<ol class='list-decimal ${extraClasses?.ol ?? ""}'`),
   };
 };
