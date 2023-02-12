@@ -1,7 +1,7 @@
 import { FormBase } from "@/components/Forms/FormBase";
 import { SendEmailDocument } from "@/components/Forms/sendEmail.local.generated";
 import { useTranslations } from "@/hooks/useTranslations";
-import { useReactMutation } from "@correttojs/next-utils/useReactQuery";
+import { useReactMutation } from "@/hooks/useReactQuery";
 import React from "react";
 import * as Yup from "yup";
 

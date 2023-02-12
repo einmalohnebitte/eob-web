@@ -1,12 +1,12 @@
 import * as TR from "@/hooks/useTranslations/useTranslations";
-import * as RQ from "@correttojs/next-utils/useReactQuery";
+import * as RQ from "@/hooks/useReactQuery";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 
 import { FormNewsletter } from "../FormNewsletter";
 
-jest.mock("@correttojs/next-utils/useReactQuery", () => {
+jest.mock("@/hooks/useReactQuery", () => {
   return {
     useReactMutation: jest.fn(),
   };
