@@ -18,18 +18,20 @@ export const getTextColor = (color?: "pink" | "blue" | "yellow"): string =>
     ? `text-pink-500`
     : `text-yellow-600`;
 
-export const Card: React.FC<{
-  img?: string;
-  title: string;
-  linkTitle?: string;
-  linkTo?: string;
-  message?: string;
-  messageHtml?: string;
-  resize?: boolean;
-  color?: "pink" | "blue" | "yellow";
-  onClick?: (event: any) => void;
-  subtitle?: string;
-}> = ({
+export const Card: React.FC<
+  React.PropsWithChildren<{
+    img?: string;
+    title: string;
+    linkTitle?: string;
+    linkTo?: string;
+    message?: string;
+    messageHtml?: string;
+    resize?: boolean;
+    color?: "pink" | "blue" | "yellow";
+    onClick?: (event: any) => void;
+    subtitle?: string;
+  }>
+> = ({
   img,
   title,
   message,

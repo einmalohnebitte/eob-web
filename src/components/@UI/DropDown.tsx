@@ -15,7 +15,7 @@ export const DropDownItem: React.FC<{
   </li>
 );
 
-export const DropDown: React.FC = ({ children }) => (
+export const DropDown: React.FC<React.PropsWithChildren> = ({ children }) => (
   <div className={`${styles.Control} inline-block relative `}>
     <button className={`py-2 px-2 rounded inline-flex items-center`}>
       <MdLanguage size={"1.6em"} />

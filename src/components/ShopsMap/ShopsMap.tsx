@@ -2,7 +2,7 @@ import "leaflet/dist/leaflet.css";
 
 import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
 import L from "leaflet";
-import React, { useRef } from "react";
+import React from "react";
 import {
   GeoJSON,
   MapContainer,
