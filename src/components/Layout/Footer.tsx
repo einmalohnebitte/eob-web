@@ -99,11 +99,11 @@ export const AppFooter = () => {
               <a>{intl("FOOTER_PRESS")}</a>
             </Link>
           </p>
-          <p>
+          {/* <p>
             <Link href="/seimehrwegheldin">
               <a>{intl("FOOTER_REUSABLE_HERO")}</a>
             </Link>
-          </p>
+          </p> */}
         </div>
         <div className="flex-1 my-4 md:my-0">
           <H3 className="pb-2">{intl("FOOTER_PARTNER")}</H3>
