@@ -1,10 +1,9 @@
 const compose = require("lodash/flowRight");
-const withPWA = require("next-pwa");
 const withImages = require("next-images");
 const withFonts = require("next-fonts");
 const withGraphql = require("next-plugin-graphql");
 
-const plugins = [withFonts, withImages, withGraphql, withPWA];
+const plugins = [withFonts, withImages, withGraphql];
 
 module.exports = compose(plugins)({
   env: {
