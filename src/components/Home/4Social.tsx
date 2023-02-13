@@ -1,16 +1,13 @@
 import React from "react";
-import { GrFacebook, GrInstagram } from "react-icons/gr"; 
+import { GrFacebook, GrInstagram } from "react-icons/gr";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Section } from "../@UI/Section";
 import { H2 } from "../@UI/Texts";
+import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 
 export const Social: React.FC = () => (
-  <div
-    css={`
-      background-color: #f9f8fd;
-    `}
-  >
+  <BackgroundWrapper vibrantColor="#f9f8fd" isSolid={true}>
     <Section className="text-center text-blue-500">
       <H2>FOLGE EINMAL OHNE, BITTE AUF INSTAGRAM ODER FACEBOOK</H2>
 
@@ -26,5 +23,5 @@ export const Social: React.FC = () => (
         </a>
       </div>
     </Section>
-  </div>
+  </BackgroundWrapper>
 );

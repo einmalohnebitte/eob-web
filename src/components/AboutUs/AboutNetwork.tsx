@@ -2,12 +2,14 @@ import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import { Card, getBorderColor, getTextColor } from "@/components/@UI/Card";
 import { Grid } from "@/components/@UI/Grid";
 import { Section } from "@/components/@UI/Section";
-import { H2 } from "@/components/@UI/Texts";
+import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
 import React, { useState } from "react";
 import Link from "next/link";
 import classNames from "classnames";
+import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
+import styles from "./AboutNetwork.module.css";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
@@ -36,11 +38,7 @@ export const AboutNetwork: React.FC<{
   const [filter, setFilter] = useState<string | null>(null);
 
   return (
-    <div
-      css={`
-        background-image: linear-gradient(${vibrantColor}, white);
-      `}
-    >
+    <BackgroundWrapper vibrantColor={vibrantColor}>
       <AnchorPointer id="network" />
       <Section>
         <H2 className="m-4">{intl("ABOUT_NETWORK")}</H2>
@@ -79,6 +77,7 @@ export const AboutNetwork: React.FC<{
                 key={`mem${k}`}
                 href={`/network/${item.slug}`}
                 passHref={false}
+                legacyBehavior
               >
                 <div
                   key={k}
@@ -89,6 +88,7 @@ export const AboutNetwork: React.FC<{
                   )}
                 >
                   {item.logo?.url && (
+                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       alt={item.title ?? ""}
                       src={item.logo?.url ?? ""}
@@ -102,17 +102,13 @@ export const AboutNetwork: React.FC<{
 
                     {item.description?.html && (
                       <div
-                        className="mt-2 text-gray-500"
-                        css={`
-                          display: -webkit-box;
-                          -webkit-line-clamp: 2;
-                          -webkit-box-orient: vertical;
-                          overflow: hidden;
-                          white-space: normal;
-                        `}
-                        dangerouslySetInnerHTML={{
-                          __html: item.description?.html,
-                        }}
+                        className={classNames(
+                          "mt-2 text-gray-500",
+                          styles.networkDescription
+                        )}
+                        dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                          item.description?.html
+                        )}
                       />
                     )}
                     <div
@@ -121,7 +117,7 @@ export const AboutNetwork: React.FC<{
                         "flex-grow flex justify-end flex-col m-2",
                       ])}
                     >
-                      <Link href={`/network/${item.slug}` ?? ""}>
+                      <Link href={`/network/${item.slug}` ?? ""} legacyBehavior>
                         <a className="hover:underline">{`Lerne ${item.title} kennen...`}</a>
                       </Link>
                     </div>
@@ -132,6 +128,6 @@ export const AboutNetwork: React.FC<{
           })}
         </Grid>
       </Section>
-    </div>
+    </BackgroundWrapper>
   );
 };

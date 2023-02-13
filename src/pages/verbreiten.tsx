@@ -2,7 +2,11 @@ import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
 import styles from "@/components/@UI/List.module.scss";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { SponsorCard } from "@/components/@UI/SponsorCard";
-import { H1, H2 } from "@/components/@UI/Texts";
+import {
+  dangerouslySetFormattedInnerHTML,
+  H1,
+  H2,
+} from "@/components/@UI/Texts";
 import {
   CityPartnersDocument,
   CityPartnersQuery,
@@ -18,7 +22,7 @@ import { useTranslations } from "@/hooks/useTranslations";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import React from "react";
 
@@ -56,9 +60,9 @@ const Home: React.FC<
           <H1>{pageSections[0].title}</H1>
           <div
             className="py-4"
-            dangerouslySetInnerHTML={{
-              __html: pageSections[0].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[0].content.html ?? ""
+            )}
           />
         </SplitSection.Main>
       </SplitSection.Section>
@@ -68,9 +72,9 @@ const Home: React.FC<
           <H2>{pageSections[1].title}</H2>
           <div
             className={`${styles.OLWrapper} py-4 pr-4`}
-            dangerouslySetInnerHTML={{
-              __html: pageSections[1].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[1].content.html ?? ""
+            )}
           />
         </Section>
         <Section>
@@ -80,7 +84,12 @@ const Home: React.FC<
           <H2>{intl("CITY_PARTNERS")}</H2>
           <div className="flex overflow-x-auto py-6 px-2">
             {cityPartners.cityPartners.map((c) => (
-              <Link key={c.name} href={c.link ?? ""} passHref={true}>
+              <Link
+                legacyBehavior
+                key={c.name}
+                href={c.link ?? ""}
+                passHref={true}
+              >
                 <SponsorCard src={c.logo?.url ?? ""} alt={c.name ?? ""} />
               </Link>
             ))}

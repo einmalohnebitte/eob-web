@@ -1,6 +1,10 @@
 import { Card } from "@/components/@UI/Card";
 import { Section } from "@/components/@UI/Section";
 import {
+  dangerouslySetFormattedInnerHTML,
+  ExtraClass,
+} from "@/components/@UI/Texts";
+import {
   MemberDocument,
   MemberQuery,
   MembersDocument,
@@ -33,7 +37,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 const TeamPage: React.FC<MemberQuery> = ({ members }) => (
   <Section>
-    <div className="max-w-sm float-left m-4">
+    <div className="float-left m-4 max-w-sm">
       <Card
         img={members[0]?.picture?.url}
         title={members[0]?.name ?? ""}
@@ -42,14 +46,12 @@ const TeamPage: React.FC<MemberQuery> = ({ members }) => (
     </div>
 
     <div
-      css={`
-        p {
-          padding-bottom: 1rem !important;
-        }
-      `}
-      dangerouslySetInnerHTML={{
-        __html: members[0]?.bio?.html ?? "",
-      }}
+      dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+        members[0]?.bio?.html ?? "",
+        {
+          p: "pb-4",
+        } as ExtraClass
+      )}
     />
   </Section>
 );

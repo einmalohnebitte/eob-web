@@ -1,10 +1,12 @@
 import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.generated";
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React from "react";
 
 import { Section } from "../@UI/Section";
 import { H1 } from "../@UI/Texts";
+
+import styles from "./1Hero.module.scss";
 
 const HeroImg: React.FC<{
   is2Col?: boolean;
@@ -12,13 +14,11 @@ const HeroImg: React.FC<{
   src: string;
 }> = ({ src, is2Row, is2Col }) => (
   <div
-    className={classNames(is2Row && `row-span-2`, is2Col && `col-span-2`)}
-    css={`
-      /* position: relative; */
-      div {
-        height: 100%;
-      }
-    `}
+    className={classNames(
+      styles.wrapper,
+      is2Row && `row-span-2`,
+      is2Col && `col-span-2`
+    )}
   >
     {src && (
       <Image
@@ -41,13 +41,7 @@ export const Hero: React.FC<
       <Section>
         <H1>{title}</H1>
         <div
-          className="py-4"
-          css={`
-            strong {
-              font-size: 1.8rem;
-              color: rgba(219, 39, 119, 1);
-            }
-          `}
+          className={classNames("py-4", styles.shopsNumber)}
           dangerouslySetInnerHTML={{
             __html: content.html.replace("[shops]", shops.toString()),
           }}
@@ -55,10 +49,10 @@ export const Hero: React.FC<
       </Section>
       <div className="overflow-x-scroll">
         <div
-          className="grid grid-cols-7 grid-rows-2 grid-flow-col gap-4 px-10"
-          css={`
-            min-width: 1020px;
-          `}
+          className={classNames(
+            "grid grid-cols-7 grid-rows-2 grid-flow-col gap-4 px-10",
+            styles.grid
+          )}
         >
           <HeroImg src={"/images/hero/Bild6 - Berlin.jpg"} />
 

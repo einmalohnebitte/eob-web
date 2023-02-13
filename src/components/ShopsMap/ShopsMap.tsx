@@ -2,7 +2,7 @@ import "leaflet/dist/leaflet.css";
 
 import { ShopsQuery } from "@/components/ShopsMap/Shops.cms.generated";
 import L from "leaflet";
-import React, { useRef } from "react";
+import React from "react";
 import {
   GeoJSON,
   MapContainer,
@@ -11,13 +11,9 @@ import {
   TileLayer,
   useMap,
 } from "react-leaflet";
-import MarkerClusterGroup from "react-leaflet-markercluster";
-import styled from "styled-components";
-
-import { MQ_LG } from "../../constants/MediaQueries";
-import { number } from "yup";
-
-require("react-leaflet-markercluster/dist/styles.min.css");
+import "leaflet/dist/leaflet.css";
+import MarkerClusterGroup from "./MarkerClusterGroup";
+import styles from "@/components/ShopsMap/Shops.module.scss";
 
 if (L.Icon) {
   delete (L.Icon.Default as any).prototype._getIconUrl;
@@ -28,14 +24,6 @@ if (L.Icon) {
     shadowUrl: "/images/leaflet/marker-shadow.png",
   });
 }
-const StyledMap = styled.div`
-  .map {
-    min-height: 300px;
-    @media ${MQ_LG} {
-      min-height: 400px !important;
-    }
-  }
-`;
 
 const CENTER: [number, number] = [51.1657, 10.4515];
 const ZOOM: number = 6;
@@ -73,7 +61,7 @@ const MapItem: React.FC<{
                   <Popup>
                     <b>{item.name}</b>
                     <p>{item.openinghours}</p>
-                    <p>{/* {item.strasse} - {item?.stadt?.name} */}</p>
+                    <p>{item.address}</p>
                     <p>
                       {(item.shopcategories ?? [])
                         .map((c) => c.name)
@@ -90,6 +78,8 @@ const MapItem: React.FC<{
   );
 };
 
+const MemoMapItem = React.memo(MapItem);
+
 export const ShopsMap: React.FC<{
   center: [number, number];
   zoom: number | null;
@@ -98,9 +88,9 @@ export const ShopsMap: React.FC<{
   height?: string;
 }> = ({ center, zoom, shops, width = "100%", height = "100%" }) => {
   return (
-    <StyledMap>
+    <div>
       <MapContainer
-        className={"map"}
+        className={styles.map}
         center={center ?? CENTER}
         zoom={zoom ?? ZOOM}
         maxZoom={15}
@@ -109,8 +99,8 @@ export const ShopsMap: React.FC<{
           width,
         }}
       >
-        <MapItem shops={shops} center={center} zoom={zoom ?? ZOOM} />
+        <MemoMapItem shops={shops} center={center} zoom={zoom ?? ZOOM} />
       </MapContainer>
-    </StyledMap>
+    </div>
   );
 };

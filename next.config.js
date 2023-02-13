@@ -1,19 +1,13 @@
 const compose = require("lodash/flowRight");
-const withPWA = require("next-pwa");
 const withImages = require("next-images");
 const withFonts = require("next-fonts");
 const withGraphql = require("next-plugin-graphql");
 
-const plugins = [withFonts, withImages, withGraphql, withPWA];
+const plugins = [withFonts, withImages, withGraphql];
 
 module.exports = compose(plugins)({
-  target: "serverless",
   env: {
     GQL_CMS_ID: process.env.GQL_CMS_ID,
-  },
-  pwa: {
-    disable: process.env.NODE_ENV === "development",
-    dest: "public",
   },
   i18n: {
     locales: ["de", "en"],
@@ -21,7 +15,7 @@ module.exports = compose(plugins)({
     localeDetection: false,
   },
   images: {
-    domains: ["media.graphcms.com"],
+    dangerouslyAllowSVG: true,
+    domains: ["media.graphassets.com"],
   },
-  webpack5: true,
 });

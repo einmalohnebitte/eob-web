@@ -13,6 +13,9 @@ module.exports = {
         lemonism: ["Lemonism-Regular", "sans-serif"],
         gt: ["GT", "sans-serif"],
       },
+      fontSize: {
+        "4.5xl": "3rem",
+      },
     },
   },
   variants: {

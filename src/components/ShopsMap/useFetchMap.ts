@@ -4,7 +4,7 @@ import {
   ShopsDocument,
   ShopsQuery,
 } from "@/components/ShopsMap/Shops.cms.generated";
-import { gqlRequest } from "@correttojs/next-utils/useReactQuery";
+import { gqlRequest } from "@/hooks/useReactQuery";
 import { useEffect, useReducer } from "react";
 
 function sortArray(a: any, b: any) {
@@ -226,8 +226,6 @@ export const useFetchMap = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const dispatchAction = (action: FilterActionType) => {
     dispatch(action);
-    console.log("action");
-    console.log(action);
     setTimeout(() => {
       dispatch({ type: "APPLY_FILTERS" });
     }, 100);

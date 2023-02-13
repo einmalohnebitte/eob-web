@@ -1,6 +1,9 @@
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
 
+import "../components/ShopsMap/MarkerCluster.css";
+import "../components/ShopsMap/MarkerCluster.Default.css";
+
 import Head from "next/head";
 
 declare global {
@@ -10,6 +13,7 @@ declare global {
 }
 
 export function reportWebVitals(metric: any) {
+  // eslint-disable-next-line no-console
   console.log(metric);
 }
 

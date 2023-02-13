@@ -2,7 +2,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { H2 } from "./Texts";
+import { dangerouslySetFormattedInnerHTML, H2 } from "./Texts";
 
 export const getBorderColor = (color?: "pink" | "blue" | "yellow"): string =>
   color === "blue"
@@ -18,18 +18,20 @@ export const getTextColor = (color?: "pink" | "blue" | "yellow"): string =>
     ? `text-pink-500`
     : `text-yellow-600`;
 
-export const Card: React.FC<{
-  img?: string;
-  title: string;
-  linkTitle?: string;
-  linkTo?: string;
-  message?: string;
-  messageHtml?: string;
-  resize?: boolean;
-  color?: "pink" | "blue" | "yellow";
-  onClick?: (event: any) => void;
-  subtitle?: string;
-}> = ({
+export const Card: React.FC<
+  React.PropsWithChildren<{
+    img?: string;
+    title: string;
+    linkTitle?: string;
+    linkTo?: string;
+    message?: string;
+    messageHtml?: string;
+    resize?: boolean;
+    color?: "pink" | "blue" | "yellow";
+    onClick?: (event: any) => void;
+    subtitle?: string;
+  }>
+> = ({
   img,
   title,
   message,
@@ -65,6 +67,7 @@ export const Card: React.FC<{
     >
       {children}
       {img && (
+        // eslint-disable-next-line @next/next/no-img-element
         <img
           className={classNames("h-52", !resize && "w-full object-cover")}
           src={img}
@@ -77,7 +80,9 @@ export const Card: React.FC<{
         {messageHtml && (
           <div
             className="mt-2 text-gray-500"
-            dangerouslySetInnerHTML={{ __html: messageHtml }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              messageHtml
+            )}
           />
         )}
       </div>
@@ -88,7 +93,7 @@ export const Card: React.FC<{
         )}
       >
         {linkTo && (
-          <Link href={linkTo ?? ""}>
+          <Link legacyBehavior href={linkTo ?? ""}>
             <a className="hover:underline">{linkTitle}</a>
           </Link>
         )}

@@ -1,9 +1,12 @@
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import { SplitSection } from "@/components/@UI/Section";
-import { H2 } from "@/components/@UI/Texts";
+import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
+import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
+import classnames from "classnames";
+import styles from "./AboutVisionMission.module.scss";
 
 export const AboutVisionMission: React.FC<{
   vibrantColor: string;
@@ -13,25 +16,16 @@ export const AboutVisionMission: React.FC<{
   const secondPic = pageSections[2].picture[0];
 
   return (
-    <div
-      css={`
-        background-image: linear-gradient(${vibrantColor}, white);
-      `}
-    >
+    <BackgroundWrapper vibrantColor={vibrantColor}>
       <AnchorPointer id="vision" />
       <SplitSection.Section>
         <SplitSection.Main>
           <H2>{pageSections[1].title}</H2>
           <div
             className="py-4 font-gt text-xl leading-8"
-            css={`
-              ul {
-                list-style: disc;
-              }
-            `}
-            dangerouslySetInnerHTML={{
-              __html: pageSections[1].content.html ?? "",
-            }}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[1].content.html ?? ""
+            )}
           />
         </SplitSection.Main>
         <SplitSection.Side>
@@ -59,21 +53,16 @@ export const AboutVisionMission: React.FC<{
         <SplitSection.Main>
           <H2>{pageSections[2].title}</H2>
           <div
-            className="py-4 font-gt text-xl leading-8"
-            css={`
-              ul {
-                list-style: disc inside;
-                div {
-                  display: inline;
-                }
-              }
-            `}
-            dangerouslySetInnerHTML={{
-              __html: pageSections[2].content.html ?? "",
-            }}
+            className={classnames(
+              "py-4 font-gt text-xl leading-8",
+              styles.mission
+            )}
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[2].content.html ?? ""
+            )}
           />
         </SplitSection.Main>
       </SplitSection.Section>
-    </div>
+    </BackgroundWrapper>
   );
 };

@@ -22,7 +22,6 @@ export const newsletter: MutationResolvers<ResolverContext>["newsletter"] =
           date_identified: new Date().toISOString().replace("Z", ""),
         }),
       }).then((r) => r.json());
-      console.log(leads);
 
       const update = await fetch(process.env.MAUTIC_BASE + "/lead_tags_xref", {
         method: "POST",
@@ -34,9 +33,6 @@ export const newsletter: MutationResolvers<ResolverContext>["newsletter"] =
         },
         body: JSON.stringify({ tag_id: 233, lead_id: leads.insertId }),
       }).then((r) => r.json());
-      console.log(update);
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
     return true;
   };

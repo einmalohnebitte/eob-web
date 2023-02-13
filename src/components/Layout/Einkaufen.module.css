@@ -1,0 +1,20 @@
+.imgRounded{
+    border-radius: 13px;
+}
+
+.imgWrapper{
+    left: 350px;
+    bottom: 300px;
+    position: relative;
+    display: flex;
+}
+
+.imgTwoWrapper{
+    bottom: -50px;
+    position: relative;
+    display: flex;
+}
+
+.forceFlex{
+    flex: 1 !important;
+}
