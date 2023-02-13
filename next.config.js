@@ -15,6 +15,7 @@ module.exports = compose(plugins)({
     localeDetection: false,
   },
   images: {
+    dangerouslyAllowSVG: true,
     domains: ["media.graphassets.com"],
   },
 });
