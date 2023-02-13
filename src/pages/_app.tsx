@@ -1,6 +1,9 @@
 import "../styles/globals.css";
 import "tailwindcss/tailwind.css";
 
+import "../components/ShopsMap/MarkerCluster.css";
+import "../components/ShopsMap/MarkerCluster.Default.css";
+
 import Head from "next/head";
 
 declare global {
