@@ -26,15 +26,15 @@ beforeEach(() => {
 test("FormVerbreiten Should call send", async () => {
   render(<FormVerbreiten />);
 
-  userEvent.type(screen.getByLabelText(/FORM_NAME/i), "John");
-  userEvent.type(screen.getByLabelText(/FORM_SURNAME/i), "Dee");
-  userEvent.type(screen.getByLabelText(/FORM_EMAIL/i), "test@email.com");
-  userEvent.type(screen.getByLabelText(/FORM_MOTIVATION/i), "message...");
-  userEvent.type(screen.getByLabelText(/FORM_POSTCODE/i), "123456");
-  userEvent.type(screen.getByLabelText(/FORM_TOWN/i), "Munich");
+  await userEvent.type(screen.getByLabelText(/FORM_NAME/i), "John");
+  await userEvent.type(screen.getByLabelText(/FORM_SURNAME/i), "Dee");
+  await userEvent.type(screen.getByLabelText(/FORM_EMAIL/i), "test@email.com");
+  await userEvent.type(screen.getByLabelText(/FORM_MOTIVATION/i), "message...");
+  await userEvent.type(screen.getByLabelText(/FORM_POSTCODE/i), "123456");
+  await userEvent.type(screen.getByLabelText(/FORM_TOWN/i), "Munich");
 
-  userEvent.click(screen.getByLabelText(/FORM_DATA_POLICY_MESSAGE/i));
-  userEvent.click(screen.getByRole("button", { name: /FORM_SEND/i }));
+  await userEvent.click(screen.getByLabelText(/FORM_DATA_POLICY_MESSAGE/i));
+  await userEvent.click(screen.getByRole("button", { name: /FORM_SEND/i }));
 
   await waitFor(() =>
     expect(mutateFn).toHaveBeenCalledWith({

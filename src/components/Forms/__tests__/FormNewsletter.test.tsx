@@ -26,12 +26,12 @@ beforeEach(() => {
 test("FormNewsletter Should call send", async () => {
   render(<FormNewsletter />);
 
-  userEvent.type(screen.getByLabelText(/FORM_NAME/i), "John");
-  userEvent.type(screen.getByLabelText(/FORM_SURNAME/i), "Dee");
-  userEvent.type(screen.getByLabelText(/FORM_EMAIL/i), "test@email.com");
+  await userEvent.type(screen.getByLabelText(/FORM_NAME/i), "John");
+  await userEvent.type(screen.getByLabelText(/FORM_SURNAME/i), "Dee");
+  await userEvent.type(screen.getByLabelText(/FORM_EMAIL/i), "test@email.com");
 
-  userEvent.click(screen.getByLabelText(/FORM_DATA_POLICY_MESSAGE/i));
-  userEvent.click(screen.getByRole("button", { name: /FORM_SEND/i }));
+  await userEvent.click(screen.getByLabelText(/FORM_DATA_POLICY_MESSAGE/i));
+  await userEvent.click(screen.getByRole("button", { name: /FORM_SEND/i }));
 
   await waitFor(() =>
     expect(mutateFn).toHaveBeenCalledWith({

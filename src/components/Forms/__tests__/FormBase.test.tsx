@@ -85,6 +85,6 @@ test("FormBase Should render error", async () => {
   expect(screen.getByText("FORM_CONTACT_ERROR").textContent).toEqual(
     "FORM_CONTACT_ERRORFORM_OK"
   );
-  userEvent.click(screen.getByRole("button", { name: /FORM_OK/i }));
+  await userEvent.click(screen.getByRole("button", { name: /FORM_OK/i }));
   expect(handleReset).toHaveBeenCalled();
 });
