@@ -42,7 +42,7 @@
     "sass": "^1.58.0",
     "sharp": "^0.31.3",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
-    "yup": "^0.32.9"
+    "yup": "^1.0.0"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "2.16.5",
@@ -64,7 +64,7 @@
     "@types/node": "16.18.12",
     "@types/react": "^18.0.28",
     "@types/react-google-recaptcha": "2.1.5",
-    "@types/yup": "0.29.13",
+    "@types/yup": "^0.32.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "autoprefixer": "^10.4.13",

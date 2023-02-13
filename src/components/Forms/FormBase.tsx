@@ -47,10 +47,10 @@ export const FormSuccess: React.FC<{ color: Colors }> = ({ color }) => {
   );
 };
 
-interface Props<T> {
+interface Props<T, Q extends Yup.Maybe<Yup.AnyObject>> {
   children?: React.ReactNode;
   initialValues: T;
-  validationSchema: Yup.SchemaOf<any>;
+  validationSchema: Yup.ObjectSchema<Q>;
   color: Colors;
   onSubmit: (values: T) => void;
   onReset: () => void;
@@ -58,7 +58,7 @@ interface Props<T> {
   isError: boolean;
 }
 
-export const FormBase = <T extends {}>({
+export const FormBase = <T extends {}, Q extends Yup.Maybe<Yup.AnyObject>>({
   children,
   onSubmit,
   onReset,
@@ -67,7 +67,7 @@ export const FormBase = <T extends {}>({
   color,
   isSuccess,
   isError,
-}: Props<T>): React.ReactElement<any, any> | null => {
+}: Props<T, Q>): React.ReactElement<any, any> | null => {
   const [captcha, setCaptcha] = useState(false);
   const intl = useTranslations();
 
