@@ -1,6 +1,4 @@
 import { applyShopFilter, initialState, reducer } from "../useFetchMap";
-import { Locale } from "@/server/generated/graphql";
-import { renderHook } from "@testing-library/react-hooks";
 import { shopsData } from "@/components/ShopsMap/__mocks__/shops.mocks";
 
 describe("useFetchMap", () => {
