@@ -1,5 +1,5 @@
 import { Locale } from "@/server/generated/graphql";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import * as MockRouter from "next/router";
 
 import { useTranslations } from "../useTranslations";
