@@ -16,7 +16,7 @@ import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { useTranslations } from "@/hooks/useTranslations";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
 import { graphCmsRequest } from "@/server/graphcms";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
@@ -89,7 +89,11 @@ const Page: React.FC<PressQuery> = (props) => {
                     article.abstract?.html ?? ""
                   )}
                 />
-                <Link href={`/presse/${article.slug}`} passHref={true}>
+                <Link
+                  legacyBehavior
+                  href={`/presse/${article.slug}`}
+                  passHref={true}
+                >
                   <a>{intl("READ_MORE")}</a>
                 </Link>
               </div>

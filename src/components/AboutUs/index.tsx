@@ -8,7 +8,7 @@ import { AboutNetwork } from "@/components/AboutUs/AboutNetwork";
 import { AboutVisionMission } from "@/components/AboutUs/AboutVisionMission";
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export const AboutUs: React.FC<MembersQuery> = ({
   members,

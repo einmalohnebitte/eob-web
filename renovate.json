@@ -1,6 +1,6 @@
 {
   "extends": ["config:base"],
-  "ignoreDeps": ["husky"],
+  "ignoreDeps": ["husky", "leaflet"],
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],

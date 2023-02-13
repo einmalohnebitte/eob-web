@@ -93,7 +93,7 @@ export const Card: React.FC<
         )}
       >
         {linkTo && (
-          <Link href={linkTo ?? ""}>
+          <Link legacyBehavior href={linkTo ?? ""}>
             <a className="hover:underline">{linkTitle}</a>
           </Link>
         )}

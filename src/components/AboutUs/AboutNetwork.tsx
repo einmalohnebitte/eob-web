@@ -78,6 +78,7 @@ export const AboutNetwork: React.FC<{
                 key={`mem${k}`}
                 href={`/network/${item.slug}`}
                 passHref={false}
+                legacyBehavior
               >
                 <div
                   key={k}
@@ -117,7 +118,7 @@ export const AboutNetwork: React.FC<{
                         "flex-grow flex justify-end flex-col m-2",
                       ])}
                     >
-                      <Link href={`/network/${item.slug}` ?? ""}>
+                      <Link href={`/network/${item.slug}` ?? ""} legacyBehavior>
                         <a className="hover:underline">{`Lerne ${item.title} kennen...`}</a>
                       </Link>
                     </div>
