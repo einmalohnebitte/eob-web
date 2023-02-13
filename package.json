@@ -33,7 +33,7 @@
     "react-dom": "18.2.0",
     "react-google-recaptcha": "^2.1.0",
     "react-icons": "^4.7.1",
-    "react-intersection-observer": "^8.31.1",
+    "react-intersection-observer": "^9.4.2",
     "react-leaflet": "^3.1.0",
     "react-leaflet-markercluster": "^3.0.0-rc1",
     "react-query": "^3.39.3",
@@ -88,8 +88,7 @@
     "node-sass": "6.0.1",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
-    "typescript": "^4.9.5",
-    "utf-8-validate": "5.0.9"
+    "typescript": "^4.9.5"
   },
   "repository": {
     "url": "https://github.com/einmalohnebitte/eob-web"
