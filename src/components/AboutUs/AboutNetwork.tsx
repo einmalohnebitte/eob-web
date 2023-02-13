@@ -73,7 +73,6 @@ export const AboutNetwork: React.FC<{
             const color =
               k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink";
             return (
-              // eslint-disable-next-line @next/next/link-passhref
               <Link
                 key={`mem${k}`}
                 href={`/network/${item.slug}`}

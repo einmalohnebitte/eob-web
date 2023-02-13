@@ -23,7 +23,6 @@ export const Header: React.FC = () => {
     >
       <div className="flex justify-between items-start md:items-center mx-auto max-w-screen-lg bg-white">
         {!isOpen && (
-          // eslint-disable-next-line @next/next/link-passhref
           <Link legacyBehavior href={"/"}>
             <picture>
               <Image
