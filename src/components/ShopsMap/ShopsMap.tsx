@@ -11,10 +11,9 @@ import {
   TileLayer,
   useMap,
 } from "react-leaflet";
-import MarkerClusterGroup from "react-leaflet-markercluster";
+import "leaflet/dist/leaflet.css";
+import MarkerClusterGroup from "./MarkerClusterGroup";
 import styles from "@/components/ShopsMap/Shops.module.scss";
-
-require("react-leaflet-markercluster/dist/styles.min.css");
 
 if (L.Icon) {
   delete (L.Icon.Default as any).prototype._getIconUrl;
@@ -79,7 +78,7 @@ const MapItem: React.FC<{
   );
 };
 
-const MemoMap = React.memo(MapContainer);
+const MemoMapItem = React.memo(MapItem);
 
 export const ShopsMap: React.FC<{
   center: [number, number];
@@ -90,7 +89,7 @@ export const ShopsMap: React.FC<{
 }> = ({ center, zoom, shops, width = "100%", height = "100%" }) => {
   return (
     <div>
-      <MemoMap
+      <MapContainer
         className={styles.map}
         center={center ?? CENTER}
         zoom={zoom ?? ZOOM}
@@ -100,8 +99,8 @@ export const ShopsMap: React.FC<{
           width,
         }}
       >
-        <MapItem shops={shops} center={center} zoom={zoom ?? ZOOM} />
-      </MemoMap>
+        <MemoMapItem shops={shops} center={center} zoom={zoom ?? ZOOM} />
+      </MapContainer>
     </div>
   );
 };
