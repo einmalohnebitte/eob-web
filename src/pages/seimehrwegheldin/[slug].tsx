@@ -15,6 +15,7 @@ import { Locale } from "@/server/generated/graphql";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
+import Head from "next/head";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await graphCmsRequest(ReusableHeroDocument, {
@@ -41,6 +42,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 const TeamPage: React.FC<HeroQuery> = ({ reusableHeros }) => (
   <Section>
+    <Head>
+      <meta name="robots" content="noindex" />
+    </Head>
     <div className="float-left m-4 max-w-sm">
       <Card
         img={reusableHeros[0]?.picture?.url}

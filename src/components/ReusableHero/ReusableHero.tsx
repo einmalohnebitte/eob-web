@@ -12,6 +12,7 @@ import { ReusableHeroQuery } from "../CmsQueries/ReusableHero.cms.generated";
 import { Heros } from "./Heros";
 import { SponsorCard } from "../@UI/SponsorCard";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
+import Head from "next/head";
 
 export const ReusableHero: React.FC<ReusableHeroQuery> = ({
   reusableHeros,
@@ -23,6 +24,9 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
 
   return (
     <>
+      <Head>
+        <meta name="robots" content="noindex" />
+      </Head>
       <HeadMeta />
       <BackgroundWrapper vibrantColor={vibrantColor}>
         <Section>

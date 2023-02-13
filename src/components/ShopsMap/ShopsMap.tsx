@@ -79,6 +79,8 @@ const MapItem: React.FC<{
   );
 };
 
+const MemoMap = React.memo(MapContainer);
+
 export const ShopsMap: React.FC<{
   center: [number, number];
   zoom: number | null;
@@ -88,7 +90,7 @@ export const ShopsMap: React.FC<{
 }> = ({ center, zoom, shops, width = "100%", height = "100%" }) => {
   return (
     <div>
-      <MapContainer
+      <MemoMap
         className={styles.map}
         center={center ?? CENTER}
         zoom={zoom ?? ZOOM}
@@ -99,7 +101,7 @@ export const ShopsMap: React.FC<{
         }}
       >
         <MapItem shops={shops} center={center} zoom={zoom ?? ZOOM} />
-      </MapContainer>
+      </MemoMap>
     </div>
   );
 };
