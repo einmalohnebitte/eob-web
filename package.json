@@ -64,7 +64,7 @@
     "@types/node": "16.18.12",
     "@types/react": "^18.0.28",
     "@types/react-google-recaptcha": "2.1.5",
-    "@types/yup": "0.29.13",
+    "@types/yup": "0.29.14",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
     "autoprefixer": "^10.4.13",
