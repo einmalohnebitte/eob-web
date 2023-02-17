@@ -12,7 +12,6 @@ const customJestConfig = {
     "<rootDir>/cache",
     "<rootDir>/build",
   ],
-  setupFiles: ["./setupJest.js"],
   globals: {
     __VERSION__: "test",
   },
