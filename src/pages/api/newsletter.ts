@@ -47,6 +47,8 @@ export default async function newsletter(
     }).then((r) => r.json());
     res.status(200).json({ sent: true });
   } catch (e) {
+    // eslint-disable-next-line no-console
+    console.log(e);
     res.status(500).json({
       message: "Something went wrong.",
     });

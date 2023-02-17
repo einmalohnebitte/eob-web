@@ -44,6 +44,7 @@ export default async function sendEmail(
     });
     res.status(200).json({ sent: true });
   } catch (e) {
+    // eslint-disable-next-line no-console
     console.log(e);
     res.status(500).json({
       message: "Something went wrong.",
