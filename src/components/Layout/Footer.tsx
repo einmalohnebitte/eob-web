@@ -9,12 +9,12 @@ import { GrFacebook, GrInstagram, GrLinkedin } from "react-icons/gr";
 export const AppFooter = () => {
   const intl = useTranslations();
   return (
-    <footer className="p-4 pt-10 leading-10 bg-gray-100 ">
-      <Section className="flex flex-col md:flex-row justify-between">
-        <div className="flex flex-col flex-1 items-center my-4 md:my-0 text-center">
+    <footer className="bg-gray-100 p-4 pt-10 leading-10 ">
+      <Section className="flex flex-col justify-between md:flex-row">
+        <div className="my-4 flex flex-1 flex-col items-center text-center md:my-0">
           <picture>
             <Image
-              className="w-32 h-32 rounded-full border-2 border-gray-300 border-solid cursor-pointer"
+              className="h-32 w-32 cursor-pointer rounded-full border-2 border-solid border-gray-300"
               src="/images/logo_start.webp"
               width="128"
               height="128"
@@ -105,7 +105,7 @@ export const AppFooter = () => {
             </Link>
           </p> */}
         </div>
-        <div className="flex-1 my-4 md:my-0">
+        <div className="my-4 flex-1 md:my-0">
           <H3 className="pb-2">{intl("FOOTER_PARTNER")}</H3>
           <p>
             <Link legacyBehavior href="/verkaufen">
@@ -125,8 +125,8 @@ export const AppFooter = () => {
         </div>
       </Section>
 
-      <hr className="m-4 border-gray-300 border-solid" />
-      <div className="flex flex-col md:flex-row justify-between">
+      <hr className="m-4 border-solid border-gray-300" />
+      <div className="flex flex-col justify-between md:flex-row">
         <p className="text-lg">
           <Link legacyBehavior href="/impressum">
             <a>{intl("FOOTER_IMPRESSUM")}</a>
@@ -135,7 +135,7 @@ export const AppFooter = () => {
             <a>{intl("FOOTER_DATA")}</a>
           </Link>{" "}
         </p>
-        <p className="mr-8 text-lg text-right">
+        <p className="mr-8 text-right text-lg">
           Made with <span className="text-red-700">♥</span> in Munich by{" "}
           <a rel="noopener" href="https://rehab-republic.de/">
             rehab republic

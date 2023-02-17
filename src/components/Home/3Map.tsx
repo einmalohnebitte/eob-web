@@ -15,7 +15,7 @@ export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
       <div className="bg-gray-200">
         <Section className=" text-center">
           <H2>DAS HABEN WIR SCHON ERREICHT</H2>
-          <div className="flex flex-col md:flex-row justify-between items-center md:items-start py-4 mx-10">
+          <div className="mx-10 flex flex-col items-center justify-between py-4 md:flex-row md:items-start">
             {kpis.map((kpi, i) => (
               <div
                 className={classNames(
@@ -34,7 +34,7 @@ export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
         </Section>
       </div>
       <div
-        className="flex md:w-3/5 cursor-pointer"
+        className="flex cursor-pointer md:w-3/5"
         onClick={() => push("/geschaefte")}
         role="presentation"
       >

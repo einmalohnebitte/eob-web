@@ -7,7 +7,7 @@ export const DropDownItem: React.FC<{
   onClick: () => void;
 }> = ({ text, onClick }) => (
   <li
-    className={` bg-gray-100 hover:bg-gray-200 py-2 px-4 block whitespace-nowrap`}
+    className={` block whitespace-nowrap bg-gray-100 py-2 px-4 hover:bg-gray-200`}
     onClick={onClick}
     role="presentation"
   >
@@ -16,11 +16,11 @@ export const DropDownItem: React.FC<{
 );
 
 export const DropDown: React.FC<React.PropsWithChildren> = ({ children }) => (
-  <div className={`${styles.Control} inline-block relative `}>
-    <button className={`py-2 px-2 rounded inline-flex items-center`}>
+  <div className={`${styles.Control} relative inline-block `}>
+    <button className={`inline-flex items-center rounded p-2`}>
       <MdLanguage size={"1.6em"} />
     </button>
-    <ul className={`${styles.Ul} absolute hidden text-gray-700 pt-1`}>
+    <ul className={`${styles.Ul} absolute hidden pt-1 text-gray-700`}>
       {children}
     </ul>
   </div>

@@ -55,7 +55,7 @@ export const AboutNetwork: React.FC<{
         {Object.keys(letters).map((l, i) => (
           <span
             role="presentation"
-            className="m-4 font-lemonism text-3xl cursor-pointer"
+            className="m-4 cursor-pointer font-lemonism text-3xl"
             onClick={() => setFilter(l)}
             key={l}
           >

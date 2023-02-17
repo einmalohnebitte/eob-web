@@ -31,7 +31,7 @@ export const withLayout =
           <AppFooter />
           <FaQuestion
             onClick={() => router.push("/faq")}
-            className="fixed right-2.5 bottom-2.5 w-8 hover:w-10 h-8 hover:h-10 text-pink-500 cursor-pointer"
+            className="fixed right-2.5 bottom-2.5 h-8 w-8 cursor-pointer text-pink-500 hover:h-10 hover:w-10"
           />
         </QueryClientProvider>
       </>

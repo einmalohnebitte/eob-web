@@ -19,14 +19,14 @@ export const Header: React.FC = () => {
   return (
     <header
       style={{ zIndex: 9999999 }}
-      className="fixed inset-x-0 top-0 z-10 py-2 h-auto bg-white"
+      className="fixed inset-x-0 top-0 z-10 h-auto bg-white py-2"
     >
-      <div className="flex justify-between items-start md:items-center mx-auto max-w-screen-lg bg-white">
+      <div className="mx-auto flex max-w-screen-lg items-start justify-between bg-white md:items-center">
         {!isOpen && (
           <Link legacyBehavior href={"/"}>
             <picture>
               <Image
-                className="mx-2 w-12 md:w-16 h-12 md:h-16 rounded-full border-2 border-gray-300 border-solid cursor-pointer"
+                className="mx-2 h-12 w-12 cursor-pointer rounded-full border-2 border-solid border-gray-300 md:h-16 md:w-16"
                 src="/images/logo_start.webp"
                 width="64"
                 height="64"
@@ -51,7 +51,7 @@ export const Header: React.FC = () => {
                   asPath === item.href && `underline`
                 )}
               >
-                <p className="sm:p-0 py-1 my-2 mx-0 sm:mx-2 font-lemonism text-2xl border-b-2 border-transparent">
+                <p className="my-2 mx-0 border-b-2 border-transparent py-1 font-lemonism text-2xl sm:mx-2 sm:p-0">
                   {intl(item.label)}
                 </p>
               </a>
@@ -61,7 +61,7 @@ export const Header: React.FC = () => {
 
         <div className="flex flex-row ">
           <div
-            className="inline-flex md:hidden items-center"
+            className="inline-flex items-center md:hidden"
             onClick={() => setIsOpen(!isOpen)}
             role="presentation"
           >

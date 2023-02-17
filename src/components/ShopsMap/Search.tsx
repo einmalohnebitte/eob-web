@@ -13,7 +13,7 @@ export const Search: React.FC<{
   const intl = useTranslations();
   return (
     <div
-      className={`w-full inline-flex flex-col justify-center relative text-gray-500 `}
+      className={`relative inline-flex w-full flex-col justify-center text-gray-500 `}
     >
       <div className={`relative`}>
         <input
@@ -25,7 +25,7 @@ export const Search: React.FC<{
           onChange={(e) => onSearch?.(e.target?.value)}
           value={search ?? ""}
         />
-        <MdSearch className="absolute top-5 left-2.5 w-4 h-4" />
+        <MdSearch className="absolute top-5 left-2.5 h-4 w-4" />
       </div>
     </div>
   );
