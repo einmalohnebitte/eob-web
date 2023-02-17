@@ -27,11 +27,14 @@ export interface EmailRequest extends NextApiRequest {
 }
 
 export default async function sendEmail(
-  req: EmailRequest,
+  req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const { subject, html, email } = req.body;
+    const { subject, html, email } = JSON.parse(
+      req.body
+    ) as EmailRequest["body"];
+
     await sendMessage({
       to: process.env.EMAIL ?? "",
       cc: email,
@@ -39,10 +42,11 @@ export default async function sendEmail(
       subject,
       html,
     });
+    res.status(200).json({ sent: true });
   } catch (e) {
+    console.log(e);
     res.status(500).json({
       message: "Something went wrong.",
     });
   }
-  res.status(200).json({ sent: true });
 }

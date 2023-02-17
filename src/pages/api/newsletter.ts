@@ -9,11 +9,13 @@ export interface NewsletterReq extends NextApiRequest {
 }
 
 export default async function newsletter(
-  req: NewsletterReq,
+  req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const { firstName, lastName, email } = req.body;
+    const { firstName, lastName, email } = JSON.parse(
+      req.body
+    ) as NewsletterReq["body"];
     const leads = await fetch(process.env.MAUTIC_BASE + "/leads", {
       method: "POST",
       headers: {
@@ -43,10 +45,10 @@ export default async function newsletter(
       },
       body: JSON.stringify({ tag_id: 233, lead_id: leads.insertId }),
     }).then((r) => r.json());
+    res.status(200).json({ sent: true });
   } catch (e) {
     res.status(500).json({
       message: "Something went wrong.",
     });
   }
-  res.status(200).json({ sent: true });
 }
