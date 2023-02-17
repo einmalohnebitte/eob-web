@@ -1,16 +1,15 @@
 import { FormBase } from "@/components/Forms/FormBase";
-import { SendEmailDocument } from "@/components/Forms/sendEmail.local.generated";
 import { useTranslations } from "@/hooks/useTranslations";
-import { useReactMutation } from "@/hooks/useReactQuery";
 import React from "react";
 import * as Yup from "yup";
 
 import { H2 } from "../@UI/Texts";
 import { FieldArea } from "./FieldArea";
 import { FieldInput } from "./FieldInput";
+import { useSendEmail } from "@/components/Forms/useSendEmail";
 
 export const FormVerbreiten: React.FC = () => {
-  const sendMail = useReactMutation(SendEmailDocument);
+  const { isError, isSuccess, send, reset } = useSendEmail();
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -43,9 +42,9 @@ export const FormVerbreiten: React.FC = () => {
 
   return (
     <FormBase
-      onReset={() => sendMail.reset()}
-      isError={!!sendMail.error}
-      isSuccess={!!sendMail.data}
+      onReset={reset}
+      isError={isError}
+      isSuccess={isSuccess}
       color="pink"
       initialValues={{
         firstName: "",
@@ -59,12 +58,10 @@ export const FormVerbreiten: React.FC = () => {
       validationSchema={validationSchema}
       onSubmit={(values) => {
         const { firstName, lastName, email, postCode, town, message } = values;
-        sendMail.mutate({
-          email: {
-            email,
-            subject: `[Verbreiten] ${firstName} ${lastName}`,
-            html: ` <h1> ${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Location:  ${postCode}, ${town} </p><p>Message: ${message} </p>`,
-          },
+        send({
+          email,
+          subject: `[Verbreiten] ${firstName} ${lastName}`,
+          html: ` <h1> ${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Location:  ${postCode}, ${town} </p><p>Message: ${message} </p>`,
         });
       }}
     >

@@ -1,7 +1,5 @@
 import { FormBase } from "@/components/Forms/FormBase";
-import { SendEmailDocument } from "@/components/Forms/sendEmail.local.generated";
 import { useTranslations } from "@/hooks/useTranslations";
-import { useReactMutation } from "@/hooks/useReactQuery";
 import { ErrorMessage, Field } from "formik";
 import React from "react";
 import * as Yup from "yup";
@@ -9,9 +7,10 @@ import * as Yup from "yup";
 import { H2 } from "../@UI/Texts";
 import { FieldArea } from "./FieldArea";
 import { FieldInput } from "./FieldInput";
+import { useSendEmail } from "@/components/Forms/useSendEmail";
 
 export const FormVerkaufen: React.FC = () => {
-  const sendMail = useReactMutation(SendEmailDocument);
+  const { isError, isSuccess, send, reset } = useSendEmail();
 
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
@@ -53,9 +52,9 @@ export const FormVerkaufen: React.FC = () => {
 
   return (
     <FormBase
-      onReset={() => sendMail.reset()}
-      isError={!!sendMail.error}
-      isSuccess={!!sendMail.data}
+      onReset={reset}
+      isError={isError}
+      isSuccess={isSuccess}
       color="yellow"
       initialValues={{
         shop: "",
@@ -82,12 +81,10 @@ export const FormVerkaufen: React.FC = () => {
           sticker,
           message,
         } = values;
-        sendMail.mutate({
-          email: {
-            email,
-            subject: `[Verkaufen] ${shop} ${firstName} ${lastName}`, // Subject line
-            html: `<h1>${shop} (${firstName} ${lastName})</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Stickers: ${sticker} </p><p>Message: ${message} </p>`,
-          },
+        send({
+          email,
+          subject: `[Verkaufen] ${shop} ${firstName} ${lastName}`, // Subject line
+          html: `<h1>${shop} (${firstName} ${lastName})</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Stickers: ${sticker} </p><p>Message: ${message} </p>`,
         });
       }}
     >
