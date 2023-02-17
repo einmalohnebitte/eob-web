@@ -1,15 +1,14 @@
 import { FormBase } from "@/components/Forms/FormBase";
-import { SendEmailDocument } from "@/components/Forms/sendEmail.local.generated";
 import { useTranslations } from "@/hooks/useTranslations";
-import { useReactMutation } from "@/hooks/useReactQuery";
 import React from "react";
 import * as Yup from "yup";
 
 import { FieldArea } from "./FieldArea";
 import { FieldInput } from "./FieldInput";
+import { useSendEmail } from "@/components/Forms/useSendEmail";
 
 export const FormContact: React.FC = () => {
-  const sendEmail = useReactMutation(SendEmailDocument);
+  const { isError, isSuccess, send, reset } = useSendEmail();
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -34,9 +33,9 @@ export const FormContact: React.FC = () => {
 
   return (
     <FormBase
-      onReset={() => sendEmail.reset()}
-      isError={!!sendEmail.error}
-      isSuccess={!!sendEmail.data}
+      onReset={reset}
+      isError={isError}
+      isSuccess={isSuccess}
       color="pink"
       initialValues={{
         firstName: "",
@@ -50,12 +49,10 @@ export const FormContact: React.FC = () => {
       validationSchema={validationSchema}
       onSubmit={(values) => {
         const { email, firstName, lastName, message } = values;
-        sendEmail.mutate({
-          email: {
-            email,
-            subject: `[Kontakt]: ${firstName}`,
-            html: `<p>${firstName} ${lastName} - ${email}</p><p>${message}</p>`,
-          },
+        send({
+          email,
+          subject: `[Kontakt]: ${firstName}`,
+          html: `<p>${firstName} ${lastName} - ${email}</p><p>${message}</p>`,
         });
       }}
     >

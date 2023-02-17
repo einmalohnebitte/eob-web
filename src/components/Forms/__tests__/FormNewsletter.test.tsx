@@ -1,5 +1,3 @@
-import * as TR from "@/hooks/useTranslations/useTranslations";
-import * as RQ from "@/hooks/useReactQuery";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
@@ -7,10 +5,12 @@ import React from "react";
 import { FormNewsletter } from "../FormNewsletter";
 
 const mutateFn = jest.fn();
-jest.mock("@/hooks/useReactQuery", () => {
+jest.mock("../useSendNewsletter", () => {
   return {
-    useReactMutation: () => ({
-      mutate: (args: any) => mutateFn(args),
+    useSendNewsletter: () => ({
+      send: (args: any) => {
+        mutateFn(args);
+      },
     }),
   };
 });
@@ -35,11 +35,9 @@ test("FormNewsletter Should call send", async () => {
 
   await waitFor(() =>
     expect(mutateFn).toHaveBeenCalledWith({
-      user: {
-        email: "test@email.com",
-        firstName: "John",
-        lastName: "Dee",
-      },
+      email: "test@email.com",
+      firstName: "John",
+      lastName: "Dee",
     })
   );
 });

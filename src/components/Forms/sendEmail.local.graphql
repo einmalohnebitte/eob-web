@@ -1,3 +1,0 @@
-mutation SendEmail($email: EmailReq!) {
-  sendEmail(email: $email)
-}

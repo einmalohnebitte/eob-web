@@ -1,13 +1,12 @@
 import { FieldInput } from "@/components/Forms/FieldInput";
 import { FormBase } from "@/components/Forms/FormBase";
-import { SubscribeNewsletterDocument } from "@/components/Forms/newsletter.local.generated";
 import { useTranslations } from "@/hooks/useTranslations";
-import { useReactMutation } from "@/hooks/useReactQuery";
 import React from "react";
 import * as Yup from "yup";
+import { useSendNewsletter } from "./useSendNewsletter";
 
 export const FormNewsletter: React.FC = () => {
-  const sendMail = useReactMutation(SubscribeNewsletterDocument);
+  const { send, isError, isSuccess, reset } = useSendNewsletter();
 
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
@@ -29,9 +28,9 @@ export const FormNewsletter: React.FC = () => {
 
   return (
     <FormBase
-      onReset={() => sendMail.reset()}
-      isError={!!sendMail.error}
-      isSuccess={!!sendMail.data}
+      onReset={reset}
+      isError={isError}
+      isSuccess={isSuccess}
       color="pink"
       initialValues={{
         firstName: "",
@@ -42,7 +41,7 @@ export const FormNewsletter: React.FC = () => {
       validationSchema={validationSchema}
       onSubmit={(values) => {
         const { consent, ...rest } = values;
-        sendMail.mutate({ user: rest });
+        send(rest);
       }}
     >
       <div className="flex">

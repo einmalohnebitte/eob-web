@@ -1,16 +1,12 @@
+import { gqlRequest } from "@/hooks/useReactQuery";
 import { TypedDocumentNode } from "@graphql-typed-document-node/core";
-import { GraphQLClient } from "graphql-request";
-
-const client = new GraphQLClient(
-  `https://api-eu-central-1.graphcms.com/v2/${process.env.GQL_CMS_ID}/master`,
-  {
-    // headers: {
-    //   Authorization: `Bearer ${process.env.GQL_CMS_TOKEN}`,
-    // },
-  }
-);
 
 export const graphCmsRequest = <TData, TVariables>(
   document: TypedDocumentNode<TData, TVariables>,
   variables?: TVariables
-) => (client as any).request(document, variables) as Promise<TData>;
+) =>
+  gqlRequest(
+    document,
+    variables,
+    `https://api-eu-central-1.graphcms.com/v2/${process.env.GQL_CMS_ID}/master`
+  );
