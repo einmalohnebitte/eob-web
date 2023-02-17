@@ -55,7 +55,7 @@
     "@graphql-codegen/typescript-operations": "3.0.0",
     "@graphql-typed-document-node/core": "3.1.1",
     "@next/eslint-plugin-next": "^13.1.6",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/classnames": "2.3.1",
     "@types/jest": "^29.4.0",
