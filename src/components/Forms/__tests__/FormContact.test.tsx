@@ -1,5 +1,3 @@
-import * as TR from "@/hooks/useTranslations/useTranslations";
-import * as RQ from "@/hooks/useReactQuery";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
@@ -7,10 +5,10 @@ import React from "react";
 import { FormContact } from "../FormContact";
 
 const mutateFn = jest.fn();
-jest.mock("@/hooks/useReactQuery", () => {
+jest.mock("../useSendEmail", () => {
   return {
-    useReactMutation: () => ({
-      mutate: (args: any) => mutateFn(args),
+    useSendEmail: () => ({
+      send: (args: any) => mutateFn(args),
     }),
   };
 });
@@ -36,11 +34,9 @@ test("FormContact Should call contact", async () => {
 
   await waitFor(() =>
     expect(mutateFn).toHaveBeenCalledWith({
-      email: {
-        email: "test@email.com",
-        html: `<p>John Dee - test@email.com</p><p>message...</p>`,
-        subject: "[Kontakt]: John",
-      },
+      email: "test@email.com",
+      html: `<p>John Dee - test@email.com</p><p>message...</p>`,
+      subject: "[Kontakt]: John",
     })
   );
 });
