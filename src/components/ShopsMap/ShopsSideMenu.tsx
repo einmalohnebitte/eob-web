@@ -42,7 +42,7 @@ export const ShopsSideMenu: React.FC<{
       <div
         role="presentation"
         onClick={onClose}
-        className={`p-2 flex justify-end`}
+        className={`flex justify-end p-2`}
       >
         <MdClose size={25} />
       </div>

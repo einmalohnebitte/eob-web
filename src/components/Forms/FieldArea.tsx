@@ -20,7 +20,7 @@ export const FieldArea: React.FC<PropType> = ({
         render={(msg) => <p className="text-xs italic text-red-500">{msg}</p>}
         name={field}
       />
-      <label className="block mb-2 font-gt text-gray-700" htmlFor={field}>
+      <label className="mb-2 block font-gt text-gray-700" htmlFor={field}>
         {label}
       </label>
       <textarea

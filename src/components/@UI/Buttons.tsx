@@ -29,7 +29,6 @@ export const Button: React.FC<
 > = ({ color, className, children, padding = "m", ...props }) => (
   <button
     className={classNames(
-      "text-white",
       color === "blue" && Blue,
       color === "pink" && Pink,
       color === "yellow" && Yellow,

@@ -20,7 +20,7 @@ export const FieldCheckbox: React.FC<PropType> = ({
       name={field}
     />
 
-    <div className="flex mt-6">
+    <div className="mt-6 flex">
       <label className="flex items-center" htmlFor={field}>
         <Field
           type="checkbox"

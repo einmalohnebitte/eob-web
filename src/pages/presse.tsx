@@ -50,7 +50,7 @@ const Page: React.FC<PressQuery> = (props) => {
         />
       </Section>
       <Section>
-        <div className={`grid grid-cols-2 md:grid-cols-3 text-center`}>
+        <div className={`grid grid-cols-2 text-center md:grid-cols-3`}>
           {props.pressArticles?.length !== 0 && (
             <Card
               onClick={() => {
@@ -80,7 +80,7 @@ const Page: React.FC<PressQuery> = (props) => {
         <Section>
           <AnchorPointer id="announcements" />
           <H2 className={`pb-4`}>{intl("PRESS_ANNOUNCEMENTS")}</H2>
-          <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-2`}>
+          <div className={`grid grid-cols-2 gap-x-2 md:grid-cols-3`}>
             {props.pressArticles.map((article, k) => (
               <div key={`ar${k}`} className={`py-4`}>
                 <H3>{article.title}</H3>
@@ -105,7 +105,7 @@ const Page: React.FC<PressQuery> = (props) => {
       <Section>
         <AnchorPointer id="photos" />
         <H2 className={`pb-4`}>{intl("PRESS_PHOTOS")}</H2>
-        <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-2`}>
+        <div className={`grid grid-cols-2 gap-x-2 md:grid-cols-3`}>
           {props.pressPhotos.map((pic, k) => (
             <div key={`ar${k}`} className={`py-4`}>
               <Image
@@ -121,7 +121,7 @@ const Page: React.FC<PressQuery> = (props) => {
       <Section>
         <AnchorPointer id="report" />
         <H2 className={`pb-4`}>{intl("PRESS_REPORT")}</H2>
-        <div className={`grid grid-cols-2 md:grid-cols-3 gap-x-3`}>
+        <div className={`grid grid-cols-2 gap-x-3 md:grid-cols-3`}>
           {props.pressReports.map((report, k) => (
             <div key={`ar${k}`} className={`py-4`}>
               <H3 className={classNames("pb-2 h-20", styles.description)}>

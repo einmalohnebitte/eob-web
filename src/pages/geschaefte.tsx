@@ -40,7 +40,7 @@ const Shops: React.FC = () => {
     return (
       <Section
         className={classnames(
-          "flex justify-center items-center",
+          "flex items-center justify-center",
           styles.loadingMap
         )}
       >
@@ -56,7 +56,7 @@ const Shops: React.FC = () => {
         <button
           className={classnames(
             styles.OpenButton,
-            "py-2 px-6 font-lemonism text-xl tracking-wider rounded focus:outline-none",
+            "rounded py-2 px-6 font-lemonism text-xl tracking-wider focus:outline-none",
             {
               [styles["OpenButton--is-visible"]]: !showSidebar,
             }
@@ -66,7 +66,7 @@ const Shops: React.FC = () => {
           <GrNext />
         </button>{" "}
         <div
-          className="md:hidden p-2 w-full"
+          className="w-full p-2 md:hidden"
           role="presentation"
           onClick={() => setIsOpenMobile(true)}
         >

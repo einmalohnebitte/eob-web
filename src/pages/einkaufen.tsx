@@ -107,7 +107,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           </SplitSection.Main>
           <SplitSection.Side className={styles.forceFlex}>
             <div className={styles.imgTwoWrapper}>
-              <div className="content-between m-4">
+              <div className="m-4 content-between">
                 <Image
                   src={pageSections[3].picture[0].url}
                   alt="side"

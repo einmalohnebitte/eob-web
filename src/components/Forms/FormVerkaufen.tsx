@@ -128,7 +128,7 @@ export const FormVerkaufen: React.FC = () => {
               dangerouslySetInnerHTML={{ __html: intl("FORM_YES") }}
             />
           </label>
-          <label className="flex items-center ml-2 " htmlFor={"sticker"}>
+          <label className="ml-2 flex items-center " htmlFor={"sticker"}>
             <Field
               data-testid="STICKER-NO"
               type="radio"

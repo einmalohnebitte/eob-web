@@ -90,10 +90,10 @@ export const FormBase = <T extends {}, Q extends Yup.Maybe<Yup.AnyObject>>({
         }}
       >
         {() => (
-          <Form className="px-8 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
+          <Form className="mb-4 rounded bg-white px-8 pt-6 pb-8 shadow-md">
             {children}
 
-            <div className="flex m-2">
+            <div className="m-2 flex">
               <ReCAPTCHA
                 sitekey="6Ld2iaMUAAAAAKuO6s305VLDpf-iTimNcKH1FS-8"
                 onChange={() => setCaptcha(true)}
