@@ -27,9 +27,6 @@ async function run() {
           },
           plugins: ["typescript-operations", "typed-document-node"],
         },
-        [process.cwd() + "/src/server.schema.json"]: {
-          plugins: ["introspection"],
-        },
       },
     },
     true
