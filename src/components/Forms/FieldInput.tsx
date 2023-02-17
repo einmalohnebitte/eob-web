@@ -30,6 +30,7 @@ export const FieldInput: React.FC<PropType> = ({
           id={field}
           placeholder={placeholder ?? ""}
           type={type}
+          value={undefined}
         />
       </label>
     </div>
