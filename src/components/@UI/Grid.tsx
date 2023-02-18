@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import styles from "./Grid.module.scss";
+import styles from "./Grid.module.css";
 
 export const Grid: React.FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>

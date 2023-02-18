@@ -1,5 +1,5 @@
 import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
-import styles from "@/components/@UI/List.module.scss";
+import styles from "@/components/@UI/List.module.css";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { SponsorCard } from "@/components/@UI/SponsorCard";
 import {

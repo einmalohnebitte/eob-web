@@ -8,7 +8,7 @@ import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
 import React, { useState } from "react";
 import { MdClose } from "react-icons/md";
-import styles from "@/components/ShopsMap/Shops.module.scss";
+import styles from "@/components/ShopsMap/Shops.module.css";
 
 import { Search } from "./Search";
 

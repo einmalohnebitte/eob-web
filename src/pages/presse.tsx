@@ -20,7 +20,7 @@ import Image from "next/legacy/image";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
-import styles from "@/components/Layout/Blog.module.scss";
+import styles from "@/components/Layout/Blog.module.css";
 import classNames from "classnames";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {

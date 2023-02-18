@@ -3,7 +3,7 @@ import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
 
 import { Section } from "../@UI/Section";
-import styles from "./5Sponsors.module.scss";
+import styles from "./5Sponsors.module.css";
 import { H2 } from "../@UI/Texts";
 
 export const Sponsors: React.FC = () => {

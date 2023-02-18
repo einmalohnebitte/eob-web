@@ -1,7 +1,7 @@
 import Image from "next/legacy/image";
 import React from "react";
 
-import styles from "./SponsorCard.module.scss";
+import styles from "./SponsorCard.module.css";
 
 export const SponsorCard: React.FC<{
   src: string;

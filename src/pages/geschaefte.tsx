@@ -12,7 +12,7 @@ import { GetStaticProps } from "next";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { GrNext } from "react-icons/gr";
-import styles from "@/components/ShopsMap/Shops.module.scss";
+import styles from "@/components/ShopsMap/Shops.module.css";
 import classnames from "classnames";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
