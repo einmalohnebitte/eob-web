@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        lemonism: ["Lemonism-Regular", "sans-serif"],
-        gt: ["GT", "sans-serif"],
+        lemonism: ["var(--lemonism)", "sans-serif"],
+        gt: ["var(--gt)", "sans-serif"],
       },
       fontSize: {
         "4.5xl": "3rem",
