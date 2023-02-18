@@ -1,11 +1,9 @@
-import { useInfiniteQuery } from "react-query";
-
 import {
   ShopsDocument,
   ShopsQuery,
 } from "@/components/ShopsMap/Shops.cms.generated";
 import { gqlRequest } from "@/hooks/useReactQuery";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 
 function sortArray(a: any, b: any) {
   if (a.name != null && b.name != null) {
@@ -222,6 +220,28 @@ export const reducer = (state: FilterStateType, action: FilterActionType) => {
   }
 };
 
+async function fetchAllShops(
+  endCursor: string | null = null
+): Promise<ShopsQuery> {
+  const res = await gqlRequest(
+    ShopsDocument,
+    endCursor ? { endCursor } : {},
+    `https://api-eu-central-1.graphcms.com/v2/${process.env.GQL_CMS_ID}/master`
+  );
+  if (res.shopsConnection.pageInfo.hasNextPage) {
+    return {
+      ...res,
+      shops: [
+        ...res.shops,
+        ...(await fetchAllShops(res.shopsConnection.pageInfo.endCursor)).shops,
+      ],
+    };
+  }
+  return res;
+}
+
+let shopsQuery: ShopsQuery | null = null;
+
 export const useFetchMap = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const dispatchAction = (action: FilterActionType) => {
@@ -230,48 +250,21 @@ export const useFetchMap = () => {
       dispatch({ type: "APPLY_FILTERS" });
     }, 100);
   };
-
-  const { data, isLoading, fetchNextPage } = useInfiniteQuery(
-    "ShopMap",
-    ({ pageParam }) => {
-      return gqlRequest(
-        ShopsDocument,
-        pageParam ? { endCursor: pageParam } : {},
-        `https://api-eu-central-1.graphcms.com/v2/${process.env.GQL_CMS_ID}/master`
-      );
-    },
-    {
-      select: (selectedData) => {
-        const [firstPage, ...restPages] = selectedData.pages;
-        firstPage.shops = selectedData.pages
-          .slice(1)
-          .reduce(
-            (prev, current) => [...prev, ...current.shops],
-            firstPage.shops.slice(0, 500)
-          );
-        return {
-          ...selectedData,
-          pages: [firstPage, ...restPages],
-        };
-      },
-      onSuccess: (data) => {
-        const firstData = data.pages[0];
-        dispatch({ type: "SET_DATA", payload: firstData });
-      },
-      staleTime: 36_000,
-    }
-  );
-
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    const lastPage = data?.pages[data?.pages.length - 1];
-    if (lastPage) {
-      if (lastPage.shopsConnection.pageInfo.hasNextPage) {
-        fetchNextPage({
-          pageParam: lastPage.shopsConnection.pageInfo.endCursor,
+    if (!state.shops) {
+      if (!shopsQuery) {
+        setIsLoading(true);
+        fetchAllShops().then((shops) => {
+          setIsLoading(false);
+          shopsQuery = shops;
+          dispatch({ type: "SET_DATA", payload: shops });
         });
+      } else {
+        dispatch({ type: "SET_DATA", payload: shopsQuery });
       }
     }
-  }, [data?.pages, data?.pages.length, fetchNextPage]);
+  }, [dispatch, state.shops]);
 
   return {
     isLoading,
