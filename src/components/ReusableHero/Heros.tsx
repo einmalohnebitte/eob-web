@@ -22,21 +22,11 @@ export const Heros: React.FC<{
               key={k}
               title={item.name ?? ""}
               message={item.abstract ?? ""}
-              // eslint-disable-next-line no-nested-ternary
               color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
               linkTitle={`Lerne ${item.name} kennen...`}
               linkTo={`/seimehrwegheldin/${item.slug}`}
-            >
-              {item?.picture?.url && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  alt={item.name ?? ""}
-                  src={item?.picture?.url ?? ""}
-                  height={208}
-                  className="object-cover"
-                />
-              )}
-            </Card>
+              img={item?.picture?.url ?? null}
+            />
           </Link>
         ))}
       </Grid>
