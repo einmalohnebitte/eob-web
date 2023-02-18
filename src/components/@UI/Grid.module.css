@@ -1,12 +1,12 @@
-@import "@/styles/mixins.scss";
+
 
 .Grid {
   display: grid;
   grid-template-columns: 1fr;
-  @include mq("md") {
+  @media (--md) {
     grid-template-columns: 1fr 1fr;
   }
-  @include mq("lg") {
+  @media (--lg) {
     grid-template-columns: 1fr 1fr 1fr;
   }
   a {

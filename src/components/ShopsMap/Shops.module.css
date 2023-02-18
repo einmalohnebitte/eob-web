@@ -1,4 +1,4 @@
-@import "@/styles/mixins.scss";
+ 
 
 .OpenButton {
   position: absolute;
@@ -10,7 +10,7 @@
   visibility: hidden;
   display: none;
 
-  @include mq("md") {
+   @media (--md) {
     display: block;
   }
 

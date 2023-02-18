@@ -13,7 +13,7 @@ import { Locale } from "@/server/generated/graphql";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
-import styles from "@/components/Layout/Blog.module.scss";
+import styles from "@/components/Layout/Blog.module.css";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await graphCmsRequest(PressDocument, { locale: [Locale.De] });

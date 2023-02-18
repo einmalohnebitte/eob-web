@@ -6,7 +6,7 @@ import React from "react";
 import Image from "next/legacy/image";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import classnames from "classnames";
-import styles from "./AboutVisionMission.module.scss";
+import styles from "./AboutVisionMission.module.css";
 
 export const AboutVisionMission: React.FC<{
   vibrantColor: string;

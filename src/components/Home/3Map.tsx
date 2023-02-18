@@ -6,7 +6,7 @@ import Image from "next/legacy/image";
 import { Section } from "../@UI/Section";
 import { H1, H2 } from "../@UI/Texts";
 import classNames from "classnames";
-import styles from "./3Map.module.scss";
+import styles from "./3Map.module.css";
 
 export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
   const { push } = useRouter();

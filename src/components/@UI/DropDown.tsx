@@ -1,6 +1,6 @@
 import React from "react";
 import { MdLanguage } from "react-icons/md";
-import styles from "./DropDown.module.scss";
+import styles from "./DropDown.module.css";
 
 export const DropDownItem: React.FC<{
   text: string;

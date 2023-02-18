@@ -13,7 +13,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import MarkerClusterGroup from "./MarkerClusterGroup";
-import styles from "@/components/ShopsMap/Shops.module.scss";
+import styles from "@/components/ShopsMap/Shops.module.css";
 
 if (L.Icon) {
   delete (L.Icon.Default as any).prototype._getIconUrl;

@@ -6,7 +6,7 @@ import React from "react";
 import { Section } from "../@UI/Section";
 import { H1 } from "../@UI/Texts";
 
-import styles from "./1Hero.module.scss";
+import styles from "./1Hero.module.css";
 
 const HeroImg: React.FC<{
   is2Col?: boolean;
