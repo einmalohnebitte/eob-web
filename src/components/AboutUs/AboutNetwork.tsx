@@ -1,5 +1,5 @@
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
-import { getBorderColor, getTextColor } from "@/components/@UI/Card";
+import { Card, getBorderColor, getTextColor } from "@/components/@UI/Card";
 import { Grid } from "@/components/@UI/Grid";
 import { Section } from "@/components/@UI/Section";
 import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
@@ -8,10 +8,8 @@ import { useTranslations } from "@/hooks/useTranslations";
 import React, { useState } from "react";
 import Link from "next/link";
 import classNames from "classnames";
-import Image from "next/image";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import styles from "./AboutNetwork.module.css";
-import placeholder from "./placeholder-city.png";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
@@ -89,12 +87,15 @@ export const AboutNetwork: React.FC<{
                     getBorderColor(color)
                   )}
                 >
-                  <Image
-                    alt={item.title ?? ""}
-                    src={item.logo?.url ?? placeholder}
-                    height={308}
-                    width={408}
-                  />
+                  {item.logo?.url && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      alt={item.title ?? ""}
+                      src={item.logo?.url ?? ""}
+                      height={208}
+                      className="object-cover"
+                    />
+                  )}
 
                   <div className="p-4">
                     <H2>{item.title}</H2>

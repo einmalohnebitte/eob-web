@@ -2,9 +2,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import Image from "next/image";
 import { dangerouslySetFormattedInnerHTML, H2 } from "./Texts";
-import placeholder from "./placeholder.png";
 
 export const getBorderColor = (color?: "pink" | "blue" | "yellow"): string =>
   color === "blue"
@@ -22,7 +20,7 @@ export const getTextColor = (color?: "pink" | "blue" | "yellow"): string =>
 
 export const Card: React.FC<
   React.PropsWithChildren<{
-    img?: string | null;
+    img?: string;
     title: string;
     linkTitle?: string;
     linkTo?: string;
@@ -69,21 +67,11 @@ export const Card: React.FC<
     >
       {children}
       {img && (
-        <Image
-          className={classNames(!resize && "w-full object-cover")}
-          alt={title}
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          className={classNames("h-52", !resize && "w-full object-cover")}
           src={img}
-          height={308}
-          width={408}
-        />
-      )}
-      {img === null && (
-        <Image
-          className={classNames(!resize && "w-full object-cover")}
-          alt={title}
-          src={placeholder}
-          height={308}
-          width={408}
+          alt=""
         />
       )}
       <div className="p-4">

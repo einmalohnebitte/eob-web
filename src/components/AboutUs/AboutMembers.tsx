@@ -29,6 +29,7 @@ export const AboutMembers: React.FC<{
                 key={k}
                 title={item.name ?? ""}
                 message={item.abstract ?? ""}
+                // eslint-disable-next-line no-nested-ternary
                 color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
                 linkTitle={
                   /rehab/.test(item.name ?? "")
@@ -36,8 +37,17 @@ export const AboutMembers: React.FC<{
                     : `Lerne ${item.name} kennen...`
                 }
                 linkTo={`/team/${item.slug}`}
-                img={item?.picture?.url ?? null}
-              />
+              >
+                {item?.picture?.url && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    alt={item.name ?? ""}
+                    src={item?.picture?.url ?? ""}
+                    height={208}
+                    className="object-cover"
+                  />
+                )}
+              </Card>
             </Link>
           ))}
         </Grid>
