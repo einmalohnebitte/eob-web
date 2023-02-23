@@ -1,4 +1,3 @@
-import { Card } from "@/components/@UI/Card";
 import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
