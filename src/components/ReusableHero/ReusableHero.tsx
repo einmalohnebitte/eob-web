@@ -7,7 +7,7 @@ import {
 import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { ReusableHeroQuery } from "../CmsQueries/ReusableHero.cms.generated";
 import { Heros } from "./Heros";
 import { SponsorCard } from "../@UI/SponsorCard";

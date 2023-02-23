@@ -2,7 +2,7 @@ import { ShopsNumberQuery } from "@/components/CmsQueries/ShopsNumber.cms.genera
 import { useRouter } from "next/router";
 import React from "react";
 
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { Section } from "../@UI/Section";
 import { H1, H2 } from "../@UI/Texts";
 import classNames from "classnames";

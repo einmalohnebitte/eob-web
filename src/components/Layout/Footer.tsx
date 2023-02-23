@@ -1,7 +1,7 @@
 import { Section } from "@/components/@UI/Section";
 import { H3 } from "@/components/@UI/Texts";
 import { useTranslations } from "@/hooks/useTranslations";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { GrFacebook, GrInstagram, GrLinkedin } from "react-icons/gr";
@@ -56,71 +56,51 @@ export const AppFooter = () => {
         <div className="flex-1">
           <H3 className="pb-2">{intl("FOOTER_ABOUT")}</H3>
           <p>
-            <Link legacyBehavior href="/uber-uns#mission">
-              <a>{intl("FOOTER_MISSION_VISION")}</a>
+            <Link href="/uber-uns#mission">
+              {intl("FOOTER_MISSION_VISION")}
             </Link>
           </p>
           <p>
-            <Link legacyBehavior href="/uber-uns#team">
-              <a>{intl("FOOTER_ABOUT_TEAM")}</a>
-            </Link>
+            <Link href="/uber-uns#team">{intl("FOOTER_ABOUT_TEAM")}</Link>
           </p>
 
           <p>
-            <Link legacyBehavior href="/kontakt">
-              <a>{intl("KONTAKT")}</a>
-            </Link>
+            <Link href="/kontakt">{intl("KONTAKT")}</Link>
           </p>
         </div>
         <div className="flex-1">
           <H3 className="pb-2">{intl("FOOTER_INFO")}</H3>
           <p>
-            <Link legacyBehavior href="/blog">
-              <a>{intl("Blog")}</a>
-            </Link>
+            <Link href="/blog">{intl("Blog")}</Link>
           </p>
           <p>
-            <Link legacyBehavior href="/faq">
-              <a>{intl("FAQ")}</a>
-            </Link>
+            <Link href="/faq">{intl("FAQ")}</Link>
           </p>
           <p>
-            <Link legacyBehavior href="/newsletter">
-              <a>{intl("NEWSLETTER")}</a>
-            </Link>
+            <Link href="/newsletter">{intl("NEWSLETTER")}</Link>
           </p>
           <p>
-            <Link legacyBehavior href="/download">
-              <a>{intl("DOWNLOAD")}</a>
-            </Link>
+            <Link href="/download">{intl("DOWNLOAD")}</Link>
           </p>
           <p>
-            <Link legacyBehavior href="/presse">
-              <a>{intl("FOOTER_PRESS")}</a>
-            </Link>
+            <Link href="/presse">{intl("FOOTER_PRESS")}</Link>
           </p>
           {/* <p>
-            <Link legacyBehavior href="/seimehrwegheldin">
-              <a>{intl("FOOTER_REUSABLE_HERO")}</a>
+            <Link  href="/seimehrwegheldin">
+              {intl("FOOTER_REUSABLE_HERO")}
             </Link>
           </p> */}
         </div>
         <div className="my-4 flex-1 md:my-0">
           <H3 className="pb-2">{intl("FOOTER_PARTNER")}</H3>
           <p>
-            <Link legacyBehavior href="/verkaufen">
-              <a>{intl("FOOTER_PARTNER1")}</a>
-            </Link>
+            <Link href="/verkaufen">{intl("FOOTER_PARTNER1")}</Link>
           </p>
           <p>
-            <Link legacyBehavior href="/verkaufen">
-              <a>{intl("FOOTER_PARTNER2")}</a>
-            </Link>
+            <Link href="/verkaufen">{intl("FOOTER_PARTNER2")}</Link>
           </p>
           <p>
-            <Link legacyBehavior href="/verkaufen">
-              <a>{intl("FOOTER_PARTNER3")}</a>
-            </Link>
+            <Link href="/verkaufen">{intl("FOOTER_PARTNER3")}</Link>
           </p>
         </div>
       </Section>
@@ -128,12 +108,8 @@ export const AppFooter = () => {
       <hr className="m-4 border-solid border-gray-300" />
       <div className="flex flex-col justify-between md:flex-row">
         <p className="text-lg">
-          <Link legacyBehavior href="/impressum">
-            <a>{intl("FOOTER_IMPRESSUM")}</a>
-          </Link>{" "}
-          <Link legacyBehavior href="/datenschutzerklarung">
-            <a>{intl("FOOTER_DATA")}</a>
-          </Link>{" "}
+          <Link href="/impressum">{intl("FOOTER_IMPRESSUM")}</Link>
+          <Link href="/datenschutzerklarung">{intl("FOOTER_DATA")}</Link>
         </p>
         <p className="mr-8 text-right text-lg">
           Made with <span className="text-red-700">♥</span> in Munich by{" "}

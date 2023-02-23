@@ -16,7 +16,7 @@ import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import React from "react";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {

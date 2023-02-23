@@ -33,11 +33,7 @@ export const Card: React.FC<
           getTextColor(color)
         )}
       >
-        {href && (
-          <Link legacyBehavior href={href ?? ""}>
-            <a className="hover:underline">{linkTitle}</a>
-          </Link>
-        )}
+        {href && <Link href={href ?? ""}>{linkTitle}</Link>}
       </div>
     </CardWrapper>
   );

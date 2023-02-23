@@ -51,8 +51,8 @@ const CardGoal: React.FC<{
           getTextColor(color)
         )}
       >
-        <Link legacyBehavior href={href}>
-          <a className="hover:underline">{intl("READ_MORE")}</a>
+        <Link className="hover:underline" href={href}>
+          {intl("READ_MORE")}
         </Link>
       </div>
     </CardWrapper>
