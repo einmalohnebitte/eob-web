@@ -2,21 +2,8 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import { CardWrapper, getTextColor } from "./CardWrapper";
 import { dangerouslySetFormattedInnerHTML, H2 } from "./Texts";
-
-export const getBorderColor = (color?: "pink" | "blue" | "yellow"): string =>
-  color === "blue"
-    ? `border-blue-500`
-    : color === "pink"
-    ? `border-pink-500`
-    : `border-yellow-600`;
-
-export const getTextColor = (color?: "pink" | "blue" | "yellow"): string =>
-  color === "blue"
-    ? `text-blue-500`
-    : color === "pink"
-    ? `text-pink-500`
-    : `text-yellow-600`;
 
 export const Card: React.FC<
   React.PropsWithChildren<{
@@ -44,15 +31,10 @@ export const Card: React.FC<
   subtitle,
   children,
 }) => {
-  if (!color) {
-    const index = Math.round(Math.random() * 100) % 3;
-    // eslint-disable-next-line no-nested-ternary
-    color = index === 0 ? "blue" : index === 1 ? "pink" : "yellow";
-  }
   const router = useRouter();
   return (
-    <div
-      role="presentation"
+    <CardWrapper
+      color={color}
       onClick={(e) => {
         if (onClick) {
           onClick(e);
@@ -60,10 +42,6 @@ export const Card: React.FC<
           router.push(linkTo);
         }
       }}
-      className={classNames(
-        "flex flex-col content-between cursor-pointer transform scale-100 sm:hover:scale-105 sm:max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  mb-4 overflow-hidden sm:m-4  ",
-        getBorderColor(color)
-      )}
     >
       {children}
       {img && (
@@ -99,6 +77,6 @@ export const Card: React.FC<
         )}
         {subtitle && <i>{subtitle}</i>}
       </div>
-    </div>
+    </CardWrapper>
   );
 };

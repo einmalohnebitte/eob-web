@@ -5,12 +5,13 @@ import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import * as Yup from "yup";
 
-import { Button, Colors } from "../@UI/Buttons";
+import { Button } from "../@UI/Buttons";
+import { BrandColors } from "../@UI/CardWrapper";
 import { FieldCheckbox } from "./FieldCheckbox";
 
 export const FormError: React.FC<{
   onReset: () => void;
-  color: Colors;
+  color: BrandColors;
 }> = ({ onReset, color }) => {
   const intl = useTranslations();
   return (
@@ -31,7 +32,7 @@ export const FormError: React.FC<{
   );
 };
 
-export const FormSuccess: React.FC<{ color: Colors }> = ({ color }) => {
+export const FormSuccess: React.FC<{ color: BrandColors }> = ({ color }) => {
   const intl = useTranslations();
   return (
     <div
@@ -51,7 +52,7 @@ interface Props<T, Q extends Yup.Maybe<Yup.AnyObject>> {
   children?: React.ReactNode;
   initialValues: T;
   validationSchema: Yup.ObjectSchema<Q>;
-  color: Colors;
+  color: BrandColors;
   onSubmit: (values: T) => void;
   onReset: () => void;
   isSuccess: boolean;

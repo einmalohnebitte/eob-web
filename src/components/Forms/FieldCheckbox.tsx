@@ -1,12 +1,12 @@
-import { Colors } from "@/components/@UI/Buttons";
 import classNames from "classnames";
 import { ErrorMessage, Field } from "formik";
 import React from "react";
+import { BrandColors } from "../@UI/CardWrapper";
 
 type PropType = {
   field: string;
   label: string;
-  checkedColor: Colors;
+  checkedColor: BrandColors;
 };
 
 export const FieldCheckbox: React.FC<PropType> = ({

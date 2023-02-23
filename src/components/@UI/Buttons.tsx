@@ -1,10 +1,8 @@
-/* eslint-disable no-nested-ternary */
 import classNames from "classnames";
+import { BrandColors } from "./CardWrapper";
 
-export type Colors =
-  | "pink"
-  | "yellow"
-  | "blue"
+export type ButtonColors =
+  | BrandColors
   | "pink-inverted"
   | "yellow-inverted"
   | "blue-inverted";
@@ -25,7 +23,7 @@ export const Button: React.FC<
   React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
-  > & { color: Colors; padding?: "s" | "m" }
+  > & { color: ButtonColors; padding?: "s" | "m" }
 > = ({ color, className, children, padding = "m", ...props }) => (
   <button
     className={classNames(

@@ -1,4 +1,3 @@
-import { Card } from "@/components/@UI/Card";
 import { Section } from "@/components/@UI/Section";
 import {
   dangerouslySetFormattedInnerHTML,
@@ -16,6 +15,7 @@ import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticPaths, GetStaticProps } from "next";
 import React from "react";
 import Head from "next/head";
+import { CardImage } from "@/components/@UI/CardWrapper";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await graphCmsRequest(ReusableHeroDocument, {
@@ -46,10 +46,9 @@ const TeamPage: React.FC<HeroQuery> = ({ reusableHeros }) => (
       <meta name="robots" content="noindex" />
     </Head>
     <div className="float-left m-4 max-w-sm">
-      <Card
-        img={reusableHeros[0]?.picture?.url}
+      <CardImage
+        src={reusableHeros[0]?.picture?.url ?? ""}
         title={reusableHeros[0]?.name ?? ""}
-        // color={"blue"}
       />
     </div>
 

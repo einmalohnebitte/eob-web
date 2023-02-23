@@ -1,4 +1,4 @@
-import { Card } from "@/components/@UI/Card";
+import { CardTitle } from "@/components/@UI/CardWrapper";
 import { Grid } from "@/components/@UI/Grid";
 import {
   BlogsDocument,
@@ -29,11 +29,10 @@ const BlogPage: React.FC<BlogsQuery> = ({ blogs }) => {
       <Grid>
         {blogs.map((item, k) => (
           <Link key={k} href={`/blog/${item.date}`} passHref={true}>
-            <Card
+            <CardTitle
               title={item.title}
               subtitle={item.date}
               message={item.abstract ?? ""}
-              // eslint-disable-next-line no-nested-ternary
               color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
             />
           </Link>

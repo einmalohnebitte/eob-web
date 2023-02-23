@@ -1,5 +1,4 @@
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
-import { Card, getBorderColor, getTextColor } from "@/components/@UI/Card";
 import { Grid } from "@/components/@UI/Grid";
 import { Section } from "@/components/@UI/Section";
 import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
@@ -10,6 +9,7 @@ import Link from "next/link";
 import classNames from "classnames";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import styles from "./AboutNetwork.module.css";
+import { getBorderColor, getTextColor } from "../@UI/CardWrapper";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
