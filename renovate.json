@@ -1,4 +1,11 @@
 {
-  "extends": ["config:base", ":dependencyDashboard"],
-   "rangeStrategy": "pin"
+  "extends": ["config:base", ":dependencyDashboard",  ":automergePatch"],
+  "rangeStrategy": "pin",
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchPackagePatterns": ["lint", "prettier"],
+      "automerge": true
+    }
+  ]
 }
