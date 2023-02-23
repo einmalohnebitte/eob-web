@@ -9,7 +9,8 @@ import Link from "next/link";
 import classNames from "classnames";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import styles from "./AboutNetwork.module.css";
-import { CardWrapper, getBorderColor, getTextColor } from "../@UI/CardWrapper";
+import { CardWrapper, getTextColor } from "../@UI/CardWrapper";
+import Image from "next/image";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
@@ -81,11 +82,11 @@ export const AboutNetwork: React.FC<{
               >
                 <CardWrapper key={k} color={color}>
                   {item.logo?.url && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
+                    <Image
                       alt={item.title ?? ""}
                       src={item.logo?.url ?? ""}
-                      height={208}
+                      height={400}
+                      width={480}
                       className="object-cover"
                     />
                   )}

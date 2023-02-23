@@ -2,6 +2,7 @@ import { Card } from "@/components/@UI/Card";
 import { Grid } from "@/components/@UI/Grid";
 import { Section } from "@/components/@UI/Section";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import { ReusableHeroQuery } from "../CmsQueries/ReusableHero.cms.generated";
 
@@ -27,11 +28,11 @@ export const Heros: React.FC<{
               href={`/seimehrwegheldin/${item.slug}`}
             >
               {item?.picture?.url && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
+                <Image
                   alt={item.name ?? ""}
                   src={item?.picture?.url ?? ""}
-                  height={208}
+                  height={400}
+                  width={480}
                   className="object-cover"
                 />
               )}
