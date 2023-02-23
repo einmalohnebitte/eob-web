@@ -1,5 +1,4 @@
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
-import { Card } from "@/components/@UI/Card";
 import { Section } from "@/components/@UI/Section";
 import {
   dangerouslySetFormattedInnerHTML,
@@ -22,6 +21,7 @@ import Link from "next/link";
 import React from "react";
 import styles from "@/components/Layout/Blog.module.css";
 import classNames from "classnames";
+import { CardTitle } from "@/components/@UI/CardWrapper";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PressDocument, {
@@ -52,7 +52,7 @@ const Page: React.FC<PressQuery> = (props) => {
       <Section>
         <div className={`grid grid-cols-2 text-center md:grid-cols-3`}>
           {props.pressArticles?.length !== 0 && (
-            <Card
+            <CardTitle
               onClick={() => {
                 window.location.hash = "#announcements";
               }}
@@ -60,14 +60,14 @@ const Page: React.FC<PressQuery> = (props) => {
               color={"yellow"}
             />
           )}
-          <Card
+          <CardTitle
             onClick={() => {
               window.location.hash = "#photos";
             }}
             title={intl("PRESS_PHOTOS")}
             color={"pink"}
           />
-          <Card
+          <CardTitle
             onClick={() => {
               window.location.hash = "#report";
             }}
