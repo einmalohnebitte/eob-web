@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import { ReusableHeroQuery } from "../CmsQueries/ReusableHero.cms.generated";
+import userPlaceholder from "../AboutUs/user.jpg";
 
 export const Heros: React.FC<{
   reusableHeros: ReusableHeroQuery["reusableHeros"];
@@ -27,15 +28,13 @@ export const Heros: React.FC<{
               linkTitle={`Lerne ${item.name} kennen...`}
               href={`/seimehrwegheldin/${item.slug}`}
             >
-              {item?.picture?.url && (
-                <Image
-                  alt={item.name ?? ""}
-                  src={item?.picture?.url ?? ""}
-                  height={400}
-                  width={480}
-                  className="object-cover"
-                />
-              )}
+              <Image
+                alt={item.name ?? ""}
+                src={item?.picture?.url ?? userPlaceholder}
+                height={400}
+                width={480}
+                className="object-cover"
+              />
             </Card>
           </Link>
         ))}
