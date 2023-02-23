@@ -7,6 +7,7 @@ import { useTranslations } from "@/hooks/useTranslations";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import userPlaceholder from "./user.jpg";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 
 export const AboutMembers: React.FC<{
@@ -38,15 +39,13 @@ export const AboutMembers: React.FC<{
                 }
                 href={`/team/${item.slug}`}
               >
-                {item?.picture?.url && (
-                  <Image
-                    alt={item.name ?? ""}
-                    src={item?.picture?.url ?? ""}
-                    height={400}
-                    width={480}
-                    className="object-cover"
-                  />
-                )}
+                <Image
+                  alt={item.name ?? ""}
+                  src={item?.picture?.url ?? userPlaceholder}
+                  height={400}
+                  width={480}
+                  className="object-cover"
+                />
               </Card>
             </Link>
           ))}

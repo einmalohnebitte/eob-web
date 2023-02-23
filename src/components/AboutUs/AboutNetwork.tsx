@@ -10,6 +10,7 @@ import classNames from "classnames";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import styles from "./AboutNetwork.module.css";
 import { CardWrapper, getTextColor } from "../@UI/CardWrapper";
+import cityPlaceholder from "./city.png";
 import Image from "next/image";
 
 export const AboutNetwork: React.FC<{
@@ -81,15 +82,13 @@ export const AboutNetwork: React.FC<{
                 legacyBehavior
               >
                 <CardWrapper key={k} color={color}>
-                  {item.logo?.url && (
-                    <Image
-                      alt={item.title ?? ""}
-                      src={item.logo?.url ?? ""}
-                      height={400}
-                      width={480}
-                      className="object-cover"
-                    />
-                  )}
+                  <Image
+                    alt={item.title ?? ""}
+                    src={item.logo?.url ?? cityPlaceholder}
+                    height={400}
+                    width={480}
+                    className="object-cover"
+                  />
 
                   <div className="p-4">
                     <H2>{item.title}</H2>
