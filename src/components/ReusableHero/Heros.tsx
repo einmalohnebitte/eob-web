@@ -2,8 +2,10 @@ import { Card } from "@/components/@UI/Card";
 import { Grid } from "@/components/@UI/Grid";
 import { Section } from "@/components/@UI/Section";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import { ReusableHeroQuery } from "../CmsQueries/ReusableHero.cms.generated";
+import userPlaceholder from "../AboutUs/user.jpg";
 
 export const Heros: React.FC<{
   reusableHeros: ReusableHeroQuery["reusableHeros"];
@@ -22,20 +24,17 @@ export const Heros: React.FC<{
               key={k}
               title={item.name ?? ""}
               message={item.abstract ?? ""}
-              // eslint-disable-next-line no-nested-ternary
               color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
               linkTitle={`Lerne ${item.name} kennen...`}
-              linkTo={`/seimehrwegheldin/${item.slug}`}
+              href={`/seimehrwegheldin/${item.slug}`}
             >
-              {item?.picture?.url && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  alt={item.name ?? ""}
-                  src={item?.picture?.url ?? ""}
-                  height={208}
-                  className="object-cover"
-                />
-              )}
+              <Image
+                alt={item.name ?? ""}
+                src={item?.picture?.url ?? userPlaceholder}
+                height={400}
+                width={480}
+                className="object-cover"
+              />
             </Card>
           </Link>
         ))}

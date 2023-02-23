@@ -9,7 +9,9 @@ import Link from "next/link";
 import classNames from "classnames";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import styles from "./AboutNetwork.module.css";
-import { getBorderColor, getTextColor } from "../@UI/CardWrapper";
+import { CardWrapper, getTextColor } from "../@UI/CardWrapper";
+import cityPlaceholder from "./city.png";
+import Image from "next/image";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
@@ -79,23 +81,14 @@ export const AboutNetwork: React.FC<{
                 passHref={false}
                 legacyBehavior
               >
-                <div
-                  key={k}
-                  role="presentation"
-                  className={classNames(
-                    "flex flex-col content-between cursor-pointer transform scale-100 sm:hover:scale-105 sm:max-w-md mx-auto bg-white border-l-4  border-b-8 border-r-4 border-t-2  mb-4 overflow-hidden sm:m-4   ",
-                    getBorderColor(color)
-                  )}
-                >
-                  {item.logo?.url && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      alt={item.title ?? ""}
-                      src={item.logo?.url ?? ""}
-                      height={208}
-                      className="object-cover"
-                    />
-                  )}
+                <CardWrapper key={k} color={color}>
+                  <Image
+                    alt={item.title ?? ""}
+                    src={item.logo?.url ?? cityPlaceholder}
+                    height={400}
+                    width={480}
+                    className="object-cover"
+                  />
 
                   <div className="p-4">
                     <H2>{item.title}</H2>
@@ -122,7 +115,7 @@ export const AboutNetwork: React.FC<{
                       </Link>
                     </div>
                   </div>
-                </div>
+                </CardWrapper>
               </Link>
             );
           })}
