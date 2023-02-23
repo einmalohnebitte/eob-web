@@ -84,12 +84,7 @@ const Home: React.FC<
           <H2>{intl("CITY_PARTNERS")}</H2>
           <div className="flex overflow-x-auto py-6 px-2">
             {cityPartners.cityPartners.map((c) => (
-              <Link
-                legacyBehavior
-                key={c.name}
-                href={c.link ?? ""}
-                passHref={true}
-              >
+              <Link key={c.name} href={c.link ?? ""} passHref={true}>
                 <SponsorCard src={c.logo?.url ?? ""} alt={c.name ?? ""} />
               </Link>
             ))}

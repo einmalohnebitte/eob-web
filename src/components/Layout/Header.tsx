@@ -42,17 +42,14 @@ export const Header: React.FC = () => {
           )}
         >
           {items.map((item, k) => (
-            <Link legacyBehavior key={k} href={item.href}>
-              <a
-                className={classNames(
-                  `m-4`,
-                  asPath === item.href && `underline`
-                )}
-              >
-                <p className="my-2 mx-0 border-b-2 border-transparent py-1 font-lemonism text-2xl sm:mx-2 sm:p-0">
-                  {intl(item.label)}
-                </p>
-              </a>
+            <Link
+              key={k}
+              href={item.href}
+              className={classNames(`m-4`, asPath === item.href && `underline`)}
+            >
+              <p className="my-2 mx-0 border-b-2 border-transparent py-1 font-lemonism text-2xl sm:mx-2 sm:p-0">
+                {intl(item.label)}
+              </p>
             </Link>
           ))}
         </nav>

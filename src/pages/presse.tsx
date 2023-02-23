@@ -89,12 +89,8 @@ const Page: React.FC<PressQuery> = (props) => {
                     article.abstract?.html ?? ""
                   )}
                 />
-                <Link
-                  legacyBehavior
-                  href={`/presse/${article.slug}`}
-                  passHref={true}
-                >
-                  <a>{intl("READ_MORE")}</a>
+                <Link href={`/presse/${article.slug}`} passHref={true}>
+                  {intl("READ_MORE")}
                 </Link>
               </div>
             ))}
