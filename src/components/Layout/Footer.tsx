@@ -1,7 +1,7 @@
 import { Section } from "@/components/@UI/Section";
 import { H3 } from "@/components/@UI/Texts";
 import { useTranslations } from "@/hooks/useTranslations";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { GrFacebook, GrInstagram, GrLinkedin } from "react-icons/gr";

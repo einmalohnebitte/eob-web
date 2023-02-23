@@ -22,7 +22,7 @@ import { useTranslations } from "@/hooks/useTranslations";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 

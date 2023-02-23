@@ -3,7 +3,7 @@ import { SplitSection } from "@/components/@UI/Section";
 import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import React from "react";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import classnames from "classnames";
 import styles from "./AboutVisionMission.module.css";

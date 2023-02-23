@@ -2,7 +2,7 @@ import { Button } from "@/components/@UI/Buttons";
 import { DropDown, DropDownItem } from "@/components/@UI/DropDown";
 import { useTranslations } from "@/hooks/useTranslations";
 import classNames from "classnames";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -23,16 +23,14 @@ export const Header: React.FC = () => {
     >
       <div className="mx-auto flex max-w-screen-lg items-start justify-between bg-white md:items-center">
         {!isOpen && (
-          <Link legacyBehavior href={"/"}>
-            <picture>
-              <Image
-                className="mx-2 h-12 w-12 cursor-pointer rounded-full border-2 border-solid border-gray-300 md:h-16 md:w-16"
-                src="/images/logo_start.webp"
-                width="64"
-                height="64"
-                alt="logo"
-              />
-            </picture>
+          <Link href={"/"}>
+            <Image
+              className="mx-2 h-12 w-12 cursor-pointer rounded-full border-2 border-solid border-gray-300 md:h-16 md:w-16"
+              src="/images/logo_start.webp"
+              width="64"
+              height="64"
+              alt="logo"
+            />
           </Link>
         )}
 
