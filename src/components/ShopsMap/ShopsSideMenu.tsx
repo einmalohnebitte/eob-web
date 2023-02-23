@@ -86,64 +86,59 @@ export const ShopsSideMenu: React.FC<{
           </Button>
         </div>
 
-        {
-          // eslint-disable-next-line no-nested-ternary
-          activeTab === 0 ? (
-            <div>
-              {shopCategories.map((category) => (
-                <Button
-                  key={category.id}
-                  color={
-                    category.name === filters.category
-                      ? "pink"
-                      : "pink-inverted"
-                  }
-                  onClick={() => {
-                    dispatchAction({
-                      type: "SET_CATEGORY",
-                      payload: category.name,
-                    });
-                  }}
-                  className={classNames("m-2")}
-                >
-                  {category.name}
-                </Button>
-              ))}
-            </div>
-          ) : activeTab === 1 ? (
-            <div>
-              {shopBundeslands.map((state) => (
-                <Button
-                  color={
-                    state.name === filters.state ? "yellow" : "yellow-inverted"
-                  }
-                  onClick={() => {
-                    dispatchAction({ type: "SET_STATE", payload: state });
-                  }}
-                  className={classNames("m-2")}
-                  key={state.id}
-                >
-                  {state.name}
-                </Button>
-              ))}
-            </div>
-          ) : (
-            <div>
-              {shopTypes.map((type) => (
-                <Button
-                  color={type.name === filters.type ? "blue" : "blue-inverted"}
-                  onClick={() => {
-                    dispatchAction({ type: "SET_TYPE", payload: type.name });
-                  }}
-                  className={classNames("m-2")}
-                  key={type.id}
-                >
-                  {type.name}
-                </Button>
-              ))}
-            </div>
-          )
-        }
+        {activeTab === 0 ? (
+          <div>
+            {shopCategories.map((category) => (
+              <Button
+                key={category.id}
+                color={
+                  category.name === filters.category ? "pink" : "pink-inverted"
+                }
+                onClick={() => {
+                  dispatchAction({
+                    type: "SET_CATEGORY",
+                    payload: category.name,
+                  });
+                }}
+                className={classNames("m-2")}
+              >
+                {category.name}
+              </Button>
+            ))}
+          </div>
+        ) : activeTab === 1 ? (
+          <div>
+            {shopBundeslands.map((state) => (
+              <Button
+                color={
+                  state.name === filters.state ? "yellow" : "yellow-inverted"
+                }
+                onClick={() => {
+                  dispatchAction({ type: "SET_STATE", payload: state });
+                }}
+                className={classNames("m-2")}
+                key={state.id}
+              >
+                {state.name}
+              </Button>
+            ))}
+          </div>
+        ) : (
+          <div>
+            {shopTypes.map((type) => (
+              <Button
+                color={type.name === filters.type ? "blue" : "blue-inverted"}
+                onClick={() => {
+                  dispatchAction({ type: "SET_TYPE", payload: type.name });
+                }}
+                className={classNames("m-2")}
+                key={type.id}
+              >
+                {type.name}
+              </Button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

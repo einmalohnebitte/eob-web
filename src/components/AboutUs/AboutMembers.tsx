@@ -4,6 +4,7 @@ import { Section } from "@/components/@UI/Section";
 import { H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
@@ -29,21 +30,20 @@ export const AboutMembers: React.FC<{
                 key={k}
                 title={item.name ?? ""}
                 message={item.abstract ?? ""}
-                // eslint-disable-next-line no-nested-ternary
                 color={k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink"}
                 linkTitle={
                   /rehab/.test(item.name ?? "")
                     ? `Lerne den rehab republic Vorstand kennen`
                     : `Lerne ${item.name} kennen...`
                 }
-                linkTo={`/team/${item.slug}`}
+                href={`/team/${item.slug}`}
               >
                 {item?.picture?.url && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <Image
                     alt={item.name ?? ""}
                     src={item?.picture?.url ?? ""}
-                    height={208}
+                    height={400}
+                    width={480}
                     className="object-cover"
                   />
                 )}
