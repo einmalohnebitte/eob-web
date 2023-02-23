@@ -1,10 +1,64 @@
 import { Card } from "@/components/@UI/Card";
 import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.generated";
 import { useTranslations } from "@/hooks/useTranslations";
+import classNames from "classnames";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
+import { BrandColors, CardWrapper, getTextColor } from "../@UI/CardWrapper";
 
 import { Section } from "../@UI/Section";
+import { dangerouslySetFormattedInnerHTML, H2 } from "../@UI/Texts";
+
+const CardGoal: React.FC<{
+  src: string;
+  title: string;
+  href: string;
+  messageHtml?: string;
+  color: BrandColors;
+}> = ({ src, title, href, color, messageHtml }) => {
+  const router = useRouter();
+  const intl = useTranslations();
+  return (
+    <CardWrapper
+      color={color}
+      onClick={(e) => {
+        router.push(href);
+      }}
+    >
+      <Image
+        width={200}
+        height={300}
+        className="h-52 self-center "
+        src={src}
+        alt={title}
+      />
+      <div className="p-4">
+        <H2>{title}</H2>
+        {messageHtml && (
+          <div
+            className="mt-2 text-gray-500"
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              messageHtml
+            )}
+          />
+        )}
+      </div>
+      <div
+        className={classNames(
+          "flex-grow flex justify-end flex-col m-2",
+          getTextColor(color)
+        )}
+      >
+        <Link legacyBehavior href={href}>
+          <a className="hover:underline">{intl("READ_MORE")}</a>
+        </Link>
+      </div>
+    </CardWrapper>
+  );
+};
 
 export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   const intl = useTranslations();
@@ -15,32 +69,26 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   return (
     <BackgroundWrapper vibrantColor="#dddddd">
       <Section className="sm:flex ">
-        <Card
+        <CardGoal
           color="blue"
           title={intl("BUY")}
-          img={buy?.picture[0].url}
-          resize={true}
+          src={buy?.picture[0].url ?? ""}
           messageHtml={buy?.content.html}
-          linkTitle={intl("READ_MORE")}
-          linkTo={"/einkaufen"}
+          href={"/einkaufen"}
         />
-        <Card
+        <CardGoal
           color="yellow"
-          img={sell?.picture[0].url}
+          src={sell?.picture[0].url ?? ""}
           title={intl("SELL")}
-          resize={true}
           messageHtml={sell?.content.html}
-          linkTitle={intl("READ_MORE")}
-          linkTo={"/verkaufen"}
+          href={"/verkaufen"}
         />
-        <Card
+        <CardGoal
           color="pink"
-          img={spread?.picture[0].url}
+          src={spread?.picture[0].url ?? ""}
           title={intl("SPREAD")}
-          resize={true}
           messageHtml={spread?.content.html}
-          linkTitle={intl("READ_MORE")}
-          linkTo={"/verbreiten"}
+          href={"/verbreiten"}
         />
       </Section>
     </BackgroundWrapper>

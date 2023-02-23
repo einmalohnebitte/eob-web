@@ -3,14 +3,16 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { dangerouslySetFormattedInnerHTML, H2 } from "./Texts";
 
-export const getBorderColor = (color?: "pink" | "blue" | "yellow"): string =>
+export type BrandColors = "pink" | "blue" | "yellow";
+
+export const getBorderColor = (color?: BrandColors): string =>
   color === "blue"
     ? `border-blue-500`
     : color === "pink"
     ? `border-pink-500`
     : `border-yellow-600`;
 
-export const getTextColor = (color?: "pink" | "blue" | "yellow"): string =>
+export const getTextColor = (color?: BrandColors): string =>
   color === "blue"
     ? `text-blue-500`
     : color === "pink"
@@ -19,7 +21,7 @@ export const getTextColor = (color?: "pink" | "blue" | "yellow"): string =>
 
 export const CardWrapper: React.FC<
   React.PropsWithChildren<{
-    color?: "pink" | "blue" | "yellow";
+    color?: BrandColors;
     onClick?: React.MouseEventHandler<HTMLDivElement>;
     className?: string;
   }>
@@ -48,7 +50,7 @@ export const CardWrapper: React.FC<
 };
 
 export const CardTitle: React.FC<{
-  color?: "pink" | "blue" | "yellow";
+  color?: BrandColors;
   onClick?: React.MouseEventHandler<HTMLDivElement>;
   className?: string;
   title: string;
