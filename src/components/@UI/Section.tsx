@@ -34,15 +34,19 @@ const Div: (
   className: string
 ) => React.FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> =
-  (className: string) =>
-  // eslint-disable-next-line react/display-name
-  ({ children, className: _, ...props }) =>
-    (
-      <div className={classNames(className)} {...props}>
-        {children}
-      </div>
-    );
+> = (className: string) => {
+  const Component: React.FC<
+    React.DetailedHTMLProps<
+      React.HTMLAttributes<HTMLDivElement>,
+      HTMLDivElement
+    >
+  > = ({ children, className: _, ...props }) => (
+    <div className={classNames(className)} {...props}>
+      {children}
+    </div>
+  );
+  return Component;
+};
 
 export const SplitSection = {
   Section: SectionMain,

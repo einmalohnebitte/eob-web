@@ -8,12 +8,9 @@ import { AppFooter } from "./Footer";
 import { Header } from "./Header";
 import styles from "./Layout.module.css";
 
-export const withLayout =
-  () =>
-  (Comp: any) =>
-  // eslint-disable-next-line react/display-name
-  (props: any): React.ReactElement => {
-    const intl = useTranslations(props.translations);
+export const withLayout = () => (Comp: any) => {
+  const CompWithLayout = (props: any): React.ReactElement => {
+    useTranslations(props.translations);
     const router = useRouter();
     return (
       <>
@@ -30,3 +27,6 @@ export const withLayout =
       </>
     );
   };
+  CompWithLayout.displayName = `withLayout(${Comp.displayName})`;
+  return CompWithLayout;
+};

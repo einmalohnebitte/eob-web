@@ -1,4 +1,3 @@
-/* eslint-disable react/display-name */
 import classNames from "classnames";
 import React from "react";
 
@@ -35,3 +34,5 @@ export const BackgroundWrapper = React.forwardRef<
     {children}
   </div>
 ));
+
+BackgroundWrapper.displayName = "BackgroundWrapper";
