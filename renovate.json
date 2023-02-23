@@ -3,8 +3,7 @@
   "rangeStrategy": "pin",
   "packageRules": [
     {
-      "matchDepTypes": ["devDependencies"],
-      "matchPackagePatterns": ["lint", "prettier"],
+      "matchDepTypes": ["devDependencies"], 
       "automerge": true
     }
   ]
