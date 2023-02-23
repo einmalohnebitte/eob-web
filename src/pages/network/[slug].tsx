@@ -1,4 +1,4 @@
-import { Card } from "@/components/@UI/Card";
+import { CardImage } from "@/components/@UI/CardWrapper";
 import { Section } from "@/components/@UI/Section";
 import {
   dangerouslySetFormattedInnerHTML,
@@ -40,10 +40,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 const TeamPage: React.FC<NetworkQuery> = ({ networks }) => (
   <Section>
     <div className="float-left m-4 max-w-sm">
-      <Card
-        img={networks[0]?.logo?.url}
+      <CardImage
+        src={networks[0]?.logo?.url ?? ""}
         title={networks[0]?.title ?? ""}
-        // color={"blue"}
       />
     </div>
 

@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import React, { useState } from "react";
+import Image from "next/image";
 import { dangerouslySetFormattedInnerHTML, H2 } from "./Texts";
 
 export const getBorderColor = (color?: "pink" | "blue" | "yellow"): string =>
@@ -46,17 +47,15 @@ export const CardWrapper: React.FC<
   );
 };
 
-export const CardTitle: React.FC<
-  React.PropsWithChildren<{
-    color?: "pink" | "blue" | "yellow";
-    onClick?: React.MouseEventHandler<HTMLDivElement>;
-    className?: string;
-    title: string;
-    message?: string;
-    messageHtml?: string;
-    subtitle?: string;
-  }>
-> = ({ color, onClick, className, title, message, messageHtml, subtitle }) => {
+export const CardTitle: React.FC<{
+  color?: "pink" | "blue" | "yellow";
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  className?: string;
+  title: string;
+  message?: string;
+  messageHtml?: string;
+  subtitle?: string;
+}> = ({ color, onClick, className, title, message, messageHtml, subtitle }) => {
   return (
     <CardWrapper
       className={classNames("p-4", className)}
@@ -74,6 +73,25 @@ export const CardTitle: React.FC<
         />
       )}
       {subtitle && <i>{subtitle}</i>}
+    </CardWrapper>
+  );
+};
+
+export const CardImage: React.FC<{
+  title: string;
+  src: string;
+  width?: number;
+  height?: number;
+}> = ({ title, src, width, height }) => {
+  return (
+    <CardWrapper>
+      <Image
+        alt={title}
+        src={src}
+        width={width ?? 300}
+        height={height ?? 300}
+      />
+      <H2 className="p-4">{title}</H2>
     </CardWrapper>
   );
 };

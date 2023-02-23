@@ -1,4 +1,4 @@
-import { Card } from "@/components/@UI/Card";
+import { CardImage } from "@/components/@UI/CardWrapper";
 import { Section } from "@/components/@UI/Section";
 import {
   dangerouslySetFormattedInnerHTML,
@@ -38,10 +38,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 const TeamPage: React.FC<MemberQuery> = ({ members }) => (
   <Section>
     <div className="float-left m-4 max-w-sm">
-      <Card
-        img={members[0]?.picture?.url}
+      <CardImage
         title={members[0]?.name ?? ""}
-        // color={"blue"}
+        src={members[0]?.picture?.url ?? ""}
       />
     </div>
 
