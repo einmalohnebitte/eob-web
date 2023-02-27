@@ -1,16 +1,11 @@
 import classNames from "classnames";
 import React from "react";
-import styles from "./Section.module.css";
 
 export const Section: React.FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 > = ({ children, className, ...props }) => (
   <section
-    className={classNames(
-      styles.Section,
-      "p-1 mt-5 md:p-8 max-w-screen-lg mx-auto",
-      className
-    )}
+    className={classNames("p-1 mt-5 md:p-8 max-w-screen-lg mx-auto", className)}
     {...props}
   >
     {children}
@@ -50,6 +45,6 @@ const Div: (
 
 export const SplitSection = {
   Section: SectionMain,
-  Main: Div(styles.Main),
-  Side: Div(styles.Side),
+  Main: Div("basis-2/3"),
+  Side: Div("basis-1/3"),
 };
