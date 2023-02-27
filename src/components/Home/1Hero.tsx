@@ -1,6 +1,6 @@
 import { PageSectionsQuery } from "@/components/CmsQueries/PageSections.cms.generated";
 import classNames from "classnames";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import React from "react";
 
 import { Section } from "../@UI/Section";
@@ -13,19 +13,12 @@ const HeroImg: React.FC<{
   is2Row?: boolean;
   src: string;
 }> = ({ src, is2Row, is2Col }) => (
-  <div
-    className={classNames(
-      styles.wrapper,
-      is2Row && `row-span-2`,
-      is2Col && `col-span-2`
-    )}
-  >
+  <div className={classNames(is2Row && `row-span-2`, is2Col && `col-span-2`)}>
     {src && (
       <Image
         alt="hero"
-        className="rounded-lg"
+        className="h-full w-full rounded-lg object-cover"
         src={src}
-        layout="responsive"
         width={is2Row ? 200 : 100}
         height={is2Col ? 200 : 100}
       />

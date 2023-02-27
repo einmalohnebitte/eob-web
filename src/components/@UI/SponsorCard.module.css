@@ -1,8 +1,5 @@
 .SponsorCard {
   width: 10rem;
   height: 10rem;
-  div {
-    top: 50%;
-    transform: translateY(-50%);
-  }
+ 
 }

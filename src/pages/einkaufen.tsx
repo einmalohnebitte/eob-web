@@ -13,10 +13,9 @@ import { withLayout } from "@/components/Layout";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
 import { graphCmsRequest } from "@/server/graphcms";
 import { GetStaticProps } from "next";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import React from "react";
 import { useInView } from "react-intersection-observer";
-import styles from "@/components/Layout/Einkaufen.module.css";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageSectionsDocument, {
@@ -81,7 +80,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
               alt="side"
               width={350}
               height={350}
-              className={styles.imgRounded}
+              className={"rounded-xl"}
             />
           </SplitSection.Side>
           <SplitSection.Main>
@@ -96,7 +95,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
         </SplitSection.Section>
 
         <SplitSection.Section>
-          <SplitSection.Main className={styles.forceFlex}>
+          <div className="flex  basis-2/3 flex-col lg:basis-1/2">
             <H2>{pageSections[3].title}</H2>
             <div
               className="py-4"
@@ -104,36 +103,30 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                 pageSections[3].content.html ?? ""
               )}
             />
-          </SplitSection.Main>
-          <SplitSection.Side className={styles.forceFlex}>
-            <div className={styles.imgTwoWrapper}>
-              <div className="m-4 content-between">
-                <Image
-                  src={pageSections[3].picture[0].url}
-                  alt="side"
-                  width={250}
-                  height={200}
-                  className={styles.imgRounded}
-                />
-                <Image
-                  src={pageSections[3].picture[2].url}
-                  alt="side"
-                  width={250}
-                  height={200}
-                  className={styles.imgRounded}
-                />
-              </div>
-            </div>
-            <div className={styles.imgWrapper}>
-              <Image
-                src={pageSections[3].picture[1].url}
-                alt="side"
-                width={250}
-                height={200}
-                className={styles.imgRounded}
-              />
-            </div>
-          </SplitSection.Side>
+          </div>
+          <div className="flex basis-1/3 flex-col gap-4 lg:grid lg:basis-1/2 lg:grid-flow-col lg:grid-cols-2">
+            <Image
+              src={pageSections[3].picture[0].url}
+              alt="side"
+              width={250}
+              height={200}
+              className={"flex self-center rounded-xl"}
+            />
+            <Image
+              src={pageSections[3].picture[2].url}
+              alt="side"
+              width={250}
+              height={200}
+              className={"flex self-center rounded-xl"}
+            />
+            <Image
+              src={pageSections[3].picture[1].url}
+              alt="side"
+              width={250}
+              height={200}
+              className={"flex self-center rounded-xl lg:row-span-2"}
+            />
+          </div>
         </SplitSection.Section>
 
         <Section>
