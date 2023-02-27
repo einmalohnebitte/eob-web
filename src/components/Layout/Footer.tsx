@@ -107,7 +107,7 @@ export const AppFooter = () => {
 
       <hr className="m-4 border-solid border-gray-300" />
       <div className="flex flex-col justify-between md:flex-row">
-        <p className="text-lg">
+        <p className="text-lg flex flex-col justify-between md:flex-row gap-2">
           <Link href="/impressum">{intl("FOOTER_IMPRESSUM")}</Link>
           <Link href="/datenschutzerklarung">{intl("FOOTER_DATA")}</Link>
         </p>

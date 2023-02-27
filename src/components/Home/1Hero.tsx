@@ -50,7 +50,7 @@ export const Hero: React.FC<
       <div className="overflow-x-scroll">
         <div
           className={classNames(
-            "grid grid-cols-7 grid-rows-2 grid-flow-col gap-4 px-10",
+            "grid grid-cols-7 grid-rows-2 grid-flow-col gap-4 md:px-10",
             styles.grid
           )}
         >
