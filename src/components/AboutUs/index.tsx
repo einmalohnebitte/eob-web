@@ -1,4 +1,4 @@
-import { Section, SplitSection } from "@/components/@UI/Section";
+import { Section, SplitSectionClass } from "@/components/@UI/Section";
 import { dangerouslySetFormattedInnerHTML, H1 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import { HeadMeta } from "@/components/Layout/HeadMeta";
@@ -30,19 +30,19 @@ export const AboutUs: React.FC<MembersQuery> = ({
         />
       </Section>
 
-      <SplitSection.Section>
-        <SplitSection.Side>
+      <div className={SplitSectionClass}>
+        <div className="basis-1/3">
           <H1>{pageSections[0].title}</H1>
-        </SplitSection.Side>
-        <SplitSection.Main>
+        </div>
+        <div className="basis-2/3">
           <div
             className={`py-4`}
             dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
               pageSections[0].content.html ?? ""
             )}
           />
-        </SplitSection.Main>
-      </SplitSection.Section>
+        </div>
+      </div>
 
       <AboutVisionMission
         vibrantColor={vibrantColor}

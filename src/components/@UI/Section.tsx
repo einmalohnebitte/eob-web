@@ -1,50 +1,14 @@
 import classNames from "classnames";
 import React from "react";
 
+export const SectionClass = "p-1 mt-5 md:p-8 max-w-screen-lg mx-auto";
+
 export const Section: React.FC<
   React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 > = ({ children, className, ...props }) => (
-  <section
-    className={classNames("p-1 mt-5 md:p-8 max-w-screen-lg mx-auto", className)}
-    {...props}
-  >
+  <section className={classNames(SectionClass, className)} {...props}>
     {children}
   </section>
 );
 
-const SectionMain: React.FC<
-  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> = ({ children, ...props }) => (
-  <Section
-    className={classNames(
-      "flex flex-col md:flex-row items-center gap-2 md:gap-6",
-      props.className
-    )}
-  >
-    {children}
-  </Section>
-);
-
-const Div: (
-  className: string
-) => React.FC<
-  React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-> = (className: string) => {
-  const Component: React.FC<
-    React.DetailedHTMLProps<
-      React.HTMLAttributes<HTMLDivElement>,
-      HTMLDivElement
-    >
-  > = ({ children, className: additionalClassName, ...props }) => (
-    <div className={classNames(additionalClassName, className)} {...props}>
-      {children}
-    </div>
-  );
-  return Component;
-};
-
-export const SplitSection = {
-  Section: SectionMain,
-  Main: Div("basis-2/3"),
-  Side: Div("basis-1/3"),
-};
+export const SplitSectionClass = `${SectionClass} flex flex-col md:flex-row items-center gap-2 md:gap-6`;

@@ -1,6 +1,6 @@
 import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
 import styles from "@/components/@UI/List.module.css";
-import { Section, SplitSection } from "@/components/@UI/Section";
+import { Section, SplitSectionClass } from "@/components/@UI/Section";
 import { SponsorCard } from "@/components/@UI/SponsorCard";
 import {
   dangerouslySetFormattedInnerHTML,
@@ -47,16 +47,16 @@ const Home: React.FC<
         metaDescription={pages[0]?.metaDescription}
         metaKeywords={pages[0]?.metaKeywords}
       />
-      <SplitSection.Section>
-        <SplitSection.Side>
+      <div className={SplitSectionClass}>
+        <div className="basis-1/3">
           <Image
             src={pageSections[0].picture[0].url}
             alt="side"
             width={350}
             height={250}
           />
-        </SplitSection.Side>
-        <SplitSection.Main>
+        </div>
+        <div className="basis-2/3">
           <H1>{pageSections[0].title}</H1>
           <div
             className="py-4"
@@ -64,8 +64,8 @@ const Home: React.FC<
               pageSections[0].content.html ?? ""
             )}
           />
-        </SplitSection.Main>
-      </SplitSection.Section>
+        </div>
+      </div>
 
       <BackgroundWrapper color="pink">
         <Section>

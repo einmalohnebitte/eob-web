@@ -1,4 +1,4 @@
-import { Section, SplitSection } from "@/components/@UI/Section";
+import { Section, SplitSectionClass } from "@/components/@UI/Section";
 import {
   dangerouslySetFormattedInnerHTML,
   H1,
@@ -44,24 +44,24 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
       <BackgroundWrapper vibrantColor={vibrantColor}>
         <Section>
           <H2>{pageSections[0].title}</H2>
-          <SplitSection.Section>
-            <SplitSection.Side>
+          <div className={SplitSectionClass}>
+            <div className="basis-1/3">
               <Image
                 width={firstPic?.width ?? 0 / 10}
                 height={firstPic?.height ?? 0 / 10}
                 src={firstPic.url}
                 alt="seimehrwegheldin"
               />
-            </SplitSection.Side>
-            <SplitSection.Main>
+            </div>
+            <div className="basis-2/3">
               <div
                 className="py-4 font-gt text-xl leading-8"
                 dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
                   pageSections[0].content.html ?? ""
                 )}
               />
-            </SplitSection.Main>
-          </SplitSection.Section>
+            </div>
+          </div>
         </Section>
       </BackgroundWrapper>
       <Section>
