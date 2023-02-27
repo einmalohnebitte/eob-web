@@ -1,11 +1,7 @@
 .Section {
   font-size: 3rem;
   line-height: 3rem;
-  div:first-child {
-    @media (min-width: 768px) {
-      margin-right: 2rem;
-    }
-  }
+  
 }
 .Main {
   flex: 2;

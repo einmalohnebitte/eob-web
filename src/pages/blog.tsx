@@ -30,6 +30,7 @@ const BlogPage: React.FC<BlogsQuery> = ({ blogs }) => {
         {blogs.map((item, k) => (
           <Link key={k} href={`/blog/${item.date}`} passHref={true}>
             <CardTitle
+              className="break-all"
               title={item.title}
               subtitle={item.date}
               message={item.abstract ?? ""}

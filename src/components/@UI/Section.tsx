@@ -22,7 +22,7 @@ const SectionMain: React.FC<
 > = ({ children, ...props }) => (
   <Section
     className={classNames(
-      "flex flex-col md:flex-row items-center",
+      "flex flex-col md:flex-row items-center gap-2 md:gap-6",
       props.className
     )}
   >
