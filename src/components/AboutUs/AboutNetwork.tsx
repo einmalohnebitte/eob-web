@@ -8,7 +8,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import classNames from "classnames";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
-import styles from "./AboutNetwork.module.css";
 import { CardWrapper, getTextColor } from "../@UI/CardWrapper";
 import cityPlaceholder from "./city.png";
 import Image from "next/image";
@@ -95,8 +94,7 @@ export const AboutNetwork: React.FC<{
                   {item.description?.html && (
                     <div
                       className={classNames(
-                        "mt-2 text-gray-500",
-                        styles.networkDescription
+                        "mt-2 text-gray-500 line-clamp-2 overflow-hidden whitespace-normal"
                       )}
                       dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
                         item.description?.html

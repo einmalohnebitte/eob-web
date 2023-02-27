@@ -19,7 +19,6 @@ import Image from "next/image";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import React from "react";
-import styles from "@/components/Layout/Blog.module.css";
 import classNames from "classnames";
 import { CardTitle } from "@/components/@UI/CardWrapper";
 
@@ -120,7 +119,11 @@ const Page: React.FC<PressQuery> = (props) => {
         <div className={`grid grid-cols-2 gap-x-3 md:grid-cols-3`}>
           {props.pressReports.map((report, k) => (
             <div key={`ar${k}`} className={`py-4`}>
-              <H3 className={classNames("pb-2 h-20", styles.description)}>
+              <H3
+                className={classNames(
+                  "pb-2 h-20 line-clamp-2 overflow-hidden whitespace-normal"
+                )}
+              >
                 {report.title}
               </H3>
               <Image
