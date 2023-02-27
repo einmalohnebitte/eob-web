@@ -5,7 +5,7 @@ import React from "react";
 import { CardWrapper, getTextColor } from "./CardWrapper";
 import { H2 } from "./Texts";
 
-export const Card: React.FC<
+export const CardMember: React.FC<
   React.PropsWithChildren<{
     title: string;
     linkTitle: string;

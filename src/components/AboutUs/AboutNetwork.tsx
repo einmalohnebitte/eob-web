@@ -12,6 +12,7 @@ import styles from "./AboutNetwork.module.css";
 import { CardWrapper, getTextColor } from "../@UI/CardWrapper";
 import cityPlaceholder from "./city.png";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
@@ -19,7 +20,7 @@ export const AboutNetwork: React.FC<{
 }> = ({ networks, vibrantColor }) => {
   const intl = useTranslations();
   const letters: any = {};
-
+  const router = useRouter();
   networks.sort((a, b) => {
     if ((a?.title ?? "") < (b?.title ?? "")) {
       return -1;
@@ -75,48 +76,48 @@ export const AboutNetwork: React.FC<{
             const color =
               k % 3 === 0 ? "blue" : k % 3 === 1 ? "yellow" : "pink";
             return (
-              <Link
-                key={`mem${k}`}
-                href={`/network/${item.slug}`}
-                passHref={false}
-                legacyBehavior
+              <CardWrapper
+                key={k}
+                color={color}
+                onClick={() => router.push(`/network/${item.slug}`)}
               >
-                <CardWrapper key={k} color={color}>
-                  <Image
-                    alt={item.title ?? ""}
-                    src={item.logo?.url ?? cityPlaceholder}
-                    height={400}
-                    width={480}
-                    className="object-cover"
-                  />
+                <Image
+                  alt={item.title ?? ""}
+                  src={item.logo?.url ?? cityPlaceholder}
+                  height={400}
+                  width={480}
+                  className="object-cover"
+                />
 
-                  <div className="p-4">
-                    <H2>{item.title}</H2>
+                <div className="p-4">
+                  <H2>{item.title}</H2>
 
-                    {item.description?.html && (
-                      <div
-                        className={classNames(
-                          "mt-2 text-gray-500",
-                          styles.networkDescription
-                        )}
-                        dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
-                          item.description?.html
-                        )}
-                      />
-                    )}
+                  {item.description?.html && (
                     <div
-                      className={classNames([
-                        getTextColor(color),
-                        "flex-grow flex justify-end flex-col m-2",
-                      ])}
+                      className={classNames(
+                        "mt-2 text-gray-500",
+                        styles.networkDescription
+                      )}
+                      dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+                        item.description?.html
+                      )}
+                    />
+                  )}
+                  <div
+                    className={classNames([
+                      getTextColor(color),
+                      "flex-grow flex justify-end flex-col m-2",
+                    ])}
+                  >
+                    <Link
+                      className="hover:underline"
+                      href={`/network/${item.slug}` ?? ""}
                     >
-                      <Link href={`/network/${item.slug}` ?? ""} legacyBehavior>
-                        <a className="hover:underline">{`Lerne ${item.title} kennen...`}</a>
-                      </Link>
-                    </div>
+                      {`Lerne ${item.title} kennen...`}
+                    </Link>
                   </div>
-                </CardWrapper>
-              </Link>
+                </div>
+              </CardWrapper>
             );
           })}
         </Grid>

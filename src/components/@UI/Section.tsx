@@ -40,8 +40,8 @@ const Div: (
       React.HTMLAttributes<HTMLDivElement>,
       HTMLDivElement
     >
-  > = ({ children, className: _, ...props }) => (
-    <div className={classNames(className)} {...props}>
+  > = ({ children, className: additionalClassName, ...props }) => (
+    <div className={classNames(additionalClassName, className)} {...props}>
       {children}
     </div>
   );
