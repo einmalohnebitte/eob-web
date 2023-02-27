@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 
-import localFont from "@next/font/local";
+import localFont from "next/font/local";
 import "../components/ShopsMap/MarkerCluster.css";
 import "../components/ShopsMap/MarkerCluster.Default.css";
 
