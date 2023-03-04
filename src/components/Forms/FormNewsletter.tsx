@@ -3,6 +3,7 @@ import { FormBase } from "@/components/Forms/FormBase";
 import { useTranslations } from "@/hooks/useTranslations";
 import React from "react";
 import * as Yup from "yup";
+import { Flex } from "../@UI/Flex";
 import { useSendNewsletter } from "./useSendNewsletter";
 
 export const FormNewsletter: React.FC = () => {
@@ -44,10 +45,10 @@ export const FormNewsletter: React.FC = () => {
         send(rest);
       }}
     >
-      <div className="flex">
+      <Flex>
         <FieldInput label={intl("FORM_NAME")} field="firstName" />
         <FieldInput label={intl("FORM_SURNAME")} field="lastName" />
-      </div>
+      </Flex>
       <FieldInput label={intl("FORM_EMAIL")} field="email" />
     </FormBase>
   );

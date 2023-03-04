@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { ErrorMessage, Field } from "formik";
 import React from "react";
 import { BrandColors } from "../@UI/CardWrapper";
+import { Flex } from "../@UI/Flex";
 
 type PropType = {
   field: string;
@@ -20,8 +21,8 @@ export const FieldCheckbox: React.FC<PropType> = ({
       name={field}
     />
 
-    <div className="mt-6 flex">
-      <label className="flex items-center" htmlFor={field}>
+    <Flex className="mt-6 ">
+      <Flex as="label" align="center" htmlFor={field}>
         <Field
           type="checkbox"
           className={classNames(
@@ -40,7 +41,7 @@ export const FieldCheckbox: React.FC<PropType> = ({
           className="ml-2 font-gt text-gray-700"
           dangerouslySetInnerHTML={{ __html: label }}
         />
-      </label>
-    </div>
+      </Flex>
+    </Flex>
   </div>
 );

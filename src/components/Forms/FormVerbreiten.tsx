@@ -7,6 +7,7 @@ import { H2 } from "../@UI/Texts";
 import { FieldArea } from "./FieldArea";
 import { FieldInput } from "./FieldInput";
 import { useSendEmail } from "@/components/Forms/useSendEmail";
+import { Flex } from "../@UI/Flex";
 
 export const FormVerbreiten: React.FC = () => {
   const { isError, isSuccess, send, reset } = useSendEmail();
@@ -66,10 +67,10 @@ export const FormVerbreiten: React.FC = () => {
       }}
     >
       <H2>{intl("FORM_CONTACT_TITLE")}</H2>
-      <div className="flex">
+      <Flex>
         <FieldInput label={intl("FORM_NAME")} field="firstName" />
         <FieldInput label={intl("FORM_SURNAME")} field="lastName" />
-      </div>
+      </Flex>
       <FieldInput label={intl("FORM_EMAIL")} field="email" />
 
       <FieldArea
@@ -77,14 +78,14 @@ export const FormVerbreiten: React.FC = () => {
         label={intl("FORM_MOTIVATION")}
         placeholder={intl("FORM_MOTIVATION_CONTENT")}
       />
-      <div className="flex">
+      <Flex>
         <FieldInput
           label={intl("FORM_POSTCODE")}
           field="postCode"
           type="number"
         />
         <FieldInput label={intl("FORM_TOWN")} field="town" />
-      </div>
+      </Flex>
     </FormBase>
   );
 };
