@@ -8,6 +8,7 @@ import { H2 } from "../@UI/Texts";
 import { FieldArea } from "./FieldArea";
 import { FieldInput } from "./FieldInput";
 import { useSendEmail } from "@/components/Forms/useSendEmail";
+import { Flex } from "../@UI/Flex";
 
 export const FormVerkaufen: React.FC = () => {
   const { isError, isSuccess, send, reset } = useSendEmail();
@@ -89,13 +90,13 @@ export const FormVerkaufen: React.FC = () => {
       }}
     >
       <H2 className="mb-4">{intl("FORM_CONTACT_TITLE")}</H2>
-      <div className="flex">
+      <Flex>
         <FieldInput label={intl("FORM_SHOP")} field="shop" />
-      </div>
-      <div className="flex">
+      </Flex>
+      <Flex>
         <FieldInput label={intl("FORM_NAME")} field="firstName" />
         <FieldInput label={intl("FORM_SURNAME")} field="lastName" />
-      </div>
+      </Flex>
 
       <FieldInput label={intl("FORM_EMAIL")} field="email" />
       <FieldInput
@@ -103,14 +104,14 @@ export const FormVerkaufen: React.FC = () => {
         field="address"
         placeholder={intl("FORM_ADDRESS_PLACEHOLDER")}
       />
-      <div className="flex">
+      <Flex>
         <FieldInput
           label={intl("FORM_POSTCODE")}
           field="postCode"
           type="number"
         />
         <FieldInput label={intl("FORM_TOWN")} field="town" />
-      </div>
+      </Flex>
 
       <div className="m-2">
         <ErrorMessage
@@ -120,15 +121,15 @@ export const FormVerkaufen: React.FC = () => {
         <span className="mt-6 font-gt text-gray-700">
           {intl("FORM_STICKER")}
         </span>
-        <div className="flex ">
-          <label className="flex items-center" htmlFor={"sticker"}>
+        <Flex>
+          <Flex as="label" align="center" htmlFor={"sticker"}>
             <Field type="radio" name={"sticker"} id={"sticker"} value="yes" />
             <span
               className="ml-2 font-gt text-gray-700"
               dangerouslySetInnerHTML={{ __html: intl("FORM_YES") }}
             />
-          </label>
-          <label className="ml-2 flex items-center " htmlFor={"sticker"}>
+          </Flex>
+          <Flex as="label" align="center" className="ml-2" htmlFor={"sticker"}>
             <Field
               data-testid="STICKER-NO"
               type="radio"
@@ -140,8 +141,8 @@ export const FormVerkaufen: React.FC = () => {
               className="ml-2 font-gt text-gray-700"
               dangerouslySetInnerHTML={{ __html: intl("FORM_NO") }}
             />
-          </label>
-        </div>
+          </Flex>
+        </Flex>
       </div>
 
       <FieldArea field="message" label={intl("FORM_MESSAGE")} />

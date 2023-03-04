@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { FieldArea } from "./FieldArea";
 import { FieldInput } from "./FieldInput";
 import { useSendEmail } from "@/components/Forms/useSendEmail";
+import { Flex } from "../@UI/Flex";
 
 export const FormContact: React.FC = () => {
   const { isError, isSuccess, send, reset } = useSendEmail();
@@ -56,10 +57,10 @@ export const FormContact: React.FC = () => {
         });
       }}
     >
-      <div className="flex">
+      <Flex>
         <FieldInput label={intl("FORM_NAME")} field="firstName" />
         <FieldInput label={intl("FORM_SURNAME")} field="lastName" />
-      </div>
+      </Flex>
       <FieldInput label={intl("FORM_EMAIL")} field="email" />
 
       <FieldArea field="message" label={intl("FORM_MESSAGE")} />
