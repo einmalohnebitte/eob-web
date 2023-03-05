@@ -1,4 +1,4 @@
-import { Section, SplitSectionClass } from "@/components/@UI/Section";
+import { Section, SplitSection } from "@/components/@UI/Section";
 import { dangerouslySetFormattedInnerHTML, H1 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import { HeadMeta } from "@/components/Layout/HeadMeta";
@@ -9,6 +9,7 @@ import { AboutVisionMission } from "@/components/AboutUs/AboutVisionMission";
 import { AnchorPointer } from "@/components/@UI/AnchorPointer";
 import React from "react";
 import Image from "next/image";
+import { Flex } from "../@UI/Flex";
 
 export const AboutUs: React.FC<MembersQuery> = ({
   members,
@@ -30,19 +31,19 @@ export const AboutUs: React.FC<MembersQuery> = ({
         />
       </Section>
 
-      <div className={SplitSectionClass}>
-        <div className="basis-1/3">
+      <SplitSection>
+        <Flex basis="1/3">
           <H1>{pageSections[0].title}</H1>
-        </div>
-        <div className="basis-2/3">
+        </Flex>
+        <Flex basis="2/3" className="basis-2/3">
           <div
             className={`py-4`}
             dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
               pageSections[0].content.html ?? ""
             )}
           />
-        </div>
-      </div>
+        </Flex>
+      </SplitSection>
 
       <AboutVisionMission
         vibrantColor={vibrantColor}

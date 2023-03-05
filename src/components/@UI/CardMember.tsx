@@ -2,7 +2,8 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { CardWrapper, getTextColor } from "./CardWrapper";
+import { BrandColors, CardWrapper, getTextColor } from "./CardWrapper";
+import { Flex } from "./Flex";
 import { H2 } from "./Texts";
 
 export const CardMember: React.FC<
@@ -11,7 +12,7 @@ export const CardMember: React.FC<
     linkTitle: string;
     href: string;
     message?: string;
-    color: "pink" | "blue" | "yellow";
+    color: BrandColors;
   }>
 > = ({ title, message, href, linkTitle, color, children }) => {
   const router = useRouter();
@@ -27,14 +28,14 @@ export const CardMember: React.FC<
         <H2>{title}</H2>
         {message && <p className="mt-2 mb-8 text-gray-500">{message}</p>}
       </div>
-      <div
-        className={classNames(
-          "flex-grow flex justify-end flex-col m-2",
-          getTextColor(color)
-        )}
+      <Flex
+        justify="end"
+        direction="column"
+        grow={1}
+        className={classNames("m-2", getTextColor(color))}
       >
         {href && <Link href={href ?? ""}>{linkTitle}</Link>}
-      </div>
+      </Flex>
     </CardWrapper>
   );
 };

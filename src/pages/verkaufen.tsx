@@ -1,6 +1,7 @@
 import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
+import { Flex } from "@/components/@UI/Flex";
 import styles from "@/components/@UI/List.module.css";
-import { Section, SplitSectionClass } from "@/components/@UI/Section";
+import { Section, SplitSection } from "@/components/@UI/Section";
 import {
   dangerouslySetFormattedInnerHTML,
   H1,
@@ -36,16 +37,16 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         metaDescription={pages[0]?.metaDescription}
         metaKeywords={pages[0]?.metaKeywords}
       />
-      <div className={SplitSectionClass}>
-        <div className="basis-1/3">
+      <SplitSection>
+        <Flex basis="1/3">
           <Image
             src={pageSections[0].picture[0].url}
             alt="side"
             width={350}
             height={250}
           />
-        </div>
-        <div className="basis-2/3">
+        </Flex>
+        <Flex basis="2/3" direction="column">
           <H1>{pageSections[0].title}</H1>
           <div
             className="py-4"
@@ -53,8 +54,8 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
               pageSections[0].content.html ?? ""
             )}
           />
-        </div>
-      </div>
+        </Flex>
+      </SplitSection>
 
       <BackgroundWrapper color="yellow">
         <Section>

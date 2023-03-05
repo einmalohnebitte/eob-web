@@ -1,5 +1,6 @@
 import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
-import { Section, SplitSectionClass } from "@/components/@UI/Section";
+import { Flex } from "@/components/@UI/Flex";
+import { Section, SplitSection } from "@/components/@UI/Section";
 import {
   dangerouslySetFormattedInnerHTML,
   H1,
@@ -34,47 +35,47 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
 
   return (
     <>
-      <div>
-        <div className={SplitSectionClass}>
-          <div className="basis-2/3">
-            <H1>{pageSections[0].title}</H1>
-            <div
-              className="py-4"
-              dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
-                pageSections[0].content.html ?? ""
-              )}
-            />
-          </div>
-          <div className="basis-1/3">
-            <Image
-              src={pageSections[0].picture[0].url}
-              alt="side"
-              width={350}
-              height={250}
-            />
-          </div>
-        </div>
-      </div>
-      <BackgroundWrapper color="blue">
-        <div className={SplitSectionClass}>
+      <SplitSection>
+        <Flex basis="2/3" direction="column">
+          <H1>{pageSections[0].title}</H1>
           <div
-            className="basis-2/3 py-4 pr-4"
+            className="py-4"
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pageSections[0].content.html ?? ""
+            )}
+          />
+        </Flex>
+        <Flex basis="1/3">
+          <Image
+            src={pageSections[0].picture[0].url}
+            alt="side"
+            width={350}
+            height={250}
+          />
+        </Flex>
+      </SplitSection>
+      <BackgroundWrapper color="blue">
+        <SplitSection>
+          <Flex
+            basis="2/3"
+            direction="column"
+            className="py-4 pr-4"
             dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
               pageSections[1].content.html ?? ""
             )}
           />
-          <div className="basis-1/3">
+          <Flex basis="1/3">
             <Image
               src={pageSections[1].picture[0].url}
               alt="side"
               width={350}
               height={300}
             />
-          </div>
-        </div>
+          </Flex>
+        </SplitSection>
 
-        <div className={SplitSectionClass}>
-          <div className="basis-1/3">
+        <SplitSection>
+          <Flex basis="1/3">
             <Image
               src={pageSections[2].picture[0].url}
               alt="side"
@@ -82,8 +83,8 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
               height={350}
               className={"rounded-xl"}
             />
-          </div>
-          <div className="basis-2/3">
+          </Flex>
+          <Flex basis="2/3" direction="column">
             <H2>{pageSections[2].title}</H2>
             <div
               className="py-4"
@@ -91,11 +92,11 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                 pageSections[2].content.html ?? ""
               )}
             />
-          </div>
-        </div>
+          </Flex>
+        </SplitSection>
 
-        <div className={SplitSectionClass}>
-          <div className="flex  basis-2/3 flex-col lg:basis-1/2">
+        <SplitSection>
+          <Flex direction="column" basis="2/3" className="lg:basis-1/2">
             <H2>{pageSections[3].title}</H2>
             <div
               className="py-4"
@@ -103,8 +104,13 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
                 pageSections[3].content.html ?? ""
               )}
             />
-          </div>
-          <div className="flex basis-1/3 flex-col gap-4 lg:grid lg:basis-1/2 lg:grid-flow-col lg:grid-cols-2">
+          </Flex>
+          <Flex
+            direction="column"
+            gap={4}
+            basis="1/3"
+            className="lg:grid lg:basis-1/2 lg:grid-flow-col lg:grid-cols-2"
+          >
             <Image
               src={pageSections[3].picture[0].url}
               alt="side"
@@ -126,8 +132,8 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
               height={200}
               className={"flex self-center rounded-xl lg:row-span-2"}
             />
-          </div>
-        </div>
+          </Flex>
+        </SplitSection>
 
         <Section>
           <H2>{pageSections[4].title}</H2>
@@ -145,7 +151,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
         color="blue"
       >
         {inView && (
-          <div className={`flex justify-center py-20 md:w-3/5`}>
+          <Flex justify="center" className={`py-20 md:w-3/5`}>
             <iframe
               width="560"
               height="315"
@@ -156,7 +162,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
               allowFullScreen={true}
               className={`max-w-full`}
             ></iframe>
-          </div>
+          </Flex>
         )}
       </BackgroundWrapper>
     </>

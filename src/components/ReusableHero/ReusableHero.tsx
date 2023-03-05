@@ -1,4 +1,4 @@
-import { Section, SplitSectionClass } from "@/components/@UI/Section";
+import { Section, SplitSection } from "@/components/@UI/Section";
 import {
   dangerouslySetFormattedInnerHTML,
   H1,
@@ -13,6 +13,7 @@ import { Heros } from "./Heros";
 import { SponsorCard } from "../@UI/SponsorCard";
 import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import Head from "next/head";
+import { Flex } from "../@UI/Flex";
 
 export const ReusableHero: React.FC<ReusableHeroQuery> = ({
   reusableHeros,
@@ -44,33 +45,33 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
       <BackgroundWrapper vibrantColor={vibrantColor}>
         <Section>
           <H2>{pageSections[0].title}</H2>
-          <div className={SplitSectionClass}>
-            <div className="basis-1/3">
+          <SplitSection>
+            <Flex basis="1/3">
               <Image
                 width={firstPic?.width ?? 0 / 10}
                 height={firstPic?.height ?? 0 / 10}
                 src={firstPic.url}
                 alt="seimehrwegheldin"
               />
-            </div>
-            <div className="basis-2/3">
+            </Flex>
+            <Flex basis="2/3">
               <div
                 className="py-4 font-gt text-xl leading-8"
                 dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
                   pageSections[0].content.html ?? ""
                 )}
               />
-            </div>
-          </div>
+            </Flex>
+          </SplitSection>
         </Section>
       </BackgroundWrapper>
       <Section>
         <H2>{pageSections[1].title}</H2>
-        <div className="flex">
+        <Flex>
           {pageSections[1].picture.map((pic) => (
             <SponsorCard key={pic.url} src={pic.url} />
           ))}
-        </div>
+        </Flex>
       </Section>
     </>
   );
