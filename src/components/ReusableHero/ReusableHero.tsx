@@ -11,7 +11,6 @@ import Image from "next/image";
 import { ReusableHeroQuery } from "../CmsQueries/ReusableHero.cms.generated";
 import { Heros } from "./Heros";
 import { SponsorCard } from "../@UI/SponsorCard";
-import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import Head from "next/head";
 import { Flex } from "../@UI/Flex";
 
@@ -20,7 +19,6 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
   pageSections,
   pages,
 }) => {
-  const vibrantColor = pages?.[0]?.vibrantColor?.hex;
   const firstPic = pageSections[0].picture[0];
 
   return (
@@ -29,7 +27,7 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
         <meta name="robots" content="noindex" />
       </Head>
       <HeadMeta />
-      <BackgroundWrapper vibrantColor={vibrantColor}>
+      <Flex bgColor="gray">
         <Section>
           <H1>{pages[0]?.title}</H1>
           <div
@@ -38,11 +36,11 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
             )}
           />
         </Section>
-      </BackgroundWrapper>
+      </Flex>
 
       <AnchorPointer id="heros" />
       <Heros reusableHeros={reusableHeros} />
-      <BackgroundWrapper vibrantColor={vibrantColor}>
+      <Flex bgColor="gray">
         <Section>
           <H2>{pageSections[0].title}</H2>
           <SplitSection>
@@ -64,7 +62,7 @@ export const ReusableHero: React.FC<ReusableHeroQuery> = ({
             </Flex>
           </SplitSection>
         </Section>
-      </BackgroundWrapper>
+      </Flex>
       <Section>
         <H2>{pageSections[1].title}</H2>
         <Flex>

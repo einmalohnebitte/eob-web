@@ -7,15 +7,21 @@ import { Section } from "../@UI/Section";
 import { H1, H2 } from "../@UI/Texts";
 import classNames from "classnames";
 import styles from "./3Map.module.css";
+import { Flex } from "../@UI/Flex";
 
 export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
   const { push } = useRouter();
   return (
     <>
-      <div className="bg-gray-200">
+      <Flex bgColor="gray-solid">
         <Section className=" text-center">
           <H2>DAS HABEN WIR SCHON ERREICHT</H2>
-          <div className="mx-10 flex flex-col items-center justify-between py-4 md:flex-row md:items-start">
+          <Flex
+            direction="column"
+            align="center"
+            justify="between"
+            className="mx-10 py-4 md:flex-row md:items-start"
+          >
             {kpis.map((kpi, i) => (
               <div
                 className={classNames(
@@ -30,11 +36,11 @@ export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
                 <p className="text-sm"> {kpi.text}</p>
               </div>
             ))}
-          </div>
+          </Flex>
         </Section>
-      </div>
-      <div
-        className="flex cursor-pointer md:w-3/5"
+      </Flex>
+      <Flex
+        className="cursor-pointer md:w-3/5"
         onClick={() => push("/geschaefte")}
         role="presentation"
       >
@@ -46,7 +52,7 @@ export const Map: React.FC<{ kpis: ShopsNumberQuery["kpis"] }> = ({ kpis }) => {
             alt="Unser Map"
           />
         </div>
-      </div>
+      </Flex>
     </>
   );
 };

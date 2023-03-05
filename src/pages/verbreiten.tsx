@@ -1,4 +1,4 @@
-import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
+import { Flex } from "@/components/@UI/Flex";
 import styles from "@/components/@UI/List.module.css";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import { SponsorCard } from "@/components/@UI/SponsorCard";
@@ -67,7 +67,7 @@ const Home: React.FC<
         </div>
       </SplitSection>
 
-      <BackgroundWrapper color="pink">
+      <Flex direction="column" bgColor="pink">
         <Section>
           <H2>{pageSections[1].title}</H2>
           <div
@@ -90,7 +90,7 @@ const Home: React.FC<
             ))}
           </div>
         </Section>
-      </BackgroundWrapper>
+      </Flex>
     </>
   );
 };

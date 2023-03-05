@@ -7,16 +7,15 @@ import { useTranslations } from "@/hooks/useTranslations";
 import React, { useState } from "react";
 import Link from "next/link";
 import classNames from "classnames";
-import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import { CardWrapper, getTextColor } from "../@UI/CardWrapper";
 import cityPlaceholder from "./city.png";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { Flex } from "../@UI/Flex";
 
 export const AboutNetwork: React.FC<{
   networks: MembersQuery["networks"];
-  vibrantColor: string;
-}> = ({ networks, vibrantColor }) => {
+}> = ({ networks }) => {
   const intl = useTranslations();
   const letters: any = {};
   const router = useRouter();
@@ -40,7 +39,7 @@ export const AboutNetwork: React.FC<{
   const [filter, setFilter] = useState<string | null>(null);
 
   return (
-    <BackgroundWrapper vibrantColor={vibrantColor}>
+    <Flex bgColor="gray">
       <AnchorPointer id="network" />
       <Section>
         <H2 className="m-4">{intl("ABOUT_NETWORK")}</H2>
@@ -120,6 +119,6 @@ export const AboutNetwork: React.FC<{
           })}
         </Grid>
       </Section>
-    </BackgroundWrapper>
+    </Flex>
   );
 };

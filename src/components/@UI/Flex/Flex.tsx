@@ -1,6 +1,14 @@
 import { classed } from "@tw-classed/react";
 
-export const Flex = classed.div("flex", {
+export const bgColorVariation = {
+  blue: "bg-gradient-to-b from-blue-200 to-white",
+  pink: "bg-gradient-to-b from-pink-200 to-white",
+  yellow: "bg-gradient-to-b from-yellow-200 to-white",
+  gray: "bg-gradient-to-b from-gray-200 to-white",
+  "gray-solid": "bg-gray-200",
+};
+
+export const Flex = classed.div({
   variants: {
     direction: {
       row: "flex-row",
@@ -53,5 +61,16 @@ export const Flex = classed.div("flex", {
       "1/4": "basis-1/4",
       "3/4": "basis-3/4",
     },
+    bgColor: bgColorVariation,
+    display: {
+      flex: "flex",
+      "inline-flex": "inline-flex",
+      block: "block",
+      "inline-block": "inline-block",
+      inline: "inline",
+    },
+  },
+  defaultVariants: {
+    display: "flex",
   },
 });

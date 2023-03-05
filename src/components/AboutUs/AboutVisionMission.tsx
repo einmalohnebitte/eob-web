@@ -4,20 +4,18 @@ import { dangerouslySetFormattedInnerHTML, H2 } from "@/components/@UI/Texts";
 import { MembersQuery } from "@/components/CmsQueries/Members.cms.generated";
 import React from "react";
 import Image from "next/image";
-import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import classnames from "classnames";
 import styles from "./AboutVisionMission.module.css";
 import { Flex } from "../@UI/Flex";
 
 export const AboutVisionMission: React.FC<{
-  vibrantColor: string;
   pageSections: MembersQuery["pageSections"];
-}> = ({ vibrantColor, pageSections }) => {
+}> = ({ pageSections }) => {
   const firstPic = pageSections[1].picture[0];
   const secondPic = pageSections[2].picture[0];
 
   return (
-    <BackgroundWrapper vibrantColor={vibrantColor}>
+    <Flex bgColor="gray">
       <AnchorPointer id="vision" />
       <SplitSection>
         <Flex basis="2/3" direction="column">
@@ -62,6 +60,6 @@ export const AboutVisionMission: React.FC<{
           />
         </Flex>
       </SplitSection>
-    </BackgroundWrapper>
+    </Flex>
   );
 };

@@ -1,4 +1,3 @@
-import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Flex } from "@/components/@UI/Flex";
 import styles from "@/components/@UI/List.module.css";
 import { Section, SplitSection } from "@/components/@UI/Section";
@@ -57,7 +56,7 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         </Flex>
       </SplitSection>
 
-      <BackgroundWrapper color="yellow">
+      <Flex direction="column" bgColor="yellow">
         <Section>
           <H2>{pageSections[1].title}</H2>
           <div
@@ -79,7 +78,7 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         <Section>
           <FormVerkaufen />
         </Section>
-      </BackgroundWrapper>
+      </Flex>
     </>
   );
 };

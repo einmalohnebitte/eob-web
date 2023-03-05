@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
 import { BrandColors, CardWrapper, getTextColor } from "../@UI/CardWrapper";
+import { Flex } from "../@UI/Flex";
 
 import { Section } from "../@UI/Section";
 import { dangerouslySetFormattedInnerHTML, H2 } from "../@UI/Texts";
@@ -66,7 +66,7 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
   const spread = pageSections.find((s) => s.code === "verbreiten");
 
   return (
-    <BackgroundWrapper vibrantColor="#dddddd">
+    <Flex bgColor="gray">
       <Section className="sm:flex ">
         <CardGoal
           color="blue"
@@ -90,6 +90,6 @@ export const Goals: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           href={"/verbreiten"}
         />
       </Section>
-    </BackgroundWrapper>
+    </Flex>
   );
 };

@@ -1,4 +1,3 @@
-import { BackgroundWrapper } from "@/components/@UI/BackgroundWrapper";
 import { Flex } from "@/components/@UI/Flex";
 import { Section, SplitSection } from "@/components/@UI/Section";
 import {
@@ -54,7 +53,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
           />
         </Flex>
       </SplitSection>
-      <BackgroundWrapper color="blue">
+      <Flex display="block" bgColor="blue">
         <SplitSection>
           <Flex
             basis="2/3"
@@ -144,12 +143,8 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
             )}
           />
         </Section>
-      </BackgroundWrapper>
-      <BackgroundWrapper
-        ref={ref}
-        className={`flex justify-center p-10 md:p-0`}
-        color="blue"
-      >
+      </Flex>
+      <Flex ref={ref} justify="center" className={`p-10 md:p-0`} bgColor="blue">
         {inView && (
           <Flex justify="center" className={`py-20 md:w-3/5`}>
             <iframe
@@ -164,7 +159,7 @@ const Einkaufen: React.FC<PageSectionsQuery> = ({ pageSections }) => {
             ></iframe>
           </Flex>
         )}
-      </BackgroundWrapper>
+      </Flex>
     </>
   );
 };

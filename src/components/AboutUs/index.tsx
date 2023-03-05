@@ -17,7 +17,6 @@ export const AboutUs: React.FC<MembersQuery> = ({
   pages,
   networks,
 }) => {
-  const vibrantColor = pages?.[0]?.vibrantColor?.hex;
   return (
     <>
       <HeadMeta />
@@ -45,14 +44,11 @@ export const AboutUs: React.FC<MembersQuery> = ({
         </Flex>
       </SplitSection>
 
-      <AboutVisionMission
-        vibrantColor={vibrantColor}
-        pageSections={pageSections}
-      />
+      <AboutVisionMission pageSections={pageSections} />
       <AnchorPointer id="team" />
-      <AboutMembers members={members} vibrantColor={vibrantColor} />
+      <AboutMembers members={members} />
 
-      <AboutNetwork networks={networks} vibrantColor={vibrantColor} />
+      <AboutNetwork networks={networks} />
     </>
   );
 };

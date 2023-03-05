@@ -7,15 +7,14 @@ import { useTranslations } from "@/hooks/useTranslations";
 import Image from "next/image";
 import React from "react";
 import userPlaceholder from "./user.jpg";
-import { BackgroundWrapper } from "../@UI/BackgroundWrapper";
+import { Flex } from "../@UI/Flex";
 
 export const AboutMembers: React.FC<{
   members: MembersQuery["members"];
-  vibrantColor: string;
-}> = ({ members, vibrantColor }) => {
+}> = ({ members }) => {
   const intl = useTranslations();
   return (
-    <BackgroundWrapper vibrantColor={vibrantColor}>
+    <Flex bgColor="gray">
       <Section>
         <H2 className="m-4">{intl("TEAM")}</H2>
         <Grid>
@@ -43,6 +42,6 @@ export const AboutMembers: React.FC<{
           ))}
         </Grid>
       </Section>
-    </BackgroundWrapper>
+    </Flex>
   );
 };
