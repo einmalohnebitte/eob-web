@@ -75,7 +75,7 @@
     "jest-environment-jsdom": "29.5.0",
     "postcss": "8.4.21",
     "postcss-custom-media": "9.1.2",
-    "prettier": "2.8.6",
+    "prettier": "2.8.7",
     "typescript": "5.0.2",
     "typescript-plugin-css-modules": "5.0.0"
   },
