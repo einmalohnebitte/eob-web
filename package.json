@@ -19,7 +19,7 @@
   "dependencies": {
     "@react-leaflet/core": "2.1.0",
     "@tailwindcss/line-clamp": "0.4.4", 
-    "@tw-classed/react": "1.4.3",
+    "@tw-classed/react": "1.4.4",
     "@types/leaflet.markercluster": "1.5.1",
     "classnames": "2.3.2",
     "formik": "2.2.9",
