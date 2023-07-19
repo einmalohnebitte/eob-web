@@ -86,14 +86,15 @@ export const FormVerkaufen: React.FC = () => {
           email,
           subject: `[Verkaufen] ${shop} ${firstName} ${lastName}`, // Subject line
           html: `
-          Hallo,
-
-          vielen Dank für deine Anfrage. Wir befinden uns vom 01.07.-31.08.2023 in der Sommerpause. Wir bitten Dich also um etwas Geduld, falls Du mal länger auf eine Antwort von uns warten solltest.
-
-          Herzliche Grüße
-
-          das Einmal ohne, bitte- Team
-
+          Hallo,<br>
+          <br>
+          vielen Dank für deine Anfrage. Wir befinden uns vom 01.07.-31.08.2023 in der Sommerpause. Wir bitten Dich also um etwas Geduld, falls Du mal länger auf eine Antwort von uns warten solltest.<br>
+          <br>
+          Herzliche Grüße<br>
+          <br>
+          das Einmal ohne, bitte- Team<br>
+          <br>
+          <br>
           <h1>${shop} (${firstName} ${lastName})</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Stickers: ${sticker} </p><p>Message: ${message} </p>`,
         });
       }}

@@ -63,14 +63,15 @@ export const FormVerbreiten: React.FC = () => {
           email,
           subject: `[Verbreiten] ${firstName} ${lastName}`,
           html: `
-          Hallo,
-
-          vielen Dank für deine Anfrage. Wir befinden uns vom 01.07.-31.08.2023 in der Sommerpause. Wir bitten Dich also um etwas Geduld, falls Du mal länger auf eine Antwort von uns warten solltest.
-
-          Herzliche Grüße
-
-          das Einmal ohne, bitte- Team
-
+          Hallo,<br>
+          <br>
+          vielen Dank für deine Anfrage. Wir befinden uns vom 01.07.-31.08.2023 in der Sommerpause. Wir bitten Dich also um etwas Geduld, falls Du mal länger auf eine Antwort von uns warten solltest.<br>
+          <br>
+          Herzliche Grüße<br>
+          <br>
+          das Einmal ohne, bitte- Team<br>
+          <br>
+          <br>
           <h1> ${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Location:  ${postCode}, ${town} </p><p>Message: ${message} </p>`,
         });
       }}
