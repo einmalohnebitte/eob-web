@@ -146,6 +146,14 @@ export const FormVerkaufen: React.FC = () => {
       </div>
 
       <FieldArea field="message" label={intl("FORM_MESSAGE")} />
+
+      <div className="m-2">
+        <span className="mt-6 font-gt text-gray-700">
+          Einmal ohne, bitte befindet sich vom 01.07.-31.08.2023 in der Sommerpause.<br>
+          Wir arbeiten in dieser Zeit mit weniger Kapazitäten. Antworten auf Anfragen können daher etwas länger dauern. Danke für Dein Verständnis. Wir wünschen einen müllfreien Sommer.
+        </span>
+      </div>
+
     </FormBase>
   );
 };
