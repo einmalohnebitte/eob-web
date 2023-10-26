@@ -53,17 +53,7 @@ export const FormContact: React.FC = () => {
         send({
           email,
           subject: `[Kontakt]: ${firstName}`,
-          html: `
-          Hallo,<br>
-          <br>
-          vielen Dank für deine Anfrage. Wir befinden uns vom 01.07.-31.08.2023 in der Sommerpause. Wir bitten Dich also um etwas Geduld, falls Du mal länger auf eine Antwort von uns warten solltest.<br>
-          <br>
-          Herzliche Grüße<br>
-          <br>
-          das Einmal ohne, bitte- Team<br>
-          <br>
-          <br>
-          <p>${firstName} ${lastName} - ${email}</p><p>${message}</p>`,
+          html: `<p>${firstName} ${lastName} - ${email}</p><p>${message}</p>`,
         });
       }}
     >
@@ -74,13 +64,6 @@ export const FormContact: React.FC = () => {
       <FieldInput label={intl("FORM_EMAIL")} field="email" />
 
       <FieldArea field="message" label={intl("FORM_MESSAGE")} />
-
-      <div className="m-2">
-        <span className="mt-6 font-gt text-gray-700">
-          Einmal ohne, bitte befindet sich vom 01.07.-31.08.2023 in der Sommerpause.<br />
-          Wir arbeiten in dieser Zeit mit weniger Kapazitäten. Antworten auf Anfragen können daher etwas länger dauern. Danke für Dein Verständnis. Wir wünschen einen müllfreien Sommer.
-        </span>
-      </div>
     </FormBase>
   );
 };

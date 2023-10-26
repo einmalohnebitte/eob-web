@@ -85,17 +85,7 @@ export const FormVerkaufen: React.FC = () => {
         send({
           email,
           subject: `[Verkaufen] ${shop} ${firstName} ${lastName}`, // Subject line
-          html: `
-          Hallo,<br>
-          <br>
-          vielen Dank für deine Anfrage. Wir befinden uns vom 01.07.-31.08.2023 in der Sommerpause. Wir bitten Dich also um etwas Geduld, falls Du mal länger auf eine Antwort von uns warten solltest.<br>
-          <br>
-          Herzliche Grüße<br>
-          <br>
-          das Einmal ohne, bitte- Team<br>
-          <br>
-          <br>
-          <h1>${shop} (${firstName} ${lastName})</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Stickers: ${sticker} </p><p>Message: ${message} </p>`,
+          html: `<h1>${shop} (${firstName} ${lastName})</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Stickers: ${sticker} </p><p>Message: ${message} </p>`,
         });
       }}
     >
@@ -156,14 +146,6 @@ export const FormVerkaufen: React.FC = () => {
       </div>
 
       <FieldArea field="message" label={intl("FORM_MESSAGE")} />
-
-      <div className="m-2">
-        <span className="mt-6 font-gt text-gray-700">
-          Einmal ohne, bitte befindet sich vom 01.07.-31.08.2023 in der Sommerpause.<br />
-          Wir arbeiten in dieser Zeit mit weniger Kapazitäten. Antworten auf Anfragen können daher etwas länger dauern. Danke für Dein Verständnis. Wir wünschen einen müllfreien Sommer.
-        </span>
-      </div>
-
     </FormBase>
   );
 };
