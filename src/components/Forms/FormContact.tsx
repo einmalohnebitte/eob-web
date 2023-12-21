@@ -53,7 +53,21 @@ export const FormContact: React.FC = () => {
         send({
           email,
           subject: `[Kontakt]: ${firstName}`,
-          html: `<p>${firstName} ${lastName} - ${email}</p><p>${message}</p>`,
+          html: `
+          Hallo,<br>
+          <br>
+          vielen Dank für deine Nachricht.<br>
+          <br>
+          Das Team von Einmal ohne, bitte macht eine kleine Winterpause. Wir sind ab dem 8. Januar wieder am Start und melden uns schnellstmöglich bei dir.<br>
+          <br>
+          Bis dahin wünschen wir Dir eine schöne Weihnachtszeit und ein entspanntes Jahresende!<br>
+          <br>
+          Liebe Grüße<br>
+          <br>
+          Das Team von Einmal ohne, bitte<br>
+          <br>
+          <br>
+          <p>${firstName} ${lastName} - ${email}</p><p>${message}</p>`,
         });
       }}
     >
@@ -64,6 +78,13 @@ export const FormContact: React.FC = () => {
       <FieldInput label={intl("FORM_EMAIL")} field="email" />
 
       <FieldArea field="message" label={intl("FORM_MESSAGE")} />
+
+      <div className="m-2">
+        <span className="mt-6 font-gt text-gray-700">
+          Das Team von Einmal ohne, bitte macht eine kleine Winterpause. Wir sind ab dem 8. Januar wieder am Start und beantworten Nachrichten dann schnellstmöglich.<br />
+          Bis dahin wünschen wir Dir eine schöne Weihnachtszeit und ein entspanntes Jahresende!
+        </span>
+      </div>
     </FormBase>
   );
 };

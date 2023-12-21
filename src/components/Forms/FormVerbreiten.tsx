@@ -62,7 +62,21 @@ export const FormVerbreiten: React.FC = () => {
         send({
           email,
           subject: `[Verbreiten] ${firstName} ${lastName}`,
-          html: ` <h1> ${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Location:  ${postCode}, ${town} </p><p>Message: ${message} </p>`,
+          html: `
+          Hallo,<br>
+          <br>
+          vielen Dank für deine Nachricht.<br>
+          <br>
+          Das Team von Einmal ohne, bitte macht eine kleine Winterpause. Wir sind ab dem 8. Januar wieder am Start und melden uns schnellstmöglich bei dir.<br>
+          <br>
+          Bis dahin wünschen wir Dir eine schöne Weihnachtszeit und ein entspanntes Jahresende!<br>
+          <br>
+          Liebe Grüße<br>
+          <br>
+          Das Team von Einmal ohne, bitte<br>
+          <br>
+          <br>
+          <h1> ${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Location:  ${postCode}, ${town} </p><p>Message: ${message} </p>`,
         });
       }}
     >
@@ -86,6 +100,13 @@ export const FormVerbreiten: React.FC = () => {
         />
         <FieldInput label={intl("FORM_TOWN")} field="town" />
       </Flex>
+
+      <div className="m-2">
+        <span className="mt-6 font-gt text-gray-700">
+          Das Team von Einmal ohne, bitte macht eine kleine Winterpause. Wir sind ab dem 8. Januar wieder am Start und beantworten Nachrichten dann schnellstmöglich.<br />
+          Bis dahin wünschen wir Dir eine schöne Weihnachtszeit und ein entspanntes Jahresende!
+        </span>
+      </div>
     </FormBase>
   );
 };

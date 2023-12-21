@@ -85,7 +85,21 @@ export const FormVerkaufen: React.FC = () => {
         send({
           email,
           subject: `[Verkaufen] ${shop} ${firstName} ${lastName}`, // Subject line
-          html: `<h1>${shop} (${firstName} ${lastName})</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Stickers: ${sticker} </p><p>Message: ${message} </p>`,
+          html: `
+          Hallo,<br>
+          <br>
+          vielen Dank für deine Nachricht.<br>
+          <br>
+          Das Team von Einmal ohne, bitte macht eine kleine Winterpause. Wir sind ab dem 8. Januar wieder am Start und melden uns schnellstmöglich bei dir.<br>
+          <br>
+          Bis dahin wünschen wir Dir eine schöne Weihnachtszeit und ein entspanntes Jahresende!<br>
+          <br>
+          Liebe Grüße<br>
+          <br>
+          Das Team von Einmal ohne, bitte<br>
+          <br>
+          <br>
+          <h1>${shop} (${firstName} ${lastName})</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Stickers: ${sticker} </p><p>Message: ${message} </p>`,
         });
       }}
     >
@@ -146,6 +160,14 @@ export const FormVerkaufen: React.FC = () => {
       </div>
 
       <FieldArea field="message" label={intl("FORM_MESSAGE")} />
+
+      <div className="m-2">
+        <span className="mt-6 font-gt text-gray-700">
+          Das Team von Einmal ohne, bitte macht eine kleine Winterpause. Wir sind ab dem 8. Januar wieder am Start und beantworten Nachrichten dann schnellstmöglich.<br />
+          Bis dahin wünschen wir Dir eine schöne Weihnachtszeit und ein entspanntes Jahresende!
+        </span>
+      </div>
+
     </FormBase>
   );
 };
