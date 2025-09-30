@@ -2,7 +2,7 @@ import * as Types from '../../server/generated/graphql';
 
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type ShopsQueryVariables = Types.Exact<{
-  endCursor?: Types.InputMaybe<Types.Scalars['String']>;
+  endCursor?: Types.InputMaybe<Types.Scalars['String']['input']>;
 }>;
 
 
