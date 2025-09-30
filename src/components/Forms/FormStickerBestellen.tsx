@@ -80,7 +80,7 @@ export const FormStickerBestellen: React.FC = () => {
         } = values;
         send({
           email,
-          subject: `[Sticker bestellen] ${shop} ${firstName} ${lastName}`, // Subject line
+          subject: `[Sticker bestellen] ${firstName} ${lastName}`, // Subject line
           html: `<h1>${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Message: ${message} </p>`,
         });
       }}
