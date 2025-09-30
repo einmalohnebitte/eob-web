@@ -10,7 +10,7 @@ import {
   PageSectionsDocument,
   PageSectionsQuery,
 } from "@/components/CmsQueries/PageSections.cms.generated";
-import { FormVerkaufen } from "@/components/Forms/FormVerkaufen";
+import { FormStickerBestellen } from "@/components/Forms/FormStickerBestellen";
 import { withLayout } from "@/components/Layout";
 import { HeadMeta } from "@/components/Layout/HeadMeta";
 import { contextToLocale } from "@/hooks/useTranslations/contextToLocale";
@@ -79,7 +79,7 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
           />
         </Section>
         <Section>
-          <FormVerkaufen />
+          <FormStickerBestellen />
         </Section>
       </Flex>
     </>
