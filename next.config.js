@@ -9,6 +9,6 @@ module.exports = {
   },
   images: {
     dangerouslyAllowSVG: true,
-    domains: ["media.graphassets.com"],
+    domains: ["media.graphassets.com", "eu-central-1.graphassets.com"],
   },
 };
