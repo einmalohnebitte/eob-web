@@ -55,7 +55,7 @@ const limiter = (() => {
     if (!g.__graphCmsLimiter) {
         g.__graphCmsLimiter = new SimpleLimiter({
             maxConcurrent: Number(process.env.RATE_MAX_CONCURRENCY ?? 1),
-            minTime: Number(process.env.RATE_MIN_TIME_MS ?? 500), // ~2 req/s cap per process
+            minTime: Number(process.env.RATE_MIN_TIME_MS ?? 1100), // ~1 req/s cap per process
         });
     }
     return g.__graphCmsLimiter as SimpleLimiter;
