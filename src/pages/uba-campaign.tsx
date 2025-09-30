@@ -37,13 +37,15 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         metaKeywords={pages[0]?.metaKeywords}
       />
       <SplitSection>
-        <H1>{pages[0].title}</H1>
-        <div
-          className="py-4"
-          dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
-            pages[0].content?.html ?? ""
-          )}
-        />
+        <Section>
+          <H1>{pages[0].title}</H1>
+          <div
+            className="py-4"
+            dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
+              pages[0].content?.html ?? ""
+            )}
+          />
+        </Section>
       </SplitSection>
 
       <SplitSection>
