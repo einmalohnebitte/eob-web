@@ -2,6 +2,9 @@ query PageSections($page: String! = "home", $locale: [Locale!]!) {
   pages(where: { slug: $page }, locales: $locale) {
     metaDescription
     metaKeywords
+    content {
+      html
+    }
   }
   pageSections(where: { page: { slug: $page } }, locales: $locale) {
     title
