@@ -41,7 +41,7 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         <div
           className="py-4"
           dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
-            pages[0].content.html ?? ""
+            pages[0].content?.html ?? ""
           )}
         />
       </SplitSection>
