@@ -15,10 +15,6 @@ export const FormStickerBestellen: React.FC = () => {
 
   const intl = useTranslations();
   const validationSchema = Yup.object().shape({
-    shop: Yup.string()
-      .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
-      .max(50, intl("FORM_VALIDATION_TOO_LONG"))
-      .required(intl("FORM_VALIDATION_REQUIRED")),
     firstName: Yup.string()
       .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
       .max(50, intl("FORM_VALIDATION_TOO_LONG"))
@@ -42,10 +38,6 @@ export const FormStickerBestellen: React.FC = () => {
       .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
       .max(50, intl("FORM_VALIDATION_TOO_LONG"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
-    message: Yup.string()
-      .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
-      .max(500, intl("FORM_VALIDATION_TOO_LONG"))
-      .required(intl("FORM_VALIDATION_REQUIRED")),
     consent: Yup.boolean()
       .oneOf([true], intl("FORM_VALIDATION_REQUIRED"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
@@ -64,7 +56,6 @@ export const FormStickerBestellen: React.FC = () => {
         address: "",
         postCode: null as any as number,
         town: "",
-        message: "",
         consent: false,
       }}
       validationSchema={validationSchema}
@@ -76,12 +67,11 @@ export const FormStickerBestellen: React.FC = () => {
           address,
           postCode,
           town,
-          message,
         } = values;
         send({
           email,
           subject: `[Sticker bestellen] ${firstName} ${lastName}`, // Subject line
-          html: `<h1>${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Message: ${message} </p>`,
+          html: `<h1>${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p>`,
         });
       }}
     >
