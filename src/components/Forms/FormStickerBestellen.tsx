@@ -1,4 +1,4 @@
-import { FormBaseWithoutCaptcha } from "@/components/Forms/FormBaseWithoutCaptcha";
+import { FormBase } from "@/components/Forms/FormBase";
 import { useTranslations } from "@/hooks/useTranslations";
 import { ErrorMessage, Field } from "formik";
 import React from "react";
@@ -52,7 +52,7 @@ export const FormStickerBestellen: React.FC = () => {
   });
 
   return (
-    <FormBaseWithoutCaptcha
+    <FormBase
       onReset={reset}
       isError={isError}
       isSuccess={isSuccess}
@@ -111,6 +111,6 @@ export const FormStickerBestellen: React.FC = () => {
           name={"sticker"}
         />
       </div>
-    </FormBaseWithoutCaptcha>
+    </FormBase>
   );
 };
