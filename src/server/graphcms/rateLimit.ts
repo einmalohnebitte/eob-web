@@ -42,7 +42,9 @@ class SimpleLimiter {
     private drain() {
         while (this.active < this.opts.maxConcurrent && this.queue.length) {
             const next = this.queue.shift();
-            next();
+            if (next !== undefined) {
+                next();
+            }
         }
     }
 }
