@@ -94,9 +94,13 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         </Flex>
       </SplitSection>
 
-      <Section>
-        <FormStickerBestellen />
-      </Section>
+      <SplitSection>
+        <Flex basis="1/3" direction="column">
+        </Flex>
+        <Flex basis="2/3" direction="column">
+          <FormStickerBestellen />
+        </Flex>
+      </SplitSection>
 
       <SplitSection>
         <Flex basis="1/3" direction="column">
