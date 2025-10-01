@@ -49,13 +49,39 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
       </SplitSection>
 
       <SplitSection>
-        <Flex basis="1/3">
-          <Image
-            src={pageSections[0].picture[0].url}
-            alt="side"
-            width={350}
-            height={250}
-          />
+        <Flex basis="1/3" direction="column">
+          {pageSections[0].picture.length >= 1  && (
+            <Image
+              src={pageSections[0].picture[0].url}
+              alt="side"
+              width={350}
+              height={250}
+            />
+          )}
+          {pageSections[0].picture.length >= 2  && (
+            <Image
+              src={pageSections[0].picture[1].url}
+              alt="side"
+              width={350}
+              height={250}
+            />
+          )}
+          {pageSections[0].picture.length >= 3  && (
+            <Image
+              src={pageSections[0].picture[2].url}
+              alt="side"
+              width={350}
+              height={250}
+            />
+          )}
+          {pageSections[0].picture.length >= 4  && (
+            <Image
+              src={pageSections[0].picture[3].url}
+              alt="side"
+              width={350}
+              height={250}
+            />
+          )}
         </Flex>
         <Flex basis="2/3" direction="column">
           <H1>{pageSections[0].title}</H1>
@@ -68,20 +94,55 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         </Flex>
       </SplitSection>
 
-      <Flex direction="column" bgColor="yellow">
-        <Section>
-          <H2>{pageSections[1].title}</H2>
+      <Section>
+        <FormStickerBestellen />
+      </Section>
+
+      <SplitSection>
+        <Flex basis="1/3" direction="column">
+          {pageSections[1].picture.length >= 1  && (
+            <Image
+              src={pageSections[1].picture[0].url}
+              alt="side"
+              width={350}
+              height={250}
+            />
+          )}
+          {pageSections[1].picture.length >= 2  && (
+            <Image
+              src={pageSections[1].picture[1].url}
+              alt="side"
+              width={350}
+              height={250}
+            />
+          )}
+          {pageSections[1].picture.length >= 3  && (
+            <Image
+              src={pageSections[1].picture[2].url}
+              alt="side"
+              width={350}
+              height={250}
+            />
+          )}
+          {pageSections[1].picture.length >= 4  && (
+            <Image
+              src={pageSections[1].picture[3].url}
+              alt="side"
+              width={350}
+              height={250}
+            />
+          )}
+        </Flex>
+        <Flex basis="2/3" direction="column">
+          <H1>{pageSections[1].title}</H1>
           <div
-            className={`${styles.OLWrapper} py-4 pr-4`}
+            className="py-4"
             dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
               pageSections[1].content.html ?? ""
             )}
           />
-        </Section>
-        <Section>
-          <FormStickerBestellen />
-        </Section>
-      </Flex>
+        </Flex>
+      </SplitSection>
     </>
   );
 };
