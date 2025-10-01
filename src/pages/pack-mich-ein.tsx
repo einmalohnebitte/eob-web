@@ -21,7 +21,7 @@ import React from "react";
 
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const data = await graphCmsRequest(PageSectionsDocument, {
-    page: "uba-campaign",
+    page: "pack-mich-ein",
     locale: contextToLocale(ctx),
   });
   return {
