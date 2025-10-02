@@ -38,7 +38,7 @@ export default async function sendEmail(
     await sendMessage({
       to: process.env.EMAIL ?? "",
       cc: email,
-      from: `website@einmalohnebitte.de`, // sender address
+      from: `hallo@einmalohnebitte.de`, // sender address
       subject,
       html,
     });
