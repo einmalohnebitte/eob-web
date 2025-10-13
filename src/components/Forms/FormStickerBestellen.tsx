@@ -38,6 +38,8 @@ export const FormStickerBestellen: React.FC = () => {
       .min(2, intl("FORM_VALIDATION_TOO_SHORT"))
       .max(50, intl("FORM_VALIDATION_TOO_LONG"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
+    quantity: Yup.number()
+      .required(intl("FORM_VALIDATION_REQUIRED")),
     consent: Yup.boolean()
       .oneOf([true], intl("FORM_VALIDATION_REQUIRED"))
       .required(intl("FORM_VALIDATION_REQUIRED")),
@@ -56,6 +58,7 @@ export const FormStickerBestellen: React.FC = () => {
         address: "",
         postCode: null as any as number,
         town: "",
+        quantity: 1,
         consent: false,
       }}
       validationSchema={validationSchema}
@@ -66,12 +69,13 @@ export const FormStickerBestellen: React.FC = () => {
           email,
           address,
           postCode,
+          quantity,
           town,
         } = values;
         send({
           email,
           subject: `[Sticker bestellen] ${firstName} ${lastName}`, // Subject line
-          html: `<h1>${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p>`,
+          html: `<h1>${firstName} ${lastName}</h1><p>Email: ${email} </p><p>Address: ${address}, ${postCode}, ${town} </p><p>Anzahl Sets: ${quantity}</p>`,
         });
       }}
     >
@@ -94,6 +98,7 @@ export const FormStickerBestellen: React.FC = () => {
         />
         <FieldInput label={intl("FORM_TOWN")} field="town" />
       </Flex>
+      <FieldInput label="Anzahl Sticker-Sets" field="quantity" type="number" />
 
       <div className="m-2">
         <ErrorMessage
