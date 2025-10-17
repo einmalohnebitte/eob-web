@@ -39,6 +39,11 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
       <SplitSection>
         <Section>
           <H1>{pages[0].title}</H1>
+
+          <div className="py-4">
+              <iframe style={{width: "100%", aspectRatio: "calc(16 / 9)"}} src="https://www.youtube-nocookie.com/embed/vgjaLRZlck8?si=A5uAIDjOwFDTEUIR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+
           <div
             className="py-4"
             dangerouslySetInnerHTML={dangerouslySetFormattedInnerHTML(
