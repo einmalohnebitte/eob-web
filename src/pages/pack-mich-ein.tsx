@@ -36,6 +36,13 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
         metaDescription={pages[0]?.metaDescription}
         metaKeywords={pages[0]?.metaKeywords}
       />
+
+      <style jsx global>{`
+        h5 { font-weight: bold; margin-top: 10px; margin-bottom: 10px; }
+        ul { padding: revert; }
+        p.text-xl { margin-bottom: 20px;  }
+      `}</style>
+
       <SplitSection>
         <Section>
           <H1>{pages[0].title}</H1>
