@@ -41,7 +41,7 @@ const Home: React.FC<PageSectionsQuery> = ({ pages, pageSections }) => {
           <H1>{pages[0].title}</H1>
 
           <div className="py-4">
-              <iframe style={{width: "100%", aspectRatio: "calc(16 / 9)"}} src="https://www.youtube-nocookie.com/embed/vgjaLRZlck8?si=A5uAIDjOwFDTEUIR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <iframe style={{width: "100%", aspectRatio: "calc(16 / 9)"}} src="https://www.youtube-nocookie.com/embed/vgjaLRZlck8?si=A5uAIDjOwFDTEUIR" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
           </div>
 
           <div
