@@ -23,7 +23,7 @@
     "@types/leaflet.markercluster": "1.5.1",
     "classnames": "2.3.2",
     "formik": "2.2.10",
-    "graphql": "16.6.0",
+    "graphql": "16.7.1",
     "leaflet": "1.9.4",
     "leaflet.markercluster": "1.5.3",
     "mailgun-js": "0.22.0",
